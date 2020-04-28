@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>one on Hugo Cards</title>
-    <link>http://touch-star.com/handbooks/categories/one/</link>
+    <link>http://touch-star.com/categories/one/</link>
     <description>Recent content in one on Hugo Cards</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 13 Jun 2016 10:51:47 +0530</lastBuildDate>
     
-	<atom:link href="http://touch-star.com/handbooks/categories/one/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://touch-star.com/categories/one/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Welcome to Hugo!</title>
-      <link>http://touch-star.com/handbooks/posts/welcome-to-hugo/</link>
+      <link>http://touch-star.com/posts/welcome-to-hugo/</link>
       <pubDate>Mon, 13 Jun 2016 10:51:47 +0530</pubDate>
       
-      <guid>http://touch-star.com/handbooks/posts/welcome-to-hugo/</guid>
+      <guid>http://touch-star.com/posts/welcome-to-hugo/</guid>
       <description>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris erat augue, eleifend nec est quis, iaculis suscipit lacus. In convallis ut mi ac volutpat. Integer feugiat lacinia purus, at condimentum enim tempus vitae. Fusce tempus tortor nibh, ut mollis sapien pulvinar at. Nam nec tortor ante. Phasellus lorem elit, placerat sit amet ligula ac, fermentum vulputate nibh. Quisque sed dapibus risus. Quisque sagittis iaculis maximus. Mauris lorem ligula, commodo in ullamcorper et, mollis ut dui.</description>
     </item>
     
     <item>
       <title>Installation</title>
-      <link>http://touch-star.com/handbooks/posts/installation/</link>
+      <link>http://touch-star.com/posts/installation/</link>
       <pubDate>Mon, 09 May 2016 00:00:00 +0000</pubDate>
       
-      <guid>http://touch-star.com/handbooks/posts/installation/</guid>
+      <guid>http://touch-star.com/posts/installation/</guid>
       <description>Nulla vel ante sit amet leo imperdiet porta. Mauris pellentesque finibus ligula non dignissim. Sed sed vehicula velit. Ut eleifend velit maximus massa lobortis mattis. In dui quam, rutrum eu purus et, mattis consequat ex. Vivamus risus mauris, ultricies vel dolor eget, aliquet tristique est. Suspendisse odio urna, vehicula vel diam at, pulvinar porttitor metus. Sed ac ipsum et magna aliquam mattis in eleifend mi. Pellentesque porttitor diam nec hendrerit efficitur.</description>
     </item>
     
