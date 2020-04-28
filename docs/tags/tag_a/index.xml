@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>tag_a on Hugo Cards</title>
+    <title>tag_a on TouchStar</title>
     <link>http://touch-star.com/tags/tag_a/</link>
-    <description>Recent content in tag_a on Hugo Cards</description>
+    <description>Recent content in tag_a on TouchStar</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
+    <language>zh-CN</language>
     <lastBuildDate>Sun, 10 Apr 2016 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="http://touch-star.com/tags/tag_a/index.xml" rel="self" type="application/rss+xml" />

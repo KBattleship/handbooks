@@ -1,20 +1,20 @@
 baseurl = "http://touch-star.com/"
-languageCode = "en-us"
-title = "Hugo Cards"
+languageCode = "zh-CN"
+title = "TouchStar"
 theme = "hugo-cards"
 themesDir = "themes/"
 paginate = 6
 publishDir = "docs"
 
 [params]
-  builtBy = "bool"
+  builtBy = "CheneyIn"
   defaultImage = "gopher.jpg"
 
   facebook = ""
   quora = ""
   twitter = "http://twitter.com/bul_ikana"
   github = "http://github.com/bul-ikana"
-  email = ""
+  email = "xy410257@163.com"
 
   fbLikeBox = ""
   fbAppId = ""
@@ -25,6 +25,6 @@ publishDir = "docs"
   disqus = ""
 
   [params.copyright]
-     name = "bool"
-     link = "https://bool.netlify.com"
+     name = "CheneyIn"
+     link = "http://touch-star.com"
 
