@@ -1,4 +1,4 @@
-baseurl = "http://touch-star.com/handbooks"
+baseurl = "http://touch-star.com/"
 languageCode = "en-us"
 title = "Hugo Cards"
 theme = "hugo-cards"
