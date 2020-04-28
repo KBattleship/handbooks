@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Hugo Cards</title>
+    <link>http://touch-star.com/handbooks/categories/</link>
+    <description>Recent content in Categories on Hugo Cards</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 13 Jun 2016 10:51:47 +0530</lastBuildDate>
+    
+	<atom:link href="http://touch-star.com/handbooks/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>one</title>
+      <link>http://touch-star.com/handbooks/categories/one/</link>
+      <pubDate>Mon, 13 Jun 2016 10:51:47 +0530</pubDate>
+      
+      <guid>http://touch-star.com/handbooks/categories/one/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>two</title>
+      <link>http://touch-star.com/handbooks/categories/two/</link>
+      <pubDate>Mon, 13 Jun 2016 10:51:47 +0530</pubDate>
+      
+      <guid>http://touch-star.com/handbooks/categories/two/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

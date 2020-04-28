@@ -4,6 +4,7 @@ title = "Hugo Cards"
 theme = "hugo-cards"
 themesDir = "themes/"
 paginate = 6
+publishDir = "docs"
 
 [params]
   builtBy = "bool"
