@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://touch-star.com/sitemap.xml

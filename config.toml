@@ -1,30 +1,77 @@
-baseurl = "http://touch-star.com/"
-languageCode = "zh-CN"
+baseURL = "https://touch-star.com/"
 title = "TouchStar"
-theme = "hugo-cards"
-themesDir = "themes/"
-paginate = 6
+enableRobotsTXT = true
+enableEmoji = true
+theme = "jane"
 publishDir = "docs"
 
+hasCJKLanguage = false     
+paginate = 10              
+rssLimit = 10             
+disqusShortname = ""      
+googleAnalytics = ""      
+copyright = "CheneyIn"           
+
+defaultContentLanguage = "zh-cn"           # Default language to use
+[languages.zh-cn]
+  languageCode = "zh-cn"
+
+[author]                  # essential                     # 必需
+  name = "CheneyIn"
+
+[sitemap]                 # essential                     # 必需
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[[menu.main]]             # config your menu              # 配置目录
+  name = "主页"
+  weight = 10
+  identifier = "home"
+  url = "/"
+[[menu.main]]
+  name = "归档"
+  weight = 20
+  identifier = "archives"
+  url = "/post/"
+[[menu.main]]
+  name = "标签"
+  weight = 30
+  identifier = "tags"
+  url = "/tags/"
+[[menu.main]]
+  name = "分类"
+  weight = 40
+  identifier = "categories"
+  url = "/categories/"
+
+
+
 [params]
-  builtBy = "CheneyIn"
-  defaultImage = "gopher.jpg"
+  since = "2019"            
+  homeFullContent = false   
+  rssFullContent = false     
 
-  facebook = ""
-  quora = ""
-  twitter = ""
-  github = "https://github.com/Ynoy"
-  email = "xy410257@163.com"
+  logoTitle = "摘星辰"        
+  keywords = ["CheneyIn", "k8s","docker"]
+  description = "笨笨豪の摘星辰"
 
-  fbLikeBox = ""
-  fbAppId = ""
-  fbPageUrl = ""
-  fbPageTitle = ""
+  dateFormatToUse = "2006-01-02"
 
-  analytics = ""
-  disqus = ""
+  toc = true               
+  photoswipe = true        
+  # contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
 
-  [params.copyright]
-     name = "CheneyIn"
-     link = "http://touch-star.com"
 
+  customCSS = []           
+  customJS = []
+
+  [params.social]                                         # 社交链接
+    a-email = "mailto:xy410257@163.com"
+    g-github = "https://github.com/Ynoy"
+
+  [params.utteranc]        
+    enable = true
+    repo = "ynoy/handbooks"    
+    issueTerm = "pathname"
+    theme = "github-light"                          
