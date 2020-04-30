@@ -1,46 +1,27 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>k8s on TouchStar</title>
+    <title>K8s on TouchStar</title>
     <link>https://touch-star.com/categories/k8s/</link>
-    <description>Recent content in k8s on TouchStar</description>
+    <description>Recent content in K8s on TouchStar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>CheneyIn</copyright>
-    <lastBuildDate>Tue, 28 Apr 2020 21:41:52 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/categories/k8s/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>初识K8s</title>
-      <link>https://touch-star.com/post/k8s/kubernetes/1-k8s-base/1_concept/</link>
-      <pubDate>Tue, 28 Apr 2020 21:41:52 +0800</pubDate>
+      <title>Etcd架构与实现原理</title>
+      <link>https://touch-star.com/post/distributed/2020-04-30-etcd/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://touch-star.com/post/k8s/kubernetes/1-k8s-base/1_concept/</guid>
-      <description>1.初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
-  ApiServer
-集群的网关。
- 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
-   Controller Manager
-负责生命周期功能及API业务逻辑。
- **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
-   Scheduler
-在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
-  Etcd
-基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
- a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
-     Node(从节点:worker node)
-工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
-  Pod
-Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
-  Pod Controller(Pod 控制器)
-虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
-  Replication Controller(复制控制器)
-K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
-  Replica Set
-保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
- 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。</description>
+      <guid>https://touch-star.com/post/distributed/2020-04-30-etcd/</guid>
+      <description>Etcd架构与实现原理 其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
+raft协议 每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
+节点选举 使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel
+竞选流程 如果集群中的某一个 Follower 节点长时间内没有收到来自 Leader 的心跳请求，当前节点就会通过 MsgHup 消息进入预选举或者选举的流程。 如果收到 MsgHup 消息的节点不是 Leader 状态，就会根据当前集群的配置选择进入 PreElection 或者 Election 阶段，PreElection 阶段并不会真正增加当前节点的 Term，它的主要作用是得到当前集群能否成功选举出一个 Leader 的答案，如果当前集群中只有两个节点而且没有预选举阶段，那么这两个节点的 Term 会无休止的增加，预选举阶段就是为了解决这一问题而出现的。 当前节点会立刻调用 becomeCandidate 将当前节点的 Raft 状态变成候选人；在这之后，它会将票投给自己，如果当前集群只有一个节点，该节点就会直接成为集群中的 Leader 节点。</description>
     </item>
     
   </channel>

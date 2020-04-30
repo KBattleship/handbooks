@@ -62,7 +62,7 @@
 <meta property="og:description" content="笨笨豪の摘星辰" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://touch-star.com/" />
-<meta property="og:updated_time" content="2020-04-28T21:41:52+08:00" />
+<meta property="og:updated_time" content="2020-04-30T00:00:00+00:00" />
 <meta itemprop="name" content="TouchStar">
 <meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="TouchStar"/>
@@ -290,6 +290,58 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+        <span class="post-pinned">
+          <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  width="32" height="32">
+  <path d="M682.666667 512V170.666667h42.666666V85.333333H298.666667v85.333334h42.666666v341.333333l-85.333333 85.333333v85.333334h221.866667v256h68.266666v-256H768v-85.333334l-85.333333-85.333333z"></path>
+</svg>
+
+        </span>
+      
+      <a class="post-link" href="/post/distributed/2020-04-30-etcd/">Etcd架构与实现原理</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-04-30" class="post-time">
+        2020-04-30
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 105 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/distributed/2020-04-30-etcd/" class="leancloud_visitors" data-flag-title="Etcd架构与实现原理">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Etcd架构与实现原理 其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
+raft协议 每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
+节点选举 使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel
+竞选流程 如果集群中的某一个 Follower 节点长时间内没有收到来自 Leader 的心跳请求，当前节点就会通过 MsgHup 消息进入预选举或者选举的流程。 如果收到 MsgHup 消息的节点不是 Leader 状态，就会根据当前集群的配置选择进入 PreElection 或者 Election 阶段，PreElection 阶段并不会真正增加当前节点的 Term，它的主要作用是得到当前集群能否成功选举出一个 Leader 的答案，如果当前集群中只有两个节点而且没有预选举阶段，那么这两个节点的 Term 会无休止的增加，预选举阶段就是为了解决这一问题而出现的。 当前节点会立刻调用 becomeCandidate 将当前节点的 Raft 状态变成候选人；在这之后，它会将票投给自己，如果当前集群只有一个节点，该节点就会直接成为集群中的 Leader 节点。
+    </div>
+    <div class="read-more">
+      <a href="/post/distributed/2020-04-30-etcd/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
 </section>
 

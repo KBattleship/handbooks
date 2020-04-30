@@ -7,127 +7,21 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>CheneyIn</copyright>
-    <lastBuildDate>Tue, 28 Apr 2020 21:41:52 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>初识K8s</title>
-      <link>https://touch-star.com/post/k8s/kubernetes/1-k8s-base/1_concept/</link>
-      <pubDate>Tue, 28 Apr 2020 21:41:52 +0800</pubDate>
+      <title>Etcd架构与实现原理</title>
+      <link>https://touch-star.com/post/distributed/2020-04-30-etcd/</link>
+      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://touch-star.com/post/k8s/kubernetes/1-k8s-base/1_concept/</guid>
-      <description>1.初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
-  ApiServer
-集群的网关。
- 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
-   Controller Manager
-负责生命周期功能及API业务逻辑。
- **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
-   Scheduler
-在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
-  Etcd
-基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
- a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
-     Node(从节点:worker node)
-工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
-  Pod
-Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
-  Pod Controller(Pod 控制器)
-虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
-  Replication Controller(复制控制器)
-K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
-  Replica Set
-保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
- 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://touch-star.com/post/distributed/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://touch-star.com/post/distributed/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</guid>
-      <description>zookeeper分布式部署 一.配置服务器IP地址映射 [root@localhost zk]~#: vim /etc/hosts
-192.168.1.111 zoo1 192.168.1.112 zoo2 192.168.1.113 zoo3 192.168.1.114 zoo4 192.168.1.115 zoo5 二.修改配置ZK文件 1.下载Zookeeper
-# 进入ZK路径 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.6/apache-zookeeper-3.5.6-bin.tar.gz 2.修改配置文件 进入conf目录，在配置文件前，先cp zoo_sample.cfg zoo.cfg,然后vim zoo.cfg。配置如下：
-tickTime=2000 initLimit=10 syncLimit=5 dataDir=/data/ops/zk/zookeeper-3.5.6-master/conf clientPort=2181 server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 3.启动ZK ①.在每个节点的服务器依次启动服务： [root@localhost zk]~#: ./bin/zkServer.sh start 在启动过程中日志会出现异常，由于其他节点还未启动，所以属于正常情况（正常情况下，仅有最后一个节点启动不会出现异常）。待所有节点全部启动，集群会逐渐稳定下来。 ②.查询每一个节点角色 [root@localhost zk]~#: ./bin/zkServer.sh status
-# LeaderNode ZooKeeper JMX enabled by default Using config: /data/ops/zk/zookeeper-3.5.6-follower/bin/../conf/zoo.cfg Client port found: 2181. Client address: localhost. Mode: leader # FollowerNode ZooKeeper JMX enabled by default Using config: /data/ops/zk/zookeeper-3.</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://touch-star.com/post/elasticsearch/1.elasticsearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://touch-star.com/post/elasticsearch/1.elasticsearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</guid>
-      <description>ElasticSearch集群搭建 注： #A:修改/etc/security/limits.conf #&amp;lt;domain&amp;gt; &amp;lt;type&amp;gt; &amp;lt;item&amp;gt; &amp;lt;value&amp;gt; * soft nofile 65536 * hard nofile 131072 * soft nproc 2048 * hard nproc 4096 #B:修改/etc/sysctl.conf vm.max_map_count=262144 # 保存执行： sysctl -p # 或者 sysctl -w vm.max_map_count=262144 </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://touch-star.com/post/elasticsearch/2.elasticsearch%E9%9B%86%E7%BE%A4%E5%8E%9F%E7%90%86/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://touch-star.com/post/elasticsearch/2.elasticsearch%E9%9B%86%E7%BE%A4%E5%8E%9F%E7%90%86/</guid>
-      <description>ElasticSearch集群原理 一、关于ES集群需要思考几个问题  需要多大规模的集群？  # 首先从两个方面考虑 ①.数据量有多大？数据增长情况如何？ ②.服务器硬件设施配置：CPU、Memory、Disk # 推算依据 ES Jvm heap 最大设置为32G。 30G heap大约可以存储数据量10T；服务器memory若为128G，可运行多个实例节点。 # 应用场景 A:用于构建业务搜索模块，且多是垂直领域搜索。（数据量级几千万至十亿级,一般需要2-4台机器） B:用于大规模数据的实时联机处理分析(OLAP),例如ELK，数据规模可达上千亿乃至更多，需要几十甚至上百实例节点。  集群中节点角色如何分配？  # 一个节点可以充当一个或多个角色，默认三个角色都有 # 节点角色 ①.Master node.master: true # 实例节点为主节点 ②.DataNode node.data: true # 默认是数据节点。 ③.CoordinateNode # 以上两项置为false，则此节点为协调节点； # 协调节点：一个节点只作为接收请求、转发请求到其他节点、汇总各个节点返回数据等功能的节点。 # 具体分配 A:小规模集群不需要具体区分； B:中、大规模集群(十个节点以上)，并发查询量大，查询的合并量大，可以增加独立的协调节点。角色分开的好处是分工分开，不互影响。如不会因协调角色负载过高而影响数据节点的能力。  如何避免脑裂问题发生？   索引应该设置多少个分片？ 分片应该设置多少个副本？  </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://touch-star.com/post/java/1-design/1-1-uml/1_1_uml/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://touch-star.com/post/java/1-design/1-1-uml/1_1_uml/</guid>
-      <description>关于UML图 学习设计模式前，UML还是需要学习了解一下。
-UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化、让规格与设计文档化的变现方法。
-旨在目的：  为用户提供现成的、有表现力的可视化建模语言，以便开发与交换有意义的模型。 为核心概念提供可扩展性与特殊化机制。 独立特定的编程语言与开发过程。 鼓励面向对象工具市场的发展。 支持更高层次的开发概念。 为了解建模语言提供一个正式环境。 整合最佳的工作方法。  UML分类  机构性图表  类图 组件图 部署图 对象图 对象图 包图 复合机构图 轮廓图   行为性图表  用例图 活动图 状态机图 序列图 通讯图 交互概述图 时序图    UML词汇表及术语  抽象类 Actor 活动 活动图 聚合 工件 关联 关联类 属性 基类 分支 类 类图 分类器 协作 通信图 组件 组件图 概念 构建阶段 依赖关系 部署图 域 精化阶段 元素 封装 泛化 事件 最终状态 叉 泛化 GoF 高凝聚力 启动阶段 继承 初始状态 实例 接口 迭代 加入 成员 合并 消息 方法 模型 多重性 可导航型 符号 注意 对象 包 包图 模式 参数 多态性 私有 处理器 受保护 公开 读取方向箭头 实现 角色 顺序图 状态 状态图 静态 刻板印象 子类 互动区 时间拳击 过渡 过渡阶段 统一建模语言 用例 用例图 可见性： 工作流程：一组产生特定结果的活动。  </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://touch-star.com/post/java/1-design/1-2-design/1_2_10_strategy/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://touch-star.com/post/java/1-design/1-2-design/1_2_10_strategy/</guid>
-      <description> </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://touch-star.com/post/java/1-design/1-2-design/1_2_11_composite/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://touch-star.com/post/java/1-design/1-2-design/1_2_11_composite/</guid>
-      <description> </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://touch-star.com/post/java/1-design/1-2-design/1_2_12_decorator/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://touch-star.com/post/java/1-design/1-2-design/1_2_12_decorator/</guid>
-      <description> </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://touch-star.com/post/java/1-design/1-2-design/1_2_13_visitor/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://touch-star.com/post/java/1-design/1-2-design/1_2_13_visitor/</guid>
-      <description> </description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>https://touch-star.com/post/java/1-design/1-2-design/1_2_14_chain_of_responsibility/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://touch-star.com/post/java/1-design/1-2-design/1_2_14_chain_of_responsibility/</guid>
-      <description> </description>
+      <guid>https://touch-star.com/post/distributed/2020-04-30-etcd/</guid>
+      <description>Etcd架构与实现原理 其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
+raft协议 每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
+节点选举 使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel
+竞选流程 如果集群中的某一个 Follower 节点长时间内没有收到来自 Leader 的心跳请求，当前节点就会通过 MsgHup 消息进入预选举或者选举的流程。 如果收到 MsgHup 消息的节点不是 Leader 状态，就会根据当前集群的配置选择进入 PreElection 或者 Election 阶段，PreElection 阶段并不会真正增加当前节点的 Term，它的主要作用是得到当前集群能否成功选举出一个 Leader 的答案，如果当前集群中只有两个节点而且没有预选举阶段，那么这两个节点的 Term 会无休止的增加，预选举阶段就是为了解决这一问题而出现的。 当前节点会立刻调用 becomeCandidate 将当前节点的 Raft 状态变成候选人；在这之后，它会将票投给自己，如果当前集群只有一个节点，该节点就会直接成为集群中的 Leader 节点。</description>
     </item>
     
   </channel>

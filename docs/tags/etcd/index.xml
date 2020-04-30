@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>k8s on TouchStar</title>
-    <link>https://touch-star.com/tags/k8s/</link>
-    <description>Recent content in k8s on TouchStar</description>
+    <title>etcd on TouchStar</title>
+    <link>https://touch-star.com/tags/etcd/</link>
+    <description>Recent content in etcd on TouchStar</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <copyright>CheneyIn</copyright>
     <lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://touch-star.com/tags/k8s/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://touch-star.com/tags/etcd/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

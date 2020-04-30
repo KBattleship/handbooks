@@ -4,7 +4,9 @@ enableRobotsTXT = true
 enableEmoji = true
 theme = "jane"
 publishDir = "docs"
-
+toc = true         
+autoCollapseToc = false 
+fancybox = true
 hasCJKLanguage = false     
 paginate = 10              
 rssLimit = 10             
@@ -48,8 +50,31 @@ defaultContentLanguage = "zh-cn"           # Default language to use
   name = "分类"
   weight = 40
   identifier = "categories"
-  url = "/categories/"
+  url = "/categories"
+[[menu.main]]
+  name = "Java"
+  parent = "categories"
+  weight = 10
+  identifier = "java"
+  url = "/categories/java"
+[[menu.main]]
+  name = "Go"
+  parent = "categories"
+  weight = 20
+  identifier = "go"
+  url = "/categories/go"
+[[menu.main]]
+  name = "K8s"
+  parent = "categories"
+  weight = 30
+  identifier = "k8s"
+  url = "/categories/k8s"
 
+[markup]
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = true
+    startLevel = 2
 
 
 [params]

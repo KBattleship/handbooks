@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://touch-star.com/post/distributed/2020-04-30-etcd/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://touch-star.com/about/</loc>
     <lastmod>2020-04-28T21:41:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -9,20 +16,57 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/</loc>
-    <lastmod>2020-04-28T21:41:52+08:00</lastmod>
+    <loc>https://touch-star.com/categories/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/categories/</loc>
+    <loc>https://touch-star.com/tags/etcd/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/categories/k8s/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/k8s/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/tags/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
