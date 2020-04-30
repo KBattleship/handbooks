@@ -12,6 +12,11 @@ disqusShortname = ""
 googleAnalytics = ""      
 copyright = "CheneyIn"           
 
+PygmentsCodeFences = true # Enable syntax highlighting with GitHub flavoured code fences
+PygmentsUseClasses = true # Use CSS classes to format highlighted code
+PygmentsCodefencesGuessSyntax = true
+PygmentsOptions = "linenos=table"
+
 defaultContentLanguage = "zh-cn"           # Default language to use
 [languages.zh-cn]
   languageCode = "zh-cn"
@@ -52,12 +57,12 @@ defaultContentLanguage = "zh-cn"           # Default language to use
   homeFullContent = false   
   rssFullContent = false     
 
-  logoTitle = "摘星辰"        
+  logoTitle = "CheneyIn"        
   keywords = ["CheneyIn", "k8s","docker"]
   description = "笨笨豪の摘星辰"
 
   dateFormatToUse = "2006-01-02"
-
+  moreMeta = true
   toc = true               
   photoswipe = true        
   # contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
@@ -65,6 +70,11 @@ defaultContentLanguage = "zh-cn"           # Default language to use
 
   customCSS = []           
   customJS = []
+
+  [params.counter.leancloud]  # Chinese leancloud visitor counter  # leancloud 计数器
+    enable = true
+    appId = "OhEPOy5aOYzYHl3v9PCSQsnv-gzGzoHsz"
+    appKey = "f1kLulToEkQkoGTmgxqQagSw"
 
   [params.social]                                         # 社交链接
     a-email = "mailto:xy410257@163.com"

@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="zh-cn" itemscope itemtype="http://schema.org/WebPage">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> - TouchStar</title>
+  
+
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta name="MobileOptimized" content="width"/>
+<meta name="HandheldFriendly" content="true"/>
+
+
+<meta name="applicable-device" content="pc,mobile">
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+<meta name="mobile-web-app-capable" content="yes">
+
+<meta name="author" content="CheneyIn" />
+  <meta name="description" content="【Nginx那点事儿】之 ①【 Nginx入门】 一、Nginx为什么受青睐 ​	在介绍Nginx具体的安装、配置以及原理之前先聊聊概念常识问题。那就是目前为什么Nginx深受青睐？那我们先从Nginx是什么开始聊起。
+1.Nginx是什么   简单介绍
+ ***Nginx***来自于俄罗斯，是在**RamblerMedia**工作的**Igor Sysoev**使用***C***语言编写而成的跨平台轻量级高性能的*Web*服务器。***Nginx***可以运行在**Linux**、**FreeBSD**、**Solaris**(*Sun*公司的类*Unix OS*)、**MacOS**、以及**Windows**等操作系统。操作系统的不同，也给***Nginx***带来了一些好处，***Nginx***会使用当前操作系统中特有的一些高效**API**来提高自身的性能。    Nginx和它的对手们
+Nginx的对手们有Apache、Lighttpd、Tomcat、Jetty、IIS，它们同为Web服务器：具备Web服务器的基本功能；基于Rest架构风格，以**统一资源描述符（URI）或统一资源定位符（URL）作为沟通依据，通过HTTP为浏览器等Client程序提供各种网络服务。
+但是，这些Web服务器呢，都多多少少因为各自的定位与发展方向都不尽相同，使得每一款Web服务器都各有特色：
+​	1.Tomcat、Jetty：都是面向Java语言设计的。但是它们在性能方面与Nginx没有什么可比性，因为这两款服务器都是重量级选手。可能有伙伴会很疑惑，我已经用Tomcat跑起服务，同样配置后可以直接访问为什么还要在加层外套Nginx，对于这个问题，在后边对这一点进行详细的分析。【】
+​	2.IIS：这位选手呢，来自于微软家族。然后特点大家可能就很清楚了，它只能在Windows OS运行（不过网上也有工具可以把它运行在LinuxOS中，但是并不是很完美哦）。可能拉低它颜值的就是稳定性与性能了，Windows OS作为服务器的话，稳定性和部分性能都不能和类Unix OS进行媲美，所以呢，在高性能Web服务器的场合中，IIS可能就要被“淘汰”了。
+​	3.Apache：这是一位压轴级选手，是发展周期最长的，毫无疑问是世界第一大Web服务器，在2012年遥遥领先其他选手。它毕竟有很多优秀的地方：稳定、开源、跨平台等。但是美中不足的是，它被设计成为了重量级、不支持高并发的Web服务器。如果有数以万计的HTTP请求同时访问，服务器就会面临大量内存消耗的问题，操作系统也会跟着收到牵连，毕竟Apache的进程做进程间切换时会给服务器的CPU带来重大压力，同时会伴随着响应效率降低，这致命的一击，导致这位来自“贵族世家”的选手在高性能Web服务器的舞台上没有了地位。
+​	4.Lighttpd：与Nginx同样是轻量级、高性能的Web服务器。但是它并没有得到国内开发者的钟爱，而是被欧美的开发者们所追捧。
+  恩宠&amp;ndash;Nginx
+Nginx的代码也是开源的而且是最自由的2-clause BSD-like license许可证。Nginx使用的架构是基于事件驱动的，能够并发处理百万级别的TCP连接。由于Nginx的高度模块化和具有最自由的许可证，让Nginx的第三方模块扩展功能更加充实。优秀的设计还带来了极佳的稳定性体验。所以，Nginx大量应用于大流量的网站来高效处理大规模高并发连接。种种迹象表明，Nginx在性能方面很出色。
+  2.Nginx的特点   更快
+快主要体现在两方面：①在正常的情况下，单次请求会得到更快的响应；②在数以万计的并发请求中，Nginx可以比其他Web服务器更快的响应请求。
+  高扩展性
+Nginx的高度模块化决定了其具有高扩展性。它完全是由多个不同功能、不同层次、不同类型以及耦合度极低的模块组合而成。它的模块都是嵌入到二进制文件中执行，使得第三方开发的模块也一样完美支持性能。所以高并发的网站完全可以根据自身项目业务特性定制属于自己的模块。
+  高可靠性
+这个特点应该是选择Web服务器最基本的条件。Nginx的稳定性，大家有目共睹。国内多家高流量并发的网站在核心的服务器上大规模使用Nginx。官方提供的常用模块是非常稳定的，每一个Worker进程都相对独立，把耦合性降至最低。master进程在其中一个Worker进程出错时可以快速“拉起”新的Worker子进程提供相应的服务。
+  低内存消耗
+据数据测试，一般情况下，1W个不活跃的HTTP Keep-Alive连接在Nginx中消耗只有2.5MB的内存。（这也是Nginx能够支持高并发连接的基础）
+  单机支持10W&#43;的并发连接
+由于现在是海量数据时代，高并发无疑成为大家青睐的对象。理论上，Nginx支持的并发连接数量取决于内存，10W&#43;的并发连接并没有到极限。但是，能否及时处理更多的并发连接应该取决于项目业务的需求。
+  热部署
+master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显热部署的能力。通俗点来说，就是完全可以在7*24h不停止服务正常工作的情况下，可以升级Nginx的可执行文件、更新配置选项、更新日志文件等功能操作。
+  最自由的BSD许可协议
+俗话说**“众人拾柴火焰高”**。也正是BSD许可协议带来的极大优势，为**Nginx**提供更强劲的发展动力。
+  综上所述，选择Nginx的核心理由还是由于它能在支持高并发请求的同时保持高效的服务。  二、Nginx的安装 1." />
+
+  <meta name="keywords" content="CheneyIn, k8s, docker" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.64.1" />
+
+
+<link rel="canonical" href="https://touch-star.com/post/nginx/nginx%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF%E4%B9%8Bnginx%E5%85%A5%E9%97%A8/" />
+
+
+
+
+
+<link rel="icon" href="/favicon.ico" />
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/sass/jane.min.0995afa14b62cd93e93cfc066b646c4c17a3eddca0e9d52a1d9dcf5d90aaacd3.css" integrity="sha256-CZWvoUtizZPpPPwGa2RsTBej7dyg6dUqHZ3PXZCqrNM=" media="screen" crossorigin="anonymous">
+
+
+
+
+
+<meta property="og:title" content="" />
+<meta property="og:description" content="【Nginx那点事儿】之 ①【 Nginx入门】 一、Nginx为什么受青睐 ​	在介绍Nginx具体的安装、配置以及原理之前先聊聊概念常识问题。那就是目前为什么Nginx深受青睐？那我们先从Nginx是什么开始聊起。
+1.Nginx是什么   简单介绍
+ ***Nginx***来自于俄罗斯，是在**RamblerMedia**工作的**Igor Sysoev**使用***C***语言编写而成的跨平台轻量级高性能的*Web*服务器。***Nginx***可以运行在**Linux**、**FreeBSD**、**Solaris**(*Sun*公司的类*Unix OS*)、**MacOS**、以及**Windows**等操作系统。操作系统的不同，也给***Nginx***带来了一些好处，***Nginx***会使用当前操作系统中特有的一些高效**API**来提高自身的性能。    Nginx和它的对手们
+Nginx的对手们有Apache、Lighttpd、Tomcat、Jetty、IIS，它们同为Web服务器：具备Web服务器的基本功能；基于Rest架构风格，以**统一资源描述符（URI）或统一资源定位符（URL）作为沟通依据，通过HTTP为浏览器等Client程序提供各种网络服务。
+但是，这些Web服务器呢，都多多少少因为各自的定位与发展方向都不尽相同，使得每一款Web服务器都各有特色：
+​	1.Tomcat、Jetty：都是面向Java语言设计的。但是它们在性能方面与Nginx没有什么可比性，因为这两款服务器都是重量级选手。可能有伙伴会很疑惑，我已经用Tomcat跑起服务，同样配置后可以直接访问为什么还要在加层外套Nginx，对于这个问题，在后边对这一点进行详细的分析。【】
+​	2.IIS：这位选手呢，来自于微软家族。然后特点大家可能就很清楚了，它只能在Windows OS运行（不过网上也有工具可以把它运行在LinuxOS中，但是并不是很完美哦）。可能拉低它颜值的就是稳定性与性能了，Windows OS作为服务器的话，稳定性和部分性能都不能和类Unix OS进行媲美，所以呢，在高性能Web服务器的场合中，IIS可能就要被“淘汰”了。
+​	3.Apache：这是一位压轴级选手，是发展周期最长的，毫无疑问是世界第一大Web服务器，在2012年遥遥领先其他选手。它毕竟有很多优秀的地方：稳定、开源、跨平台等。但是美中不足的是，它被设计成为了重量级、不支持高并发的Web服务器。如果有数以万计的HTTP请求同时访问，服务器就会面临大量内存消耗的问题，操作系统也会跟着收到牵连，毕竟Apache的进程做进程间切换时会给服务器的CPU带来重大压力，同时会伴随着响应效率降低，这致命的一击，导致这位来自“贵族世家”的选手在高性能Web服务器的舞台上没有了地位。
+​	4.Lighttpd：与Nginx同样是轻量级、高性能的Web服务器。但是它并没有得到国内开发者的钟爱，而是被欧美的开发者们所追捧。
+  恩宠&ndash;Nginx
+Nginx的代码也是开源的而且是最自由的2-clause BSD-like license许可证。Nginx使用的架构是基于事件驱动的，能够并发处理百万级别的TCP连接。由于Nginx的高度模块化和具有最自由的许可证，让Nginx的第三方模块扩展功能更加充实。优秀的设计还带来了极佳的稳定性体验。所以，Nginx大量应用于大流量的网站来高效处理大规模高并发连接。种种迹象表明，Nginx在性能方面很出色。
+  2.Nginx的特点   更快
+快主要体现在两方面：①在正常的情况下，单次请求会得到更快的响应；②在数以万计的并发请求中，Nginx可以比其他Web服务器更快的响应请求。
+  高扩展性
+Nginx的高度模块化决定了其具有高扩展性。它完全是由多个不同功能、不同层次、不同类型以及耦合度极低的模块组合而成。它的模块都是嵌入到二进制文件中执行，使得第三方开发的模块也一样完美支持性能。所以高并发的网站完全可以根据自身项目业务特性定制属于自己的模块。
+  高可靠性
+这个特点应该是选择Web服务器最基本的条件。Nginx的稳定性，大家有目共睹。国内多家高流量并发的网站在核心的服务器上大规模使用Nginx。官方提供的常用模块是非常稳定的，每一个Worker进程都相对独立，把耦合性降至最低。master进程在其中一个Worker进程出错时可以快速“拉起”新的Worker子进程提供相应的服务。
+  低内存消耗
+据数据测试，一般情况下，1W个不活跃的HTTP Keep-Alive连接在Nginx中消耗只有2.5MB的内存。（这也是Nginx能够支持高并发连接的基础）
+  单机支持10W&#43;的并发连接
+由于现在是海量数据时代，高并发无疑成为大家青睐的对象。理论上，Nginx支持的并发连接数量取决于内存，10W&#43;的并发连接并没有到极限。但是，能否及时处理更多的并发连接应该取决于项目业务的需求。
+  热部署
+master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显热部署的能力。通俗点来说，就是完全可以在7*24h不停止服务正常工作的情况下，可以升级Nginx的可执行文件、更新配置选项、更新日志文件等功能操作。
+  最自由的BSD许可协议
+俗话说**“众人拾柴火焰高”**。也正是BSD许可协议带来的极大优势，为**Nginx**提供更强劲的发展动力。
+  综上所述，选择Nginx的核心理由还是由于它能在支持高并发请求的同时保持高效的服务。  二、Nginx的安装 1." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://touch-star.com/post/nginx/nginx%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF%E4%B9%8Bnginx%E5%85%A5%E9%97%A8/" />
+
+<meta itemprop="name" content="">
+<meta itemprop="description" content="【Nginx那点事儿】之 ①【 Nginx入门】 一、Nginx为什么受青睐 ​	在介绍Nginx具体的安装、配置以及原理之前先聊聊概念常识问题。那就是目前为什么Nginx深受青睐？那我们先从Nginx是什么开始聊起。
+1.Nginx是什么   简单介绍
+ ***Nginx***来自于俄罗斯，是在**RamblerMedia**工作的**Igor Sysoev**使用***C***语言编写而成的跨平台轻量级高性能的*Web*服务器。***Nginx***可以运行在**Linux**、**FreeBSD**、**Solaris**(*Sun*公司的类*Unix OS*)、**MacOS**、以及**Windows**等操作系统。操作系统的不同，也给***Nginx***带来了一些好处，***Nginx***会使用当前操作系统中特有的一些高效**API**来提高自身的性能。    Nginx和它的对手们
+Nginx的对手们有Apache、Lighttpd、Tomcat、Jetty、IIS，它们同为Web服务器：具备Web服务器的基本功能；基于Rest架构风格，以**统一资源描述符（URI）或统一资源定位符（URL）作为沟通依据，通过HTTP为浏览器等Client程序提供各种网络服务。
+但是，这些Web服务器呢，都多多少少因为各自的定位与发展方向都不尽相同，使得每一款Web服务器都各有特色：
+​	1.Tomcat、Jetty：都是面向Java语言设计的。但是它们在性能方面与Nginx没有什么可比性，因为这两款服务器都是重量级选手。可能有伙伴会很疑惑，我已经用Tomcat跑起服务，同样配置后可以直接访问为什么还要在加层外套Nginx，对于这个问题，在后边对这一点进行详细的分析。【】
+​	2.IIS：这位选手呢，来自于微软家族。然后特点大家可能就很清楚了，它只能在Windows OS运行（不过网上也有工具可以把它运行在LinuxOS中，但是并不是很完美哦）。可能拉低它颜值的就是稳定性与性能了，Windows OS作为服务器的话，稳定性和部分性能都不能和类Unix OS进行媲美，所以呢，在高性能Web服务器的场合中，IIS可能就要被“淘汰”了。
+​	3.Apache：这是一位压轴级选手，是发展周期最长的，毫无疑问是世界第一大Web服务器，在2012年遥遥领先其他选手。它毕竟有很多优秀的地方：稳定、开源、跨平台等。但是美中不足的是，它被设计成为了重量级、不支持高并发的Web服务器。如果有数以万计的HTTP请求同时访问，服务器就会面临大量内存消耗的问题，操作系统也会跟着收到牵连，毕竟Apache的进程做进程间切换时会给服务器的CPU带来重大压力，同时会伴随着响应效率降低，这致命的一击，导致这位来自“贵族世家”的选手在高性能Web服务器的舞台上没有了地位。
+​	4.Lighttpd：与Nginx同样是轻量级、高性能的Web服务器。但是它并没有得到国内开发者的钟爱，而是被欧美的开发者们所追捧。
+  恩宠&ndash;Nginx
+Nginx的代码也是开源的而且是最自由的2-clause BSD-like license许可证。Nginx使用的架构是基于事件驱动的，能够并发处理百万级别的TCP连接。由于Nginx的高度模块化和具有最自由的许可证，让Nginx的第三方模块扩展功能更加充实。优秀的设计还带来了极佳的稳定性体验。所以，Nginx大量应用于大流量的网站来高效处理大规模高并发连接。种种迹象表明，Nginx在性能方面很出色。
+  2.Nginx的特点   更快
+快主要体现在两方面：①在正常的情况下，单次请求会得到更快的响应；②在数以万计的并发请求中，Nginx可以比其他Web服务器更快的响应请求。
+  高扩展性
+Nginx的高度模块化决定了其具有高扩展性。它完全是由多个不同功能、不同层次、不同类型以及耦合度极低的模块组合而成。它的模块都是嵌入到二进制文件中执行，使得第三方开发的模块也一样完美支持性能。所以高并发的网站完全可以根据自身项目业务特性定制属于自己的模块。
+  高可靠性
+这个特点应该是选择Web服务器最基本的条件。Nginx的稳定性，大家有目共睹。国内多家高流量并发的网站在核心的服务器上大规模使用Nginx。官方提供的常用模块是非常稳定的，每一个Worker进程都相对独立，把耦合性降至最低。master进程在其中一个Worker进程出错时可以快速“拉起”新的Worker子进程提供相应的服务。
+  低内存消耗
+据数据测试，一般情况下，1W个不活跃的HTTP Keep-Alive连接在Nginx中消耗只有2.5MB的内存。（这也是Nginx能够支持高并发连接的基础）
+  单机支持10W&#43;的并发连接
+由于现在是海量数据时代，高并发无疑成为大家青睐的对象。理论上，Nginx支持的并发连接数量取决于内存，10W&#43;的并发连接并没有到极限。但是，能否及时处理更多的并发连接应该取决于项目业务的需求。
+  热部署
+master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显热部署的能力。通俗点来说，就是完全可以在7*24h不停止服务正常工作的情况下，可以升级Nginx的可执行文件、更新配置选项、更新日志文件等功能操作。
+  最自由的BSD许可协议
+俗话说**“众人拾柴火焰高”**。也正是BSD许可协议带来的极大优势，为**Nginx**提供更强劲的发展动力。
+  综上所述，选择Nginx的核心理由还是由于它能在支持高并发请求的同时保持高效的服务。  二、Nginx的安装 1.">
+
+<meta itemprop="wordCount" content="188">
+
+
+
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content=""/>
+<meta name="twitter:description" content="【Nginx那点事儿】之 ①【 Nginx入门】 一、Nginx为什么受青睐 ​	在介绍Nginx具体的安装、配置以及原理之前先聊聊概念常识问题。那就是目前为什么Nginx深受青睐？那我们先从Nginx是什么开始聊起。
+1.Nginx是什么   简单介绍
+ ***Nginx***来自于俄罗斯，是在**RamblerMedia**工作的**Igor Sysoev**使用***C***语言编写而成的跨平台轻量级高性能的*Web*服务器。***Nginx***可以运行在**Linux**、**FreeBSD**、**Solaris**(*Sun*公司的类*Unix OS*)、**MacOS**、以及**Windows**等操作系统。操作系统的不同，也给***Nginx***带来了一些好处，***Nginx***会使用当前操作系统中特有的一些高效**API**来提高自身的性能。    Nginx和它的对手们
+Nginx的对手们有Apache、Lighttpd、Tomcat、Jetty、IIS，它们同为Web服务器：具备Web服务器的基本功能；基于Rest架构风格，以**统一资源描述符（URI）或统一资源定位符（URL）作为沟通依据，通过HTTP为浏览器等Client程序提供各种网络服务。
+但是，这些Web服务器呢，都多多少少因为各自的定位与发展方向都不尽相同，使得每一款Web服务器都各有特色：
+​	1.Tomcat、Jetty：都是面向Java语言设计的。但是它们在性能方面与Nginx没有什么可比性，因为这两款服务器都是重量级选手。可能有伙伴会很疑惑，我已经用Tomcat跑起服务，同样配置后可以直接访问为什么还要在加层外套Nginx，对于这个问题，在后边对这一点进行详细的分析。【】
+​	2.IIS：这位选手呢，来自于微软家族。然后特点大家可能就很清楚了，它只能在Windows OS运行（不过网上也有工具可以把它运行在LinuxOS中，但是并不是很完美哦）。可能拉低它颜值的就是稳定性与性能了，Windows OS作为服务器的话，稳定性和部分性能都不能和类Unix OS进行媲美，所以呢，在高性能Web服务器的场合中，IIS可能就要被“淘汰”了。
+​	3.Apache：这是一位压轴级选手，是发展周期最长的，毫无疑问是世界第一大Web服务器，在2012年遥遥领先其他选手。它毕竟有很多优秀的地方：稳定、开源、跨平台等。但是美中不足的是，它被设计成为了重量级、不支持高并发的Web服务器。如果有数以万计的HTTP请求同时访问，服务器就会面临大量内存消耗的问题，操作系统也会跟着收到牵连，毕竟Apache的进程做进程间切换时会给服务器的CPU带来重大压力，同时会伴随着响应效率降低，这致命的一击，导致这位来自“贵族世家”的选手在高性能Web服务器的舞台上没有了地位。
+​	4.Lighttpd：与Nginx同样是轻量级、高性能的Web服务器。但是它并没有得到国内开发者的钟爱，而是被欧美的开发者们所追捧。
+  恩宠&ndash;Nginx
+Nginx的代码也是开源的而且是最自由的2-clause BSD-like license许可证。Nginx使用的架构是基于事件驱动的，能够并发处理百万级别的TCP连接。由于Nginx的高度模块化和具有最自由的许可证，让Nginx的第三方模块扩展功能更加充实。优秀的设计还带来了极佳的稳定性体验。所以，Nginx大量应用于大流量的网站来高效处理大规模高并发连接。种种迹象表明，Nginx在性能方面很出色。
+  2.Nginx的特点   更快
+快主要体现在两方面：①在正常的情况下，单次请求会得到更快的响应；②在数以万计的并发请求中，Nginx可以比其他Web服务器更快的响应请求。
+  高扩展性
+Nginx的高度模块化决定了其具有高扩展性。它完全是由多个不同功能、不同层次、不同类型以及耦合度极低的模块组合而成。它的模块都是嵌入到二进制文件中执行，使得第三方开发的模块也一样完美支持性能。所以高并发的网站完全可以根据自身项目业务特性定制属于自己的模块。
+  高可靠性
+这个特点应该是选择Web服务器最基本的条件。Nginx的稳定性，大家有目共睹。国内多家高流量并发的网站在核心的服务器上大规模使用Nginx。官方提供的常用模块是非常稳定的，每一个Worker进程都相对独立，把耦合性降至最低。master进程在其中一个Worker进程出错时可以快速“拉起”新的Worker子进程提供相应的服务。
+  低内存消耗
+据数据测试，一般情况下，1W个不活跃的HTTP Keep-Alive连接在Nginx中消耗只有2.5MB的内存。（这也是Nginx能够支持高并发连接的基础）
+  单机支持10W&#43;的并发连接
+由于现在是海量数据时代，高并发无疑成为大家青睐的对象。理论上，Nginx支持的并发连接数量取决于内存，10W&#43;的并发连接并没有到极限。但是，能否及时处理更多的并发连接应该取决于项目业务的需求。
+  热部署
+master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显热部署的能力。通俗点来说，就是完全可以在7*24h不停止服务正常工作的情况下，可以升级Nginx的可执行文件、更新配置选项、更新日志文件等功能操作。
+  最自由的BSD许可协议
+俗话说**“众人拾柴火焰高”**。也正是BSD许可协议带来的极大优势，为**Nginx**提供更强劲的发展动力。
+  综上所述，选择Nginx的核心理由还是由于它能在支持高并发请求的同时保持高效的服务。  二、Nginx的安装 1."/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+
+
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">摘星辰</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/">主页</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/post/">归档</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/tags/">标签</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/categories/">分类</a>
+          
+        
+      </li><li class="mobile-menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/about/">关于</a>
+          
+        
+      </li>
+    
+
+    
+  </ul>
+</nav>
+
+
+  
+    
+
+
+
+
+
+
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
+
+
+
+
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+<div class="pswp__bg"></div>
+
+<div class="pswp__scroll-wrap">
+    
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+    
+    <div class="pswp__ui pswp__ui--hidden">
+    <div class="pswp__top-bar">
+      
+      <div class="pswp__counter"></div>
+      <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+      <button class="pswp__button pswp__button--share" title="Share"></button>
+      <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+      <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+      
+      
+      <div class="pswp__preloader">
+        <div class="pswp__preloader__icn">
+          <div class="pswp__preloader__cut">
+            <div class="pswp__preloader__donut"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+      <div class="pswp__share-tooltip"></div>
+    </div>
+    <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+    </button>
+    <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+    </button>
+    <div class="pswp__caption">
+      <div class="pswp__caption__center"></div>
+    </div>
+    </div>
+    </div>
+</div>
+
+  
+
+  
+
+  
+
+  <header id="header" class="header container">
+    <div class="logo-wrapper">
+  <a href="/" class="logo">
+    
+      摘星辰
+    
+  </a>
+</div>
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/">主页</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/post/">归档</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/tags/">标签</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/categories/">分类</a>
+          
+
+        
+
+      </li>
+    
+        <li class="menu-item">
+        
+          
+          
+            <a class="menu-item-link" href="https://touch-star.com/about/">关于</a>
+          
+
+        
+
+      </li>
+    
+
+    
+    
+
+    
+  </ul>
+</nav>
+
+  </header>
+
+  <div id="mobile-panel">
+    <main id="main" class="main bg-llight">
+      <div class="content-wrapper">
+        <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title"></h1>
+      
+      <div class="post-meta">
+        <time datetime="0001-01-01" class="post-time">
+          0001-01-01
+        </time>
+        
+        
+
+        
+        
+
+        
+        
+      </div>
+    </header>
+
+    
+    
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">文章目录</h2>
+  <div class="post-toc-content">
+    <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#一nginx为什么受青睐">一、Nginx为什么受青睐</a></li>
+        <li><a href="#二nginx的安装">二、Nginx的安装</a></li>
+        <li><a href="#nginx的具体配值问题下篇文章进行详细介绍">Nginx的具体配值问题，下篇文章进行详细介绍。</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+
+    
+    <div class="post-content">
+      <h1 id="nginx那点事儿之--nginx入门">【Nginx那点事儿】之 ①【 Nginx入门】</h1>
+<h3 id="一nginx为什么受青睐">一、Nginx为什么受青睐</h3>
+<p>​	在介绍<em><strong>Nginx</strong></em>具体的安装、配置以及原理之前先聊聊概念常识问题。那就是目前为什么<em><strong>Nginx</strong></em>深受青睐？那我们先从<em><strong>Nginx</strong></em>是什么开始聊起。</p>
+<h4 id="1nginx是什么">1.Nginx是什么</h4>
+<ul>
+<li>
+<p><strong>简单介绍</strong></p>
+<pre><code>   ***Nginx***来自于俄罗斯，是在**RamblerMedia**工作的**Igor Sysoev**使用***C***语言编写而成的跨平台轻量级高性能的*Web*服务器。***Nginx***可以运行在**Linux**、**FreeBSD**、**Solaris**(*Sun*公司的类*Unix OS*)、**MacOS**、以及**Windows**等操作系统。操作系统的不同，也给***Nginx***带来了一些好处，***Nginx***会使用当前操作系统中特有的一些高效**API**来提高自身的性能。
+</code></pre>
+</li>
+<li>
+<p><strong>Nginx和它的对手们</strong></p>
+<p><em><strong>Nginx</strong></em>的对手们有<strong>Apache</strong>、<strong>Lighttpd</strong>、<strong>Tomcat</strong>、<strong>Jetty</strong>、<strong>IIS</strong>，它们同为<em>Web</em>服务器：具备<em>Web</em>服务器的基本功能；基于<em>Rest</em>架构风格，以**<em>统一资源描述符（URI）<em><strong>或</strong></em>统一资源定位符（URL）<em><em><em>作为沟通依据，通过</em>HTTP</em>为浏览器等</em>Client</em>程序提供各种网络服务。</p>
+<p>但是，这些<em>Web</em>服务器呢，都多多少少因为各自的定位与发展方向都不尽相同，使得每一款<em>Web</em>服务器都各有特色：</p>
+<p>​	1.<strong>Tomcat、Jetty：<strong>都是面向Java语言设计的。但是它们在性能方面与</strong>Nginx</strong>没有什么可比性，因为这两款服务器都是重量级选手。可能有伙伴会很疑惑，我已经用<em>Tomcat</em>跑起服务，同样配置后可以直接访问为什么还要在加层外套<strong>Nginx</strong>，对于这个问题，在后边对这一点进行详细的分析。【】</p>
+<p>​	2.<strong>IIS：<strong>这位选手呢，来自于微软家族。然后特点大家可能就很清楚了，它只能在Windows OS运行（不过网上也有工具可以把它运行在<em>LinuxOS</em>中，但是并不是很完美哦）。可能拉低它颜值的就是</strong>稳定性</strong>与<strong>性能</strong>了，<em>Windows OS</em>作为服务器的话，稳定性和部分性能都不能和类<em>Unix OS</em>进行媲美，所以呢，在高性能<em>Web</em>服务器的场合中，<strong>IIS</strong>可能就要被“淘汰”了。</p>
+<p>​	3.<strong>Apache：<strong>这是一位压轴级选手，是发展周期最长的，毫无疑问是</strong>世界第一大<em>Web</em>服务器</strong>，在2012年遥遥领先其他选手。它毕竟有很多优秀的地方：<strong>稳定</strong>、<strong>开源</strong>、<strong>跨平台</strong>等。但是美中不足的是，它被设计成为了<strong>重量级</strong>、<strong>不支持高并发</strong>的<em>Web</em>服务器。如果有数以万计的<em>HTTP</em>请求同时访问，服务器就会面临大量内存消耗的问题，操作系统也会跟着收到牵连，毕竟Apache的进程做进程间切换时会给服务器的CPU带来重大压力，同时会伴随着响应效率降低，这致命的一击，导致这位来自“贵族世家”的选手在<strong>高性能Web服务器</strong>的舞台上没有了地位。</p>
+<p>​	4.<strong>Lighttpd：<strong>与</strong>Nginx</strong>同样是轻量级、高性能的Web服务器。但是它并没有得到国内开发者的钟爱，而是被欧美的开发者们所追捧。</p>
+</li>
+<li>
+<p><strong>恩宠&ndash;Nginx</strong></p>
+<p><strong>Nginx</strong>的代码也是开源的而且是最自由的<em><strong>2-clause BSD-like license</strong></em>许可证。<strong>Nginx</strong>使用的架构是<strong>基于事件驱动</strong>的，能够并发处理百万级别的TCP连接。由于<strong>Nginx</strong>的高度模块化和具有最自由的许可证，让<strong>Nginx</strong>的第三方模块扩展功能更加充实。优秀的设计还带来了极佳的稳定性体验。所以，<strong>Nginx</strong>大量应用于大流量的网站来高效处理大规模高并发连接。种种迹象表明，<strong>Nginx</strong>在性能方面很出色。</p>
+</li>
+</ul>
+<h4 id="2nginx的特点">2.Nginx的特点</h4>
+<ul>
+<li>
+<p><strong>更快</strong></p>
+<p>快主要体现在两方面：①在正常的情况下，单次请求会得到更快的响应；②在数以万计的并发请求中，<strong>Nginx</strong>可以比其他<em>Web</em>服务器更快的响应请求。</p>
+</li>
+<li>
+<p><strong>高扩展性</strong></p>
+<p><strong>Nginx</strong>的高度模块化决定了其具有高扩展性。它完全是由多个不同功能、不同层次、不同类型以及耦合度极低的模块组合而成。它的模块都是嵌入到二进制文件中执行，使得第三方开发的模块也一样完美支持性能。所以高并发的网站完全可以根据自身项目业务特性定制属于自己的模块。</p>
+</li>
+<li>
+<p><strong>高可靠性</strong></p>
+<p>这个特点应该是选择<em>Web</em>服务器最基本的条件。<strong>Nginx</strong>的稳定性，大家有目共睹。国内多家高流量并发的网站在核心的服务器上大规模使用<strong>Nginx</strong>。官方提供的常用模块是非常稳定的，每一个Worker进程都相对独立，把耦合性降至最低。<em>master</em>进程在其中一个<em>Worker</em>进程出错时可以快速“拉起”新的<em>Worker</em>子进程提供相应的服务。</p>
+</li>
+<li>
+<p><strong>低内存消耗</strong></p>
+<p>据数据测试，一般情况下，1W个不活跃的<em>HTTP Keep-Alive</em>连接在<strong>Nginx</strong>中消耗只有2.5MB的内存。（这也是<strong>Nginx</strong>能够支持高并发连接的基础）</p>
+</li>
+<li>
+<p><strong>单机支持10W+的并发连接</strong></p>
+<p>由于现在是海量数据时代，高并发无疑成为大家青睐的对象。理论上，<strong>Nginx</strong>支持的并发连接数量取决于内存，10W+的并发连接并没有到极限。但是，能否及时处理更多的并发连接应该取决于项目业务的需求。</p>
+</li>
+<li>
+<p><strong>热部署</strong></p>
+<p><em>master</em>管理进程和<em>Worker</em>进程是相互隔离的，这使得<strong>Nginx</strong>能够彰显热部署的能力。通俗点来说，就是完全可以在<em>7*24</em>h不停止服务正常工作的情况下，可以升级<strong>Nginx</strong>的可执行文件、更新配置选项、更新日志文件等功能操作。</p>
+</li>
+<li>
+<p><strong>最自由的BSD许可协议</strong></p>
+<p>俗话说**“众人拾柴火焰高”**。也正是BSD许可协议带来的极大优势，为**Nginx**提供更强劲的发展动力。</p>
+</li>
+</ul>
+<h5 id="综上所述选择nginx的核心理由还是由于它能在支持高并发请求的同时保持高效的服务"><strong>综上所述，选择<em>Nginx</em>的核心理由还是由于它能在支持高并发请求的同时保持高效的服务。</strong></h5>
+<hr>
+<h3 id="二nginx的安装">二、Nginx的安装</h3>
+<h4 id="1源码安装">1.源码安装</h4>
+<p>在正式安装<strong>Nginx</strong>前需要保证服务器主机已经安装有<strong>编译环境<em>GCC</em>开发库</strong>之类的环境。</p>
+<ul>
+<li>GCC编译环境工具安装</li>
+</ul>
+<p>①<em>Ubuntu OS</em>编译环境使用如下命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">apt-get install build-essential
+apt-get install libtool
+</code></pre></div><p>②CentOS编译环境使用如下命令：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">yum install -y gcc automake autoconf libtool make
+yum install -y gcc -c++
+</code></pre></div><p>安装完成编译环境，就可以着手准备<strong>Nginx</strong>所需要的类库<strong>PCRE库</strong>、<strong>zlib库</strong>、<strong>OpenSSL开发库</strong>。</p>
+<ul>
+<li>PCRE库安装</li>
+</ul>
+<p>首先介绍一下PCRE库的作用，为<strong>Nginx</strong>的<em>HTTP</em>模块提供<strong>解析正则表达式</strong>的基础。这里直接通过下载源码的方式进行编译安装。根据需要的版本在<a href="https://ftp.pcre.org/pub/pcre/">PCRE源码</a>中选择URL然后用下边命令进行下载</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wget https://ftp.pcre.org/pub/pcre/pcre-8.42.tar.gz
+<span style="color:#75715e">## 现在完成后，对源码包进行解压</span>
+tar -xzvf pcre-8.42.tar.gz
+<span style="color:#75715e">## 解压完成进入pcre-8.42目录</span>
+cd pcre-8.42
+<span style="color:#75715e">## 执行配置</span>
+./configure
+<span style="color:#75715e">## 进行编译并安装</span>
+make 
+make install
+</code></pre></div><ul>
+<li>Zlib库安装</li>
+</ul>
+<p>Zlib库主要是针对HTTP包的内容<strong>做gzip格式的压缩</strong>。例如，<strong>Nginx</strong>的配置<em>nginx.conf</em>文件中配置<em><strong>gzip on</strong></em>。<a href="http://zlib.net/zlib-1.2.11.tar.gz">Zlib-1.2.11下载</a></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">## 使用Wget命令下载源码</span>
+wget http://zlib.net/zlib-1.2.11.tar.gz
+<span style="color:#75715e">## 进行解压</span>
+tar -xzvf zlib-1.2.11.tar.gz
+<span style="color:#75715e">## 进入zlib目录进行配置编译安装操作</span>
+cd zlib-1.2.11
+./configure
+make 
+make install
+</code></pre></div><ul>
+<li>Openssl安装</li>
+</ul>
+<p>如果对版本没有特殊要求，OpenSSL我们采用命令安装</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">## CentOS 安装命令</span>
+yum install openssl openssl-devel
+
+<span style="color:#75715e">## Ubuntu/Debian 安装命令</span>
+sudo apt-get install openssl        
+sudo apt-get install libssl-devel  
+
+</code></pre></div><ul>
+<li><strong>Nginx安装</strong></li>
+</ul>
+<p>首先去<a href="http://nginx.org/en/download.html"><strong>Nginx</strong>官网</a>下载合适版本的源码。同时我们可以直接在服务器使用wget命令进行下载。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">wget http://nginx.org/download/nginx-1.14.0.tar.gz
+<span style="color:#75715e">## 解压Nginx源码</span>
+tar -xzvf nginx-1.14.0.tar.gz
+cd nginx-1.14.0
+
+<span style="color:#75715e">## 进行配置项的配置:(以下只是选择了编译Nginx源码时的部分配置选项)</span>
+	<span style="color:#75715e"># --sbin-path: 指定了可执行文件的放置路径,默认路径在&lt;prefix&gt;/sbin/nginx</span>
+	<span style="color:#75715e"># --conf-path: 指定了配置选项文件的放置路径,默认路径在&lt;prefix&gt;/conf/nginx.conf</span>
+	<span style="color:#75715e"># --pid-path: 指定了pid文件的放置路径,默认路径在&lt;prefix&gt;/logs&gt;nginx.pid</span>
+	<span style="color:#75715e"># --with-http_ssl_module:安装http_ssl_module，使得Nginx支持SSL协议，保证HTTPS服务。</span>
+	<span style="color:#75715e"># --with-pcre: 指定PCRE库源码的路径，编译Nginx时会进入此路径对源码进行编译。</span>
+	<span style="color:#75715e"># --with-zlib: 指定Zlib库源码的路径，编译Nginx时会进入此路径对源码进行编译。</span>
+./configure  <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--sbin-path<span style="color:#f92672">=</span>/usr/local/nginx/nginx <span style="color:#ae81ff">\ </span>
+--conf-path<span style="color:#f92672">=</span>/usr/local/nginx/nginx.conf <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--pid-path<span style="color:#f92672">=</span>/usr/local/nginx/nginx.pid <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--with-http_ssl_module <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--with-pcre<span style="color:#f92672">=</span>/opt/app/openet/oetal1/cheney/pcre-8.42 <span style="color:#ae81ff">\
+</span><span style="color:#ae81ff"></span>--with-zlib<span style="color:#f92672">=</span>/opt/app/openet/oetal1/cheney/zlib-1.2.11 
+
+<span style="color:#75715e">## 配置完成后进行编译安装</span>
+make 
+make install
+</code></pre></div><p>安装完成之后可以进行简单的测试，进入配置的**${&ndash;sbin-path}**路径下启动Nginx。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">## 直接使用默认配置执行nginx可执行文件启动服务</span>
+/usr/local/nginx/sbin/nginx
+</code></pre></div><p>在保证服务器主机端口可以访问的情况下，使用浏览器访问主机IP地址，例如<em><strong>http://127.0.0.1</strong></em>，可以看到Nginx服务的默认主页。这就说明<strong>Nginx</strong>服务正常启动了。然后可以根据项目具体的业务需求，对<strong>Nginx</strong>进行特殊配置进行详细定制。</p>
+<hr>
+<h3 id="nginx的具体配值问题下篇文章进行详细介绍">Nginx的具体配值问题，下篇文章进行详细介绍。</h3>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      
+
+      
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/linux/summary/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/">
+            <span class="next-text nav-default"></span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
+  
+
+  
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "ynoy/handbooks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+        </div>
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="icon-links">
+  
+  
+    <a href="mailto:xy410257@163.com" rel="me noopener" class="iconfont"
+      title="email" >
+      <svg class="icon" viewBox="0 0 1451 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M664.781909 681.472759 0 97.881301C0 3.997201 71.046997 0 71.046997 0L474.477909 0 961.649408 0 1361.641813 0C1361.641813 0 1432.688811 3.997201 1432.688811 97.881301L771.345323 681.472759C771.345323 681.472759 764.482731 685.154773 753.594283 688.65053L753.594283 688.664858C741.602731 693.493018 729.424896 695.068979 718.077952 694.839748 706.731093 695.068979 694.553173 693.493018 682.561621 688.664858L682.561621 688.65053C671.644501 685.140446 664.781909 681.472759 664.781909 681.472759L664.781909 681.472759ZM718.063616 811.603883C693.779541 811.016482 658.879232 802.205449 619.10784 767.734955 542.989056 701.759633 0 212.052267 0 212.052267L0 942.809523C0 942.809523 0 1024 83.726336 1024L682.532949 1024 753.579947 1024 1348.948139 1024C1432.688811 1024 1432.688811 942.809523 1432.688811 942.809523L1432.688811 212.052267C1432.688811 212.052267 893.138176 701.759633 817.019477 767.734955 777.248 802.205449 742.347691 811.03081 718.063616 811.603883L718.063616 811.603883Z"></path>
+</svg>
+
+    </a>
+  
+    <a href="https://github.com/Ynoy" rel="me noopener" class="iconfont"
+      title="github"  target="_blank"
+      >
+      <svg class="icon" style="" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="36" height="36">
+  <path d="M512 12.672c-282.88 0-512 229.248-512 512 0 226.261333 146.688 418.133333 350.08 485.76 25.6 4.821333 34.986667-11.008 34.986667-24.618667 0-12.16-0.426667-44.373333-0.64-87.04-142.421333 30.890667-172.458667-68.693333-172.458667-68.693333C188.672 770.986667 155.008 755.2 155.008 755.2c-46.378667-31.744 3.584-31.104 3.584-31.104 51.413333 3.584 78.421333 52.736 78.421333 52.736 45.653333 78.293333 119.850667 55.68 149.12 42.581333 4.608-33.109333 17.792-55.68 32.426667-68.48-113.706667-12.8-233.216-56.832-233.216-253.013333 0-55.893333 19.84-101.546667 52.693333-137.386667-5.76-12.928-23.04-64.981333 4.48-135.509333 0 0 42.88-13.738667 140.8 52.48 40.96-11.392 84.48-17.024 128-17.28 43.52 0.256 87.04 5.888 128 17.28 97.28-66.218667 140.16-52.48 140.16-52.48 27.52 70.528 10.24 122.581333 5.12 135.509333 32.64 35.84 52.48 81.493333 52.48 137.386667 0 196.693333-119.68 240-233.6 252.586667 17.92 15.36 34.56 46.762667 34.56 94.72 0 68.522667-0.64 123.562667-0.64 140.202666 0 13.44 8.96 29.44 35.2 24.32C877.44 942.592 1024 750.592 1024 524.672c0-282.752-229.248-512-512-512"></path>
+</svg>
+
+    </a>
+
+
+<a href="https://touch-star.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+    class="iconfont" title="rss" target="_blank">
+    <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="30" height="30">
+  <path d="M819.157333 1024C819.157333 574.592 449.408 204.8 0 204.8V0c561.706667 0 1024 462.293333 1024 1024h-204.842667zM140.416 743.04a140.8 140.8 0 0 1 140.501333 140.586667A140.928 140.928 0 0 1 140.074667 1024C62.72 1024 0 961.109333 0 883.626667s62.933333-140.544 140.416-140.586667zM678.784 1024h-199.04c0-263.210667-216.533333-479.786667-479.744-479.786667V345.173333c372.352 0 678.784 306.517333 678.784 678.826667z"></path>
+</svg>
+
+  </a>
+   
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - <a class="theme-link" href="https://github.com/xianmin/hugo-theme-jane">Jane</a>
+  </span>
+
+  <span class="copyright-year">
+    &copy;
+    
+      2019 -
+    2020
+    <span class="heart">
+      
+      <i class="iconfont">
+        <svg class="icon" viewBox="0 0 1025 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="14" height="14">
+  <path d="M1000.1 247.9c-15.5-37.3-37.6-70.6-65.7-98.9-54.4-54.8-125.8-85-201-85-85.7 0-166 39-221.4 107.4C456.6 103 376.3 64 290.6 64c-75.1 0-146.5 30.4-201.1 85.6-28.2 28.5-50.4 61.9-65.8 99.3-16 38.8-24 79.9-23.6 122.2 0.7 91.7 40.1 177.2 108.1 234.8 3.1 2.6 6 5.1 8.9 7.8 14.9 13.4 58 52.8 112.6 102.7 93.5 85.5 209.9 191.9 257.5 234.2 7 6.1 15.8 9.5 24.9 9.5 9.2 0 18.1-3.4 24.9-9.5 34.5-30.7 105.8-95.9 181.4-165 74.2-67.8 150.9-138 195.8-178.2 69.5-57.9 109.6-144.4 109.9-237.3 0.1-42.5-8-83.6-24-122.2z"
+   fill="#8a8a8a"></path>
+</svg>
+
+      </i>
+    </span><span class="author">
+        CheneyIn
+        
+      </span></span>
+
+  
+  
+
+  
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont">
+        
+        <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="35" height="35">
+  <path d="M510.866688 227.694839 95.449397 629.218702l235.761562 0-2.057869 328.796468 362.40389 0L691.55698 628.188232l241.942331-3.089361L510.866688 227.694839zM63.840492 63.962777l894.052392 0 0 131.813095L63.840492 195.775872 63.840492 63.962777 63.840492 63.962777zM63.840492 63.962777"></path>
+</svg>
+
+      </i>
+    </div>
+  </div>
+  
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
+
+
+
+
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
