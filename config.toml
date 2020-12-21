@@ -1,5 +1,5 @@
-baseURL = "https://touch-star.com/"
-title = "TouchStar"
+baseURL = "https://quinnbook.github.io/handbooks/"
+title = "Quinn"
 enableRobotsTXT = true
 enableEmoji = true
 theme = "jane"
@@ -12,7 +12,7 @@ paginate = 10
 rssLimit = 10             
 disqusShortname = ""      
 googleAnalytics = ""      
-copyright = "CheneyIn"           
+copyright = ""           
 
 PygmentsCodeFences = true # Enable syntax highlighting with GitHub flavoured code fences
 PygmentsUseClasses = true # Use CSS classes to format highlighted code
@@ -24,7 +24,7 @@ defaultContentLanguage = "zh-cn"           # Default language to use
   languageCode = "zh-cn"
 
 [author]                  # essential                     # 必需
-  name = "CheneyIn"
+  name = "Quinn"
 
 [sitemap]                 # essential                     # 必需
   changefreq = "weekly"
@@ -103,10 +103,10 @@ defaultContentLanguage = "zh-cn"           # Default language to use
 
   [params.social]                                         # 社交链接
     a-email = "mailto:xy410257@163.com"
-    g-github = "https://github.com/Ynoy"
+    g-github = "https://github.com/quinniup"
 
   [params.utteranc]        
     enable = true
-    repo = "ynoy/handbooks"    
+    repo = "quinniup/handbooks"    
     issueTerm = "pathname"
     theme = "github-light"                          
