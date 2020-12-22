@@ -2,22 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://quinn.touch-star.com/post/distributed/2020-04-30-etcd/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/distributed/2020-05-14-etcd-basic/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://quinn.touch-star.com/about/</loc>
     <lastmod>2020-04-28T21:41:52+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/middleware/dubbo/dubbobase/</loc>
+    <lastmod>2020-12-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -37,7 +30,21 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/middleware/dubbo/dubbobase/</loc>
+    <loc>https://quinn.touch-star.com/tags/elasticsearch/</loc>
+    <lastmod>2020-12-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</loc>
+    <lastmod>2020-12-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/java/</loc>
     <lastmod>2020-12-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -51,7 +58,7 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/tags/java/</loc>
+    <loc>https://quinn.touch-star.com/categories/middleware/</loc>
     <lastmod>2020-12-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -107,6 +114,20 @@
   </url>
   
   <url>
+    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/5-docker4rmnone/</loc>
+    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/8-ufs-linux4docker/</loc>
+    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://quinn.touch-star.com/tags/docker/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -128,6 +149,13 @@
   </url>
   
   <url>
+    <loc>https://quinn.touch-star.com/tags/ufs/</loc>
+    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://quinn.touch-star.com/tags/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -135,20 +163,252 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/tags/etcd/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <loc>https://quinn.touch-star.com/tags/channel/</loc>
+    <lastmod>2020-04-22T21:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/go/</loc>
+    <lastmod>2020-04-22T21:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/categories/go/</loc>
+    <lastmod>2020-04-22T21:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/coding/golang/concurrent/goroutine/</loc>
+    <lastmod>2020-04-22T21:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/select/</loc>
+    <lastmod>2020-04-22T21:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/%E5%8D%8F%E7%A8%8B/</loc>
+    <lastmod>2020-04-22T21:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/middleware/database/sql/mysql/xtrabackup/1-real/</loc>
+    <lastmod>2019-11-22T19:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/middleware/database/sql/mysql/1-mysql-install/</loc>
+    <lastmod>2019-11-22T19:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/complite/</loc>
+    <lastmod>2019-11-22T19:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/mysql/</loc>
+    <lastmod>2019-11-22T19:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/xtrabackup/</loc>
+    <lastmod>2019-11-22T19:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/operation/linux/centos/command/vim/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/centos/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/operation/linux/centos/1-modifymirror/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/command/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/linux/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/categories/linux/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/nginx/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/repos/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/vim/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/zookeeper/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/middleware/nginx/1-nginx-base/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/operation/linux/kvm/1-base/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/operation/linux/tcp-ip/1.overview/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/kvm/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/network/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/tcp/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/%E5%8F%8C%E7%BD%91%E5%8D%A1/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/%E7%BD%91%E6%A1%A5/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/%E7%BD%91%E7%BB%9C/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc>
+    <lastmod>2019-10-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/design-pattern/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/4-docker4springboot/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/5-docker4rmnone/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -166,37 +426,7 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/8-ufs-linux4docker/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/readme/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/goland/concurrent/goroutine/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/goland/etcd/etcd_interview/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/goland/etcd/etcd_sourcecode_1/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/goland/pointer/pointer/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -287,6 +517,12 @@
   
   <url>
     <loc>https://quinn.touch-star.com/post/cloudnative/base/summary/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/coding/golang/pointer/pointer/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -383,12 +619,6 @@
   
   <url>
     <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_23_interpreter/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -592,37 +822,19 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</loc>
+    <loc>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/2.elasticsearch-cluster-base/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/2.elasticsearch%E9%9B%86%E7%BE%A4%E5%8E%9F%E7%90%86/</loc>
+    <loc>https://quinn.touch-star.com/post/middleware/etcd/etcd_interview/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/middleware/database/sql/mysql/xtrabackup/1-real/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/middleware/nginx/nginx%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF%E4%B9%8Bnginx%E5%85%A5%E9%97%A8/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/middleware/zookeeper/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/operation/linux/centos/1-modifymirror/</loc>
+    <loc>https://quinn.touch-star.com/post/middleware/etcd/etcd_sourcecode_1/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -658,30 +870,6 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/operation/linux/centos/command/vim/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/operation/linux/centos/mysql/mysql/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/operation/linux/kvm/1-base/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://quinn.touch-star.com/post/operation/linux/readme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -689,12 +877,6 @@
   
   <url>
     <loc>https://quinn.touch-star.com/post/operation/linux/summary/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/operation/linux/tcp-ip/1.overview/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

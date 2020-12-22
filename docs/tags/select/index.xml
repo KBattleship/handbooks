@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>select on Quinn</title>
+    <link>https://quinn.touch-star.com/tags/select/</link>
+    <description>Recent content in select on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Wed, 22 Apr 2020 21:36:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://quinn.touch-star.com/tags/select/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Go并发之协程</title>
+      <link>https://quinn.touch-star.com/post/coding/golang/concurrent/goroutine/</link>
+      <pubDate>Wed, 22 Apr 2020 21:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/coding/golang/concurrent/goroutine/</guid>
+      <description>Go并发之协程 首先需要了解几个概念：  channel(通道) select  1.协程、线程与进程 进程，属于操作系统，是系统资源分配的最小单位。充分利用CPU资源实现并发。
+线程，所属于进程，是进程的内部实现，大大降低了上下文切换的消耗，突破一个进程只可以处理一件事的缺陷，从而提高了系统的并发性。
+协程，粒度更细，属于线程中的调度。填补了线程在IO上性能的缺陷，避免陷入内核级上下文切换所导致的性能损耗。
+2.协程实现原理 线程实现原理
+1 2  线程是操作系统的内核对象，多线程情况下，线程达到一定数量，将会导致上下文频繁切换，CPU的额外消耗会提升。 高并发的网络编程如果一个线程对应一个socket连接将不是最好的处理方式，所以操作系统提供基于事件模式的异步编程模型。   协程实现原理
+1    </description>
+    </item>
+    
+  </channel>
+</rss>

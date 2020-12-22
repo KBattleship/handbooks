@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - Quinn</title>
+  <title>8.文件系统之UFS - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,12 +23,12 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="3.文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
+  <meta name="description" content="文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
  原理： 使用branch把不同文件系统的文件、目录「透明的」进行覆盖，形成一个单一一直的文件系统。branch具有要么read-only,要么read-write的特点。
   思想： 写时复制(copy-on-write),如果一个资源重复，但并未被修改，将不被立即创建出新的资源，直接为新旧实例提供共享。创建新资源将发生在第一次被修改写入时。该资源共享方式，可以明显降低未修改资源复制时的消耗，但同样的，也会在写入修改是增加部分开销。
   AFUS(Advanced Multi-Layered Unification FileSystem)  " />
+<meta name="keywords" content="Docker" />
 
-  <meta name="keywords" content="Quinn, k8s, docker" />
 
 
 
@@ -62,27 +62,29 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="3.文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
+<meta property="og:title" content="8.文件系统之UFS" />
+<meta property="og:description" content="文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
  原理： 使用branch把不同文件系统的文件、目录「透明的」进行覆盖，形成一个单一一直的文件系统。branch具有要么read-only,要么read-write的特点。
   思想： 写时复制(copy-on-write),如果一个资源重复，但并未被修改，将不被立即创建出新的资源，直接为新旧实例提供共享。创建新资源将发生在第一次被修改写入时。该资源共享方式，可以明显降低未修改资源复制时的消耗，但同样的，也会在写入修改是增加部分开销。
   AFUS(Advanced Multi-Layered Unification FileSystem)  " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://quinn.touch-star.com/post/cloudnative/base/docker/docker/8-ufs-linux4docker/" />
-
-<meta itemprop="name" content="">
-<meta itemprop="description" content="3.文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
+<meta property="article:published_time" content="2020-08-22T15:36:27+08:00" />
+<meta property="article:modified_time" content="2020-08-22T15:36:27+08:00" />
+<meta itemprop="name" content="8.文件系统之UFS">
+<meta itemprop="description" content="文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
  原理： 使用branch把不同文件系统的文件、目录「透明的」进行覆盖，形成一个单一一直的文件系统。branch具有要么read-only,要么read-write的特点。
   思想： 写时复制(copy-on-write),如果一个资源重复，但并未被修改，将不被立即创建出新的资源，直接为新旧实例提供共享。创建新资源将发生在第一次被修改写入时。该资源共享方式，可以明显降低未修改资源复制时的消耗，但同样的，也会在写入修改是增加部分开销。
   AFUS(Advanced Multi-Layered Unification FileSystem)  ">
-
+<meta itemprop="datePublished" content="2020-08-22T15:36:27&#43;08:00" />
+<meta itemprop="dateModified" content="2020-08-22T15:36:27&#43;08:00" />
 <meta itemprop="wordCount" content="14">
 
 
 
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="3.文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
+<meta itemprop="keywords" content="ufs,docker,k8s,容器," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="8.文件系统之UFS"/>
+<meta name="twitter:description" content="文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
  原理： 使用branch把不同文件系统的文件、目录「透明的」进行覆盖，形成一个单一一直的文件系统。branch具有要么read-only,要么read-write的特点。
   思想： 写时复制(copy-on-write),如果一个资源重复，但并未被修改，将不被立即创建出新的资源，直接为新旧实例提供共享。创建新资源将发生在第一次被修改写入时。该资源共享方式，可以明显降低未修改资源复制时的消耗，但同样的，也会在写入修改是增加部分开销。
   AFUS(Advanced Multi-Layered Unification FileSystem)  "/>
@@ -336,13 +338,16 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">8.文件系统之UFS</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2020-08-22" class="post-time">
+          2020-08-22
         </time>
-        
+        <div class="post-category">
+            <a href="https://quinn.touch-star.com/categories/k8s/"> K8s </a>
+            
+          </div>
         <span class="more-meta"> 约 14 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
@@ -351,7 +356,7 @@
 
         
         
-          <span id="/post/cloudnative/base/docker/docker/8-ufs-linux4docker/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/cloudnative/base/docker/docker/8-ufs-linux4docker/" class="leancloud_visitors" data-flag-title="8.文件系统之UFS">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -386,8 +391,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#3%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%b9%8bufs">
-                            3.文件系统之UFS
+                            <a class="nav-link text-left" href="#%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e4%b9%8bufs">
+                            文件系统之UFS
                             </a>
                         </li>
                     
@@ -431,7 +436,7 @@
 
     
     <div class="post-content">
-      <h1 id="3文件系统之ufs">3.文件系统之UFS</h1>
+      <h1 id="文件系统之ufs">文件系统之UFS</h1>
 <h2 id="ufs">UFS</h2>
 <p>联合文件系统[<em><strong>Union File System</strong></em>]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。</p>
 <blockquote>
@@ -454,12 +459,18 @@
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://quinn.touch-star.com/tags/ufs/">ufs</a>
+          <a href="https://quinn.touch-star.com/tags/docker/">docker</a>
+          <a href="https://quinn.touch-star.com/tags/k8s/">k8s</a>
+          <a href="https://quinn.touch-star.com/tags/%E5%AE%B9%E5%99%A8/">容器</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/">
+          <a class="prev" href="/post/cloudnative/base/docker/docker/5-docker4rmnone/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -469,12 +480,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">5.Docker-本地构建none包处理</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/cloudnative/base/docker/readme/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/coding/golang/concurrent/goroutine/">
+            <span class="next-text nav-default">Go并发之协程</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

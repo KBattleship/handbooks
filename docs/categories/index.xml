@@ -12,11 +12,20 @@
     
     
     <item>
-      <title>Java</title>
+      <title>java</title>
       <link>https://quinn.touch-star.com/categories/java/</link>
       <pubDate>Tue, 22 Dec 2020 15:36:27 +0800</pubDate>
       
       <guid>https://quinn.touch-star.com/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>middleware</title>
+      <link>https://quinn.touch-star.com/categories/middleware/</link>
+      <pubDate>Tue, 22 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/categories/middleware/</guid>
       <description></description>
     </item>
     
@@ -26,6 +35,24 @@
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
       <guid>https://quinn.touch-star.com/categories/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://quinn.touch-star.com/categories/go/</link>
+      <pubDate>Wed, 22 Apr 2020 21:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/categories/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://quinn.touch-star.com/categories/linux/</link>
+      <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/categories/linux/</guid>
       <description></description>
     </item>
     

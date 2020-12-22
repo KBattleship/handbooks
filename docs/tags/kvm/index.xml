@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>kvm on Quinn</title>
+    <link>https://quinn.touch-star.com/tags/kvm/</link>
+    <description>Recent content in kvm on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 12 Oct 2019 01:36:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://quinn.touch-star.com/tags/kvm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>1.KVM入门</title>
+      <link>https://quinn.touch-star.com/post/operation/linux/kvm/1-base/</link>
+      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/operation/linux/kvm/1-base/</guid>
+      <description>KVM入门  1.基础操作 ①.创建虚拟机 1 2 3 4 5 6 7  virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart   ②.虚拟机相关操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36  # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 停止指定虚拟机 virsh shutdown &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 销毁指定虚拟机(强制断电) virsh destory &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 登入指定虚拟机 virsh console &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*)   ③.</description>
+    </item>
+    
+    <item>
+      <title>2.KVM-双网卡网关配置</title>
+      <link>https://quinn.touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</link>
+      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</guid>
+      <description>双网卡网关配置 1.在系统路由表文件/etc/iproute2/rt_tables增加配置
+1 2  252 e1 251 e0   2.执行以下命令，并在/etc/rc.d/network追加此内容
+1 2 3 4 5 6 7 8 9  # 此内容防止服务器重启路由失效 ip route flush table e0 ip route add default via 10.3.3.1 dev eth0 src 10.3.3.25 table e0 ip route add 127.0.0.0/8 dev lo table e0 ip rule add from 10.3.3.25 table e0 ip route flush table e1 ip route add default via 10.2.2.1 dev eth1 src 10.</description>
+    </item>
+    
+  </channel>
+</rss>

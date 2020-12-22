@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>elasticsearch on Quinn</title>
+    <link>https://quinn.touch-star.com/tags/elasticsearch/</link>
+    <description>Recent content in elasticsearch on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 22 Dec 2020 15:36:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://quinn.touch-star.com/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ElasticSearch集群搭建</title>
+      <link>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</link>
+      <pubDate>Tue, 22 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</guid>
+      <description>ElasticSearch集群搭建 注： 1 2 3 4 5 6 7 8 9 10 11 12 13 14  #A:修改/etc/security/limits.conf #&amp;lt;domain&amp;gt; &amp;lt;type&amp;gt; &amp;lt;item&amp;gt; &amp;lt;value&amp;gt; * soft nofile 65536 * hard nofile 131072 * soft nproc 2048 * hard nproc 4096 #B:修改/etc/sysctl.conf vm.max_map_count=262144 # 保存执行： sysctl -p # 或者 sysctl -w vm.max_map_count=262144   </description>
+    </item>
+    
+  </channel>
+</rss>

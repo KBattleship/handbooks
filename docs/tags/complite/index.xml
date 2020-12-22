@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>complite on Quinn</title>
+    <link>https://quinn.touch-star.com/tags/complite/</link>
+    <description>Recent content in complite on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 22 Nov 2019 19:36:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://quinn.touch-star.com/tags/complite/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>1.MySQL编译安装过程</title>
+      <link>https://quinn.touch-star.com/post/middleware/database/sql/mysql/1-mysql-install/</link>
+      <pubDate>Fri, 22 Nov 2019 19:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/middleware/database/sql/mysql/1-mysql-install/</guid>
+      <description>编译安装过程 1.预编译 1 2 3 4 5 6 7 8 9 10 11 12 13 14  cmake . -DCMAKE_INSTALL_PREFIX=/data/ops/mysql/ \ -DMYSQL_DATADIR=/data/ops/mysql/data \ -DWITH_BOOST=../boost_1_59_0 \ -DSYSCONFDIR=/etc \ -DWITH_INNOBASE_STORAGE_ENGINE=1 \ -DWITH_PARTITION_STORAGE_ENGINE=1 \ -DWITH_FEDERATED_STORAGE_ENGINE=1 \ -DWITH_BLACKHOLE_STORAGE_ENGINE=1 \ -DWITH_MYISAM_STORAGE_ENGINE=1 \ -DENABLED_LOCAL_INFILE=1 \ -DENABLE_DTRACE=0 \ -DDEFAULT_CHARSET=utf8mb4 \ -DDEFAULT_COLLATION=utf8mb4_general_ci \ -DWITH_EMBEDDED_SERVER=1   2.编译安装 1 2 3  make -j `grep processor /proc/cpuinfo | wc -l` #编译很消耗系统资源，小内存可能编译通不过make install make install   3.启动配置 1 2 3 4 5 6  ls -lrt /usr/local/mysql # 创建启动脚本，并增加可执行权限 cp /usr/local/mysql/support-files/mysql.</description>
+    </item>
+    
+  </channel>
+</rss>
