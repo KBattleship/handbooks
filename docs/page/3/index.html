@@ -131,6 +131,14 @@
               </li>
             
               <li>
+                <a href="https://quinn.touch-star.com/categories/linux">Linux</a>
+              </li>
+            
+              <li>
+                <a href="https://quinn.touch-star.com/categories/middleware">MiddleWare</a>
+              </li>
+            
+              <li>
                 <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
@@ -276,6 +284,14 @@
               </li>
             
               <li>
+                <a href="https://quinn.touch-star.com/categories/linux">Linux</a>
+              </li>
+            
+              <li>
+                <a href="https://quinn.touch-star.com/categories/middleware">MiddleWare</a>
+              </li>
+            
+              <li>
                 <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
@@ -321,6 +337,127 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/">2.适配器模式</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-08-22" class="post-time">
+        2019-08-22
+      </time>
+      <div class="post-category">
+          <a href="https://quinn.touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 251 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/" class="leancloud_visitors" data-flag-title="2.适配器模式">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      适配器模式 适配器模式包含两种：  类适配器模式(使用继承的适配器) 对象适配器模式(使用委托的适配器)  适配器模式角色组成：  目标角色 源角色 适配器角色  ①.类适配器模式 继承于源类的同时实现目标接口
+表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  1 2 3 4  public interface Print { abstract void printWeak(); abstract void printStrong(); }    Banner(源角色)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class Banner { private String nameString; public Banner(String nameString) { this.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/base/docker/docker/4-docker4springboot/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 2 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/base/docker/docker/4-docker4springboot/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      SpringBoot项目Docker化 一 
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/base/docker/docker/4-docker4springboot/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/base/docker/docker/6-namespace-linux4docker/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 49 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/base/docker/docker/6-namespace-linux4docker/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      1.关于命名空间(Linux Namespace) 概念  1.Linux Namespace 是Kernel的一个功能，可以针对一系列的系统资源进行隔离。例如：PID(process id)、UID(User id)、Network so on.
+  2.就像chroot允许把当前目录变成根目录一样进行隔离。
+  3.Namespace进行隔离用户，当前用户将在特定的Namespace中具有root权限。但在真是物理机层面，此用户仍然是以UID运行的那个用户。
+ Linux包含的Namespace类型    Type Params Kernel Effect Information     Mount CLONE_NEWNS 2.4.19 隔离Namespace下的文件系统   UTS CLONE_NEWUTS 2.6.19 用作隔离nodename和domainname   IPC CLONE_NEWIPC 2.6.19 隔离System V IPC 和POSIX Message queues   PID CLONE_NEWPID 2.6.24 针对进程ID进行隔离   Network CLONE_NEWNET 2.6.29 用于隔离网络设备、IP地址端口等网络栈   User CLONE_NEWUSER 3.8 用于隔离用户及用户组    #Demo Coding 
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/base/docker/docker/6-namespace-linux4docker/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -624,122 +761,6 @@ K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制�
     </div>
     <div class="read-more">
       <a href="/post/cloudnative/base/kubernetes/1-k8s-base/5_helm/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/base/kubernetes/2-k8s-pod/1.k8s-pod/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 358 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/base/kubernetes/2-k8s-pod/1.k8s-pod/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      一、了解Pod对象 1.Pod参数定义 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144  # 必填,版本号apiVersion:stringkind:Pod# 必填,元数据metadata:# 必填,Pod对象的名称(命名规范需要符合RFC 1035规范)name:string# 必填,Pod对象所属的命名空间,默认值为defaultnamespace:string# 自定义标签列表(取值类型:List)labels:- name:string# 自定义标签注解(取值类型:List)annotations:- name:string# 必填,Pod对象中容器的详细定义 spec:# 必填,Pod对象容器列表(取值类型:List)containers:# 必填,容器的名称(需要符合RFC 1035规范)- name:string# 必填,容器镜像名称image:string# 获取镜像的策略，默认值为:Always# Always: 每次都尝试重新下载镜像# Never: 仅使用本地镜像# IfNotPresent: 如果本地不存在，就下载镜像imagePullPolicy:[Always|Never|IfNotPresent]# 容器启动命令列表，若不指定则使用镜像打包时使用的启动命令command:[string]# 容器的启动命令参数列表args:[string]# 容器的工作目录workingDir:string# 挂载到容器内部的存储卷配置(取值类型:List)volumeMounts:# 引用Pod定义的共享存储卷的名称，需使用镜像volumes[]部分定义的共享卷名称- name:string# 存储卷在容器内Mount的绝对路径(应少于512个字符)mountPath:string# 是否只读模式,默认false(读写模式)readOnly:boolean# 容器需要暴露的端口号(取值类型:List) ports:# 端口的名称- name:string# 容器需要监听的端口号containerPort:int# 容器所在主机需要监听的端口号，默认与containerPort相同# (设置hostPort时，同一台宿主机将无法启动该容器的第二副本，由于端口占用问题)hostPort:int# 端口协议[TCP/UDP],默认为TCPprotocol:string# 容器运行前需要设置的环境变量列表env:# 环境变量的名称- name:string# 环境变量的值value:string# 资源限制和资源请求的设置resource:# 资源限制设置limits:# CPU限制(单位为：core)将用于docker run --cpu-shares参数cpu:string# 内存限制(单位为：MiB/GiB)将用于docker run --memory参数memory:string# 资源限制设置(请求)requests:# CPU请求(单位为：core)将用于容器启动的初始化可用数量cpu:string# 内存请求(单位为：MiB/GiB)将用于容器启动的初始化可用数量memory:string# 对Pod对象内各个容器进行安全检查的设置，当探测无响应几次后，将自动重启该容器# 包含[exec | httpGet | TcpSocket]三种方式，任选其一即可livenessProbe:exec:# 需要执行的脚本command:[string]httpGet:# 请求路径path:string# 请求端口port:numberhost:stringscheme:stringhttpHeader:- name:stringvalue:stringtcpSocket:port:number# 完成容器启动后首次进行探测的时间(单位为：s)initialDelaySeconds:0# 对容器健康检查探测等待超时时间(单位为：s)，默认值为1timeoutSeconds:0# 对容器健康检查的探测时间周期(单位为：s)，默认值为10periodSeconds:0successThreshold:0failureThreshold:0securityContext:privileged:boolean## Pod对象的重启策略，可选值[Always | Never | OnFailure]## Always: Pod对象一旦终止，则不关心容器是如何停止的，kubelet都将重器容器## Never: Pod对象终止后，kubelet将退出码返回给Master，不再重启该容器## OnFailure: 只有当Pod对象以非零退出码终止时，kubelet才会重启该容器# (容器正常结束的退出码为零)#restartPolicy:[Always|Never|OnFailure]# 表示将Pod对象调度到包含这些label的Node上(以key:value形式指定)nodeSelector:object# Pull镜像时使用的secret名称(以name:secretValue形式指定)imagePullSecrets:- name:string# 是否使用主机模式(默认值为:false)## 如果设置为true，表示容器使用宿主机网络，不再使用Docker网桥# 该Pod对象将无法在同一台宿主机上启动第二个副本hostNetwork:boolean# 在该Pod对象上定义的共享储存卷列表volumes:# 共享储存卷名称，一个Pod对象中每个储存卷定义一个名称(命名应按照RFC 1035规范)- name:string# Pod对象同生命周期的一个临时目录，值为{}空对象emptyDir:{}# 挂载Pod对象所在宿主机的目录hostPath:# 将用于容器中mount的目录path:string# 挂载集群中预定义的secret对象到容器内部secret:secretName:stringitems:- key:stringpath:string# 挂载集群预定义的configMap对象到容器内部configMap:name:stringitems:- key:stringpath:string  2.
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/base/kubernetes/2-k8s-pod/1.k8s-pod/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/base/kubernetes/2-k8s-pod/2.pods-example/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 563 字 </span>
-      <span class="more-meta"> 预计阅读 3 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/base/kubernetes/2-k8s-pod/2.pods-example/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      1.SpringBoot&ndash;Pods项目初体验  在SpringBoot项目中通过fabric8打包插件构建docker镜像
- 通过Kubernetes的接口请求Pod对象，相信信息如下：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208  { &#34;kind&#34;: &#34;Pod&#34;, &#34;apiVersion&#34;: &#34;v1&#34;, &#34;metadata&#34;: { &#34;name&#34;: &#34;kubernetes-hello-world-779c4c748b-2rv27&#34;, &#34;generateName&#34;: &#34;kubernetes-hello-world-779c4c748b-&#34;, &#34;namespace&#34;: &#34;default&#34;, &#34;selfLink&#34;: &#34;/api/v1/namespaces/default/pods/kubernetes-hello-world-779c4c748b-2rv27&#34;, &#34;uid&#34;: &#34;dea46f9f-cd4b-11e9-b38e-025000000001&#34;, &#34;resourceVersion&#34;: &#34;34209&#34;, &#34;creationTimestamp&#34;: &#34;2019-09-02T06:35:35Z&#34;, &#34;labels&#34;: { &#34;app&#34;: &#34;kubernetes-hello-world&#34;, &#34;group&#34;: &#34;org.
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/base/kubernetes/2-k8s-pod/2.pods-example/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/base/kubernetes/2-k8s-pod/3.pod-detial/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 1 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/base/kubernetes/2-k8s-pod/3.pod-detial/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      三、Pod对象详解 
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/base/kubernetes/2-k8s-pod/3.pod-detial/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

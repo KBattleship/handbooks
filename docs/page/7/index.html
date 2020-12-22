@@ -131,6 +131,14 @@
               </li>
             
               <li>
+                <a href="https://quinn.touch-star.com/categories/linux">Linux</a>
+              </li>
+            
+              <li>
+                <a href="https://quinn.touch-star.com/categories/middleware">MiddleWare</a>
+              </li>
+            
+              <li>
                 <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
@@ -276,6 +284,14 @@
               </li>
             
               <li>
+                <a href="https://quinn.touch-star.com/categories/linux">Linux</a>
+              </li>
+            
+              <li>
+                <a href="https://quinn.touch-star.com/categories/middleware">MiddleWare</a>
+              </li>
+            
+              <li>
                 <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
@@ -321,6 +337,129 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_6_prototype/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 332 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1-design/1-2-design/1_2_6_prototype/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      6.原型模式 原型模式：通过复制生成实例。
+①.角色分配   Prototype(原型)
+负责定义用于复制现有实例来生成新实例的方法。
+  ConcretePrototype(具体原型)
+负责实现现有实例并生成新实例的方法。
+  Client(使用者)
+负责使用复制实例的方法生成的新实例。
+  ②.UML图 ③.代码清单  简单形式  定义抽象接口
+1 2 3  public interface Prototype extends Cloneable { Object clone(); }   具体实现原型拷贝
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  public class ConcretePrototype implements Prototype { public ConcretePrototype(){ System.out.println(&#34;Prototype Design Patterns&#34;); } @Override public Object clone() { ConcretePrototype concretePrototype=null; try { concretePrototype=(ConcretePrototype)super.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1-design/1-2-design/1_2_6_prototype/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_7_builder/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 0 字 </span>
+      <span class="more-meta"> 预计阅读 0 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1-design/1-2-design/1_2_7_builder/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+       
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1-design/1-2-design/1_2_7_builder/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_8_abstract_factory/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 0 字 </span>
+      <span class="more-meta"> 预计阅读 0 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1-design/1-2-design/1_2_8_abstract_factory/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+       
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1-design/1-2-design/1_2_8_abstract_factory/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -598,121 +737,6 @@
     </div>
     <div class="read-more">
       <a href="/post/coding/java/base/2-basis/2_2_reflection/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/2-basis/2_3_annotations/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 113 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/2-basis/2_3_annotations/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      2-3.Java注解 1.基本语法 首先是注解的声明方式如下
-1 2 3 4 5 6 7 8 9 10 11 12 13  // @Target注解传入ElementType指明Nullable的作用域 @Target({ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD}) // @Retention注解用来指定其声明周期为运行时 @Retention(RetentionPolicy.RUNTIME) // @Documented指定Javadoc进行记录此对象 @Documented // @Nonnull为了告诉编译器这个域不可能为空 @Nonnull(when = When.MAYBE) // @TypeQualifierNickname为类型限定符别称(备注部分具体解释此注解) @TypeQualifierNickname public @interface Nullable { // @interface 声明注解 }   2.JDK元注解    Annotation Type Action     @Override 普通注解 用来限定子类重写父类的方法   @Deprecated 普通注解 标记已经过时的方法   @SuppressWarnings 普通注解 抑制编译器的警告   @SafeVarargs 普通注解 Java7 抑制“堆污染”警告   @FunctionalInterface 普通注解 Java8 函数式接口   @Retention 元注解 指定本修饰的注解可以保留多长时间   @Target 元注解 指定被修饰的注解能用于哪些程序元素   @Documented 元注解 被该注解修饰的注解会被javadoc工具提取成文档   @Inherited 元注解 此注解修饰的注解具有继承性   @Repeatable 元注解 重复注解，Java8的新特性    3.
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/2-basis/2_3_annotations/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/2-basis/readme/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 1 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/2-basis/readme/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      2.Java基础 
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/2-basis/readme/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/4-thread/4_3_synchronized/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 209 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/4-thread/4_3_synchronized/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo='synchronized';synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: 1 2 3 4 5 6 7 8 9 10 11  public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } }   将上述代码片段进行编译，使用javap -v SynchronizedTest.
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/4-thread/4_3_synchronized/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

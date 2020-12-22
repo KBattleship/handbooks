@@ -69,6 +69,18 @@ defaultContentLanguage = "zh-cn"           # Default language to use
   weight = 30
   identifier = "k8s"
   url = "/categories/k8s"
+[[menu.main]]
+  name = "MiddleWare"
+  parent = "categories"
+  weight = 10
+  identifier = "middleware"
+  url = "/categories/middleware"
+[[menu.main]]
+  name = "Linux"
+  parent = "categories"
+  weight = 10
+  identifier = "linux"
+  url = "/categories/linux"
 
 [markup]
   [markup.tableOfContents]
