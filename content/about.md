@@ -8,7 +8,7 @@ weight: 50
 comment: false
 mathjax: false
 ---
-# CheneyIn
+# Quinn
 
 `平时整理的一些笔记很杂乱，通过Blog进行一遍梳理。更好的记录这一路走来。`
 + [Java 2 Golang 的小白]()

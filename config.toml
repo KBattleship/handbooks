@@ -82,8 +82,8 @@ defaultContentLanguage = "zh-cn"           # Default language to use
   homeFullContent = false   
   rssFullContent = false     
 
-  logoTitle = "CheneyIn"        
-  keywords = ["CheneyIn", "k8s","docker"]
+  logoTitle = "Quinn"        
+  keywords = ["Quinn", "k8s","docker"]
   description = "笨笨豪の摘星辰"
 
   dateFormatToUse = "2006-01-02"

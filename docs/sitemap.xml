@@ -1,79 +1,661 @@
-<?xml-stylesheet type="text/xsl" href="https://touch-star.com/sitemap.xsl"?>
+<?xml-stylesheet type="text/xsl" href="https://quinnbook.github.io/sitemap.xsl"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://touch-star.com/post/distributed/2020-04-30-etcd/</loc>
+    <loc>https://quinnbook.github.io/handbooks/post/distributed/2020-04-30-etcd/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/distributed/2020-05-14-etcd-basic/</loc>
+    <loc>https://quinnbook.github.io/handbooks/post/distributed/2020-05-14-etcd-basic/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/about/</loc>
+    <loc>https://quinnbook.github.io/handbooks/about/</loc>
     <lastmod>2020-04-28T21:41:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/categories/</loc>
+    <loc>https://quinnbook.github.io/handbooks/categories/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/etcd/</loc>
+    <loc>https://quinnbook.github.io/handbooks/tags/etcd/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/categories/k8s/</loc>
+    <loc>https://quinnbook.github.io/handbooks/categories/k8s/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/k8s/</loc>
+    <loc>https://quinnbook.github.io/handbooks/tags/k8s/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/</loc>
+    <loc>https://quinnbook.github.io/handbooks/post/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/</loc>
+    <loc>https://quinnbook.github.io/handbooks/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/</loc>
+    <loc>https://quinnbook.github.io/handbooks/tags/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
+    <loc>https://quinnbook.github.io/handbooks/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/1-command/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/2-dockerinstall/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/3-jdk_mirror/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/4-docker4springboot/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/5-docker4rmnone/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/6-namespace-linux4docker/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/8-ufs-linux4docker/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/goland/concurrent/goroutine/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/goland/etcd/etcd_interview/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/goland/etcd/etcd_sourcecode_1/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/goland/pointer/pointer/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/1-k8s-base/1_concept/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/1-k8s-base/2_kubectl/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/1-k8s-base/3_kubeadm/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/1-k8s-base/4_k8s_install/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/1-k8s-base/5_helm/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/2-k8s-pod/1.k8s-pod/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/2-k8s-pod/2.pods-example/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/2-k8s-pod/3.pod-detial/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/3-k8s-service/1.k8s-service/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/4-k8s-deployfile/1.mysql-k8s/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/5-k8s-crd/cunstom_resource_defination/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/k8s-plugin/1-k8s_dashboard/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/kubernetes/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/cloudnative/base/summary/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-1-uml/1_1_uml/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_10_strategy/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_11_composite/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_12_decorator/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_13_visitor/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_14_chain_of_responsibility/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_15_facade/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_16_mediator/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_17_observer/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_18_memento/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_19_state/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_20_flyweight/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_21_proxy/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_22_command/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_23_interpreter/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_3_template/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_4_factory/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_5_singleton/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_6_prototype/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_7_builder/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_8_abstract_factory/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/1_2_9_bridge/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/1-2-design/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/1-design/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/12-algorithm/12_5_sort/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/12-algorithm/12_6_dynamic_programming/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/2-basis/2_1_base/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/2-basis/2_2_reflection/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/2-basis/2_3_annotations/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/2-basis/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/4-thread/4_3_synchronized/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/4-thread/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/6-netty/6_1_netty/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/6-netty/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/ext/1_guava_future_callback/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/base/summary/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/spring/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/spring/spring5/spring-ioc/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/spring/springcloud/1.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9E%84%E5%BB%BA%E5%9F%BA%E7%A1%80/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/spring/springcloud/1_server/eureka/1_1_eureka/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/spring/springcloud/2_gateway/gateway/1_1_gateway/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/spring/springcloud/3.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E6%B3%A8%E5%86%8C/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/java/spring/summary/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%80-%E8%81%8A%E8%81%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89-%E5%85%B3%E4%BA%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/middleware/database/nosql/elasticsearch/1.elasticsearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/middleware/database/nosql/elasticsearch/2.elasticsearch%E9%9B%86%E7%BE%A4%E5%8E%9F%E7%90%86/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/middleware/database/sql/mysql/xtrabackup/1-real/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/middleware/nginx/nginx%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF%E4%B9%8Bnginx%E5%85%A5%E9%97%A8/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/middleware/zookeeper/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/centos/1-modifymirror/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/centos/command/1-sedgrepawk/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/centos/command/awk%E6%93%8D%E4%BD%9C/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/centos/command/grep%E6%93%8D%E4%BD%9C/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/centos/command/regularexpression%E6%AD%A3%E5%88%99/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/centos/command/sed%E6%93%8D%E4%BD%9C/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/centos/command/vim/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/centos/mysql/mysql/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/kvm/1-base/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/kvm/2-ethernet_bridge/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/summary/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/tcp-ip/1.overview/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinnbook.github.io/handbooks/post/operation/linux/virtual_devices/2020-09-28readme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

@@ -1,41 +1,40 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Tags on TouchStar</title>
-    <link>https://touch-star.com/tags/</link>
-    <description>Recent content in Tags on TouchStar</description>
+    <title>Tags on Quinn</title>
+    <link>https://quinnbook.github.io/handbooks/tags/</link>
+    <description>Recent content in Tags on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <copyright>CheneyIn</copyright>
     <lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://touch-star.com/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://quinnbook.github.io/handbooks/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>etcd</title>
-      <link>https://touch-star.com/tags/etcd/</link>
+      <link>https://quinnbook.github.io/handbooks/tags/etcd/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://touch-star.com/tags/etcd/</guid>
+      <guid>https://quinnbook.github.io/handbooks/tags/etcd/</guid>
       <description></description>
     </item>
     
     <item>
       <title>k8s</title>
-      <link>https://touch-star.com/tags/k8s/</link>
+      <link>https://quinnbook.github.io/handbooks/tags/k8s/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://touch-star.com/tags/k8s/</guid>
+      <guid>https://quinnbook.github.io/handbooks/tags/k8s/</guid>
       <description></description>
     </item>
     
     <item>
       <title>分布式</title>
-      <link>https://touch-star.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
+      <link>https://quinnbook.github.io/handbooks/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://touch-star.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
+      <guid>https://quinnbook.github.io/handbooks/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</guid>
       <description></description>
     </item>
     

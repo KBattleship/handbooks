@@ -1,0 +1,147 @@
+Spring面试解答
+
+上半节：面试中需要注意的细节
+1、动脑子，面试是一种交流
+2、面试的时候，要用心去感受当时面试场景
+3、了解自己，自己的长处、自己的短处 （巧妙地扬长避短）
+
+业务场景
+
+你是去面试什么岗位的？
+Java高级工程师   实际工作经验是1年（如实填写）
+
+
+1、请描述Spring IOC的工作原理
+答：定位 加载 注册 BeanFactory  BeanDefintion ...
+
+
+1-3年 1+
+ApplicationContext 主容器，存储了所有beans 中的 <bean> 对应的对象
+<bean id="" class=""> 不能重复
+
+
+
+3-5年 3+
+ApplicationContext   Aware 接口    IOC 跟DI对应关系
+IOC 配置 构造器、依赖注入去赋值、 使用了工厂模式
+构造方法注入、getter setter  Map  List  Array Properties
+认知面会更加广泛
+Spring IOC设计，给万能胶创造了可能
+
+
+
+5年以上 5+      架构师/高级工程师
+ApplicationContext  BeanFactory
+注解和XML的区别
+底层的原理（征求面试官的意见，也是对面试官的一种尊重）
+
+
+
+简历描述要符合自身的气质相符合
+1、简历用词要精准
+2、应用场景
+
+
+
+扬长避短（少小离家老大回，乡音未改鬓毛衰）
+
+1、如果面试官问到一个自己不懂的问题的时候
+   这个技术目前没有深入的研究过
+   但是，
+   我拥有比较强的自学能力
+   懂不懂，其实只是时间问题
+
+
+
+
+
+下半节：面试题
+1、作用域的问题
+   singleton 
+   prototype 每次取的对象，注入一个时间戳
+   
+   request
+   session
+   ...
+
+   
+2、以您的经验来看，为什么要选择Spring框架，而不选择其它框架呢？
+   1、Spring易于扩展
+   2、基于Bean来实现的（Object），也是基于Bean来扩展的
+   3、Java业界万能胶（松耦合（开发时），高聚合（运行时））
+   //IOC / DI / AOP
+   
+   
+3、Spring框架的哪些地方是你不喜欢的？
+   之前的Spring实际上是不支持分布式的
+   我很不喜欢它的XML的配置，后来才有了@Annotaion
+   Tom老师是Spring忠粉，想我所想
+   
+   利用Spring编码，零配置
+   会导致后面学习的人，对底层的原理不了解，给深入学习带来一些困难
+   
+   
+   Spring Cloud、Spring Boot
+  
+4、动态代理（CGLib 与 JDK）、优缺点、性能对比、如何选择
+   CGLib  asm (自动生成一个类，去继承原来类)
+   更优的字节码重组方案
+   JDK  内置（必须要实现接口，因为生成代理对象之后要强制转型）   
+   
+
+5、Spring中循环注入是什么意思，可不可以解决，如何解决；
+   利用递归 + 缓存   
+   
+   
+6、spring 容器在启动和启动完成的时候 是否可以通过注册监听器监听到这个时刻，
+可不可以通过监听器注册到listen中
+然后在启动和容器启动完成的时候做一个服务性的操作
+可以的
+public class SystemLoaderListener extends ContextLoaderListener{
+
+	private Logger log = Logger.getLogger(SystemLoaderListener.class);
+	
+	@Override
+	public void contextInitialized(ServletContextEvent e) {
+		super.contextInitialized(e);
+	}
+
+	
+}
+
+
+7、spring怎么保证bean不被回收？
+   IOC容器，在Map中，会一直持有对象的引用
+   Map又是单例的，Map本身不会被回收
+
+
+8、不同数据源的事务如何处理
+   原理：在Spring中，事务是不支持跨数据源
+   换句话说，一个事务不能操作两个数据库
+   用大腿想一下：DataSouce是Connection，当创建语句集的时候开启事务
+   
+   解决：使用中间件，做一些消息同步，利用分布式锁去实现分布式事务
+   
+   
+9、Spring 如何保证 Controller 并发的安全？
+   Spring5的新特性就开始考虑这个问题了，
+   如果对并发有要求，推荐用SpringBoot   
+
+10、系统架构师和高级工程师的区别？
+    系统架构师：a、具有全局的观念
+	            b、绝大多数时间不是在帮自己解决问题，而是帮别人解决问题
+				c、必须具备预见能力
+				d、架构的技术能力、视野范围、解决问题的能力过硬
+	高级工程师（高工）：a、技高一筹（常用技术运用非常熟练）
+						b、基本的代码封装、提炼
+						c、API文档的阅读能力
+						d、自学能力
+						
+						
+关于正则的问题
+老师为什么要把 * 替换成  .*
+.代表的是任意字符
+*重复任意次数
+
+.*  任意字符重复任意次数
+

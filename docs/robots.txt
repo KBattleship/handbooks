@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://touch-star.com/sitemap.xml
+Sitemap: https://quinnbook.github.io/handbooks/sitemap.xml
