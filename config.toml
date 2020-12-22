@@ -1,4 +1,4 @@
-baseURL = "https://quinn.touch-star.com/handbooks/"
+baseURL = "https://quinn.touch-star.com/"
 title = "Quinn"
 enableRobotsTXT = true
 enableEmoji = true
