@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - Quinn</title>
+  <title>1.Docker命令 - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -27,8 +27,8 @@
    option
  &amp;ndash;config string: 客户端配置文件的位置 &amp;ndash;context string[-c]: 用于连接到守护程序的上下文的名称 &amp;ndash;debug[-D]: 调试模式 &amp;ndash;host list[-H]: 要连接的守护程序套接字 &amp;ndash;log-level string[-l]: 日志等级[ debug | info | warn | error | fatal ]默认为info &amp;ndash;tls: 使用加密模式 &amp;ndash;tlscacert string: 签名证书文件路径 &amp;ndash;tlscert string: 密钥文件路径 &amp;ndash;tlskey string: key文件路径 &amp;ndash;tlsverify: 使用加密并验证远程连接 &amp;ndash;version[-v]: 版本信息    Management Commands(管理命令)
  builder: 管理构建 config: 管理Docker配置 container: 管理容器 context: 管理镜像构建上下文 image: 管理镜像 network: 管理网络 node: 管理Swarm节点 plugin: 管理插件 secret: 管理Docker secrets service: 管理服务 stack: 管理Docker stacks swarm: 管理Swarm集群 system: 查看系统信息 trust: 管理对Docker映像的信任 volume: 管理卷    Commands(命令)" />
+<meta name="keywords" content="Docker" />
 
-  <meta name="keywords" content="Quinn, k8s, docker" />
 
 
 
@@ -62,26 +62,28 @@
 
 
 
-<meta property="og:title" content="" />
+<meta property="og:title" content="1.Docker命令" />
 <meta property="og:description" content="Docker命令  docker [option] command
    option
  &ndash;config string: 客户端配置文件的位置 &ndash;context string[-c]: 用于连接到守护程序的上下文的名称 &ndash;debug[-D]: 调试模式 &ndash;host list[-H]: 要连接的守护程序套接字 &ndash;log-level string[-l]: 日志等级[ debug | info | warn | error | fatal ]默认为info &ndash;tls: 使用加密模式 &ndash;tlscacert string: 签名证书文件路径 &ndash;tlscert string: 密钥文件路径 &ndash;tlskey string: key文件路径 &ndash;tlsverify: 使用加密并验证远程连接 &ndash;version[-v]: 版本信息    Management Commands(管理命令)
  builder: 管理构建 config: 管理Docker配置 container: 管理容器 context: 管理镜像构建上下文 image: 管理镜像 network: 管理网络 node: 管理Swarm节点 plugin: 管理插件 secret: 管理Docker secrets service: 管理服务 stack: 管理Docker stacks swarm: 管理Swarm集群 system: 查看系统信息 trust: 管理对Docker映像的信任 volume: 管理卷    Commands(命令)" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/1-command/" />
-
-<meta itemprop="name" content="">
+<meta property="article:published_time" content="2020-08-22T15:36:27+08:00" />
+<meta property="article:modified_time" content="2020-08-22T15:36:27+08:00" />
+<meta itemprop="name" content="1.Docker命令">
 <meta itemprop="description" content="Docker命令  docker [option] command
    option
  &ndash;config string: 客户端配置文件的位置 &ndash;context string[-c]: 用于连接到守护程序的上下文的名称 &ndash;debug[-D]: 调试模式 &ndash;host list[-H]: 要连接的守护程序套接字 &ndash;log-level string[-l]: 日志等级[ debug | info | warn | error | fatal ]默认为info &ndash;tls: 使用加密模式 &ndash;tlscacert string: 签名证书文件路径 &ndash;tlscert string: 密钥文件路径 &ndash;tlskey string: key文件路径 &ndash;tlsverify: 使用加密并验证远程连接 &ndash;version[-v]: 版本信息    Management Commands(管理命令)
  builder: 管理构建 config: 管理Docker配置 container: 管理容器 context: 管理镜像构建上下文 image: 管理镜像 network: 管理网络 node: 管理Swarm节点 plugin: 管理插件 secret: 管理Docker secrets service: 管理服务 stack: 管理Docker stacks swarm: 管理Swarm集群 system: 查看系统信息 trust: 管理对Docker映像的信任 volume: 管理卷    Commands(命令)">
-
+<meta itemprop="datePublished" content="2020-08-22T15:36:27&#43;08:00" />
+<meta itemprop="dateModified" content="2020-08-22T15:36:27&#43;08:00" />
 <meta itemprop="wordCount" content="162">
 
 
 
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
+<meta itemprop="keywords" content="docker,k8s,容器," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="1.Docker命令"/>
 <meta name="twitter:description" content="Docker命令  docker [option] command
    option
  &ndash;config string: 客户端配置文件的位置 &ndash;context string[-c]: 用于连接到守护程序的上下文的名称 &ndash;debug[-D]: 调试模式 &ndash;host list[-H]: 要连接的守护程序套接字 &ndash;log-level string[-l]: 日志等级[ debug | info | warn | error | fatal ]默认为info &ndash;tls: 使用加密模式 &ndash;tlscacert string: 签名证书文件路径 &ndash;tlscert string: 密钥文件路径 &ndash;tlskey string: key文件路径 &ndash;tlsverify: 使用加密并验证远程连接 &ndash;version[-v]: 版本信息    Management Commands(管理命令)
@@ -336,13 +338,16 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">1.Docker命令</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2020-08-22" class="post-time">
+          2020-08-22
         </time>
-        
+        <div class="post-category">
+            <a href="https://quinnbook.github.io/handbooks/categories/k8s/"> K8s </a>
+            
+          </div>
         <span class="more-meta"> 约 162 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
@@ -351,7 +356,7 @@
 
         
         
-          <span id="/handbooks/post/cloudnative/base/docker/docker/1-command/" class="leancloud_visitors" data-flag-title="">
+          <span id="/handbooks/post/cloudnative/base/docker/docker/1-command/" class="leancloud_visitors" data-flag-title="1.Docker命令">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -506,12 +511,17 @@
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://quinnbook.github.io/handbooks/tags/docker/">docker</a>
+          <a href="https://quinnbook.github.io/handbooks/tags/k8s/">k8s</a>
+          <a href="https://quinnbook.github.io/handbooks/tags/%E5%AE%B9%E5%99%A8/">容器</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/handbooks/post/distributed/2020-05-14-etcd-basic/">
+          <a class="prev" href="/handbooks/post/middleware/dubbo/dubbobase/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -521,12 +531,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">Etcd基础入门(2)</span>
+            <span class="prev-text nav-default">Dubbo基础概念</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
           <a class="next" href="/handbooks/post/cloudnative/base/docker/docker/2-dockerinstall/">
-            <span class="next-text nav-default"></span>
+            <span class="next-text nav-default">2.Docker安装</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

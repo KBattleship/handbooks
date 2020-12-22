@@ -62,7 +62,7 @@
 <meta property="og:description" content="笨笨豪の摘星辰" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://quinnbook.github.io/handbooks/" />
-<meta property="og:updated_time" content="2020-04-30T00:00:00+00:00" />
+<meta property="og:updated_time" content="2020-12-22T15:36:27+08:00" />
 <meta itemprop="name" content="Quinn">
 <meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quinn"/>
@@ -321,6 +321,50 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/handbooks/post/coding/java/base/2-basis/2_2_reflection/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 50 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/handbooks/post/coding/java/base/2-basis/2_2_reflection/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      2-3.Java反射 一、反射： 1.概念： 反射，即：动态获取类的信息，以及动态调用对象的方法的功能。  2.作用：   在运行时判断任意一个对象所属的类
+  在运行时构造任意一个类的对象
+  在运行时判断任意一个类所具有的成员变量和方法
+  在运行时调用任意一个对象的方法
+可以生成动态代理
+  通过Java反射机制，可以在程序中访问已经装载到jvm中的Java对象的描述，以实现访问、检测和修改描述Java对象本身信息的功能。Java反射机制很强大。其中，java.lang.reflect包中提供了对该功能的支持。
+ 二、实现反射获取类的方法： 方式一 ： 通过Class.forName(&ldquo;类名字符串&rdquo;)获取（最为常用的方法） 1 2  //类名字符串是“包名+类名”，返回Class的对象。 Class class = Class.forName(&#34;cheneyHao.Student&#34;);   方式二 ： 通过示例对象的getClass()方法获取 1 2 3  //先创建一个对象，在调用对象的getClass()方法。（任何一个Java对象都会有getClass()方法） Student student = new Student(); Class class = student.getClass();   方法三 ： 通过 .class 获取 1 2  //通过类名.class,返回Class对象。(每个类都有Class属性) Class class = Student.class;   
+    </div>
+    <div class="read-more">
+      <a href="/handbooks/post/coding/java/base/2-basis/2_2_reflection/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -666,44 +710,6 @@
     </div>
     <div class="read-more">
       <a href="/handbooks/post/coding/java/base/summary/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/handbooks/post/coding/java/spring/readme/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 1 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/handbooks/post/coding/java/spring/readme/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Introduction 
-    </div>
-    <div class="read-more">
-      <a href="/handbooks/post/coding/java/spring/readme/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

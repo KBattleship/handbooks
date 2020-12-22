@@ -62,7 +62,7 @@
 <meta property="og:description" content="笨笨豪の摘星辰" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://quinnbook.github.io/handbooks/" />
-<meta property="og:updated_time" content="2020-04-30T00:00:00+00:00" />
+<meta property="og:updated_time" content="2020-12-22T15:36:27+08:00" />
 <meta itemprop="name" content="Quinn">
 <meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quinn"/>
@@ -321,6 +321,47 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/handbooks/post/cloudnative/base/docker/docker/8-ufs-linux4docker/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 14 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/handbooks/post/cloudnative/base/docker/docker/8-ufs-linux4docker/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      3.文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
+ 原理： 使用branch把不同文件系统的文件、目录「透明的」进行覆盖，形成一个单一一直的文件系统。branch具有要么read-only,要么read-write的特点。
+  思想： 写时复制(copy-on-write),如果一个资源重复，但并未被修改，将不被立即创建出新的资源，直接为新旧实例提供共享。创建新资源将发生在第一次被修改写入时。该资源共享方式，可以明显降低未修改资源复制时的消耗，但同样的，也会在写入修改是增加部分开销。
+  AFUS(Advanced Multi-Layered Unification FileSystem)  
+    </div>
+    <div class="read-more">
+      <a href="/handbooks/post/cloudnative/base/docker/docker/8-ufs-linux4docker/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -698,49 +739,6 @@ K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制�
     </div>
     <div class="read-more">
       <a href="/handbooks/post/cloudnative/base/kubernetes/1-k8s-base/4_k8s_install/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/handbooks/post/cloudnative/base/kubernetes/1-k8s-base/5_helm/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 151 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/handbooks/post/cloudnative/base/kubernetes/1-k8s-base/5_helm/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      K8s之Helm包管理工具  Helm 是 Deis 开发的一个用于 Kubernetes 应用的包管理工具，主要用来管理 Charts。有点类似于 Ubuntu 中的 APT 或 CentOS 中的 YUM。
- 一、安装 Helm Release Link
-1.OS-CentOS 当前使用版本为Helm v3.1.2 linux
-1 2 3 4 5 6 7 8  # 下载二进制可执行文件压缩包 wget -O /data/helm.tar.gz https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz # 解压 tar -xzvf /data/helm.tar.gz # 移动helm二进制文件，方便全局访问 mv linux-amd64/helm /usr/local/bin/helm   2.OS-MacOS ①.自动安装 PS：操作系统已安装brew工具
-1  brew install helm   ②.手动安装 当前使用版本为Helm v3.1.2 darwin
-1 2 3 4 5 6 7 8  # 下载二进制可执行文件压缩包 wget -O ~/helm.
-    </div>
-    <div class="read-more">
-      <a href="/handbooks/post/cloudnative/base/kubernetes/1-k8s-base/5_helm/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
