@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on Quinn</title>
-    <link>https://quinnbook.github.io/handbooks/categories/</link>
+    <link>https://quinn.touch-star.com/categories/</link>
     <description>Recent content in Categories on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 22 Dec 2020 15:36:27 +0800</lastBuildDate>
     
-	<atom:link href="https://quinnbook.github.io/handbooks/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://quinn.touch-star.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Java</title>
-      <link>https://quinnbook.github.io/handbooks/categories/java/</link>
+      <link>https://quinn.touch-star.com/categories/java/</link>
       <pubDate>Tue, 22 Dec 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://quinnbook.github.io/handbooks/categories/java/</guid>
+      <guid>https://quinn.touch-star.com/categories/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>K8s</title>
-      <link>https://quinnbook.github.io/handbooks/categories/k8s/</link>
+      <link>https://quinn.touch-star.com/categories/k8s/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://quinnbook.github.io/handbooks/categories/k8s/</guid>
+      <guid>https://quinn.touch-star.com/categories/k8s/</guid>
       <description></description>
     </item>
     

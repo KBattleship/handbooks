@@ -38,13 +38,13 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://quinnbook.github.io/handbooks/post/middleware/zookeeper/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" />
+<link rel="canonical" href="https://quinn.touch-star.com/post/middleware/zookeeper/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" />
 
 
 
 
 
-<link rel="icon" href="/handbooks/favicon.ico" />
+<link rel="icon" href="/favicon.ico" />
 
 
 
@@ -56,7 +56,7 @@
 
 
 
-<link rel="stylesheet" href="/handbooks/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -68,7 +68,7 @@
 1 2  # 进入ZK路径 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.6/apache-zookeeper-3.5.6-bin.tar.gz   2.修改配置文件 进入conf目录，在配置文件前，先cp zoo_sample.cfg zoo.cfg,然后vim zoo.cfg。配置如下：
 1 2 3 4 5 6 7 8 9 10  tickTime=2000 initLimit=10 syncLimit=5 dataDir=/data/ops/zk/zookeeper-3.5.6-master/conf clientPort=2181 server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888   3.启动ZK ①.在每个节点的服务器依次启动服务： [root@localhost zk]~#: ./bin/zkServer.sh start 在启动过程中日志会出现异常，由于其他节点还未启动，所以属于正常情况（正常情况下，仅有最后一个节点启动不会出现异常）。待所有节点全部启动，集群会逐渐稳定下来。 ②.查询每一个节点角色 [root@localhost zk]~#: ." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quinnbook.github.io/handbooks/post/middleware/zookeeper/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" />
+<meta property="og:url" content="https://quinn.touch-star.com/post/middleware/zookeeper/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" />
 
 <meta itemprop="name" content="">
 <meta itemprop="description" content="zookeeper分布式部署 一.配置服务器IP地址映射 [root@localhost zk]~#: vim /etc/hosts
@@ -103,7 +103,7 @@
 <body>
   <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/handbooks/" class="logo">Quinn</a>
+    <a href="/" class="logo">Quinn</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -117,21 +117,21 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
         
       </li><li class="mobile-menu-item">
@@ -139,22 +139,22 @@
           
           <div class="mobile-menu-parent">
             <span class="mobile-submenu-open"></span>
-            <a href="https://quinnbook.github.io/handbooks/categories">
+            <a href="https://quinn.touch-star.com/categories">
               分类
             </a>
           </div>
           <ul class="mobile-submenu-list">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -163,7 +163,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
         
       </li>
@@ -182,8 +182,8 @@
 
 
 
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/default-skin/default-skin.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
 
 
 
@@ -240,7 +240,7 @@
 
   <header id="header" class="header container">
     <div class="logo-wrapper">
-  <a href="/handbooks/" class="logo">
+  <a href="/" class="logo">
     
       Quinn
     
@@ -255,7 +255,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
 
         
@@ -266,7 +266,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
 
         
@@ -277,7 +277,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
 
         
@@ -287,19 +287,19 @@
         <li class="menu-item">
         
           
-          <a class="menu-item-link menu-parent" href="https://quinnbook.github.io/handbooks/categories">分类</a>
+          <a class="menu-item-link menu-parent" href="https://quinn.touch-star.com/categories">分类</a>
           <ul class="submenu">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -312,7 +312,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
 
         
@@ -351,7 +351,7 @@
 
         
         
-          <span id="/handbooks/post/middleware/zookeeper/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/middleware/zookeeper/zookeeper%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/" class="leancloud_visitors" data-flag-title="">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -570,7 +570,7 @@ Mode: follower
       
       <nav class="post-nav">
         
-          <a class="prev" href="/handbooks/post/middleware/nginx/nginx%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF%E4%B9%8Bnginx%E5%85%A5%E9%97%A8/">
+          <a class="prev" href="/post/middleware/nginx/nginx%E9%82%A3%E7%82%B9%E4%BA%8B%E5%84%BF%E4%B9%8Bnginx%E5%85%A5%E9%97%A8/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -584,7 +584,7 @@ Mode: follower
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/handbooks/post/operation/linux/centos/1-modifymirror/">
+          <a class="next" href="/post/operation/linux/centos/1-modifymirror/">
             <span class="next-text nav-default"></span>
             <span class="prev-text nav-mobile">下一篇</span>
             
@@ -662,7 +662,7 @@ Mode: follower
     </a>
 
 
-<a href="https://quinnbook.github.io/handbooks/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+<a href="https://quinn.touch-star.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
     class="iconfont" title="rss" target="_blank">
     <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -725,13 +725,13 @@ Mode: follower
     </div>
   </div>
   
-<script type="text/javascript" src="/handbooks/lib/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/handbooks/lib/slideout/slideout-1.0.1.min.js"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/handbooks/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
 
 
@@ -745,9 +745,9 @@ Mode: follower
 
 
   
-    <script type="text/javascript" src="/handbooks/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
 
 

@@ -35,13 +35,13 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://quinnbook.github.io/handbooks/post/operation/linux/kvm/1-base/" />
+<link rel="canonical" href="https://quinn.touch-star.com/post/operation/linux/kvm/1-base/" />
 
 
 
 
 
-<link rel="icon" href="/handbooks/favicon.ico" />
+<link rel="icon" href="/favicon.ico" />
 
 
 
@@ -53,7 +53,7 @@
 
 
 
-<link rel="stylesheet" href="/handbooks/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -62,7 +62,7 @@
 <meta property="og:title" content="" />
 <meta property="og:description" content="KVM入门  1.基础操作 ①.创建虚拟机 1 2 3 4 5 6 7  virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart   ②.虚拟机相关操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36  # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &lt;name&gt;/&lt;id&gt; # 停止指定虚拟机 virsh shutdown &lt;name&gt;/&lt;id&gt; # 销毁指定虚拟机(强制断电) virsh destory &lt;name&gt;/&lt;id&gt; # 登入指定虚拟机 virsh console &lt;name&gt;/&lt;id&gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*)   ③." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quinnbook.github.io/handbooks/post/operation/linux/kvm/1-base/" />
+<meta property="og:url" content="https://quinn.touch-star.com/post/operation/linux/kvm/1-base/" />
 
 <meta itemprop="name" content="">
 <meta itemprop="description" content="KVM入门  1.基础操作 ①.创建虚拟机 1 2 3 4 5 6 7  virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart   ②.虚拟机相关操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36  # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &lt;name&gt;/&lt;id&gt; # 停止指定虚拟机 virsh shutdown &lt;name&gt;/&lt;id&gt; # 销毁指定虚拟机(强制断电) virsh destory &lt;name&gt;/&lt;id&gt; # 登入指定虚拟机 virsh console &lt;name&gt;/&lt;id&gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*)   ③.">
@@ -91,7 +91,7 @@
 <body>
   <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/handbooks/" class="logo">Quinn</a>
+    <a href="/" class="logo">Quinn</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -105,21 +105,21 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
         
       </li><li class="mobile-menu-item">
@@ -127,22 +127,22 @@
           
           <div class="mobile-menu-parent">
             <span class="mobile-submenu-open"></span>
-            <a href="https://quinnbook.github.io/handbooks/categories">
+            <a href="https://quinn.touch-star.com/categories">
               分类
             </a>
           </div>
           <ul class="mobile-submenu-list">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -151,7 +151,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
         
       </li>
@@ -170,8 +170,8 @@
 
 
 
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/default-skin/default-skin.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
 
 
 
@@ -228,7 +228,7 @@
 
   <header id="header" class="header container">
     <div class="logo-wrapper">
-  <a href="/handbooks/" class="logo">
+  <a href="/" class="logo">
     
       Quinn
     
@@ -243,7 +243,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
 
         
@@ -254,7 +254,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
 
         
@@ -265,7 +265,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
 
         
@@ -275,19 +275,19 @@
         <li class="menu-item">
         
           
-          <a class="menu-item-link menu-parent" href="https://quinnbook.github.io/handbooks/categories">分类</a>
+          <a class="menu-item-link menu-parent" href="https://quinn.touch-star.com/categories">分类</a>
           <ul class="submenu">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -300,7 +300,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
 
         
@@ -339,7 +339,7 @@
 
         
         
-          <span id="/handbooks/post/operation/linux/kvm/1-base/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/operation/linux/kvm/1-base/" class="leancloud_visitors" data-flag-title="">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -825,7 +825,7 @@ brctl show
       
       <nav class="post-nav">
         
-          <a class="prev" href="/handbooks/post/operation/linux/centos/mysql/mysql/">
+          <a class="prev" href="/post/operation/linux/centos/mysql/mysql/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -839,7 +839,7 @@ brctl show
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/handbooks/post/operation/linux/kvm/2-ethernet_bridge/">
+          <a class="next" href="/post/operation/linux/kvm/2-ethernet_bridge/">
             <span class="next-text nav-default"></span>
             <span class="prev-text nav-mobile">下一篇</span>
             
@@ -917,7 +917,7 @@ brctl show
     </a>
 
 
-<a href="https://quinnbook.github.io/handbooks/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+<a href="https://quinn.touch-star.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
     class="iconfont" title="rss" target="_blank">
     <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -980,13 +980,13 @@ brctl show
     </div>
   </div>
   
-<script type="text/javascript" src="/handbooks/lib/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/handbooks/lib/slideout/slideout-1.0.1.min.js"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/handbooks/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
 
 
@@ -1000,9 +1000,9 @@ brctl show
 
 
   
-    <script type="text/javascript" src="/handbooks/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
 
 

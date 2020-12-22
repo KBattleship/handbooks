@@ -37,13 +37,13 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://quinnbook.github.io/handbooks/post/cloudnative/base/goland/etcd/etcd_sourcecode_1/" />
+<link rel="canonical" href="https://quinn.touch-star.com/post/cloudnative/base/goland/etcd/etcd_sourcecode_1/" />
 
 
 
 
 
-<link rel="icon" href="/handbooks/favicon.ico" />
+<link rel="icon" href="/favicon.ico" />
 
 
 
@@ -55,7 +55,7 @@
 
 
 
-<link rel="stylesheet" href="/handbooks/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -66,7 +66,7 @@
 源码分析 本文档将以etcd作者在项目中所提供的demo程序进行源码试读。demo名称为raftexample。 路径在
 1.项目结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  (base) {11:45}~/etcd:master ✗ ➭ tree -d -L 1 . . ├── Documentation # 项目文档 ├── auth # 认证授权 ├── client # 客户端相关(v2) ├── clientv3 # 客户端相关(v3) ├── contrib # (待验证) ├── default.etcd # 已编译完成的etcd ├── embed # 封装的etcd函数 ├── etcdctl # etcd操作命令，命令行客户端 ├── etcdmain # main函数入口这里 ├── etcdserver # 服务端相关 ├── functional # 目测验证功能测试套件 ├── hack # 开发者相关 ├── integration # (待验证) ├── lease # 实现etcd租约 ├── logos # 日志相关 ├── mvcc # MVCC存储相关 ├── pkg # 通用依赖库 ├── proxy # 代理相关Http、Https、Socks ├── raft # raft一致性协议实现 ├── scripts # 各类脚本 ├── security # 安全相关 ├── tests # (待验证) ├── tools # 工具 ├── vendor # go vendor依赖环境 ├── version # 版本信息 └── wal # Write-Ahead-Log实现   " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quinnbook.github.io/handbooks/post/cloudnative/base/goland/etcd/etcd_sourcecode_1/" />
+<meta property="og:url" content="https://quinn.touch-star.com/post/cloudnative/base/goland/etcd/etcd_sourcecode_1/" />
 
 <meta itemprop="name" content="">
 <meta itemprop="description" content="Etcd源码阅读与分析①-raft demo Etcd是一个基于Raft协议的简单内存KV项目
@@ -99,7 +99,7 @@
 <body>
   <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/handbooks/" class="logo">Quinn</a>
+    <a href="/" class="logo">Quinn</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -113,21 +113,21 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
         
       </li><li class="mobile-menu-item">
@@ -135,22 +135,22 @@
           
           <div class="mobile-menu-parent">
             <span class="mobile-submenu-open"></span>
-            <a href="https://quinnbook.github.io/handbooks/categories">
+            <a href="https://quinn.touch-star.com/categories">
               分类
             </a>
           </div>
           <ul class="mobile-submenu-list">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -159,7 +159,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
         
       </li>
@@ -178,8 +178,8 @@
 
 
 
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/default-skin/default-skin.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
 
 
 
@@ -236,7 +236,7 @@
 
   <header id="header" class="header container">
     <div class="logo-wrapper">
-  <a href="/handbooks/" class="logo">
+  <a href="/" class="logo">
     
       Quinn
     
@@ -251,7 +251,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
 
         
@@ -262,7 +262,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
 
         
@@ -273,7 +273,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
 
         
@@ -283,19 +283,19 @@
         <li class="menu-item">
         
           
-          <a class="menu-item-link menu-parent" href="https://quinnbook.github.io/handbooks/categories">分类</a>
+          <a class="menu-item-link menu-parent" href="https://quinn.touch-star.com/categories">分类</a>
           <ul class="submenu">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -308,7 +308,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
 
         
@@ -347,7 +347,7 @@
 
         
         
-          <span id="/handbooks/post/cloudnative/base/goland/etcd/etcd_sourcecode_1/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/cloudnative/base/goland/etcd/etcd_sourcecode_1/" class="leancloud_visitors" data-flag-title="">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -539,7 +539,7 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/handbooks/post/cloudnative/base/goland/etcd/etcd_interview/">
+          <a class="prev" href="/post/cloudnative/base/goland/etcd/etcd_interview/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -553,7 +553,7 @@
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/handbooks/post/cloudnative/base/goland/pointer/pointer/">
+          <a class="next" href="/post/cloudnative/base/goland/pointer/pointer/">
             <span class="next-text nav-default"></span>
             <span class="prev-text nav-mobile">下一篇</span>
             
@@ -631,7 +631,7 @@
     </a>
 
 
-<a href="https://quinnbook.github.io/handbooks/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+<a href="https://quinn.touch-star.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
     class="iconfont" title="rss" target="_blank">
     <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -694,13 +694,13 @@
     </div>
   </div>
   
-<script type="text/javascript" src="/handbooks/lib/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/handbooks/lib/slideout/slideout-1.0.1.min.js"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/handbooks/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
 
 
@@ -714,9 +714,9 @@
 
 
   
-    <script type="text/javascript" src="/handbooks/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
 
 

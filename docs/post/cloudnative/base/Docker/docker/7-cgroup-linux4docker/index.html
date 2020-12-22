@@ -42,13 +42,13 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/" />
+<link rel="canonical" href="https://quinn.touch-star.com/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/" />
 
 
 
 
 
-<link rel="icon" href="/handbooks/favicon.ico" />
+<link rel="icon" href="/favicon.ico" />
 
 
 
@@ -60,7 +60,7 @@
 
 
 
-<link rel="stylesheet" href="/handbooks/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -76,7 +76,7 @@
  例如： 系统通过cgroup1针对一组定时任务进程进行CPU使用限制，同时其中一个进程还需要限制磁盘IO，这时候将可以通过cgroup2继承cgroup1限制CPU的同时增加磁盘IO限制。即cgroup2同时具有CPU、IO限制，并且不影响cgroup1组中其他进程的IO限制。
    cgroup各模块间关系  系统创建hierarchy后，系统下所有进程都将被加入cgroup中，cgroup为根节点，被hierarchy创建的cgroup将被作为此cgroup根节点下的子节点; subsystem与hierarchy是1:1关系(即，一个subsystem只能作用于一个hierarchy之上); hierarchy与subsystem是1:n关系(即，一个hierarchy可以作用于多个subsystem之上); 一个进程可以分布在不同的cgroup中，但需满足cgroup分布在不同的hierarchy中; 一个进程fork出一个子进程的同时，子进程与父进程在同一cgroup中，但可以根据需求调整到其他cgroup中。  " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/" />
+<meta property="og:url" content="https://quinn.touch-star.com/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/" />
 
 <meta itemprop="name" content="">
 <meta itemprop="description" content="2.关于Linux的Cgroups 概念  Linux Cgroups(Control Groups)在Linux Namespace为进程隔离出一定空间的基础上为此进行的资源限制、控制以及统计的能力。资源包含有：CPU、内存、存储、网络等。通过Cgroups可以限制某个进程的资源占用、并且可以实时监控进程以及统计信息。
@@ -119,7 +119,7 @@
 <body>
   <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/handbooks/" class="logo">Quinn</a>
+    <a href="/" class="logo">Quinn</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -133,21 +133,21 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
         
       </li><li class="mobile-menu-item">
@@ -155,22 +155,22 @@
           
           <div class="mobile-menu-parent">
             <span class="mobile-submenu-open"></span>
-            <a href="https://quinnbook.github.io/handbooks/categories">
+            <a href="https://quinn.touch-star.com/categories">
               分类
             </a>
           </div>
           <ul class="mobile-submenu-list">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -179,7 +179,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
         
       </li>
@@ -198,8 +198,8 @@
 
 
 
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/default-skin/default-skin.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
 
 
 
@@ -256,7 +256,7 @@
 
   <header id="header" class="header container">
     <div class="logo-wrapper">
-  <a href="/handbooks/" class="logo">
+  <a href="/" class="logo">
     
       Quinn
     
@@ -271,7 +271,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
 
         
@@ -282,7 +282,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
 
         
@@ -293,7 +293,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
 
         
@@ -303,19 +303,19 @@
         <li class="menu-item">
         
           
-          <a class="menu-item-link menu-parent" href="https://quinnbook.github.io/handbooks/categories">分类</a>
+          <a class="menu-item-link menu-parent" href="https://quinn.touch-star.com/categories">分类</a>
           <ul class="submenu">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -328,7 +328,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
 
         
@@ -367,7 +367,7 @@
 
         
         
-          <span id="/handbooks/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/" class="leancloud_visitors" data-flag-title="">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -557,7 +557,7 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/handbooks/post/cloudnative/base/docker/docker/6-namespace-linux4docker/">
+          <a class="prev" href="/post/cloudnative/base/docker/docker/6-namespace-linux4docker/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -571,7 +571,7 @@
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/handbooks/post/cloudnative/base/docker/docker/8-ufs-linux4docker/">
+          <a class="next" href="/post/cloudnative/base/docker/docker/8-ufs-linux4docker/">
             <span class="next-text nav-default"></span>
             <span class="prev-text nav-mobile">下一篇</span>
             
@@ -649,7 +649,7 @@
     </a>
 
 
-<a href="https://quinnbook.github.io/handbooks/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+<a href="https://quinn.touch-star.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
     class="iconfont" title="rss" target="_blank">
     <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -712,13 +712,13 @@
     </div>
   </div>
   
-<script type="text/javascript" src="/handbooks/lib/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/handbooks/lib/slideout/slideout-1.0.1.min.js"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/handbooks/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
 
 
@@ -732,9 +732,9 @@
 
 
   
-    <script type="text/javascript" src="/handbooks/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
 
 

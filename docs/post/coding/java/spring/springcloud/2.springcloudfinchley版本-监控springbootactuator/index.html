@@ -37,13 +37,13 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://quinnbook.github.io/handbooks/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/" />
+<link rel="canonical" href="https://quinn.touch-star.com/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/" />
 
 
 
 
 
-<link rel="icon" href="/handbooks/favicon.ico" />
+<link rel="icon" href="/favicon.ico" />
 
 
 
@@ -55,7 +55,7 @@
 
 
 
-<link rel="stylesheet" href="/handbooks/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
+<link rel="stylesheet" href="/sass/jane.min.df122b25b641564f3bb0c282425067c0d4beec4d1f2f909ea9abedf79c70bd82.css" integrity="sha256-3xIrJbZBVk87sMKCQlBnwNS&#43;7E0fL5Ceqavt95xwvYI=" media="screen" crossorigin="anonymous">
 
 
 
@@ -66,7 +66,7 @@
 1 2 3 4  &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt; &lt;/dependency&gt;   二、Actuator监控端点 只需访问http://{ip}:{port}/actuator/{endpoint} 端点，即可监控应用的运行状况。
    端点（Spring Boot 2.x） 描述 HTTP方法 是否敏感 端点（Spring Boot 1.x）     conditions 显示自动配置的信息 GET 是 autoconfig   beans 显示应用程序上下文所有的Spring bean GET 是 beans   configprops 显示所有@ConfigurationProperties的配置属性列表 GET 是 configprops   dump 显示线程活动的快照 GET 是 dump   env 显示环境变量，包括系统环境变量以及应用环境变量 GET 是 env   health 显示应用程序的健康指标，值由HealthIndicator的实现类提供；结果有UP、 DOWN、OUT_OF_SERVICE、UNKNOWN；如需查看详情，需配置：management." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quinnbook.github.io/handbooks/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/" />
+<meta property="og:url" content="https://quinn.touch-star.com/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/" />
 
 <meta itemprop="name" content="">
 <meta itemprop="description" content="一、关于Spring Boot Actuator Spring Boot Actuator是Spring Boot官方提供的监控组件。只需为项目添加以下依赖，即可就整合Spring Boot Actuator。
@@ -99,7 +99,7 @@
 <body>
   <div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
-    <a href="/handbooks/" class="logo">Quinn</a>
+    <a href="/" class="logo">Quinn</a>
   </div>
   <div class="mobile-navbar-icon">
     <span></span>
@@ -113,21 +113,21 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
         
       </li><li class="mobile-menu-item">
@@ -135,22 +135,22 @@
           
           <div class="mobile-menu-parent">
             <span class="mobile-submenu-open"></span>
-            <a href="https://quinnbook.github.io/handbooks/categories">
+            <a href="https://quinn.touch-star.com/categories">
               分类
             </a>
           </div>
           <ul class="mobile-submenu-list">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -159,7 +159,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
         
       </li>
@@ -178,8 +178,8 @@
 
 
 
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/photoswipe.min.css" />
-  <link rel="stylesheet" href="/handbooks/lib/photoswipe/default-skin/default-skin.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/photoswipe.min.css" />
+  <link rel="stylesheet" href="/lib/photoswipe/default-skin/default-skin.min.css" />
 
 
 
@@ -236,7 +236,7 @@
 
   <header id="header" class="header container">
     <div class="logo-wrapper">
-  <a href="/handbooks/" class="logo">
+  <a href="/" class="logo">
     
       Quinn
     
@@ -251,7 +251,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/">主页</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
           
 
         
@@ -262,7 +262,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/post/">归档</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
           
 
         
@@ -273,7 +273,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/tags/">标签</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
           
 
         
@@ -283,19 +283,19 @@
         <li class="menu-item">
         
           
-          <a class="menu-item-link menu-parent" href="https://quinnbook.github.io/handbooks/categories">分类</a>
+          <a class="menu-item-link menu-parent" href="https://quinn.touch-star.com/categories">分类</a>
           <ul class="submenu">
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/java">Java</a>
+                <a href="https://quinn.touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/go">Go</a>
+                <a href="https://quinn.touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinnbook.github.io/handbooks/categories/k8s">K8s</a>
+                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -308,7 +308,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinnbook.github.io/handbooks/about/">关于</a>
+            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
           
 
         
@@ -347,7 +347,7 @@
 
         
         
-          <span id="/handbooks/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/" class="leancloud_visitors" data-flag-title="">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -549,7 +549,7 @@
       
       <nav class="post-nav">
         
-          <a class="prev" href="/handbooks/post/coding/java/spring/springcloud/1_server/eureka/1_1_eureka/">
+          <a class="prev" href="/post/coding/java/spring/springcloud/1_server/eureka/1_1_eureka/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -563,7 +563,7 @@
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/handbooks/post/coding/java/spring/springcloud/2_gateway/gateway/1_1_gateway/">
+          <a class="next" href="/post/coding/java/spring/springcloud/2_gateway/gateway/1_1_gateway/">
             <span class="next-text nav-default"></span>
             <span class="prev-text nav-mobile">下一篇</span>
             
@@ -641,7 +641,7 @@
     </a>
 
 
-<a href="https://quinnbook.github.io/handbooks/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+<a href="https://quinn.touch-star.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
     class="iconfont" title="rss" target="_blank">
     <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -704,13 +704,13 @@
     </div>
   </div>
   
-<script type="text/javascript" src="/handbooks/lib/jquery/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="/handbooks/lib/slideout/slideout-1.0.1.min.js"></script>
+<script type="text/javascript" src="/lib/jquery/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="/lib/slideout/slideout-1.0.1.min.js"></script>
 
 
 
 
-<script type="text/javascript" src="/handbooks/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/js/main.638251f4230630f0335d8c6748e53a96f94b72670920b60c09a56fdc8bece214.js" integrity="sha256-Y4JR9CMGMPAzXYxnSOU6lvlLcmcJILYMCaVv3Ivs4hQ=" crossorigin="anonymous"></script>
 
 
 
@@ -724,9 +724,9 @@
 
 
   
-    <script type="text/javascript" src="/handbooks/js/load-photoswipe.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe.min.js"></script>
-    <script type="text/javascript" src="/handbooks/lib/photoswipe/photoswipe-ui-default.min.js"></script>
+    <script type="text/javascript" src="/js/load-photoswipe.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe.min.js"></script>
+    <script type="text/javascript" src="/lib/photoswipe/photoswipe-ui-default.min.js"></script>
   
 
 

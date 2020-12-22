@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>K8s on Quinn</title>
-    <link>https://quinnbook.github.io/handbooks/categories/k8s/</link>
+    <link>https://quinn.touch-star.com/categories/k8s/</link>
     <description>Recent content in K8s on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 22 Aug 2020 15:36:27 +0800</lastBuildDate>
     
-	<atom:link href="https://quinnbook.github.io/handbooks/categories/k8s/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://quinn.touch-star.com/categories/k8s/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Etcd基础入门(1)</title>
-      <link>https://quinnbook.github.io/handbooks/post/distributed/2020-04-30-etcd/</link>
+      <link>https://quinn.touch-star.com/post/distributed/2020-04-30-etcd/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://quinnbook.github.io/handbooks/post/distributed/2020-04-30-etcd/</guid>
+      <guid>https://quinn.touch-star.com/post/distributed/2020-04-30-etcd/</guid>
       <description>Etcd架构与实现原理 Etcd是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务。ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
 raft协议 每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态中的一种；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
 节点选举 使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel
@@ -26,19 +26,19 @@ raft协议 每一个 Raft 集群中都包含多个服务器，在任意时刻，
     
     <item>
       <title>Etcd基础入门(2)</title>
-      <link>https://quinnbook.github.io/handbooks/post/distributed/2020-05-14-etcd-basic/</link>
+      <link>https://quinn.touch-star.com/post/distributed/2020-05-14-etcd-basic/</link>
       <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://quinnbook.github.io/handbooks/post/distributed/2020-05-14-etcd-basic/</guid>
+      <guid>https://quinn.touch-star.com/post/distributed/2020-05-14-etcd-basic/</guid>
       <description>1.Etcd 与 Zookeeper 对比  一致性协议:配置共享&amp;amp;服务发现组件的核心基础。  Zookeeper采用ZAB协议(一种类Paxos协议)实现一致性 Etcd采用Raft协议，相比Paxos协议更容易理解，工程化。   API接口: 包含有两个版本V2、V3  V2: 提供HTTP+Json方式调用 V3: 提供grpc方式调用   性能  官方测试数据显示：10000+/s写入(优于Zookeeper性能)   安全  Etcd支持TSL(权限控制优于Zookeeper)    2.Etcd源码结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  (base) {11:45}~/etcd:master ✗ ➭ tree -d -L 1 . .</description>
     </item>
     
     <item>
       <title>1.Docker命令</title>
-      <link>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/1-command/</link>
+      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/1-command/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/1-command/</guid>
+      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/1-command/</guid>
       <description>Docker命令  docker [option] command
    option
  &amp;ndash;config string: 客户端配置文件的位置 &amp;ndash;context string[-c]: 用于连接到守护程序的上下文的名称 &amp;ndash;debug[-D]: 调试模式 &amp;ndash;host list[-H]: 要连接的守护程序套接字 &amp;ndash;log-level string[-l]: 日志等级[ debug | info | warn | error | fatal ]默认为info &amp;ndash;tls: 使用加密模式 &amp;ndash;tlscacert string: 签名证书文件路径 &amp;ndash;tlscert string: 密钥文件路径 &amp;ndash;tlskey string: key文件路径 &amp;ndash;tlsverify: 使用加密并验证远程连接 &amp;ndash;version[-v]: 版本信息    Management Commands(管理命令)
@@ -47,10 +47,10 @@ raft协议 每一个 Raft 集群中都包含多个服务器，在任意时刻，
     
     <item>
       <title>2.Docker安装</title>
-      <link>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/2-dockerinstall/</link>
+      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/2-dockerinstall/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/2-dockerinstall/</guid>
+      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/2-dockerinstall/</guid>
       <description>Docker安装  存储库安装   安装yum-config-manager所需依赖包
 1 2 3  $~:sudo yum install -y yum-utils \  device-mapper-persistent-data \  lvm2     通过yum-config-manager添加存储库
 1 2 3  $~:sudo yum-config-manager \  --add-repo \  https://download.docker.com/linux/centos/docker-ce.repo     列出存储库中排序后可用的全部版本
@@ -60,10 +60,10 @@ raft协议 每一个 Raft 集群中都包含多个服务器，在任意时刻，
     
     <item>
       <title>3.Docker之jdk1.8最简镜像构建</title>
-      <link>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/3-jdk_mirror/</link>
+      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/3-jdk_mirror/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://quinnbook.github.io/handbooks/post/cloudnative/base/docker/docker/3-jdk_mirror/</guid>
+      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/3-jdk_mirror/</guid>
       <description>Docker之jdk1.8最简镜像构建 1.准备JRE 在Java下载网站下载JRE。 Tips:此JRE为Oracle作品，而非Openjdk
 2.精简JRE中无关文件 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  # 进入已经下载jre压缩包的路径,执行解压 tar xzvf ~/Downloads/jre-8u241-linux-x64.tar.gz&amp;amp;&amp;amp;cd jre1.8.0_241 # 删除说明、其他文档 rm -rf COPYRIGHT LICENSE README \ THIRDPARTYLICENSEREADME-JAVAFX.txt \ THIRDPARTYLICENSEREADME.txt \ Welcome.html # 删除非必要依赖文件 rm -rf lib/plugin.jar \  lib/ext/jfxrt.jar \  bin/javaws \  lib/javaws.jar \  lib/desktop \  plugin \  lib/deploy* \  lib/*javafx* \  lib/*jfx* \  lib/amd64/libdecora_sse.</description>
     </item>
