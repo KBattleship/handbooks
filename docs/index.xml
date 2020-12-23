@@ -103,6 +103,17 @@
     </item>
     
     <item>
+      <title>4.SpringBoot项目Docker化</title>
+      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/4-docker4springboot/</link>
+      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/4-docker4springboot/</guid>
+      
+        <description>SpringBoot项目Docker化 一 </description>
+      
+    </item>
+    
+    <item>
       <title>5.Docker-本地构建none包处理</title>
       <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/5-docker4rmnone/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
@@ -115,32 +126,16 @@
     </item>
     
     <item>
-      <title>8.文件系统之UFS</title>
-      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/8-ufs-linux4docker/</link>
+      <title>6.关于命名空间(Linux Namespace)</title>
+      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/6-namespace-linux4docker/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/8-ufs-linux4docker/</guid>
+      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/6-namespace-linux4docker/</guid>
       
-        <description>文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
- 原理： 使用branch把不同文件系统的文件、目录「透明的」进行覆盖，形成一个单一一直的文件系统。branch具有要么read-only,要么read-write的特点。
-  思想： 写时复制(copy-on-write),如果一个资源重复，但并未被修改，将不被立即创建出新的资源，直接为新旧实例提供共享。创建新资源将发生在第一次被修改写入时。该资源共享方式，可以明显降低未修改资源复制时的消耗，但同样的，也会在写入修改是增加部分开销。
-  AFUS(Advanced Multi-Layered Unification FileSystem)  </description>
-      
-    </item>
-    
-    <item>
-      <title>1.Go并发之协程</title>
-      <link>https://quinn.touch-star.com/post/coding/golang/concurrent/goroutine/</link>
-      <pubDate>Wed, 22 Apr 2020 21:36:27 +0800</pubDate>
-      
-      <guid>https://quinn.touch-star.com/post/coding/golang/concurrent/goroutine/</guid>
-      
-        <description>Go并发之协程 首先需要了解几个概念：  channel(通道) select  1.协程、线程与进程 进程，属于操作系统，是系统资源分配的最小单位。充分利用CPU资源实现并发。
-线程，所属于进程，是进程的内部实现，大大降低了上下文切换的消耗，突破一个进程只可以处理一件事的缺陷，从而提高了系统的并发性。
-协程，粒度更细，属于线程中的调度。填补了线程在IO上性能的缺陷，避免陷入内核级上下文切换所导致的性能损耗。
-2.协程实现原理 线程实现原理
-1 2  线程是操作系统的内核对象，多线程情况下，线程达到一定数量，将会导致上下文频繁切换，CPU的额外消耗会提升。 高并发的网络编程如果一个线程对应一个socket连接将不是最好的处理方式，所以操作系统提供基于事件模式的异步编程模型。   协程实现原理
-1    </description>
+        <description>关于命名空间(Linux Namespace) 概念  1.Linux Namespace 是Kernel的一个功能，可以针对一系列的系统资源进行隔离。例如：PID(process id)、UID(User id)、Network so on.
+  2.就像chroot允许把当前目录变成根目录一样进行隔离。
+  3.Namespace进行隔离用户，当前用户将在特定的Namespace中具有root权限。但在真是物理机层面，此用户仍然是以UID运行的那个用户。
+ Linux包含的Namespace类型    Type Params Kernel Effect Information     Mount CLONE_NEWNS 2.4.19 隔离Namespace下的文件系统   UTS CLONE_NEWUTS 2.6.19 用作隔离nodename和domainname   IPC CLONE_NEWIPC 2.6.19 隔离System V IPC 和POSIX Message queues   PID CLONE_NEWPID 2.6.24 针对进程ID进行隔离   Network CLONE_NEWNET 2.6.29 用于隔离网络设备、IP地址端口等网络栈   User CLONE_NEWUSER 3.8 用于隔离用户及用户组    #Demo Coding </description>
       
     </item>
     

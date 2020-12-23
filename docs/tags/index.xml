@@ -39,6 +39,15 @@
     </item>
     
     <item>
+      <title>cgroups</title>
+      <link>https://quinn.touch-star.com/tags/cgroups/</link>
+      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/tags/cgroups/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>docker</title>
       <link>https://quinn.touch-star.com/tags/docker/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
@@ -57,6 +66,24 @@
     </item>
     
     <item>
+      <title>namespace</title>
+      <link>https://quinn.touch-star.com/tags/namespace/</link>
+      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/tags/namespace/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>springboot</title>
+      <link>https://quinn.touch-star.com/tags/springboot/</link>
+      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/tags/springboot/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>ufs</title>
       <link>https://quinn.touch-star.com/tags/ufs/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
@@ -71,33 +98,6 @@
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
       <guid>https://quinn.touch-star.com/tags/%E5%AE%B9%E5%99%A8/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>etcd</title>
-      <link>https://quinn.touch-star.com/tags/etcd/</link>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://quinn.touch-star.com/tags/etcd/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>channel</title>
-      <link>https://quinn.touch-star.com/tags/channel/</link>
-      <pubDate>Wed, 22 Apr 2020 21:36:27 +0800</pubDate>
-      
-      <guid>https://quinn.touch-star.com/tags/channel/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>go</title>
-      <link>https://quinn.touch-star.com/tags/go/</link>
-      <pubDate>Wed, 22 Apr 2020 21:36:27 +0800</pubDate>
-      
-      <guid>https://quinn.touch-star.com/tags/go/</guid>
       <description></description>
     </item>
     

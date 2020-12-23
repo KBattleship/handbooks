@@ -21,6 +21,26 @@
     </item>
     
     <item>
+      <title>1.关于UML图</title>
+      <link>https://quinn.touch-star.com/post/coding/java/base/1-design/1-1-uml/1_1_uml/</link>
+      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/coding/java/base/1-design/1-1-uml/1_1_uml/</guid>
+      <description>关于UML图 学习设计模式前，UML还是需要学习了解一下。
+UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化、让规格与设计文档化的变现方法。
+旨在目的：  为用户提供现成的、有表现力的可视化建模语言，以便开发与交换有意义的模型。 为核心概念提供可扩展性与特殊化机制。 独立特定的编程语言与开发过程。 鼓励面向对象工具市场的发展。 支持更高层次的开发概念。 为了解建模语言提供一个正式环境。 整合最佳的工作方法。  UML分类  机构性图表  类图 组件图 部署图 对象图 对象图 包图 复合机构图 轮廓图   行为性图表  用例图 活动图 状态机图 序列图 通讯图 交互概述图 时序图    UML词汇表及术语  抽象类 Actor 活动 活动图 聚合 工件 关联 关联类 属性 基类 分支 类 类图 分类器 协作 通信图 组件 组件图 概念 构建阶段 依赖关系 部署图 域 精化阶段 元素 封装 泛化 事件 最终状态 叉 泛化 GoF 高凝聚力 启动阶段 继承 初始状态 实例 接口 迭代 加入 成员 合并 消息 方法 模型 多重性 可导航型 符号 注意 对象 包 包图 模式 参数 多态性 私有 处理器 受保护 公开 读取方向箭头 实现 角色 顺序图 状态 状态图 静态 刻板印象 子类 互动区 时间拳击 过渡 过渡阶段 统一建模语言 用例 用例图 可见性： 工作流程：一组产生特定结果的活动。  </description>
+    </item>
+    
+    <item>
+      <title>1.迭代器模式</title>
+      <link>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/</link>
+      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/</guid>
+      <description>迭代器模式 表1-1 类与接口说明    类名 备注     Aggregate 表示集合的接口   Iterator 遍历集合接口   Book 表示书的类   BookShelf 表示书架的类   BookShelfIterator 遍历书架的类    代码清单  Aggregate接口  1 2 3 4 5 6 7  /** * 表示集合接口 */ public interface Aggregate { /* 用于生成一个遍历集合的迭代器 */ public abstract Iterator iterator(); }    Iterator接口  1 2 3 4 5 6 7 8 9 10 11 12  /** * 遍历集合接口 */ public interface Iterator { /* 判断是否存在下一个元素 */ public abstract boolean hasNext(); /* 获取下一个元素 */ public abstract Object next(); }    Book类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  /** * 表示书的类 */ public class Book { /* 书名属性 */ private String name; /* Default constructor */ public Book(String name) { this.</description>
+    </item>
+    
+    <item>
       <title>2.适配器模式</title>
       <link>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</link>
       <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
@@ -28,6 +48,16 @@
       <guid>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</guid>
       <description>适配器模式 适配器模式包含两种：  类适配器模式(使用继承的适配器) 对象适配器模式(使用委托的适配器)  适配器模式角色组成：  目标角色 源角色 适配器角色  ①.类适配器模式 继承于源类的同时实现目标接口
 表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  1 2 3 4  public interface Print { abstract void printWeak(); abstract void printStrong(); }    Banner(源角色)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class Banner { private String nameString; public Banner(String nameString) { this.</description>
+    </item>
+    
+    <item>
+      <title>3.模板模式</title>
+      <link>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_3_template/</link>
+      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_3_template/</guid>
+      <description>模板模式 **模板模式：**是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.</description>
     </item>
     
   </channel>

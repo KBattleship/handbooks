@@ -47,6 +47,15 @@
     </item>
     
     <item>
+      <title>4.SpringBoot项目Docker化</title>
+      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/4-docker4springboot/</link>
+      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/4-docker4springboot/</guid>
+      <description>SpringBoot项目Docker化 一 </description>
+    </item>
+    
+    <item>
       <title>5.Docker-本地构建none包处理</title>
       <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/5-docker4rmnone/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
@@ -54,6 +63,34 @@
       <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/5-docker4rmnone/</guid>
       <description>Docker-本地构建none包处理 踩坑①.打包构建Dockerfile镜像 每次本地打包构建Dockerfile镜像，如果更新镜像版本号会出现none的镜像在仓库中
 1 2 3 4 5 6 7 8 9 10 11 12 13  # 停掉none相关的镜像进程占用 docker rm $(docker ps -a | grep &amp;#34;Exited&amp;#34; | awk &amp;#39;{print $1 }&amp;#39;) # 递归依次从仓库移除这些镜像 docker rmi $(docker images | grep &amp;#34;^&amp;lt;none&amp;gt;&amp;#34; | awk &amp;#34;{print $3}&amp;#34;) # 或者，使用一下命令进行移除 docker image prune # (此命令用于删除未使用的映像) # docker image prune [options] # -- options可选值： # -a 显示所有映像(默认隐藏中间映像) # -f 不提示确认，强制直接执行删除   </description>
+    </item>
+    
+    <item>
+      <title>6.关于命名空间(Linux Namespace)</title>
+      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/6-namespace-linux4docker/</link>
+      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/6-namespace-linux4docker/</guid>
+      <description>关于命名空间(Linux Namespace) 概念  1.Linux Namespace 是Kernel的一个功能，可以针对一系列的系统资源进行隔离。例如：PID(process id)、UID(User id)、Network so on.
+  2.就像chroot允许把当前目录变成根目录一样进行隔离。
+  3.Namespace进行隔离用户，当前用户将在特定的Namespace中具有root权限。但在真是物理机层面，此用户仍然是以UID运行的那个用户。
+ Linux包含的Namespace类型    Type Params Kernel Effect Information     Mount CLONE_NEWNS 2.4.19 隔离Namespace下的文件系统   UTS CLONE_NEWUTS 2.6.19 用作隔离nodename和domainname   IPC CLONE_NEWIPC 2.6.19 隔离System V IPC 和POSIX Message queues   PID CLONE_NEWPID 2.6.24 针对进程ID进行隔离   Network CLONE_NEWNET 2.6.29 用于隔离网络设备、IP地址端口等网络栈   User CLONE_NEWUSER 3.8 用于隔离用户及用户组    #Demo Coding </description>
+    </item>
+    
+    <item>
+      <title>7.关于Linux的Cgroups</title>
+      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/</link>
+      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/</guid>
+      <description>关于Linux的Cgroups 概念  Linux Cgroups(Control Groups)在Linux Namespace为进程隔离出一定空间的基础上为此进行的资源限制、控制以及统计的能力。资源包含有：CPU、内存、存储、网络等。通过Cgroups可以限制某个进程的资源占用、并且可以实时监控进程以及统计信息。
+ cgroups各模块   cgroup: 针对进程进行分组的一种策略机制。
+ 每一个cgroup中包含有一组进程。并且可以使用subsystem模块进行参数控制作用于此cgroup上的进程。
+   subsystem: 此模块对资源进行控制。
+ Ubuntu OS可以通过apt install cgroup-bin安装命令行工具，使用lssubsys查看Kernel所支持的subsystem list。
+  blkio: 设置对块设备输入输出进行控制 cpu: 设置cgroup中进程的CPU调度策略 cpuacct: 统计cgroup中进程CPU占用情况 cpuset: 在多核机器上设置cgroup中进程可以使用的CPU和内存(内存仅适用于NUMA架构) devices: 控制cgroup中进程对设备的访问 freezer: 用于挂起(suspend)和恢复(resume)cgroup中的进程 memory: 限制cgroup中进程的内存占用 net_cls: 将cgroup中进程的网络包进行分类，以至于通过分类区区分不同cgroup中进程的网络包，并进行监控、限流等。 net_prio: 设置cgroup中进程产生的网络流量的优先级 ns: 使cgroup中进程在新的Namespace中fork出新进程(NEWNS)，同时创建出新的cgroup，并且此cgroup包含有新Namespace中的进程。    hierarchy: cgroup进程的继承关系。
+ 例如： 系统通过cgroup1针对一组定时任务进程进行CPU使用限制，同时其中一个进程还需要限制磁盘IO，这时候将可以通过cgroup2继承cgroup1限制CPU的同时增加磁盘IO限制。即cgroup2同时具有CPU、IO限制，并且不影响cgroup1组中其他进程的IO限制。
+   cgroup各模块间关系  系统创建hierarchy后，系统下所有进程都将被加入cgroup中，cgroup为根节点，被hierarchy创建的cgroup将被作为此cgroup根节点下的子节点; subsystem与hierarchy是1:1关系(即，一个subsystem只能作用于一个hierarchy之上); hierarchy与subsystem是1:n关系(即，一个hierarchy可以作用于多个subsystem之上); 一个进程可以分布在不同的cgroup中，但需满足cgroup分布在不同的hierarchy中; 一个进程fork出一个子进程的同时，子进程与父进程在同一cgroup中，但可以根据需求调整到其他cgroup中。  </description>
     </item>
     
     <item>

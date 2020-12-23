@@ -107,6 +107,13 @@
   </url>
   
   <url>
+    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/4-docker4springboot/</loc>
+    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/5-docker4rmnone/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -114,7 +121,28 @@
   </url>
   
   <url>
+    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/6-namespace-linux4docker/</loc>
+    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/</loc>
+    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/8-ufs-linux4docker/</loc>
+    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/cgroups/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -136,6 +164,20 @@
   
   <url>
     <loc>https://quinn.touch-star.com/tags/k8s/</loc>
+    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/namespace/</loc>
+    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/tags/springboot/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -422,7 +464,28 @@
   </url>
   
   <url>
+    <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-1-uml/1_1_uml/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_3_template/</loc>
     <lastmod>2019-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -436,19 +499,15 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/4-docker4springboot/</loc>
+    <loc>https://quinn.touch-star.com/tags/programming/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/6-namespace-linux4docker/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/</loc>
+    <loc>https://quinn.touch-star.com/tags/uml/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -556,12 +615,6 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-1-uml/1_1_uml/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_10_strategy/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -622,12 +675,6 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_20_flyweight/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -647,12 +694,6 @@
   
   <url>
     <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_23_interpreter/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://quinn.touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_3_template/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

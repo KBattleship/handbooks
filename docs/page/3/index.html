@@ -342,6 +342,215 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/operation/linux/kvm/1-base/">1.KVM入门</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-10-12" class="post-time">
+        2019-10-12
+      </time>
+      <div class="post-category">
+          <a href="https://quinn.touch-star.com/categories/middleware/"> middleware </a>
+          
+        </div>
+      <span class="more-meta"> 约 273 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
+      
+      
+      
+        <span id="/post/operation/linux/kvm/1-base/" class="leancloud_visitors" data-flag-title="1.KVM入门">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      KVM入门  1.基础操作 ①.创建虚拟机 1 2 3 4 5 6 7  virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart   ②.虚拟机相关操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36  # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &lt;name&gt;/&lt;id&gt; # 停止指定虚拟机 virsh shutdown &lt;name&gt;/&lt;id&gt; # 销毁指定虚拟机(强制断电) virsh destory &lt;name&gt;/&lt;id&gt; # 登入指定虚拟机 virsh console &lt;name&gt;/&lt;id&gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*)   ③.
+    </div>
+    <div class="read-more">
+      <a href="/post/operation/linux/kvm/1-base/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/operation/linux/tcp-ip/1.overview/">1.TCP/IP入门</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-10-12" class="post-time">
+        2019-10-12
+      </time>
+      <div class="post-category">
+          <a href="https://quinn.touch-star.com/categories/middleware/"> middleware </a>
+          
+        </div>
+      <span class="more-meta"> 约 4 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/operation/linux/tcp-ip/1.overview/" class="leancloud_visitors" data-flag-title="1.TCP/IP入门">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      TCP/IP入门 1.1 协议分层 ✌🏼😂😅😅
+    </div>
+    <div class="read-more">
+      <a href="/post/operation/linux/tcp-ip/1.overview/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/operation/linux/kvm/2-ethernet_bridge/">2.KVM-双网卡网关配置</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-10-12" class="post-time">
+        2019-10-12
+      </time>
+      <div class="post-category">
+          <a href="https://quinn.touch-star.com/categories/middleware/"> middleware </a>
+          
+        </div>
+      <span class="more-meta"> 约 84 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/operation/linux/kvm/2-ethernet_bridge/" class="leancloud_visitors" data-flag-title="2.KVM-双网卡网关配置">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      双网卡网关配置 1.在系统路由表文件/etc/iproute2/rt_tables增加配置
+1 2  252 e1 251 e0   2.执行以下命令，并在/etc/rc.d/network追加此内容
+1 2 3 4 5 6 7 8 9  # 此内容防止服务器重启路由失效 ip route flush table e0 ip route add default via 10.3.3.1 dev eth0 src 10.3.3.25 table e0 ip route add 127.0.0.0/8 dev lo table e0 ip rule add from 10.3.3.25 table e0 ip route flush table e1 ip route add default via 10.2.2.1 dev eth1 src 10.
+    </div>
+    <div class="read-more">
+      <a href="/post/operation/linux/kvm/2-ethernet_bridge/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/1-design/1-1-uml/1_1_uml/">1.关于UML图</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-08-22" class="post-time">
+        2019-08-22
+      </time>
+      <div class="post-category">
+          <a href="https://quinn.touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 110 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1-design/1-1-uml/1_1_uml/" class="leancloud_visitors" data-flag-title="1.关于UML图">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      关于UML图 学习设计模式前，UML还是需要学习了解一下。
+UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化、让规格与设计文档化的变现方法。
+旨在目的：  为用户提供现成的、有表现力的可视化建模语言，以便开发与交换有意义的模型。 为核心概念提供可扩展性与特殊化机制。 独立特定的编程语言与开发过程。 鼓励面向对象工具市场的发展。 支持更高层次的开发概念。 为了解建模语言提供一个正式环境。 整合最佳的工作方法。  UML分类  机构性图表  类图 组件图 部署图 对象图 对象图 包图 复合机构图 轮廓图   行为性图表  用例图 活动图 状态机图 序列图 通讯图 交互概述图 时序图    UML词汇表及术语  抽象类 Actor 活动 活动图 聚合 工件 关联 关联类 属性 基类 分支 类 类图 分类器 协作 通信图 组件 组件图 概念 构建阶段 依赖关系 部署图 域 精化阶段 元素 封装 泛化 事件 最终状态 叉 泛化 GoF 高凝聚力 启动阶段 继承 初始状态 实例 接口 迭代 加入 成员 合并 消息 方法 模型 多重性 可导航型 符号 注意 对象 包 包图 模式 参数 多态性 私有 处理器 受保护 公开 读取方向箭头 实现 角色 顺序图 状态 状态图 静态 刻板印象 子类 互动区 时间拳击 过渡 过渡阶段 统一建模语言 用例 用例图 可见性： 工作流程：一组产生特定结果的活动。  
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1-design/1-1-uml/1_1_uml/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/">1.迭代器模式</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-08-22" class="post-time">
+        2019-08-22
+      </time>
+      <div class="post-category">
+          <a href="https://quinn.touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 427 字 </span>
+      <span class="more-meta"> 预计阅读 3 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/" class="leancloud_visitors" data-flag-title="1.迭代器模式">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      迭代器模式 表1-1 类与接口说明    类名 备注     Aggregate 表示集合的接口   Iterator 遍历集合接口   Book 表示书的类   BookShelf 表示书架的类   BookShelfIterator 遍历书架的类    代码清单  Aggregate接口  1 2 3 4 5 6 7  /** * 表示集合接口 */ public interface Aggregate { /* 用于生成一个遍历集合的迭代器 */ public abstract Iterator iterator(); }    Iterator接口  1 2 3 4 5 6 7 8 9 10 11 12  /** * 遍历集合接口 */ public interface Iterator { /* 判断是否存在下一个元素 */ public abstract boolean hasNext(); /* 获取下一个元素 */ public abstract Object next(); }    Book类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  /** * 表示书的类 */ public class Book { /* 书名属性 */ private String name; /* Default constructor */ public Book(String name) { this.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/">2.适配器模式</a>
     </h1>
     
@@ -384,20 +593,23 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/cloudnative/base/docker/docker/4-docker4springboot/"></a>
+      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_3_template/">3.模板模式</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-08-22" class="post-time">
+        2019-08-22
       </time>
-      
-      <span class="more-meta"> 约 2 字 </span>
+      <div class="post-category">
+          <a href="https://quinn.touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 196 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/cloudnative/base/docker/docker/4-docker4springboot/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/coding/java/base/1-design/1-2-design/1_2_3_template/" class="leancloud_visitors" data-flag-title="3.模板模式">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -408,96 +620,11 @@
   <div class="post-content">
     
     <div class="post-summary">
-      SpringBoot项目Docker化 一 
+      模板模式 **模板模式：**是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.
     </div>
     <div class="read-more">
-      <a href="/post/cloudnative/base/docker/docker/4-docker4springboot/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/base/docker/docker/6-namespace-linux4docker/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 49 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/base/docker/docker/6-namespace-linux4docker/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      1.关于命名空间(Linux Namespace) 概念  1.Linux Namespace 是Kernel的一个功能，可以针对一系列的系统资源进行隔离。例如：PID(process id)、UID(User id)、Network so on.
-  2.就像chroot允许把当前目录变成根目录一样进行隔离。
-  3.Namespace进行隔离用户，当前用户将在特定的Namespace中具有root权限。但在真是物理机层面，此用户仍然是以UID运行的那个用户。
- Linux包含的Namespace类型    Type Params Kernel Effect Information     Mount CLONE_NEWNS 2.4.19 隔离Namespace下的文件系统   UTS CLONE_NEWUTS 2.6.19 用作隔离nodename和domainname   IPC CLONE_NEWIPC 2.6.19 隔离System V IPC 和POSIX Message queues   PID CLONE_NEWPID 2.6.24 针对进程ID进行隔离   Network CLONE_NEWNET 2.6.29 用于隔离网络设备、IP地址端口等网络栈   User CLONE_NEWUSER 3.8 用于隔离用户及用户组    #Demo Coding 
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/base/docker/docker/6-namespace-linux4docker/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 47 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      2.关于Linux的Cgroups 概念  Linux Cgroups(Control Groups)在Linux Namespace为进程隔离出一定空间的基础上为此进行的资源限制、控制以及统计的能力。资源包含有：CPU、内存、存储、网络等。通过Cgroups可以限制某个进程的资源占用、并且可以实时监控进程以及统计信息。
- cgroups各模块   cgroup: 针对进程进行分组的一种策略机制。
- 每一个cgroup中包含有一组进程。并且可以使用subsystem模块进行参数控制作用于此cgroup上的进程。
-   subsystem: 此模块对资源进行控制。
- Ubuntu OS可以通过apt install cgroup-bin安装命令行工具，使用lssubsys查看Kernel所支持的subsystem list。
-  blkio: 设置对块设备输入输出进行控制 cpu: 设置cgroup中进程的CPU调度策略 cpuacct: 统计cgroup中进程CPU占用情况 cpuset: 在多核机器上设置cgroup中进程可以使用的CPU和内存(内存仅适用于NUMA架构) devices: 控制cgroup中进程对设备的访问 freezer: 用于挂起(suspend)和恢复(resume)cgroup中的进程 memory: 限制cgroup中进程的内存占用 net_cls: 将cgroup中进程的网络包进行分类，以至于通过分类区区分不同cgroup中进程的网络包，并进行监控、限流等。 net_prio: 设置cgroup中进程产生的网络流量的优先级 ns: 使cgroup中进程在新的Namespace中fork出新进程(NEWNS)，同时创建出新的cgroup，并且此cgroup包含有新Namespace中的进程。    hierarchy: cgroup进程的继承关系。
- 例如： 系统通过cgroup1针对一组定时任务进程进行CPU使用限制，同时其中一个进程还需要限制磁盘IO，这时候将可以通过cgroup2继承cgroup1限制CPU的同时增加磁盘IO限制。即cgroup2同时具有CPU、IO限制，并且不影响cgroup1组中其他进程的IO限制。
-   cgroup各模块间关系  系统创建hierarchy后，系统下所有进程都将被加入cgroup中，cgroup为根节点，被hierarchy创建的cgroup将被作为此cgroup根节点下的子节点; subsystem与hierarchy是1:1关系(即，一个subsystem只能作用于一个hierarchy之上); hierarchy与subsystem是1:n关系(即，一个hierarchy可以作用于多个subsystem之上); 一个进程可以分布在不同的cgroup中，但需满足cgroup分布在不同的hierarchy中; 一个进程fork出一个子进程的同时，子进程与父进程在同一cgroup中，但可以根据需求调整到其他cgroup中。  
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/1-design/1-2-design/1_2_3_template/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -640,127 +767,6 @@ K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制�
     </div>
     <div class="read-more">
       <a href="/post/cloudnative/base/kubernetes/1-k8s-base/2_kubectl/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/base/kubernetes/1-k8s-base/3_kubeadm/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 55 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/base/kubernetes/1-k8s-base/3_kubeadm/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      3.K8S-kubeadm命令使用 一、kubeadm概述 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  $~:kubeadm --help # kubeadm [command] |———— alpha [command] |———— completion |———— config |———— images |———— list 列出所有依赖镜像 |———— pull |———— help 查看命令详细描述 |———— init 初始化Kubernetes集群Master |———— join 在Kubernetes集群中增加Node |———— reset 重置Kubernetes集群 |———— token |———— upgrade |———— version   
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/base/kubernetes/1-k8s-base/3_kubeadm/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/base/kubernetes/1-k8s-base/4_k8s_install/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 366 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/base/kubernetes/1-k8s-base/4_k8s_install/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      安装初始化K8s集群 1.安装K8s 1.1CentOS安装   预先准备工作
-1 2 3 4 5 6 7 8 9 10 11 12 13  # 修改设置主机名称 hostnamectl set-hostname master # 绑定主机各节点hosts 192.168.0.1 master 192.168.0.2 node1 192.168.0.3 node2 # 验证每节点的Mac地址与UUID是否唯一 # mac地址注意查看网卡 cat /sys/class/net/eth1/address cat /sys/class/dmi/id/product_uuid # 关闭缓存交换swap swapoff -a # 临时关闭 sed -i.bak &#39;/swap/s/^/#/&#39; /etc/fstab #永久关闭     安装Kubernetes
-1 2  # 设置K8s安装源，由于防火墙问题使用阿里云源 cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo     [kubernetes] name=Kubernetes baseurl=https://mirrors.
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/base/kubernetes/1-k8s-base/4_k8s_install/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/base/kubernetes/1-k8s-base/5_helm/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 151 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/base/kubernetes/1-k8s-base/5_helm/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      K8s之Helm包管理工具  Helm 是 Deis 开发的一个用于 Kubernetes 应用的包管理工具，主要用来管理 Charts。有点类似于 Ubuntu 中的 APT 或 CentOS 中的 YUM。
- 一、安装 Helm Release Link
-1.OS-CentOS 当前使用版本为Helm v3.1.2 linux
-1 2 3 4 5 6 7 8  # 下载二进制可执行文件压缩包 wget -O /data/helm.tar.gz https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz # 解压 tar -xzvf /data/helm.tar.gz # 移动helm二进制文件，方便全局访问 mv linux-amd64/helm /usr/local/bin/helm   2.OS-MacOS ①.自动安装 PS：操作系统已安装brew工具
-1  brew install helm   ②.手动安装 当前使用版本为Helm v3.1.2 darwin
-1 2 3 4 5 6 7 8  # 下载二进制可执行文件压缩包 wget -O ~/helm.
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/base/kubernetes/1-k8s-base/5_helm/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
