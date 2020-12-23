@@ -13,10 +13,10 @@
     
     <item>
       <title>7.关于Linux的Cgroups</title>
-      <link>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/</link>
+      <link>https://quinn.touch-star.com/post/cloudnative/docker/docker/7-cgroup-linux4docker/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/</guid>
+      <guid>https://quinn.touch-star.com/post/cloudnative/docker/docker/7-cgroup-linux4docker/</guid>
       <description>关于Linux的Cgroups 概念  Linux Cgroups(Control Groups)在Linux Namespace为进程隔离出一定空间的基础上为此进行的资源限制、控制以及统计的能力。资源包含有：CPU、内存、存储、网络等。通过Cgroups可以限制某个进程的资源占用、并且可以实时监控进程以及统计信息。
  cgroups各模块   cgroup: 针对进程进行分组的一种策略机制。
  每一个cgroup中包含有一组进程。并且可以使用subsystem模块进行参数控制作用于此cgroup上的进程。

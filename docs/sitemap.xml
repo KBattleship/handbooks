@@ -86,56 +86,56 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/1-command/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/docker/docker/1-command/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/2-dockerinstall/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/docker/docker/2-dockerinstall/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/3-jdk_mirror/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/docker/docker/3-jdk_mirror/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/4-docker4springboot/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/docker/docker/4-docker4springboot/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/5-docker4rmnone/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/docker/docker/5-docker4rmnone/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/6-namespace-linux4docker/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/docker/docker/6-namespace-linux4docker/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/7-cgroup-linux4docker/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/docker/docker/7-cgroup-linux4docker/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/docker/8-ufs-linux4docker/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/docker/docker/8-ufs-linux4docker/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -401,7 +401,7 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/operation/linux/tcp-ip/1.overview/</loc>
+    <loc>https://quinn.touch-star.com/post/operation/linux/tcp/1.overview/</loc>
     <lastmod>2019-10-12T01:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -513,97 +513,97 @@
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/docker/readme/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/docker/readme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/1-k8s-base/1_concept/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/1-k8s-base/1_concept/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/1-k8s-base/2_kubectl/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/1-k8s-base/2_kubectl/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/1-k8s-base/3_kubeadm/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/1-k8s-base/3_kubeadm/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/1-k8s-base/4_k8s_install/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/1-k8s-base/4_k8s_install/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/1-k8s-base/5_helm/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/1-k8s-base/5_helm/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/2-k8s-pod/1.k8s-pod/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/2-k8s-pod/1.k8s-pod/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/2-k8s-pod/2.pods-example/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/2-k8s-pod/2.pods-example/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/2-k8s-pod/3.pod-detial/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/2-k8s-pod/3.pod-detial/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/3-k8s-service/1.k8s-service/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/3-k8s-service/1.k8s-service/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/4-k8s-deployfile/1.mysql-k8s/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/4-k8s-deployfile/1.mysql-k8s/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/5-k8s-crd/cunstom_resource_defination/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/5-k8s-crd/cunstom_resource_defination/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/k8s-plugin/1-k8s_dashboard/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/k8s-plugin/1-k8s_dashboard/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/kubernetes/readme/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/kubernetes/readme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/readme/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/readme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://quinn.touch-star.com/post/cloudnative/base/summary/</loc>
+    <loc>https://quinn.touch-star.com/post/cloudnative/summary/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
