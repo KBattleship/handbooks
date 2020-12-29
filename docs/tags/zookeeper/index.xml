@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zookeeper on Quinn</title>
-    <link>https://quinn.touch-star.com/tags/zookeeper/</link>
+    <link>https://touch-star.com/tags/zookeeper/</link>
     <description>Recent content in Zookeeper on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 12 Nov 2019 01:36:27 +0800</lastBuildDate>
     
-	<atom:link href="https://quinn.touch-star.com/tags/zookeeper/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://touch-star.com/tags/zookeeper/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>1.zookeeper分布式部署</title>
-      <link>https://quinn.touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</link>
+      <link>https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</link>
       <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</guid>
+      <guid>https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</guid>
       <description>zookeeper分布式部署 一.配置服务器IP地址映射 [root@localhost zk]~#: vim /etc/hosts
 1 2 3 4 5  192.168.1.111 zoo1 192.168.1.112 zoo2 192.168.1.113 zoo3 192.168.1.114 zoo4 192.168.1.115 zoo5   二.修改配置ZK文件 1.下载Zookeeper
 1 2  # 进入ZK路径 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.6/apache-zookeeper-3.5.6-bin.tar.gz   2.修改配置文件 进入conf目录，在配置文件前，先cp zoo_sample.cfg zoo.cfg,然后vim zoo.cfg。配置如下：

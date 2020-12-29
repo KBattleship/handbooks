@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>namespace on Quinn</title>
-    <link>https://quinn.touch-star.com/tags/namespace/</link>
+    <link>https://touch-star.com/tags/namespace/</link>
     <description>Recent content in namespace on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sat, 22 Aug 2020 15:36:27 +0800</lastBuildDate>
     
-	<atom:link href="https://quinn.touch-star.com/tags/namespace/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://touch-star.com/tags/namespace/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>6.关于命名空间(Linux Namespace)</title>
-      <link>https://quinn.touch-star.com/post/cloudnative/docker/docker/6-namespace-linux4docker/</link>
+      <link>https://touch-star.com/post/cloudnative/docker/docker/6-namespace-linux4docker/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/cloudnative/docker/docker/6-namespace-linux4docker/</guid>
+      <guid>https://touch-star.com/post/cloudnative/docker/docker/6-namespace-linux4docker/</guid>
       <description>关于命名空间(Linux Namespace) 概念  1.Linux Namespace 是Kernel的一个功能，可以针对一系列的系统资源进行隔离。例如：PID(process id)、UID(User id)、Network so on.
   2.就像chroot允许把当前目录变成根目录一样进行隔离。
   3.Namespace进行隔离用户，当前用户将在特定的Namespace中具有root权限。但在真是物理机层面，此用户仍然是以UID运行的那个用户。

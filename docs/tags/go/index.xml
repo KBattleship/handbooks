@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>go on Quinn</title>
-    <link>https://quinn.touch-star.com/tags/go/</link>
+    <link>https://touch-star.com/tags/go/</link>
     <description>Recent content in go on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 22 Apr 2020 21:36:27 +0800</lastBuildDate>
     
-	<atom:link href="https://quinn.touch-star.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://touch-star.com/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>1.Go并发之协程</title>
-      <link>https://quinn.touch-star.com/post/coding/golang/concurrent/goroutine/</link>
+      <link>https://touch-star.com/post/coding/golang/concurrent/goroutine/</link>
       <pubDate>Wed, 22 Apr 2020 21:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/coding/golang/concurrent/goroutine/</guid>
+      <guid>https://touch-star.com/post/coding/golang/concurrent/goroutine/</guid>
       <description>Go并发之协程 首先需要了解几个概念：  channel(通道) select  1.协程、线程与进程 进程，属于操作系统，是系统资源分配的最小单位。充分利用CPU资源实现并发。
 线程，所属于进程，是进程的内部实现，大大降低了上下文切换的消耗，突破一个进程只可以处理一件事的缺陷，从而提高了系统的并发性。
 协程，粒度更细，属于线程中的调度。填补了线程在IO上性能的缺陷，避免陷入内核级上下文切换所导致的性能损耗。

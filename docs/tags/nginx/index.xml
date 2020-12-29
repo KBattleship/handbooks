@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>nginx on Quinn</title>
-    <link>https://quinn.touch-star.com/tags/nginx/</link>
+    <link>https://touch-star.com/tags/nginx/</link>
     <description>Recent content in nginx on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 12 Nov 2019 01:36:27 +0800</lastBuildDate>
     
-	<atom:link href="https://quinn.touch-star.com/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://touch-star.com/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>【Nginx那点事儿】之 ①【 Nginx入门】</title>
-      <link>https://quinn.touch-star.com/post/middleware/nginx/1-nginx-base/</link>
+      <link>https://touch-star.com/post/middleware/nginx/1-nginx-base/</link>
       <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/middleware/nginx/1-nginx-base/</guid>
+      <guid>https://touch-star.com/post/middleware/nginx/1-nginx-base/</guid>
       <description>【Nginx那点事儿】之 ①【 Nginx入门】 一、Nginx为什么受青睐 ​	在介绍Nginx具体的安装、配置以及原理之前先聊聊概念常识问题。那就是目前为什么Nginx深受青睐？那我们先从Nginx是什么开始聊起。
 1.Nginx是什么   简单介绍
  ***Nginx***来自于俄罗斯，是在**RamblerMedia**工作的**Igor Sysoev**使用***C***语言编写而成的跨平台轻量级高性能的*Web*服务器。***Nginx***可以运行在**Linux**、**FreeBSD**、**Solaris**(*Sun*公司的类*Unix OS*)、**MacOS**、以及**Windows**等操作系统。操作系统的不同，也给***Nginx***带来了一些好处，***Nginx***会使用当前操作系统中特有的一些高效**API**来提高自身的性能。    Nginx和它的对手们

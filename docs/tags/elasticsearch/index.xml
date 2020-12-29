@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>elasticsearch on Quinn</title>
-    <link>https://quinn.touch-star.com/tags/elasticsearch/</link>
+    <link>https://touch-star.com/tags/elasticsearch/</link>
     <description>Recent content in elasticsearch on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 22 Dec 2019 15:36:27 +0800</lastBuildDate>
     
-	<atom:link href="https://quinn.touch-star.com/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://touch-star.com/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>1.ElasticSearch集群搭建</title>
-      <link>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</link>
+      <link>https://touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</link>
       <pubDate>Sun, 22 Dec 2019 15:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</guid>
+      <guid>https://touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</guid>
       <description>ElasticSearch集群搭建 注： 1 2 3 4 5 6 7 8 9 10 11 12 13 14  #A:修改/etc/security/limits.conf #&amp;lt;domain&amp;gt; &amp;lt;type&amp;gt; &amp;lt;item&amp;gt; &amp;lt;value&amp;gt; * soft nofile 65536 * hard nofile 131072 * soft nproc 2048 * hard nproc 4096 #B:修改/etc/sysctl.conf vm.max_map_count=262144 # 保存执行： sysctl -p # 或者 sysctl -w vm.max_map_count=262144   </description>
     </item>
     
     <item>
       <title>2.ElasticSearch集群原理</title>
-      <link>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/2.elasticsearch-cluster-base/</link>
+      <link>https://touch-star.com/post/middleware/database/nosql/elasticsearch/2.elasticsearch-cluster-base/</link>
       <pubDate>Sun, 22 Dec 2019 15:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/middleware/database/nosql/elasticsearch/2.elasticsearch-cluster-base/</guid>
+      <guid>https://touch-star.com/post/middleware/database/nosql/elasticsearch/2.elasticsearch-cluster-base/</guid>
       <description>ElasticSearch集群原理 一、关于ES集群需要思考几个问题  需要多大规模的集群？  1 2 3 4 5 6 7 8 9 10 11  # 首先从两个方面考虑 ①.数据量有多大？数据增长情况如何？ ②.服务器硬件设施配置：CPU、Memory、Disk # 推算依据 ES Jvm heap 最大设置为32G。 30G heap大约可以存储数据量10T；服务器memory若为128G，可运行多个实例节点。 # 应用场景 A:用于构建业务搜索模块，且多是垂直领域搜索。（数据量级几千万至十亿级,一般需要2-4台机器） B:用于大规模数据的实时联机处理分析(OLAP),例如ELK，数据规模可达上千亿乃至更多，需要几十甚至上百实例节点。    集群中节点角色如何分配？  1 2 3 4 5 6 7 8 9 10 11 12 13  # 一个节点可以充当一个或多个角色，默认三个角色都有 # 节点角色 ①.Master node.master: true # 实例节点为主节点 ②.DataNode node.data: true # 默认是数据节点。 ③.CoordinateNode # 以上两项置为false，则此节点为协调节点； # 协调节点：一个节点只作为接收请求、转发请求到其他节点、汇总各个节点返回数据等功能的节点。 # 具体分配 A:小规模集群不需要具体区分； B:中、大规模集群(十个节点以上)，并发查询量大，查询的合并量大，可以增加独立的协调节点。角色分开的好处是分工分开，不互影响。如不会因协调角色负载过高而影响数据节点的能力。    如何避免脑裂问题发生？  1     索引应该设置多少个分片？ 分片应该设置多少个副本？  </description>
     </item>
     

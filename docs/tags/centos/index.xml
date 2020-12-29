@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>centos on Quinn</title>
-    <link>https://quinn.touch-star.com/tags/centos/</link>
+    <link>https://touch-star.com/tags/centos/</link>
     <description>Recent content in centos on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 12 Nov 2019 01:36:27 +0800</lastBuildDate>
     
-	<atom:link href="https://quinn.touch-star.com/tags/centos/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://touch-star.com/tags/centos/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>CentOS修改系统镜像源</title>
-      <link>https://quinn.touch-star.com/post/operation/linux/centos/1-modifymirror/</link>
+      <link>https://touch-star.com/post/operation/linux/centos/1-modifymirror/</link>
       <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/operation/linux/centos/1-modifymirror/</guid>
+      <guid>https://touch-star.com/post/operation/linux/centos/1-modifymirror/</guid>
       <description>CentOS修改系统镜像源 一.备份当前源 1  mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup   二、切换阿里云镜像源  CentOS7 切换源  1 2 3 4  # 进入源所在路径 cd /etc/yum.repos.d/ # 下载阿里云镜像源并保存为源文件 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo    CentOS6 切换源  1 2 3 4  # 进入源所在路径 cd /etc/yum.repos.d/ # 下载网易163镜像源并保存为源文件 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS6-Base-163.repo   </description>
     </item>
     

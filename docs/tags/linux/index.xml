@@ -2,30 +2,30 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Linux on Quinn</title>
-    <link>https://quinn.touch-star.com/tags/linux/</link>
+    <link>https://touch-star.com/tags/linux/</link>
     <description>Recent content in Linux on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Tue, 12 Nov 2019 01:36:27 +0800</lastBuildDate>
     
-	<atom:link href="https://quinn.touch-star.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://touch-star.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>1.Linux-Vim</title>
-      <link>https://quinn.touch-star.com/post/operation/linux/centos/command/vim/</link>
+      <link>https://touch-star.com/post/operation/linux/centos/command/vim/</link>
       <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/operation/linux/centos/command/vim/</guid>
+      <guid>https://touch-star.com/post/operation/linux/centos/command/vim/</guid>
       <description>vim 1.基本操作命令 普通模式(Normal)  a: append current location i: insert current location o: open a line below A: append after line I: insert before line O: open a line above y: copy p: parse ^: 光标移至行首 $: 光标移至行末 G: 光标移至末行 1G: 光标移至首行 H: 光标移至当前窗口首行 M: 光标移至当前窗口中间位置  命令行模式(Command)  % s/string1/string2/g  可视化模式(Visual)  v:  插入编辑模式(Insert) 2.快速纠错 编辑模式下：  ctrl+w: 删除上一个单词 ctrl+u: 删除当前行  </description>
     </item>
     
     <item>
       <title>1.zookeeper分布式部署</title>
-      <link>https://quinn.touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</link>
+      <link>https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</link>
       <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</guid>
+      <guid>https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</guid>
       <description>zookeeper分布式部署 一.配置服务器IP地址映射 [root@localhost zk]~#: vim /etc/hosts
 1 2 3 4 5  192.168.1.111 zoo1 192.168.1.112 zoo2 192.168.1.113 zoo3 192.168.1.114 zoo4 192.168.1.115 zoo5   二.修改配置ZK文件 1.下载Zookeeper
 1 2  # 进入ZK路径 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.6/apache-zookeeper-3.5.6-bin.tar.gz   2.修改配置文件 进入conf目录，在配置文件前，先cp zoo_sample.cfg zoo.cfg,然后vim zoo.cfg。配置如下：
@@ -34,19 +34,19 @@
     
     <item>
       <title>CentOS修改系统镜像源</title>
-      <link>https://quinn.touch-star.com/post/operation/linux/centos/1-modifymirror/</link>
+      <link>https://touch-star.com/post/operation/linux/centos/1-modifymirror/</link>
       <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/operation/linux/centos/1-modifymirror/</guid>
+      <guid>https://touch-star.com/post/operation/linux/centos/1-modifymirror/</guid>
       <description>CentOS修改系统镜像源 一.备份当前源 1  mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup   二、切换阿里云镜像源  CentOS7 切换源  1 2 3 4  # 进入源所在路径 cd /etc/yum.repos.d/ # 下载阿里云镜像源并保存为源文件 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo    CentOS6 切换源  1 2 3 4  # 进入源所在路径 cd /etc/yum.repos.d/ # 下载网易163镜像源并保存为源文件 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS6-Base-163.repo   </description>
     </item>
     
     <item>
       <title>【Nginx那点事儿】之 ①【 Nginx入门】</title>
-      <link>https://quinn.touch-star.com/post/middleware/nginx/1-nginx-base/</link>
+      <link>https://touch-star.com/post/middleware/nginx/1-nginx-base/</link>
       <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/middleware/nginx/1-nginx-base/</guid>
+      <guid>https://touch-star.com/post/middleware/nginx/1-nginx-base/</guid>
       <description>【Nginx那点事儿】之 ①【 Nginx入门】 一、Nginx为什么受青睐 ​	在介绍Nginx具体的安装、配置以及原理之前先聊聊概念常识问题。那就是目前为什么Nginx深受青睐？那我们先从Nginx是什么开始聊起。
 1.Nginx是什么   简单介绍
  ***Nginx***来自于俄罗斯，是在**RamblerMedia**工作的**Igor Sysoev**使用***C***语言编写而成的跨平台轻量级高性能的*Web*服务器。***Nginx***可以运行在**Linux**、**FreeBSD**、**Solaris**(*Sun*公司的类*Unix OS*)、**MacOS**、以及**Windows**等操作系统。操作系统的不同，也给***Nginx***带来了一些好处，***Nginx***会使用当前操作系统中特有的一些高效**API**来提高自身的性能。    Nginx和它的对手们
@@ -77,28 +77,28 @@ master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显
     
     <item>
       <title>1.KVM入门</title>
-      <link>https://quinn.touch-star.com/post/operation/linux/kvm/1-base/</link>
+      <link>https://touch-star.com/post/operation/linux/kvm/1-base/</link>
       <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/operation/linux/kvm/1-base/</guid>
+      <guid>https://touch-star.com/post/operation/linux/kvm/1-base/</guid>
       <description>KVM入门  1.基础操作 ①.创建虚拟机 1 2 3 4 5 6 7  virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart   ②.虚拟机相关操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36  # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 停止指定虚拟机 virsh shutdown &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 销毁指定虚拟机(强制断电) virsh destory &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 登入指定虚拟机 virsh console &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*)   ③.</description>
     </item>
     
     <item>
       <title>1.TCP/IP入门</title>
-      <link>https://quinn.touch-star.com/post/operation/linux/tcp/1.overview/</link>
+      <link>https://touch-star.com/post/operation/linux/tcp/1.overview/</link>
       <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/operation/linux/tcp/1.overview/</guid>
+      <guid>https://touch-star.com/post/operation/linux/tcp/1.overview/</guid>
       <description>TCP/IP入门 1.1 协议分层 ✌🏼😂😅😅</description>
     </item>
     
     <item>
       <title>2.KVM-双网卡网关配置</title>
-      <link>https://quinn.touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</link>
+      <link>https://touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</link>
       <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://quinn.touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</guid>
+      <guid>https://touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</guid>
       <description>双网卡网关配置 1.在系统路由表文件/etc/iproute2/rt_tables增加配置
 1 2  252 e1 251 e0   2.执行以下命令，并在/etc/rc.d/network追加此内容
 1 2 3 4 5 6 7 8 9  # 此内容防止服务器重启路由失效 ip route flush table e0 ip route add default via 10.3.3.1 dev eth0 src 10.3.3.25 table e0 ip route add 127.0.0.0/8 dev lo table e0 ip rule add from 10.3.3.25 table e0 ip route flush table e1 ip route add default via 10.2.2.1 dev eth1 src 10.</description>

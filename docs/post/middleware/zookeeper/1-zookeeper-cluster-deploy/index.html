@@ -38,7 +38,7 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://quinn.touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/" />
+<link rel="canonical" href="https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/" />
 
 
 
@@ -68,7 +68,7 @@
 1 2  # 进入ZK路径 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.6/apache-zookeeper-3.5.6-bin.tar.gz   2.修改配置文件 进入conf目录，在配置文件前，先cp zoo_sample.cfg zoo.cfg,然后vim zoo.cfg。配置如下：
 1 2 3 4 5 6 7 8 9 10  tickTime=2000 initLimit=10 syncLimit=5 dataDir=/data/ops/zk/zookeeper-3.5.6-master/conf clientPort=2181 server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888   3.启动ZK ①.在每个节点的服务器依次启动服务： [root@localhost zk]~#: ./bin/zkServer.sh start 在启动过程中日志会出现异常，由于其他节点还未启动，所以属于正常情况（正常情况下，仅有最后一个节点启动不会出现异常）。待所有节点全部启动，集群会逐渐稳定下来。 ②.查询每一个节点角色 [root@localhost zk]~#: ." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://quinn.touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/" />
+<meta property="og:url" content="https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/" />
 <meta property="article:published_time" content="2019-11-12T01:36:27+08:00" />
 <meta property="article:modified_time" content="2019-11-12T01:36:27+08:00" />
 <meta itemprop="name" content="1.zookeeper分布式部署">
@@ -119,21 +119,21 @@
         
           
           
-            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
+            <a class="menu-item-link" href="https://touch-star.com/">主页</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
+            <a class="menu-item-link" href="https://touch-star.com/post/">归档</a>
           
         
       </li><li class="mobile-menu-item">
         
           
           
-            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
+            <a class="menu-item-link" href="https://touch-star.com/tags/">标签</a>
           
         
       </li><li class="mobile-menu-item">
@@ -141,30 +141,30 @@
           
           <div class="mobile-menu-parent">
             <span class="mobile-submenu-open"></span>
-            <a href="https://quinn.touch-star.com/categories">
+            <a href="https://touch-star.com/categories">
               分类
             </a>
           </div>
           <ul class="mobile-submenu-list">
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/java">Java</a>
+                <a href="https://touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/linux">Linux</a>
+                <a href="https://touch-star.com/categories/linux">Linux</a>
               </li>
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/middleware">MiddleWare</a>
+                <a href="https://touch-star.com/categories/middleware">MiddleWare</a>
               </li>
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/go">Go</a>
+                <a href="https://touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
+                <a href="https://touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -173,7 +173,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
+            <a class="menu-item-link" href="https://touch-star.com/about/">关于</a>
           
         
       </li>
@@ -265,7 +265,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinn.touch-star.com/">主页</a>
+            <a class="menu-item-link" href="https://touch-star.com/">主页</a>
           
 
         
@@ -276,7 +276,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinn.touch-star.com/post/">归档</a>
+            <a class="menu-item-link" href="https://touch-star.com/post/">归档</a>
           
 
         
@@ -287,7 +287,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinn.touch-star.com/tags/">标签</a>
+            <a class="menu-item-link" href="https://touch-star.com/tags/">标签</a>
           
 
         
@@ -297,27 +297,27 @@
         <li class="menu-item">
         
           
-          <a class="menu-item-link menu-parent" href="https://quinn.touch-star.com/categories">分类</a>
+          <a class="menu-item-link menu-parent" href="https://touch-star.com/categories">分类</a>
           <ul class="submenu">
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/java">Java</a>
+                <a href="https://touch-star.com/categories/java">Java</a>
               </li>
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/linux">Linux</a>
+                <a href="https://touch-star.com/categories/linux">Linux</a>
               </li>
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/middleware">MiddleWare</a>
+                <a href="https://touch-star.com/categories/middleware">MiddleWare</a>
               </li>
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/go">Go</a>
+                <a href="https://touch-star.com/categories/go">Go</a>
               </li>
             
               <li>
-                <a href="https://quinn.touch-star.com/categories/k8s">K8s</a>
+                <a href="https://touch-star.com/categories/k8s">K8s</a>
               </li>
             
           </ul>
@@ -330,7 +330,7 @@
         
           
           
-            <a class="menu-item-link" href="https://quinn.touch-star.com/about/">关于</a>
+            <a class="menu-item-link" href="https://touch-star.com/about/">关于</a>
           
 
         
@@ -361,7 +361,7 @@
           2019-11-12
         </time>
         <div class="post-category">
-            <a href="https://quinn.touch-star.com/categories/middleware/"> middleware </a>
+            <a href="https://touch-star.com/categories/middleware/"> middleware </a>
             
           </div>
         <span class="more-meta"> 约 112 字 </span>
@@ -587,9 +587,9 @@ Mode: follower
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://quinn.touch-star.com/tags/zookeeper/">Zookeeper</a>
-          <a href="https://quinn.touch-star.com/tags/linux/">Linux</a>
-          <a href="https://quinn.touch-star.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+          <a href="https://touch-star.com/tags/zookeeper/">Zookeeper</a>
+          <a href="https://touch-star.com/tags/linux/">Linux</a>
+          <a href="https://touch-star.com/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
           
         </div>
 
@@ -688,7 +688,7 @@ Mode: follower
     </a>
 
 
-<a href="https://quinn.touch-star.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
+<a href="https://touch-star.com/index.xml" rel="noopener alternate" type="application/rss&#43;xml"
     class="iconfont" title="rss" target="_blank">
     <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"

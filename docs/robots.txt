@@ -1,2 +1,2 @@
 User-agent: *
-Sitemap: https://quinn.touch-star.com/sitemap.xml
+Sitemap: https://touch-star.com/sitemap.xml
