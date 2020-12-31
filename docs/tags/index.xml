@@ -6,10 +6,55 @@
     <description>Recent content in Tags on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 22 Dec 2020 15:36:27 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 31 Dec 2020 11:13:47 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>interview</title>
+      <link>https://touch-star.com/tags/interview/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/tags/interview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://touch-star.com/tags/java/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>面试</title>
+      <link>https://touch-star.com/tags/%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/tags/%E9%9D%A2%E8%AF%95/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>command</title>
+      <link>https://touch-star.com/tags/command/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/tags/command/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jvm</title>
+      <link>https://touch-star.com/tags/jvm/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/tags/jvm/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>dubbo</title>
@@ -17,15 +62,6 @@
       <pubDate>Tue, 22 Dec 2020 15:36:27 +0800</pubDate>
       
       <guid>https://touch-star.com/tags/dubbo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>java</title>
-      <link>https://touch-star.com/tags/java/</link>
-      <pubDate>Tue, 22 Dec 2020 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/tags/java/</guid>
       <description></description>
     </item>
     
@@ -62,42 +98,6 @@
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
       <guid>https://touch-star.com/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>namespace</title>
-      <link>https://touch-star.com/tags/namespace/</link>
-      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/tags/namespace/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>springboot</title>
-      <link>https://touch-star.com/tags/springboot/</link>
-      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/tags/springboot/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>ufs</title>
-      <link>https://touch-star.com/tags/ufs/</link>
-      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/tags/ufs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>容器</title>
-      <link>https://touch-star.com/tags/%E5%AE%B9%E5%99%A8/</link>
-      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/tags/%E5%AE%B9%E5%99%A8/</guid>
       <description></description>
     </item>
     

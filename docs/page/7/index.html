@@ -62,7 +62,7 @@
 <meta property="og:description" content="笨笨豪の摘星辰" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://touch-star.com/" />
-<meta property="og:updated_time" content="2020-12-22T15:36:27+08:00" />
+<meta property="og:updated_time" content="2020-12-31T11:13:47+08:00" />
 <meta itemprop="name" content="Quinn">
 <meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quinn"/>
@@ -337,6 +337,92 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_4_factory/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 37 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1-design/1-2-design/1_2_4_factory/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      4.工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
+ 一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
+ 多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
+1 2  # 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。 # 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。   ②.工厂角色职责   Product(产品) 一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类ConcreateProduct类所决定。
+  ConcreateProduct(具体产品) 属于具体加工职责：决定了具体生产出的产品。
+  Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
+  ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
+  ③.UML图 ④.代码清单 ⑤.注意事项 1 2 3  使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。   
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1-design/1-2-design/1_2_4_factory/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_5_singleton/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 194 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1-design/1-2-design/1_2_5_singleton/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      5.单例模式 **单例模式：**保证任何情况下都绝对的只生成一个实例的模式。
+①.单例角色  Singleton: 有且仅有的一个角色(实例)。  **Tips:**当存在多个实例时，实例间互相影响，会出现意想不到异常。当且仅当，第一次调用类中静态方法的时候，Singleton类会被初始化，生成唯一的静态实例，重复调用时直接返回已经初始化完成的实例。
+②.实现单例  **方式一：**简化实现的单例模式  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 1.简化实现的单例模式，但遇到多线程肯定有问题 */ public static Singleton getInstance(){ if (singleton==null){ singleton=new Singleton(); } return singleton; } }    **方式二：**加锁控制多线程  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 2.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1-design/1-2-design/1_2_5_singleton/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -653,90 +739,6 @@
     </div>
     <div class="read-more">
       <a href="/post/coding/java/base/12-algorithm/12_6_dynamic_programming/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/2-basis/2_1_base/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 21 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/2-basis/2_1_base/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      对象入门 ​	首先一个重要的概念：OOP (Object Oriented Programming),即面向对象编程。对于面向对象会有三大特征：封装、继承、多态。
- 封装：就是把客观事物封装成具体抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象进行操作，对不可信的进行隐藏。一个类就是封装了数据以及操作这些数据的代码的逻辑实体。在一个对象内部，某些代码或者某些数据可以是私有的，不能被外界所访问。通过这种方式，对象对内部数据提供了不同级别的保护，以防止程序中无关的部分意外的改变或者错误的使用了对象的私有部分。 继承：指可以让某个类型的对象获得另一个类型的对象的属性的方法。它支持按级分类的概念。继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展。 通过继承创建的新类称为“子类”或“派生类”，被继承的类称为“基类”、“父类”或“超类”。继承的过程，就是从一般到特殊的过程。要实现继承，可以通过 “继承”（Inheritance）和“组合”（Composition）来实现。继承概念的实现方式有二类：实现继承与接口继承。实现继承是指直接使用 基类的属性和方法而无需额外编码的能力；接口继承是指仅使用属性和方法的名称、但是子类必须提供实现的能力。 多态：是指一个类实例的相同方法在不同情形有不同表现形式。多态机制使具有不同内部结构的对象可以共享相同的外部接口。这意味着，虽然针对不同对象的具体操作不同，但通过一个公共的类，它们（那些操作）可以通过相同的方式予以调用。  一、抽象 ​	Java基础语言的面向对象程序设计方法具有的一下五大基本特征：
- 所有东西都是对象。可将对象想象成一种新型变量；它保存着数据，但是可要求它对自身进行操作。理论来说，可以从要解决的问题身上提出所有概念性的组件，然后在程序中将其表达为一个对象。 程序是一大堆对象的组合。通过消息的传递，各对象知道自己该做什么。为了向面向对象发出请求，需向那个对象发送一条消息。更确切的来说，可以将消息想象成为一个请求，他调用的是从属于目标对象的一个子例程或者说是函数。 每个对象都有自己的存储空间，可以容纳其他对象。或者说是，通过封装现有的对象，可以制造出一个新型对象。所以，尽管对象的概念非常简单，但是在程序中却可以达到任意高的复杂程度。 每个对象都有一个类型。根据语法，每个对象都是某个类中的一个实例。其中，类**(Class)**是类型(type)的同义词。一个类最为重要的特征就是“能将什么消息发送给它”。 同一个类所有的对象都能接收相同的消息。这实际是别有含义的一种说法。由于类型为“圆”的一个对象也属于类型为“形状”的一个对象。所以一个圆完全可以接收形状消息。这意味着可以让程序代码统一指挥“形状”，使得其自动控制所有的形状对象。其中自然包括圆这一个对象。这一个特性成为对象的可替代性。是OOP的重要概念之一。  二、对象的接口 
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/2-basis/2_1_base/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/2-basis/2_2_reflection/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 50 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/2-basis/2_2_reflection/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      2-3.Java反射 一、反射： 1.概念： 反射，即：动态获取类的信息，以及动态调用对象的方法的功能。  2.作用：   在运行时判断任意一个对象所属的类
-  在运行时构造任意一个类的对象
-  在运行时判断任意一个类所具有的成员变量和方法
-  在运行时调用任意一个对象的方法
-可以生成动态代理
-  通过Java反射机制，可以在程序中访问已经装载到jvm中的Java对象的描述，以实现访问、检测和修改描述Java对象本身信息的功能。Java反射机制很强大。其中，java.lang.reflect包中提供了对该功能的支持。
- 二、实现反射获取类的方法： 方式一 ： 通过Class.forName(&ldquo;类名字符串&rdquo;)获取（最为常用的方法） 1 2  //类名字符串是“包名+类名”，返回Class的对象。 Class class = Class.forName(&#34;cheneyHao.Student&#34;);   方式二 ： 通过示例对象的getClass()方法获取 1 2 3  //先创建一个对象，在调用对象的getClass()方法。（任何一个Java对象都会有getClass()方法） Student student = new Student(); Class class = student.getClass();   方法三 ： 通过 .class 获取 1 2  //通过类名.class,返回Class对象。(每个类都有Class属性) Class class = Student.class;   
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/2-basis/2_2_reflection/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

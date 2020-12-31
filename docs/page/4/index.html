@@ -62,7 +62,7 @@
 <meta property="og:description" content="笨笨豪の摘星辰" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://touch-star.com/" />
-<meta property="og:updated_time" content="2020-12-22T15:36:27+08:00" />
+<meta property="og:updated_time" content="2020-12-31T11:13:47+08:00" />
 <meta itemprop="name" content="Quinn">
 <meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quinn"/>
@@ -337,6 +337,110 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/kubernetes/1-k8s-base/1_concept/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 78 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/1-k8s-base/1_concept/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      1.初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
+  ApiServer
+集群的网关。
+ 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
+   Controller Manager
+负责生命周期功能及API业务逻辑。
+ **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
+   Scheduler
+在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
+  Etcd
+基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
+ a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
+     Node(从节点:worker node)
+工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
+  Pod
+Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
+  Pod Controller(Pod 控制器)
+虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
+  Replication Controller(复制控制器)
+K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
+  Replica Set
+保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
+ 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/1-k8s-base/1_concept/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/kubernetes/1-k8s-base/2_kubectl/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 190 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/1-k8s-base/2_kubectl/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      1-2 Kubectl命令行工具 1.kubectl用法  $~: kubectl [command] [TYPE] [NAME] [flags]
+   [command] 子命令。用于操作Kubernetes集群资源对象。
+可取值：[create | delete | describe | get | apply]
+  [TYPE] 资源对象的类型。区分大小写
+备注：可以通过单数形式、复数形式、简写形式表示。
+1 2 3 4  # 例：不同写法的Type,但是效果一致 kubectl get pod pod1 kubectl get pods pod1 kubectl get po pod1     [NAME] 资源对象名称。区分大小写 备注： 如果不指定名称，将返回属于TYPE的所有对象列表。
+1 2  # 例：返回所有对象列表 kubectl get pods     [flags] kubectl子命令的可选参数
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/1-k8s-base/2_kubectl/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -647,83 +751,6 @@
     </div>
     <div class="read-more">
       <a href="/post/cloudnative/kubernetes/4-k8s-deployfile/1.mysql-k8s/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/kubernetes/5-k8s-crd/cunstom_resource_defination/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/kubernetes/5-k8s-crd/cunstom_resource_defination/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/kubernetes/5-k8s-crd/cunstom_resource_defination/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/kubernetes/k8s-plugin/1-k8s_dashboard/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 3 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/kubernetes/k8s-plugin/1-k8s_dashboard/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      1.Kuberbetes-dashboard(Web UI)  Kuberbetes-dashboard是基于web的Kubernetes用户界面。
- 
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/kubernetes/k8s-plugin/1-k8s_dashboard/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

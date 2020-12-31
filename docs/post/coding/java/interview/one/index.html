@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Quinn</title>
+  <title>[Interview]1.面试准备 - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="笨笨豪の摘星辰" />
-  <meta name="keywords" content="Quinn, k8s, docker" />
+  <meta name="description" content="面试准备  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）    MySQL调优：BTree hash原理 Spring IOC原理 Spring AOP原理 Dubbo服务发现、注册流程 Dubbo通信原理 Dubbo SPI与Java SPI Zookeeper选举协议 ActiveMQ集群消息回流、死信队列如何处理 大数据量的排序如何处理 如何判断链表是回文链表、快排序、归并排序 Spring事务 Java线程池 JDK中JUC包 Mybatis的一、二级缓存 Mybatis工作原理 Redis Bitmap Tomcat 如何实现类隔离 垃圾回收器G1与GC算法CMS  " />
+<meta name="keywords" content="interview" />
+
 
 
 
@@ -34,8 +35,8 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://touch-star.com/" />
-<link href="/index.xml" rel="alternate" type="application/rss+xml" title="Quinn" />
+<link rel="canonical" href="https://touch-star.com/post/coding/java/interview/one/" />
+
 
 
 
@@ -58,15 +59,23 @@
 
 
 
-<meta property="og:title" content="Quinn" />
-<meta property="og:description" content="笨笨豪の摘星辰" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://touch-star.com/" />
-<meta property="og:updated_time" content="2020-12-31T11:13:47+08:00" />
-<meta itemprop="name" content="Quinn">
-<meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Quinn"/>
-<meta name="twitter:description" content="笨笨豪の摘星辰"/>
+<meta property="og:title" content="[Interview]1.面试准备" />
+<meta property="og:description" content="面试准备  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）    MySQL调优：BTree hash原理 Spring IOC原理 Spring AOP原理 Dubbo服务发现、注册流程 Dubbo通信原理 Dubbo SPI与Java SPI Zookeeper选举协议 ActiveMQ集群消息回流、死信队列如何处理 大数据量的排序如何处理 如何判断链表是回文链表、快排序、归并排序 Spring事务 Java线程池 JDK中JUC包 Mybatis的一、二级缓存 Mybatis工作原理 Redis Bitmap Tomcat 如何实现类隔离 垃圾回收器G1与GC算法CMS  " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://touch-star.com/post/coding/java/interview/one/" />
+<meta property="article:published_time" content="2020-12-31T11:13:47+08:00" />
+<meta property="article:modified_time" content="2020-12-31T11:13:47+08:00" />
+<meta itemprop="name" content="[Interview]1.面试准备">
+<meta itemprop="description" content="面试准备  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）    MySQL调优：BTree hash原理 Spring IOC原理 Spring AOP原理 Dubbo服务发现、注册流程 Dubbo通信原理 Dubbo SPI与Java SPI Zookeeper选举协议 ActiveMQ集群消息回流、死信队列如何处理 大数据量的排序如何处理 如何判断链表是回文链表、快排序、归并排序 Spring事务 Java线程池 JDK中JUC包 Mybatis的一、二级缓存 Mybatis工作原理 Redis Bitmap Tomcat 如何实现类隔离 垃圾回收器G1与GC算法CMS  ">
+<meta itemprop="datePublished" content="2020-12-31T11:13:47&#43;08:00" />
+<meta itemprop="dateModified" content="2020-12-31T11:13:47&#43;08:00" />
+<meta itemprop="wordCount" content="37">
+
+
+
+<meta itemprop="keywords" content="java,interview,面试," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Interview]1.面试准备"/>
+<meta name="twitter:description" content="面试准备  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）    MySQL调优：BTree hash原理 Spring IOC原理 Spring AOP原理 Dubbo服务发现、注册流程 Dubbo通信原理 Dubbo SPI与Java SPI Zookeeper选举协议 ActiveMQ集群消息回流、死信队列如何处理 大数据量的排序如何处理 如何判断链表是回文链表、快排序、归并排序 Spring事务 Java线程池 JDK中JUC包 Mybatis的一、二级缓存 Mybatis工作原理 Redis Bitmap Tomcat 如何实现类隔离 垃圾回收器G1与GC算法CMS  "/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -240,7 +249,7 @@
   <ul id="menu" class="menu">
     
     
-        <li class="menu-item active">
+        <li class="menu-item">
         
           
           
@@ -330,404 +339,173 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
+          <article class="post bg-white">
+    
+    <header class="post-header">
+      <h1 class="post-title">[Interview]1.面试准备</h1>
+      
+      <div class="post-meta">
+        <time datetime="2020-12-31" class="post-time">
+          2020-12-31
+        </time>
+        <div class="post-category">
+            <a href="https://touch-star.com/categories/java/"> Java </a>
+            
+          </div>
+        <span class="more-meta"> 约 37 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+
+        
+        
+
+        
+        
+          <span id="/post/coding/java/interview/one/" class="leancloud_visitors" data-flag-title="[Interview]1.面试准备">
+            <span class="post-meta-item-text"> | 阅读 </span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
+      </div>
+    </header>
+
+    
+    
+
+
+
+
+
+
+
+
+
+<div class="toc">
+
+    <div class="page-header"><strong> 目录 </strong></div>
+
+    <div id="page-scrollspy" class="toc-nav">
+
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e9%9d%a2%e8%af%95%e5%87%86%e5%a4%87">
+                            面试准备
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                
+            
+        
+
+    </div>
+
+</div>
+
+
+
+
+    
+    <div class="post-content">
+      <h1 id="面试准备">面试准备</h1>
+<ul>
+<li>JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">遵循六步走原则：
+  1）找到罪魁祸首的进程
+  2）分析进程对应的线程
+  3）生成JVM当前时刻线程快照
+  4）
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>MySQL调优：BTree hash原理</li>
+<li>Spring IOC原理</li>
+<li>Spring AOP原理</li>
+<li>Dubbo服务发现、注册流程</li>
+<li>Dubbo通信原理</li>
+<li>Dubbo SPI与Java SPI</li>
+<li>Zookeeper选举协议</li>
+<li>ActiveMQ集群消息回流、死信队列如何处理</li>
+<li>大数据量的排序如何处理</li>
+<li>如何判断链表是回文链表、快排序、归并排序</li>
+<li>Spring事务</li>
+<li>Java线程池</li>
+<li>JDK中JUC包</li>
+<li>Mybatis的一、二级缓存</li>
+<li>Mybatis工作原理</li>
+<li>Redis Bitmap</li>
+<li>Tomcat 如何实现类隔离</li>
+<li>垃圾回收器G1与GC算法CMS</li>
+</ul>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://touch-star.com/tags/java/">java</a>
+          <a href="https://touch-star.com/tags/interview/">interview</a>
+          <a href="https://touch-star.com/tags/%E9%9D%A2%E8%AF%95/">面试</a>
           
-<section id="posts" class="posts">
-  
-  
-    
-  
-  
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_14_chain_of_responsibility/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_14_chain_of_responsibility/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_14_chain_of_responsibility/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
+        </div>
 
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_15_facade/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_15_facade/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_15_facade/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/middleware/etcd/etcd_sourcecode_1/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
 
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_16_mediator/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_16_mediator/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_16_mediator/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
+            </i>
+            <span class="prev-text nav-default">Etcd基础入门(2)</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/coding/java/base/3-jvm/jvm-base/">
+            <span class="next-text nav-default">[JVM]1.关于JVM命令</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
 
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_17_observer/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 1 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_17_observer/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      17.观察者模式 
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_17_observer/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_18_memento/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_18_memento/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_18_memento/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_19_state/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_19_state/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_19_state/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_20_flyweight/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_20_flyweight/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_20_flyweight/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_21_proxy/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_21_proxy/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_21_proxy/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_22_command/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_22_command/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_22_command/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_23_interpreter/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_23_interpreter/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_23_interpreter/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-</section>
-
-
-
-
-
-
-  
-  
-  
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
@@ -736,62 +514,29 @@
   
 
   
-  
 
   
   
-  <nav class="pagination">
-    <ul>
-      
-      <li >
-        <a href="/">1</a>
-      </li>
-      
-      <li >
-        <a href="/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/page/3/">3</a>
-      </li>
-      
-      <li >
-        <a href="/page/4/">4</a>
-      </li>
-      
-      <li >
-        <a href="/page/5/">5</a>
-      </li>
-      
-      <li  class="active" >
-        <a href="/page/6/">6</a>
-      </li>
-      
-      <li >
-        <a href="/page/7/">7</a>
-      </li>
-      
-      <li >
-        <a href="/page/8/">8</a>
-      </li>
-      
-      <li >
-        <a href="/page/9/">9</a>
-      </li>
-      
-      <li >
-        <a href="/page/10/">10</a>
-      </li>
-      
-    </ul>
-  </nav>
-
-  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "quinniup/handbooks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
   
 
+  
 
+  
 
+  
 
+    
+
+  
 
         </div>
       </div>

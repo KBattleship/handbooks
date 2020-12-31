@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>command on Quinn</title>
-    <link>https://touch-star.com/tags/command/</link>
-    <description>Recent content in command on Quinn</description>
+    <title>jvm on Quinn</title>
+    <link>https://touch-star.com/tags/jvm/</link>
+    <description>Recent content in jvm on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 27 Dec 2020 21:10:47 +0800</lastBuildDate>
     
-	<atom:link href="https://touch-star.com/tags/command/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://touch-star.com/tags/jvm/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <guid>https://touch-star.com/post/coding/java/base/3-jvm/jvm-base/</guid>
       <description>关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&amp;lt;hostid&amp;gt;] Definitions: &amp;lt;hostid&amp;gt;: &amp;lt;hostname&amp;gt;[:&amp;lt;port&amp;gt;] # 若不指定&amp;lt;hostid&amp;gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解</description>
-    </item>
-    
-    <item>
-      <title>1.Linux-Vim</title>
-      <link>https://touch-star.com/post/operation/linux/centos/command/vim/</link>
-      <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/operation/linux/centos/command/vim/</guid>
-      <description>vim 1.基本操作命令 普通模式(Normal)  a: append current location i: insert current location o: open a line below A: append after line I: insert before line O: open a line above y: copy p: parse ^: 光标移至行首 $: 光标移至行末 G: 光标移至末行 1G: 光标移至首行 H: 光标移至当前窗口首行 M: 光标移至当前窗口中间位置  命令行模式(Command)  % s/string1/string2/g  可视化模式(Visual)  v:  插入编辑模式(Insert) 2.快速纠错 编辑模式下：  ctrl+w: 删除上一个单词 ctrl+u: 删除当前行  </description>
     </item>
     
   </channel>
