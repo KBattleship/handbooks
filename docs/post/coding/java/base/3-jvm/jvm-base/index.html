@@ -72,7 +72,7 @@
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&lt;hostid&gt;] Definitions: &lt;hostid&gt;: &lt;hostname&gt;[:&lt;port&gt;] # 若不指定&lt;hostid&gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解">
 <meta itemprop="datePublished" content="2020-12-27T21:10:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-12-27T21:10:47&#43;08:00" />
-<meta itemprop="wordCount" content="396">
+<meta itemprop="wordCount" content="398">
 
 
 
@@ -356,7 +356,7 @@
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 396 字 </span>
+        <span class="more-meta"> 约 398 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -728,11 +728,11 @@ Definitions:
 </span><span class="lnt">5
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">$ jps -ml
-33270 org.jetbrains.idea.maven.server.RemoteMavenServer36
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ jps -ml
+<span class="m">33270</span> org.jetbrains.idea.maven.server.RemoteMavenServer36
 
 $ jps -v
-33270 RemoteMavenServer36 -Djava.awt.headless=true -Dmaven.defaultProjectBuilder.disableGlobalModelCache=true -Didea.maven.embedder.version=3.6.3 -Xmx768m -Dmaven.ext.class.path=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven-event-listener.jar -Dfile.encoding=UTF-8
+<span class="m">33270</span> RemoteMavenServer36 -Djava.awt.headless<span class="o">=</span><span class="nb">true</span> -Dmaven.defaultProjectBuilder.disableGlobalModelCache<span class="o">=</span><span class="nb">true</span> -Didea.maven.embedder.version<span class="o">=</span>3.6.3 -Xmx768m -Dmaven.ext.class.path<span class="o">=</span>/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven-event-listener.jar -Dfile.encoding<span class="o">=</span>UTF-8
 </code></pre></td></tr></table>
 </div>
 </div></li>
@@ -839,15 +839,19 @@ where &lt;option&gt; is one of:
 <li>
 <p>实例讲解</p>
 <ul>
-<li><code>jmap heap </code></li>
-</ul>
+<li><code>jmap heap &lt;pid&gt;</code>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code></code></pre></td>
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback"></code></pre></td></tr></table>
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
 </div>
 </div></li>
+<li></li>
+</ul>
+</li>
 </ul>
 <h3 id="3-jhat---用于分析jmap所生成的dump文件"><strong>3. jhat - 用于分析jmap所生成的dump文件</strong></h3>
 <div class="highlight"><div class="chroma">
@@ -1062,7 +1066,7 @@ where &lt;option&gt; is one of:
     &copy;
     
       2019 -
-    2020
+    2021
     <span class="heart">
       
       <i class="iconfont">

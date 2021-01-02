@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="面试准备  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）    MySQL调优：BTree hash原理 Spring IOC原理 Spring AOP原理 Dubbo服务发现、注册流程 Dubbo通信原理 Dubbo SPI与Java SPI Zookeeper选举协议 ActiveMQ集群消息回流、死信队列如何处理 大数据量的排序如何处理 如何判断链表是回文链表、快排序、归并排序 Spring事务 Java线程池 JDK中JUC包 Mybatis的一、二级缓存 Mybatis工作原理 Redis Bitmap Tomcat 如何实现类隔离 垃圾回收器G1与GC算法CMS  " />
+  <meta name="description" content="面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1     Zookeeper选举协议 1     ActiveMQ集群消息回流、死信队列如何处理 1     大数据量的排序如何处理 1     如何判断链表是回文链表、快排序、归并排序 1     MySQL调优：BTree、Hash原理 1     Mybatis的一、二级缓存 1     Mybatis工作原理 1     Redis Bitmap 1      " />
 <meta name="keywords" content="interview" />
 
 
@@ -60,22 +60,22 @@
 
 
 <meta property="og:title" content="[Interview]1.面试准备" />
-<meta property="og:description" content="面试准备  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）    MySQL调优：BTree hash原理 Spring IOC原理 Spring AOP原理 Dubbo服务发现、注册流程 Dubbo通信原理 Dubbo SPI与Java SPI Zookeeper选举协议 ActiveMQ集群消息回流、死信队列如何处理 大数据量的排序如何处理 如何判断链表是回文链表、快排序、归并排序 Spring事务 Java线程池 JDK中JUC包 Mybatis的一、二级缓存 Mybatis工作原理 Redis Bitmap Tomcat 如何实现类隔离 垃圾回收器G1与GC算法CMS  " />
+<meta property="og:description" content="面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1     Zookeeper选举协议 1     ActiveMQ集群消息回流、死信队列如何处理 1     大数据量的排序如何处理 1     如何判断链表是回文链表、快排序、归并排序 1     MySQL调优：BTree、Hash原理 1     Mybatis的一、二级缓存 1     Mybatis工作原理 1     Redis Bitmap 1      " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/coding/java/interview/one/" />
 <meta property="article:published_time" content="2020-12-31T11:13:47+08:00" />
 <meta property="article:modified_time" content="2020-12-31T11:13:47+08:00" />
 <meta itemprop="name" content="[Interview]1.面试准备">
-<meta itemprop="description" content="面试准备  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）    MySQL调优：BTree hash原理 Spring IOC原理 Spring AOP原理 Dubbo服务发现、注册流程 Dubbo通信原理 Dubbo SPI与Java SPI Zookeeper选举协议 ActiveMQ集群消息回流、死信队列如何处理 大数据量的排序如何处理 如何判断链表是回文链表、快排序、归并排序 Spring事务 Java线程池 JDK中JUC包 Mybatis的一、二级缓存 Mybatis工作原理 Redis Bitmap Tomcat 如何实现类隔离 垃圾回收器G1与GC算法CMS  ">
+<meta itemprop="description" content="面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1     Zookeeper选举协议 1     ActiveMQ集群消息回流、死信队列如何处理 1     大数据量的排序如何处理 1     如何判断链表是回文链表、快排序、归并排序 1     MySQL调优：BTree、Hash原理 1     Mybatis的一、二级缓存 1     Mybatis工作原理 1     Redis Bitmap 1      ">
 <meta itemprop="datePublished" content="2020-12-31T11:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-12-31T11:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="37">
+<meta itemprop="wordCount" content="56">
 
 
 
 <meta itemprop="keywords" content="java,interview,面试," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[Interview]1.面试准备"/>
-<meta name="twitter:description" content="面试准备  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）    MySQL调优：BTree hash原理 Spring IOC原理 Spring AOP原理 Dubbo服务发现、注册流程 Dubbo通信原理 Dubbo SPI与Java SPI Zookeeper选举协议 ActiveMQ集群消息回流、死信队列如何处理 大数据量的排序如何处理 如何判断链表是回文链表、快排序、归并排序 Spring事务 Java线程池 JDK中JUC包 Mybatis的一、二级缓存 Mybatis工作原理 Redis Bitmap Tomcat 如何实现类隔离 垃圾回收器G1与GC算法CMS  "/>
+<meta name="twitter:description" content="面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1     Zookeeper选举协议 1     ActiveMQ集群消息回流、死信队列如何处理 1     大数据量的排序如何处理 1     如何判断链表是回文链表、快排序、归并排序 1     MySQL调优：BTree、Hash原理 1     Mybatis的一、二级缓存 1     Mybatis工作原理 1     Redis Bitmap 1      "/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -352,7 +352,7 @@
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 37 字 </span>
+        <span class="more-meta"> 约 56 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -418,7 +418,27 @@
     <div class="post-content">
       <h1 id="面试准备">面试准备</h1>
 <ul>
-<li>JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理
+<li><input disabled="" type="checkbox"> Java线程池
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> JDK中JUC包
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -426,34 +446,178 @@
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span><span class="lnt">5
+</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-shell" data-lang="shell">遵循六步走原则：
   1）找到罪魁祸首的进程
   2）分析进程对应的线程
   3）生成JVM当前时刻线程快照
-  4）
+  4）分析定位代码问题
+  5）
 </code></pre></td></tr></table>
 </div>
 </div></li>
-<li>MySQL调优：BTree hash原理</li>
-<li>Spring IOC原理</li>
-<li>Spring AOP原理</li>
-<li>Dubbo服务发现、注册流程</li>
-<li>Dubbo通信原理</li>
-<li>Dubbo SPI与Java SPI</li>
-<li>Zookeeper选举协议</li>
-<li>ActiveMQ集群消息回流、死信队列如何处理</li>
-<li>大数据量的排序如何处理</li>
-<li>如何判断链表是回文链表、快排序、归并排序</li>
-<li>Spring事务</li>
-<li>Java线程池</li>
-<li>JDK中JUC包</li>
-<li>Mybatis的一、二级缓存</li>
-<li>Mybatis工作原理</li>
-<li>Redis Bitmap</li>
-<li>Tomcat 如何实现类隔离</li>
-<li>垃圾回收器G1与GC算法CMS</li>
+<li><input disabled="" type="checkbox"> 垃圾回收器G1与GC算法CMS
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Tomcat 如何实现类隔离
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Spring IOC原理
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Spring AOP原理
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Spring事务
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Dubbo服务发现、注册流程
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Dubbo通信原理
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Dubbo SPI与Java SPI
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Zookeeper选举协议
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> ActiveMQ集群消息回流、死信队列如何处理
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> 大数据量的排序如何处理
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> 如何判断链表是回文链表、快排序、归并排序
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> MySQL调优：BTree、Hash原理
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Mybatis的一、二级缓存
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input disabled="" type="checkbox"> Mybatis工作原理
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li><input checked="" disabled="" type="checkbox"> Redis Bitmap
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 
     </div>
@@ -593,7 +757,7 @@
     &copy;
     
       2019 -
-    2020
+    2021
     <span class="heart">
       
       <i class="iconfont">
