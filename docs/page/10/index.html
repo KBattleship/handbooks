@@ -62,7 +62,7 @@
 <meta property="og:description" content="笨笨豪の摘星辰" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://touch-star.com/" />
-<meta property="og:updated_time" content="2020-12-31T11:13:47+08:00" />
+<meta property="og:updated_time" content="2021-01-05T01:13:47+08:00" />
 <meta itemprop="name" content="Quinn">
 <meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quinn"/>
@@ -337,6 +337,44 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/spring/springcloud/2_gateway/gateway/1_1_gateway/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 57 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/spring/springcloud/2_gateway/gateway/1_1_gateway/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      GatewayCloud网关服务 1.项目配置说明 1.1 关于Project Yaml配置文件 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  spring:cloud:gateway:routes:# 自定义路由ID，要保持唯一- id:device# 目标服务地址(lb标识集群)uri:lb://cloud-service-media# 路由条件，Predicate接受一个输入参数，返回一个bool值。通过多种默认方法将Predicates组合成一个复杂路由逻辑# Predicate函数源于Java8，具体使用可参考Java源码进一步了解# 当匹配规则存在多种情况时，一个请求满足多个路由条件是请求将被第一个路由转发predicates:# 通过请求路径匹配- Path=/device# 通过时间匹配- After=2020-04-20T06:06:06+08:00[Asia/Shanghai]# 通过Cookie匹配- Cookie=cloudp.cc,cheneyin# 通过Header匹配- Header=X-Request-Id,\d+ # 通过Host匹配- Host=**.cloudp.cc# 通过请求匹配- Method=GET# 通过请求方式匹配- Query=deviceMac# 通过请求IP匹配- RemoteAddr=192.168.1.1/24  
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/spring/springcloud/2_gateway/gateway/1_1_gateway/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -688,44 +726,6 @@
     </div>
     <div class="read-more">
       <a href="/post/operation/linux/centos/command/regularexpression%E6%AD%A3%E5%88%99/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/operation/linux/centos/command/sed%E6%93%8D%E4%BD%9C/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/operation/linux/centos/command/sed%E6%93%8D%E4%BD%9C/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      
-    </div>
-    <div class="read-more">
-      <a href="/post/operation/linux/centos/command/sed%E6%93%8D%E4%BD%9C/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

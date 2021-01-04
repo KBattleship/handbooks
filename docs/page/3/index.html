@@ -62,7 +62,7 @@
 <meta property="og:description" content="笨笨豪の摘星辰" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://touch-star.com/" />
-<meta property="og:updated_time" content="2020-12-31T11:13:47+08:00" />
+<meta property="og:updated_time" content="2021-01-05T01:13:47+08:00" />
 <meta itemprop="name" content="Quinn">
 <meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quinn"/>
@@ -337,6 +337,47 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/middleware/database/sql/mysql/1-mysql-install/">1.MySQL编译安装过程</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-11-22" class="post-time">
+        2019-11-22
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/middleware/"> middleware </a>
+          
+        </div>
+      <span class="more-meta"> 约 89 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/database/sql/mysql/1-mysql-install/" class="leancloud_visitors" data-flag-title="1.MySQL编译安装过程">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      编译安装过程 1.预编译 1 2 3 4 5 6 7 8 9 10 11 12 13 14  cmake . -DCMAKE_INSTALL_PREFIX=/data/ops/mysql/ \ -DMYSQL_DATADIR=/data/ops/mysql/data \ -DWITH_BOOST=../boost_1_59_0 \ -DSYSCONFDIR=/etc \ -DWITH_INNOBASE_STORAGE_ENGINE=1 \ -DWITH_PARTITION_STORAGE_ENGINE=1 \ -DWITH_FEDERATED_STORAGE_ENGINE=1 \ -DWITH_BLACKHOLE_STORAGE_ENGINE=1 \ -DWITH_MYISAM_STORAGE_ENGINE=1 \ -DENABLED_LOCAL_INFILE=1 \ -DENABLE_DTRACE=0 \ -DDEFAULT_CHARSET=utf8mb4 \ -DDEFAULT_COLLATION=utf8mb4_general_ci \ -DWITH_EMBEDDED_SERVER=1   2.编译安装 1 2 3  make -j `grep processor /proc/cpuinfo | wc -l` #编译很消耗系统资源，小内存可能编译通不过make install make install   3.启动配置 1 2 3 4 5 6  ls -lrt /usr/local/mysql # 创建启动脚本，并增加可执行权限 cp /usr/local/mysql/support-files/mysql.
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/database/sql/mysql/1-mysql-install/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -733,48 +774,6 @@ UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化
     </div>
     <div class="read-more">
       <a href="/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/">2.适配器模式</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-22" class="post-time">
-        2019-08-22
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> java </a>
-          
-        </div>
-      <span class="more-meta"> 约 251 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/" class="leancloud_visitors" data-flag-title="2.适配器模式">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      适配器模式 适配器模式包含两种：  类适配器模式(使用继承的适配器) 对象适配器模式(使用委托的适配器)  适配器模式角色组成：  目标角色 源角色 适配器角色  ①.类适配器模式 继承于源类的同时实现目标接口
-表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  1 2 3 4  public interface Print { abstract void printWeak(); abstract void printStrong(); }    Banner(源角色)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class Banner { private String nameString; public Banner(String nameString) { this.
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

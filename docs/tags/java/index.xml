@@ -6,10 +6,19 @@
     <description>Recent content in java on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 31 Dec 2020 11:13:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Jan 2021 01:13:47 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Interview]面试准备</title>
+      <link>https://touch-star.com/post/coding/java/interview/2-processor/</link>
+      <pubDate>Tue, 05 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/interview/2-processor/</guid>
+      <description>面试准备 一、学习路线 1.Java基础  面向对象特性：封装、继承、多态(动态绑定、向上转型) 泛型、类型擦除 反射、其原理及其优缺点 static,final关键字 String,StringBuffer,StringBuilder底层区别 BIO、NIO、AIO Object类的方法 自动拆箱与自动装箱  2.集合框架  List  ArrayList LinkedList Vector CopyOnWriteArrayList   Set  HashSet TreeSet LinkedHashSet   Queue  PriorityQueue   Map  HashMap TreeMap LinkedMap   fast-fail，fast-safe机制 源码分析(底层数据结构，插入、扩容过程)、线程安全分析  3.Java虚拟机  类加载机制、双亲委派模式、3种加载器(BootstrapClassLoader，ExtensionClassLoader，ApplicationClassLoader) 运行时内存分区(PC，Java虚拟机栈，本地方法栈，堆，方法区[永久代、元空间]) JMM: Java内存模型分析 引用计数、可达性分析 垃圾回收算法：标记-清除、标记-整理、复制 垃圾回收器：比较区别(Serial，ParNew，ParallelScavenge，CMS，G1) 强、软、弱、虚引用 内存溢出、内存泄漏排查 JVM调优、常用命令  4.Java并发  三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池(ThreadPoolExecutor，7大参数、原理、四种拒绝策略、四个类型[Fixed、Single、Cached、Scheduled]) Synchronized 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  5.</description>
+    </item>
     
     <item>
       <title>[Interview]1.面试准备</title>
@@ -99,16 +108,6 @@
       <guid>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</guid>
       <description>适配器模式 适配器模式包含两种：  类适配器模式(使用继承的适配器) 对象适配器模式(使用委托的适配器)  适配器模式角色组成：  目标角色 源角色 适配器角色  ①.类适配器模式 继承于源类的同时实现目标接口
 表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  1 2 3 4  public interface Print { abstract void printWeak(); abstract void printStrong(); }    Banner(源角色)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class Banner { private String nameString; public Banner(String nameString) { this.</description>
-    </item>
-    
-    <item>
-      <title>3.模板模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_3_template/</link>
-      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_3_template/</guid>
-      <description>模板模式 **模板模式：**是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
-①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.</description>
     </item>
     
   </channel>
