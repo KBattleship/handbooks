@@ -342,6 +342,84 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/cloudnative/kubernetes/3-k8s-service/1.k8s-service/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 92 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/3-k8s-service/1.k8s-service/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      深入Service  Service是Kubernetes最为核心的概念。Service可以为一组具有相同功能的容器应用提供一个统一的入口地址，并且将请求负载分发至后端的各个容器应用上。
+ 1.Service参数定义 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57  # 必填，版本号apiVersion:v1# 必填kind:Service# 必填，元数据metadata:# 必填，Service名称(符合RFC 1035规范)name:string# 必填，命名空间(默认default)namespace:string# 自定义标签属性列表labels:- name:string# 自定义注解属性列表annotations:- name:string# 必填，配置内容详细描述 spec:# 必填，LabelSelector配置，将选择具有特定Label标签的Pod对象作为管理对象selector:[]# 必填，可选值[ClusterIP | NodePort | LoadBalancer]## ClusterIP:虚拟服务IP地址，该地址用于Kubernetes集群内部Pod对象访问，#在Node节点上Kube-proxy通过设置的Iptables规则进行转发## NodePort:使用宿主机端口，使能够访问各Node的外部客户端通过Node的#IP地址和端口号即可访问到应用。## LoadBalancer:使用外接负载均衡器完成到服务的负载分发，需要#spec.
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/3-k8s-service/1.k8s-service/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/kubernetes/4-k8s-deployfile/1.mysql-k8s/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 7 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/4-k8s-deployfile/1.mysql-k8s/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      4-1.K8s构建高可用Mysql集群 一、MySQL高可用架构图 1.主从复制+读写分离  此方案更适用于数据库读数据的场景(针对数据强一致性非严格的情况)，毕竟Replication存在一定的时延。 通过快速扩容Slave节点提高MySQL集群读取数据能力，不用过度依赖于Master节点。
+ 实现过程 ①.为其提供PV存储盘 
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/4-k8s-deployfile/1.mysql-k8s/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/cloudnative/kubernetes/5-k8s-crd/cunstom_resource_defination/"></a>
     </h1>
     
@@ -664,82 +742,6 @@ K8s的configMap将配置与Docker镜像解耦，更新配置时，无需重新�
 </article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_12_decorator/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_12_decorator/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_12_decorator/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_13_visitor/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_13_visitor/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_13_visitor/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
 </section>
 
 
@@ -803,6 +805,10 @@ K8s的configMap将配置与Docker镜像解耦，更新配置时，无需重新�
       
       <li >
         <a href="/page/10/">10</a>
+      </li>
+      
+      <li >
+        <a href="/page/11/">11</a>
       </li>
       
     </ul>

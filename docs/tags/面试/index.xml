@@ -13,11 +13,11 @@
     
     <item>
       <title>[Interview]1.面试准备</title>
-      <link>https://touch-star.com/post/coding/java/interview/one/</link>
+      <link>https://touch-star.com/post/coding/java/interview/1-one/</link>
       <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/interview/one/</guid>
-      <description>面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1     Zookeeper选举协议 1     ActiveMQ集群消息回流、死信队列如何处理 1     大数据量的排序如何处理 1     如何判断链表是回文链表、快排序、归并排序 1     MySQL调优：BTree、Hash原理 1     Mybatis的一、二级缓存 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  1.</description>
+      <guid>https://touch-star.com/post/coding/java/interview/1-one/</guid>
+      <description>面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  SPI(Service Provider Interface)，主要用于框架，框架定义接口。 不同使用者将存在不同需求，也必然出现不同实现方式。而SPI就是通过定义 一个特定的位置，Java SPI约定在Classpath下的META-INF/services/ 路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的 具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可 以在运行时动态为接口替换实现类。 Dubbo SPI 1.</description>
     </item>
     
   </channel>

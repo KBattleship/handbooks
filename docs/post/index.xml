@@ -36,11 +36,35 @@
     
     <item>
       <title>[Interview]1.面试准备</title>
-      <link>https://touch-star.com/post/coding/java/interview/one/</link>
+      <link>https://touch-star.com/post/coding/java/interview/1-one/</link>
       <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/interview/one/</guid>
-      <description>面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1     Zookeeper选举协议 1     ActiveMQ集群消息回流、死信队列如何处理 1     大数据量的排序如何处理 1     如何判断链表是回文链表、快排序、归并排序 1     MySQL调优：BTree、Hash原理 1     Mybatis的一、二级缓存 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  1.</description>
+      <guid>https://touch-star.com/post/coding/java/interview/1-one/</guid>
+      <description>面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  SPI(Service Provider Interface)，主要用于框架，框架定义接口。 不同使用者将存在不同需求，也必然出现不同实现方式。而SPI就是通过定义 一个特定的位置，Java SPI约定在Classpath下的META-INF/services/ 路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的 具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可 以在运行时动态为接口替换实现类。 Dubbo SPI 1.</description>
+    </item>
+    
+    <item>
+      <title>[Mybatis]1.Mybatis源码中设计模式</title>
+      <link>https://touch-star.com/post/middleware/mybatis/design_pattern/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/mybatis/design_pattern/</guid>
+      <description>Mybatis源码中设计模式  Builder模式：例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder； 工厂模式：例如SqlSessionFactory、ObjectFactory、MapperProxyFactory； 单例模式：例如ErrorContext和LogFactory； 代理模式：Mybatis实现的核心，比如MapperProxy、ConnectionLogger，用的jdk的+ 动态代理；还有executor.loader包使用了cglib或者javassist达到延迟加载的效果； 组合模式：例如SqlNode和各个子类ChooseSqlNode等； 模板方法模式：例如BaseExecutor和SimpleExecutor，还有BaseTypeHandler和所有的子类例如IntegerTypeHandler； 适配器模式：例如Log的Mybatis接口和它对jdbc、log4j等各种日志框架的适配实现； 装饰者模式：例如Cache包中的cache.decorators子包中等各个装饰者的实现； +迭代器模式：例如迭代器模式PropertyTokenizer；  </description>
+    </item>
+    
+    <item>
+      <title>[Spring]1.Spring源码中设计模式</title>
+      <link>https://touch-star.com/post/coding/java/spring/design_pattern/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/spring/design_pattern/</guid>
+      <description>Spring源码中设计模式   工程模式：Spring中的BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得Bean对象
+  单例模式：Spring依赖注入Bean实例默认是单例的。Spring的依赖注入（包括lazy-init方式）都是发生在AbstractBeanFactory的getBean里。getBean的doGetBean方法调用getSingleton进行bean的创建。
+  装饰器模式：Spring中用到的包装器模式在类名上有两种表现：一种是类名中含有Wrapper，另一种是类名中含有Decorator。
+  代理模式：AOP底层，就是动态代理模式的实现
+  观察者模式：spring的事件驱动模型使用的是 观察者模式 ，Spring中Observer模式常用的地方是listener的实现。如：ApplicationContextEvent、ApplicationListener
+  策略模式：Spring框架的资源访问Resource接口。该接口提供了更强的资源访问能力，Spring 框架本身大量使用了 Resource 接口来访问底层资源。
+ UrlResource：访问网络资源的实现类。 ClassPathResource：访问类加载路径里资源的实现类。 FileSystemResource：访问文件系统里资源的实现类。 ServletContextResource：访问相对于 ServletContext 路径里的资源的实现类. InputStreamResource：访问输入流资源的实现类。 ByteArrayResource：访问字节数组资源的实现类。    </description>
     </item>
     
     <item>
@@ -96,25 +120,6 @@
       <guid>https://touch-star.com/post/cloudnative/docker/docker/3-jdk_mirror/</guid>
       <description>Docker之jdk1.8最简镜像构建 1.准备JRE 在Java下载网站下载JRE。 Tips:此JRE为Oracle作品，而非Openjdk
 2.精简JRE中无关文件 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  # 进入已经下载jre压缩包的路径,执行解压 tar xzvf ~/Downloads/jre-8u241-linux-x64.tar.gz&amp;amp;&amp;amp;cd jre1.8.0_241 # 删除说明、其他文档 rm -rf COPYRIGHT LICENSE README \ THIRDPARTYLICENSEREADME-JAVAFX.txt \ THIRDPARTYLICENSEREADME.txt \ Welcome.html # 删除非必要依赖文件 rm -rf lib/plugin.jar \  lib/ext/jfxrt.jar \  bin/javaws \  lib/javaws.jar \  lib/desktop \  plugin \  lib/deploy* \  lib/*javafx* \  lib/*jfx* \  lib/amd64/libdecora_sse.</description>
-    </item>
-    
-    <item>
-      <title>4.SpringBoot项目Docker化</title>
-      <link>https://touch-star.com/post/cloudnative/docker/docker/4-docker4springboot/</link>
-      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/cloudnative/docker/docker/4-docker4springboot/</guid>
-      <description>SpringBoot项目Docker化 一 </description>
-    </item>
-    
-    <item>
-      <title>5.Docker-本地构建none包处理</title>
-      <link>https://touch-star.com/post/cloudnative/docker/docker/5-docker4rmnone/</link>
-      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/cloudnative/docker/docker/5-docker4rmnone/</guid>
-      <description>Docker-本地构建none包处理 踩坑①.打包构建Dockerfile镜像 每次本地打包构建Dockerfile镜像，如果更新镜像版本号会出现none的镜像在仓库中
-1 2 3 4 5 6 7 8 9 10 11 12 13  # 停掉none相关的镜像进程占用 docker rm $(docker ps -a | grep &amp;#34;Exited&amp;#34; | awk &amp;#39;{print $1 }&amp;#39;) # 递归依次从仓库移除这些镜像 docker rmi $(docker images | grep &amp;#34;^&amp;lt;none&amp;gt;&amp;#34; | awk &amp;#34;{print $3}&amp;#34;) # 或者，使用一下命令进行移除 docker image prune # (此命令用于删除未使用的映像) # docker image prune [options] # -- options可选值： # -a 显示所有映像(默认隐藏中间映像) # -f 不提示确认，强制直接执行删除   </description>
     </item>
     
   </channel>

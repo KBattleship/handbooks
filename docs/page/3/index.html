@@ -342,6 +342,91 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/operation/linux/centos/command/vim/">1.Linux-Vim</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-11-12" class="post-time">
+        2019-11-12
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/linux/"> linux </a>
+          
+        </div>
+      <span class="more-meta"> 约 57 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/operation/linux/centos/command/vim/" class="leancloud_visitors" data-flag-title="1.Linux-Vim">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      vim 1.基本操作命令 普通模式(Normal)  a: append current location i: insert current location o: open a line below A: append after line I: insert before line O: open a line above y: copy p: parse ^: 光标移至行首 $: 光标移至行末 G: 光标移至末行 1G: 光标移至首行 H: 光标移至当前窗口首行 M: 光标移至当前窗口中间位置  命令行模式(Command)  % s/string1/string2/g  可视化模式(Visual)  v:  插入编辑模式(Insert) 2.快速纠错 编辑模式下：  ctrl+w: 删除上一个单词 ctrl+u: 删除当前行  
+    </div>
+    <div class="read-more">
+      <a href="/post/operation/linux/centos/command/vim/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/middleware/zookeeper/1-zookeeper-cluster-deploy/">1.zookeeper分布式部署</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-11-12" class="post-time">
+        2019-11-12
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/middleware/"> middleware </a>
+          
+        </div>
+      <span class="more-meta"> 约 112 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/zookeeper/1-zookeeper-cluster-deploy/" class="leancloud_visitors" data-flag-title="1.zookeeper分布式部署">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      zookeeper分布式部署 一.配置服务器IP地址映射 [root@localhost zk]~#: vim /etc/hosts
+1 2 3 4 5  192.168.1.111 zoo1 192.168.1.112 zoo2 192.168.1.113 zoo3 192.168.1.114 zoo4 192.168.1.115 zoo5   二.修改配置ZK文件 1.下载Zookeeper
+1 2  # 进入ZK路径 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.6/apache-zookeeper-3.5.6-bin.tar.gz   2.修改配置文件 进入conf目录，在配置文件前，先cp zoo_sample.cfg zoo.cfg,然后vim zoo.cfg。配置如下：
+1 2 3 4 5 6 7 8 9 10  tickTime=2000 initLimit=10 syncLimit=5 dataDir=/data/ops/zk/zookeeper-3.5.6-master/conf clientPort=2181 server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888   3.启动ZK ①.在每个节点的服务器依次启动服务： [root@localhost zk]~#: ./bin/zkServer.sh start 在启动过程中日志会出现异常，由于其他节点还未启动，所以属于正常情况（正常情况下，仅有最后一个节点启动不会出现异常）。待所有节点全部启动，集群会逐渐稳定下来。 ②.查询每一个节点角色 [root@localhost zk]~#: .
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/zookeeper/1-zookeeper-cluster-deploy/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/operation/linux/centos/1-modifymirror/">CentOS修改系统镜像源</a>
     </h1>
     
@@ -696,86 +781,6 @@ UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化
 </article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_3_template/">3.模板模式</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-08-22" class="post-time">
-        2019-08-22
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> java </a>
-          
-        </div>
-      <span class="more-meta"> 约 196 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_3_template/" class="leancloud_visitors" data-flag-title="3.模板模式">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      模板模式 **模板模式：**是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
-①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_3_template/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/docker/readme/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 1 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/docker/readme/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Docker 
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/docker/readme/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
 </section>
 
 
@@ -839,6 +844,10 @@ UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化
       
       <li >
         <a href="/page/10/">10</a>
+      </li>
+      
+      <li >
+        <a href="/page/11/">11</a>
       </li>
       
     </ul>

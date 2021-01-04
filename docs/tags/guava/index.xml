@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>guava on Quinn</title>
+    <link>https://touch-star.com/tags/guava/</link>
+    <description>Recent content in guava on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="https://touch-star.com/tags/guava/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[Tools]1.关于Guava增强包异步回调</title>
+      <link>https://touch-star.com/post/coding/java/base/ext/tools/1_guava_future_callback/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/ext/tools/1_guava_future_callback/</guid>
+      <description>关于Guava增强包异步回调 1.概述 Guava针对Java异步回调做出以下两点增强功能：
+ 1.引入新接口ListenableFuture。此接口继承于Java的Future接口，可监控、获取非阻塞异步执行结果。 2.引入新接口FutureCallback。此接口是新增独立接口，在异步任务完成后，根据异步结果，完成不同的回调事件，并处理异步结果。  </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -23,7 +23,21 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/interview/one/</loc>
+    <loc>https://touch-star.com/post/coding/java/interview/1-one/</loc>
+    <lastmod>2020-12-31T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/middleware/mybatis/design_pattern/</loc>
+    <lastmod>2020-12-31T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/spring/design_pattern/</loc>
     <lastmod>2020-12-31T11:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -31,6 +45,13 @@
   
   <url>
     <loc>https://touch-star.com/categories/</loc>
+    <lastmod>2020-12-31T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/design-pattern/</loc>
     <lastmod>2020-12-31T11:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -58,6 +79,13 @@
   </url>
   
   <url>
+    <loc>https://touch-star.com/tags/mybatis/</loc>
+    <lastmod>2020-12-31T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://touch-star.com/post/</loc>
     <lastmod>2020-12-31T11:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -66,6 +94,13 @@
   
   <url>
     <loc>https://touch-star.com/</loc>
+    <lastmod>2020-12-31T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/spring/</loc>
     <lastmod>2020-12-31T11:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -527,13 +562,6 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/design-pattern/</loc>
-    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://touch-star.com/tags/programming/</loc>
     <lastmod>2019-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -842,12 +870,6 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/ext/1_guava_future_callback/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://touch-star.com/post/coding/java/base/readme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -866,7 +888,19 @@
   </url>
   
   <url>
+    <loc>https://touch-star.com/post/coding/java/spring/spring5/spring-features/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://touch-star.com/post/coding/java/spring/spring5/spring-ioc/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/spring/spring5/spring-orm-framework/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -969,6 +1003,24 @@
   
   <url>
     <loc>https://touch-star.com/post/operation/linux/virtual_devices/2020-09-28readme/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/ext/tools/1_guava_future_callback/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/guava/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/java-tools/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

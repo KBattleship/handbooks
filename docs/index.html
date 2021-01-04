@@ -445,7 +445,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/interview/one/">[Interview]1.面试准备</a>
+      <a class="post-link" href="/post/coding/java/interview/1-one/">[Interview]1.面试准备</a>
     </h1>
     
     <div class="post-meta">
@@ -456,12 +456,12 @@
           <a href="https://touch-star.com/categories/java/"> Java </a>
           
         </div>
-      <span class="more-meta"> 约 222 字 </span>
+      <span class="more-meta"> 约 273 字 </span>
       <span class="more-meta"> 预计阅读 2 分钟 </span>
       
       
       
-        <span id="/post/coding/java/interview/one/" class="leancloud_visitors" data-flag-title="[Interview]1.面试准备">
+        <span id="/post/coding/java/interview/1-one/" class="leancloud_visitors" data-flag-title="[Interview]1.面试准备">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -472,10 +472,98 @@
   <div class="post-content">
     
     <div class="post-summary">
-      面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1     Zookeeper选举协议 1     ActiveMQ集群消息回流、死信队列如何处理 1     大数据量的排序如何处理 1     如何判断链表是回文链表、快排序、归并排序 1     MySQL调优：BTree、Hash原理 1     Mybatis的一、二级缓存 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  1.
+      面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  SPI(Service Provider Interface)，主要用于框架，框架定义接口。 不同使用者将存在不同需求，也必然出现不同实现方式。而SPI就是通过定义 一个特定的位置，Java SPI约定在Classpath下的META-INF/services/ 路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的 具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可 以在运行时动态为接口替换实现类。 Dubbo SPI 1.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/interview/one/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/interview/1-one/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/middleware/mybatis/design_pattern/">[Mybatis]1.Mybatis源码中设计模式</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-12-31" class="post-time">
+        2020-12-31
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> Java </a>
+          
+        </div>
+      <span class="more-meta"> 约 11 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/mybatis/design_pattern/" class="leancloud_visitors" data-flag-title="[Mybatis]1.Mybatis源码中设计模式">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Mybatis源码中设计模式  Builder模式：例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder； 工厂模式：例如SqlSessionFactory、ObjectFactory、MapperProxyFactory； 单例模式：例如ErrorContext和LogFactory； 代理模式：Mybatis实现的核心，比如MapperProxy、ConnectionLogger，用的jdk的+ 动态代理；还有executor.loader包使用了cglib或者javassist达到延迟加载的效果； 组合模式：例如SqlNode和各个子类ChooseSqlNode等； 模板方法模式：例如BaseExecutor和SimpleExecutor，还有BaseTypeHandler和所有的子类例如IntegerTypeHandler； 适配器模式：例如Log的Mybatis接口和它对jdbc、log4j等各种日志框架的适配实现； 装饰者模式：例如Cache包中的cache.decorators子包中等各个装饰者的实现； +迭代器模式：例如迭代器模式PropertyTokenizer；  
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/mybatis/design_pattern/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/spring/design_pattern/">[Spring]1.Spring源码中设计模式</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-12-31" class="post-time">
+        2020-12-31
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> Java </a>
+          
+        </div>
+      <span class="more-meta"> 约 20 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/spring/design_pattern/" class="leancloud_visitors" data-flag-title="[Spring]1.Spring源码中设计模式">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Spring源码中设计模式   工程模式：Spring中的BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得Bean对象
+  单例模式：Spring依赖注入Bean实例默认是单例的。Spring的依赖注入（包括lazy-init方式）都是发生在AbstractBeanFactory的getBean里。getBean的doGetBean方法调用getSingleton进行bean的创建。
+  装饰器模式：Spring中用到的包装器模式在类名上有两种表现：一种是类名中含有Wrapper，另一种是类名中含有Decorator。
+  代理模式：AOP底层，就是动态代理模式的实现
+  观察者模式：spring的事件驱动模型使用的是 观察者模式 ，Spring中Observer模式常用的地方是listener的实现。如：ApplicationContextEvent、ApplicationListener
+  策略模式：Spring框架的资源访问Resource接口。该接口提供了更强的资源访问能力，Spring 框架本身大量使用了 Resource 接口来访问底层资源。
+ UrlResource：访问网络资源的实现类。 ClassPathResource：访问类加载路径里资源的实现类。 FileSystemResource：访问文件系统里资源的实现类。 ServletContextResource：访问相对于 ServletContext 路径里的资源的实现类. InputStreamResource：访问输入流资源的实现类。 ByteArrayResource：访问字节数组资源的实现类。    
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/spring/design_pattern/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -697,89 +785,6 @@
 </article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/docker/docker/4-docker4springboot/">4.SpringBoot项目Docker化</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-08-22" class="post-time">
-        2020-08-22
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 2 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/docker/docker/4-docker4springboot/" class="leancloud_visitors" data-flag-title="4.SpringBoot项目Docker化">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      SpringBoot项目Docker化 一 
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/docker/docker/4-docker4springboot/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/docker/docker/5-docker4rmnone/">5.Docker-本地构建none包处理</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-08-22" class="post-time">
-        2020-08-22
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 65 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/docker/docker/5-docker4rmnone/" class="leancloud_visitors" data-flag-title="5.Docker-本地构建none包处理">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Docker-本地构建none包处理 踩坑①.打包构建Dockerfile镜像 每次本地打包构建Dockerfile镜像，如果更新镜像版本号会出现none的镜像在仓库中
-1 2 3 4 5 6 7 8 9 10 11 12 13  # 停掉none相关的镜像进程占用 docker rm $(docker ps -a | grep &#34;Exited&#34; | awk &#39;{print $1 }&#39;) # 递归依次从仓库移除这些镜像 docker rmi $(docker images | grep &#34;^&lt;none&gt;&#34; | awk &#34;{print $3}&#34;) # 或者，使用一下命令进行移除 docker image prune # (此命令用于删除未使用的映像) # docker image prune [options] # -- options可选值： # -a 显示所有映像(默认隐藏中间映像) # -f 不提示确认，强制直接执行删除   
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/docker/docker/5-docker4rmnone/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
 </section>
 
 
@@ -843,6 +848,10 @@
       
       <li >
         <a href="/page/10/">10</a>
+      </li>
+      
+      <li >
+        <a href="/page/11/">11</a>
       </li>
       
     </ul>

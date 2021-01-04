@@ -342,6 +342,44 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/coding/java/base/readme/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 2 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/readme/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      前言 一只笨笨豪的Java养成记 
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/readme/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/coding/java/base/summary/"></a>
     </h1>
     
@@ -424,6 +462,53 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/coding/java/spring/spring5/spring-features/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 141 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/spring/spring5/spring-features/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      背景：不是为了推荐大家去使用Spring5 文档很少、资料难找 没有实战实践，包括老师自己没有用过 目的：1、带大家来看看眼界 2、了解一下未来的一个发展趋势
+鸡肋
+推荐：SpringBoot，Spring生态链（框架的框架）
+Spring5新特性：
+ 依赖JDK 8+和Java EE7+以上版本 支持使用注解进行编程 新增函数式编程 支持使用REST断点执行反应式编程 支持HTTP 2.0 新增Kotlin和Spring WebFlux 可使用Lambda表达式注册Bean Spring WebMVC支持最新的API 使用JUnit5执行条件和并发测试 使用Spring WebFlux执行集成测试 核心容器优化  Spring5对WebFlux的支持
+Sevlet2.x 单实例多线程的阻塞式IO （BIO） Sevlet3.x 单实例多线程异步非阻塞式IO （AIO异步非阻塞、NIO 同步非阻塞）
+WebFlux 是在Servlet3.x 的基础之上应运而生
+特点： 1、基于Servlet3.x 实现异步非阻塞的HTTP响应 2、API完美支持Rest风格 3、支持函数式编程 4、Mono是表示返回单个对象、Flux表示返回集合
+结论： 1、为了让大家开一下眼界，了解未来的发展趋势 2、如果要应用在项目之中，建议大家直接用Spring Boot
+Spring5集成测试 JUnit集成 1、 * @BeforeEach 相当于 JUnit 4 @Before * @BeforeAll 相当于 JUnit 4 @BeforeClass * @AfterEach 相当于 JUnit 4 @After * @AfterAll 相当于 JUnit 4 @AfterClass * @Test 不在org.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/spring/spring5/spring-features/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/coding/java/spring/spring5/spring-ioc/"></a>
     </h1>
     
@@ -452,6 +537,53 @@
     </div>
     <div class="read-more">
       <a href="/post/coding/java/spring/spring5/spring-ioc/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/spring/spring5/spring-orm-framework/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 58 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/spring/spring5/spring-orm-framework/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      基于Spring5实现ORM 初衷： 单表查询不写一句SQL，自动生成 查询的结果自动映射为Java对象
+*1、我要传一个复杂的查询条件，怎么传？
+想到了用对象来传，但是有问题 a)、跨表联查的条件 b)、无法携带判断逻辑的运算符 c)、or 或者 and 无法区分
+ 2、自动映射类型判断麻烦 ，用rs.getObject()方法  3、跨多种数据库如何统一API
+*4、数据源的动态切换如何来做？ AbstractRoutingDataSource数据源自动路由，执行数据连接以前，根据业务规则来动态获取到一个连接 从而达到动态切换数据库连接的效果 为了操作方便，每次执换完，执行成以后，会将数据源恢复到默认的设置
+*5、SQL注入 1、首先将QueryRule构建好，把所有的查询条件保存到一个ruleList中 2、再写一个工具类QueryRuleSqlBuilder，循环ruleList对每一个条件分别处理processAnything，主要是构建where后面语句 3、process以后propertisList 保存诸如 and name = ? ， values tom,利用索引位置相同，来进行一一对应
+问：selectbysql就相当于没有使用框架，不符合之前统一参数，统一查询方法拉？ 答：不推荐使用，如果一定要多表查询，只有两种方案 a) 写SQL语句 b) 查多次，在内存中处理数据关系，一般会在Service中进行处理 在Java代码中处理，会让程序员更加容易理解 如果给大串SQL，这后来接手的人直接想死 我见过一条SQL语句有10行之长的，我直接看晕了 &mdash;&mdash;&mdash;&ndash; 在我的团队中，极少数使用多表关联查询 &mdash;&mdash;&mdash;&mdash;-
+问：······这个PK主键传过来怎么用？有什么好处 答：&lt;T extends Serializable,PK extends Serializable&gt; 传于不传不影响功能 目的：返回结果不需要再手动的强制类型转换
+问：如用老师这个框架来组装sql，复杂查询的话，会不会难以组装， 比如说查某个表的字段是另外一个表的条件，以此类推多个表的话？ 答：这就是属于多表查询
+问：连接操作，还有如果表没有主键PK 还需要传？ 答：只要用的我框架，每个表必须有主键，哪怕是自增 为了降低程序设计的复杂度
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/spring/spring5/spring-orm-framework/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -615,127 +747,6 @@
 </article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/spring/springcloud/3.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E6%B3%A8%E5%86%8C/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 13 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/spring/springcloud/3.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E6%B3%A8%E5%86%8C/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      服务提供者、服务消费者、服务发现组件这三者之间的关系大致如下：
- 各个微服务在启动时，将自己的网络地址等信息注册到服务发现组件中，服务发现组件会存储这些信息； 服务消费者可从服务发现组件查询服务提供者的网络地址，并使用该地址调用服务提供者的接口； 各个微服务与服务发现组件使用一定机制（例如心跳）通信。服务发现组件如长时间无法与某微服务实例通信，就会自动注销（即：删除）该实例； 当微服务网络地址发生变更（例如实例增减或者IP端口发生变化等）时，会重新注册到服务发现组件； 客户端缓存：各个微服务将需要调用服务的地址缓存在本地，并使用一定机制更新（例如定时任务更新、事件推送更新等）。这样既能降低服务发现组件的压力，同时，即使服务发现组件出问题，也不会影响到服务之间的调用。  综上，服务发现组件应具备以下功能。
- 服务注册表：服务注册表是服务发现组件的核心（其实就是类似于上面的registry表），它用来记录各个微服务的信息，例如微服务的名称、IP、端口等。服务注册表提供查询API和管理API，查询API用于查询可用的微服务实例，管理API用于服务的注册和注销； 服务注册与服务发现：服务注册是指微服务在启动时，将自己的信息注册到服务发现组件上的过程。服务发现是指查询可用微服务列表及其网络地址的机制； 服务检查：服务发现组件使用一定机制定时检测已注册的服务，如发现某实例长时间无法访问，就会从服务注册表中移除该实例。  Spring Cloud为我们提供多种服务发现组件的支持，例如Eureka、Consul（spring-cloud-consul）、Zookeeper（spring-cloud-zookeeper）、Aliaba Nacos（孵化中：spring-cloud-alibaba）、Etcd（孵化中：spring-cloud-etcd）等。
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/spring/springcloud/3.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E6%B3%A8%E5%86%8C/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/spring/summary/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 12 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/spring/summary/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      目录  前言 第一部分:Spring5 第二部分:SpringBoot 第三部分:SpringCloud  1-SpringCloud注册中心  1-1.EurekaServer配置   2-SpringCloud网关  2-1.Gateway网关配置   3-SpringCloud配置中心 4-SpringCloud链路跟踪  4-1.分布式链路跟踪Sleuth      
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/spring/summary/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 9 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      一、OpenCV-Java的入门  OpenCV的Java官方文档地址
- 1.OpenCV的Java环境构建 首先，声明一下在本文中选用的环境配置如下：
-  MacOS操作系统
-  IntelliJ IDEA开发编译器
-   MacOS的安装有两种方式：一种是靠强大的BrewHome安装器自动安装；另外一种就是相对麻烦的手动安装了。
-在这里我选择的是BrewHome进行安装。（前提是MacOS已经安装了BrewHome）
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
 </section>
 
 
@@ -799,6 +810,10 @@
       
       <li >
         <a href="/page/10/">10</a>
+      </li>
+      
+      <li >
+        <a href="/page/11/">11</a>
       </li>
       
     </ul>

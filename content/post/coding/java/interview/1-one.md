@@ -40,13 +40,13 @@ author: ""
   ```
 + [ ] Spring AOP原理
   ```shell
-
+    
   ```
 + [ ] Spring事务
   ```shell
 
   ```
-+ [ ]Dubbo服务发现、注册流程
++ [ ] Dubbo服务发现、注册流程
   ```shell
 
   ```
@@ -54,9 +54,29 @@ author: ""
   ```shell
 
   ```
-+ [ ] Dubbo SPI与Java SPI
++ [x] Dubbo SPI与Java SPI
   ```shell
+    SPI(Service Provider Interface)，主要用于框架，框架定义接口。
+    不同使用者将存在不同需求，也必然出现不同实现方式。而SPI就是通过定义
+    一个特定的位置，Java SPI约定在Classpath下的META-INF/services/
+    路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的
+    具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可
+    以在运行时动态为接口替换实现类。
 
+    Dubbo SPI
+      1.并非是Java原生的SPI，而是重新实现的SPI。
+        Java SPI通过ServiceLoader进行加载；
+        Dubbo SPI通过ExtensionLoader进行拓展加载。
+      2.支持的注解：
+        - @SPI(标记为拓展接口)
+        - @Adaptive(自适应拓展实现类标志)
+        - @Activate(自动激活条件标记)
+      3.配置文件放在classpath下的META-INF/dubbo/以及
+        META-INF/dubbo/internal下
+      4.Dubbo SPI增加了对拓展点IOC和AOP的支持，一个拓展点可以直接
+        通过Setter注入其他拓展点。
+      5.Java SPI会一次性实例化拓展点所有实现，如果有拓展实现初始化
+        过程很耗时，并且用不上，将会造成资源浪费。
   ```
 + [ ] Zookeeper选举协议
   ```shell
