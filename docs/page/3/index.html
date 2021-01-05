@@ -741,23 +741,23 @@ master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/1_design/1_1_uml/1_1_uml/">1.关于UML图</a>
+      <a class="post-link" href="/post/coding/java/base/2_basic/2_10_io/">[Java] 10.Java IO</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2019-08-22" class="post-time">
-        2019-08-22
+      <time datetime="2019-07-12" class="post-time">
+        2019-07-12
       </time>
       <div class="post-category">
           <a href="https://touch-star.com/categories/java/"> java </a>
           
         </div>
-      <span class="more-meta"> 约 110 字 </span>
+      <span class="more-meta"> 约 98 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/base/1_design/1_1_uml/1_1_uml/" class="leancloud_visitors" data-flag-title="1.关于UML图">
+        <span id="/post/coding/java/base/2_basic/2_10_io/" class="leancloud_visitors" data-flag-title="[Java] 10.Java IO">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -768,12 +768,23 @@ master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显
   <div class="post-content">
     
     <div class="post-summary">
-      关于UML图 学习设计模式前，UML还是需要学习了解一下。
-UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化、让规格与设计文档化的变现方法。
-旨在目的：  为用户提供现成的、有表现力的可视化建模语言，以便开发与交换有意义的模型。 为核心概念提供可扩展性与特殊化机制。 独立特定的编程语言与开发过程。 鼓励面向对象工具市场的发展。 支持更高层次的开发概念。 为了解建模语言提供一个正式环境。 整合最佳的工作方法。  UML分类  机构性图表  类图 组件图 部署图 对象图 对象图 包图 复合机构图 轮廓图   行为性图表  用例图 活动图 状态机图 序列图 通讯图 交互概述图 时序图    UML词汇表及术语  抽象类 Actor 活动 活动图 聚合 工件 关联 关联类 属性 基类 分支 类 类图 分类器 协作 通信图 组件 组件图 概念 构建阶段 依赖关系 部署图 域 精化阶段 元素 封装 泛化 事件 最终状态 叉 泛化 GoF 高凝聚力 启动阶段 继承 初始状态 实例 接口 迭代 加入 成员 合并 消息 方法 模型 多重性 可导航型 符号 注意 对象 包 包图 模式 参数 多态性 私有 处理器 受保护 公开 读取方向箭头 实现 角色 顺序图 状态 状态图 静态 刻板印象 子类 互动区 时间拳击 过渡 过渡阶段 统一建模语言 用例 用例图 可见性： 工作流程：一组产生特定结果的活动。  
+      Java IO 1.关于BIO、NIO、AIO   BIO(Blocking I/O,阻塞IO)
+数据的读取、写入必须阻塞在一个线程内等待完成。
+1 2 3  经典BIO案例：烧开水 存在一排水壶烧开水，BIO的工作模式：叫一个线程停留在水壶出，知道水壶烧开， 才去处理下一个水壶。(实际上线程在等待水壶烧开的过程，什么事情都没有做。)     使用场景：
+适用于连接数量较小且模式固定的架构。JDK1.4前的唯一选择。
+    NIO(Non-Blocking I/O,非阻塞IO)
+是一种同时支持阻塞与非阻塞模式I/O模型。处于 java.nio包中。是面向缓冲区的。
+  使用场景：
+适用于连接数目多且连接较短(轻操作)，例如聊天室服务器，并发局限在应用中，编程较为复杂。
+   NIO重点概念：Channel(通道)、Buffer(缓冲区)、Selector(选择器)
+   Channel(通道)
+Channel是一个通道，可以通过Channel读取和写入数据。Channel与Stream不同之处：数据在Channel中是双向的，在Stream中是单向的。同时Channel可以用于写、读或者读写。
+1 2 3 4 5  Channel存在四种实现方式： - FileChannel：从文件中读取数据 - DatagramChannel: 从UDP网络中读取或写入数据 - SocketChannel：从TCP网络中读取或者写入数据 - ServerSocketChannel：允许监听来自TCP的连接。每产生一个连接将产生一个SocketChannel。     Buffer(缓冲区)
+Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/O中，可以讲数据写入或者直接读取到stream中。实质上缓冲区是一个数组(通常使用ByteBuffer[])，但同时还提供有对数据的结构话访问、维护读写位置的信息。
+1 2 3 4 5 6 7 8 9  Java中每一种基本类型都将对应一种缓冲区 - ByteBuffer(字节缓冲区) # 最为常用 - CharBuffer(字符缓冲区) - ShortBuffer(短整型缓冲区) - IntBuffer(整型缓冲区) - LongBuffer(长整型缓冲区) - FloatBuffer(浮点型缓冲区) - DoubleBuffer(双精度浮点型缓存区)     Selector Selector选择器可以监听多个Channel。Selector只能管理非阻塞Channel：FileChannel是个例外，属于阻塞I/O，无法进行管理。
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/1_design/1_1_uml/1_1_uml/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/2_basic/2_10_io/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -831,18 +842,6 @@ UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化
       
       <li >
         <a href="/page/7/">7</a>
-      </li>
-      
-      <li >
-        <a href="/page/8/">8</a>
-      </li>
-      
-      <li >
-        <a href="/page/9/">9</a>
-      </li>
-      
-      <li >
-        <a href="/page/10/">10</a>
       </li>
       
     </ul>

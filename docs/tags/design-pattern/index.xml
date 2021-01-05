@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>design pattern on Quinn</title>
+    <title>design-pattern on Quinn</title>
     <link>https://touch-star.com/tags/design-pattern/</link>
-    <description>Recent content in design pattern on Quinn</description>
+    <description>Recent content in design-pattern on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Thu, 31 Dec 2020 11:13:47 +0800</lastBuildDate>
@@ -33,81 +33,6 @@
   观察者模式：spring的事件驱动模型使用的是 观察者模式 ，Spring中Observer模式常用的地方是listener的实现。如：ApplicationContextEvent、ApplicationListener
   策略模式：Spring框架的资源访问Resource接口。该接口提供了更强的资源访问能力，Spring 框架本身大量使用了 Resource 接口来访问底层资源。
  UrlResource：访问网络资源的实现类。 ClassPathResource：访问类加载路径里资源的实现类。 FileSystemResource：访问文件系统里资源的实现类。 ServletContextResource：访问相对于 ServletContext 路径里的资源的实现类. InputStreamResource：访问输入流资源的实现类。 ByteArrayResource：访问字节数组资源的实现类。    </description>
-    </item>
-    
-    <item>
-      <title>1.迭代器模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_1_iterator/</link>
-      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_1_iterator/</guid>
-      <description>迭代器模式 表1-1 类与接口说明    类名 备注     Aggregate 表示集合的接口   Iterator 遍历集合接口   Book 表示书的类   BookShelf 表示书架的类   BookShelfIterator 遍历书架的类    代码清单  Aggregate接口  1 2 3 4 5 6 7  /** * 表示集合接口 */ public interface Aggregate { /* 用于生成一个遍历集合的迭代器 */ public abstract Iterator iterator(); }    Iterator接口  1 2 3 4 5 6 7 8 9 10 11 12  /** * 遍历集合接口 */ public interface Iterator { /* 判断是否存在下一个元素 */ public abstract boolean hasNext(); /* 获取下一个元素 */ public abstract Object next(); }    Book类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  /** * 表示书的类 */ public class Book { /* 书名属性 */ private String name; /* Default constructor */ public Book(String name) { this.</description>
-    </item>
-    
-    <item>
-      <title>2.适配器模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_2_adapter/</link>
-      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_2_adapter/</guid>
-      <description>适配器模式 适配器模式包含两种：  类适配器模式(使用继承的适配器) 对象适配器模式(使用委托的适配器)  适配器模式角色组成：  目标角色 源角色 适配器角色  ①.类适配器模式 继承于源类的同时实现目标接口
-表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  1 2 3 4  public interface Print { abstract void printWeak(); abstract void printStrong(); }    Banner(源角色)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class Banner { private String nameString; public Banner(String nameString) { this.</description>
-    </item>
-    
-    <item>
-      <title>3.模板模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_3_template/</link>
-      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_3_template/</guid>
-      <description>模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
-①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.</description>
-    </item>
-    
-    <item>
-      <title>[ 设计模式 ] 6.原型模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_6_prototype/</link>
-      <pubDate>Tue, 16 Jul 2019 23:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_6_prototype/</guid>
-      <description>原型模式 原型模式：通过复制生成实例。
-①.角色分配   Prototype(原型)
-负责定义用于复制现有实例来生成新实例的方法。
-  ConcretePrototype(具体原型)
-负责实现现有实例并生成新实例的方法。
-  Client(使用者)
-负责使用复制实例的方法生成的新实例。
-  ②.UML图 ③.代码清单  简单形式  定义抽象接口
-1 2 3  public interface Prototype extends Cloneable { Object clone(); }   具体实现原型拷贝
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  public class ConcretePrototype implements Prototype { public ConcretePrototype(){ System.out.println(&amp;#34;Prototype Design Patterns&amp;#34;); } @Override public Object clone() { ConcretePrototype concretePrototype=null; try { concretePrototype=(ConcretePrototype)super.</description>
-    </item>
-    
-    <item>
-      <title>[ 设计模式 ] 5.单例模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_5_singleton/</link>
-      <pubDate>Thu, 11 Jul 2019 23:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_5_singleton/</guid>
-      <description>单例模式 **单例模式：**保证任何情况下都绝对的只生成一个实例的模式。
-①.单例角色  Singleton: 有且仅有的一个角色(实例)。  **Tips:**当存在多个实例时，实例间互相影响，会出现意想不到异常。当且仅当，第一次调用类中静态方法的时候，Singleton类会被初始化，生成唯一的静态实例，重复调用时直接返回已经初始化完成的实例。
-②.实现单例  **方式一：**简化实现的单例模式  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 1.简化实现的单例模式，但遇到多线程肯定有问题 */ public static Singleton getInstance(){ if (singleton==null){ singleton=new Singleton(); } return singleton; } }    **方式二：**加锁控制多线程  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 2.</description>
-    </item>
-    
-    <item>
-      <title>[ 设计模式 ] 4.工厂模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_4_factory/</link>
-      <pubDate>Wed, 03 Jul 2019 23:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_4_factory/</guid>
-      <description>工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
-①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
- 一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
- 多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
-1 2  # 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。 # 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。   ②.工厂角色职责   Product(产品) 一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类ConcreateProduct类所决定。
-  ConcreateProduct(具体产品) 属于具体加工职责：决定了具体生产出的产品。
-  Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
-  ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
-  ③.UML图 ④.代码清单 ⑤.注意事项 1 2 3  使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。   </description>
     </item>
     
   </channel>

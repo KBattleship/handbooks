@@ -30,14 +30,14 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/java/</loc>
+    <loc>https://touch-star.com/categories/java/</loc>
     <lastmod>2021-01-05T10:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/categories/java/</loc>
+    <loc>https://touch-star.com/tags/java/</loc>
     <lastmod>2021-01-05T10:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -562,55 +562,6 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_1_uml/1_1_uml/</loc>
-    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_1_iterator/</loc>
-    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_2_adapter/</loc>
-    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_3_template/</loc>
-    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/tags/programming/</loc>
-    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/tags/uml/</loc>
-    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_6_prototype/</loc>
-    <lastmod>2019-07-16T23:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://touch-star.com/post/coding/java/base/2_basic/2_10_io/</loc>
     <lastmod>2019-07-12T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -618,15 +569,8 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_5_singleton/</loc>
-    <lastmod>2019-07-11T23:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_4_factory/</loc>
-    <lastmod>2019-07-03T23:36:27+08:00</lastmod>
+    <loc>https://touch-star.com/tags/programming/</loc>
+    <lastmod>2019-07-12T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -710,115 +654,7 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_10_strategy/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_11_composite/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_12_decorator/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_13_visitor/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_14_chain_of_responsibility/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_15_facade/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_16_mediator/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_17_observer/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_18_memento/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_19_state/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_20_flyweight/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_21_proxy/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_22_command/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_23_interpreter/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_7_builder/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_8_abstract_factory/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_9_bridge/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/1_2_design/readme/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/readme/</loc>
+    <loc>https://touch-star.com/post/coding/java/base/1_design/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -843,18 +679,6 @@
   
   <url>
     <loc>https://touch-star.com/post/coding/java/base/6_netty/readme/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/readme/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/summary/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -986,7 +810,7 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/ext/tools/1_guava_future_callback/</loc>
+    <loc>https://touch-star.com/post/coding/java/base/13_ext/tools/1_guava_future_callback/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
