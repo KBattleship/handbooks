@@ -13,10 +13,10 @@
     
     <item>
       <title>[Netty] 1.Netty基础</title>
-      <link>https://touch-star.com/post/coding/java/base/6-netty/6_1_netty/</link>
+      <link>https://touch-star.com/post/coding/java/base/6_netty/6_1_netty/</link>
       <pubDate>Tue, 05 Jan 2021 10:36:27 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/base/6-netty/6_1_netty/</guid>
+      <guid>https://touch-star.com/post/coding/java/base/6_netty/6_1_netty/</guid>
       <description>Netty基础 1.Netty面试   为什么用Netty？
 1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。     Netty应用场景
 1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统     Netty核心组件
@@ -70,10 +70,10 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
     
     <item>
       <title>[JVM]1.关于JVM命令</title>
-      <link>https://touch-star.com/post/coding/java/base/3-jvm/jvm-base/</link>
+      <link>https://touch-star.com/post/coding/java/base/3_jvm/jvm-base/</link>
       <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/base/3-jvm/jvm-base/</guid>
+      <guid>https://touch-star.com/post/coding/java/base/3_jvm/jvm-base/</guid>
       <description>关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&amp;lt;hostid&amp;gt;] Definitions: &amp;lt;hostid&amp;gt;: &amp;lt;hostname&amp;gt;[:&amp;lt;port&amp;gt;] # 若不指定&amp;lt;hostid&amp;gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解</description>
     </item>
@@ -90,10 +90,10 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
     
     <item>
       <title>1.关于UML图</title>
-      <link>https://touch-star.com/post/coding/java/base/1-design/1-1-uml/1_1_uml/</link>
+      <link>https://touch-star.com/post/coding/java/base/1_design/1_1_uml/1_1_uml/</link>
       <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/base/1-design/1-1-uml/1_1_uml/</guid>
+      <guid>https://touch-star.com/post/coding/java/base/1_design/1_1_uml/1_1_uml/</guid>
       <description>关于UML图 学习设计模式前，UML还是需要学习了解一下。
 UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化、让规格与设计文档化的变现方法。
 旨在目的：  为用户提供现成的、有表现力的可视化建模语言，以便开发与交换有意义的模型。 为核心概念提供可扩展性与特殊化机制。 独立特定的编程语言与开发过程。 鼓励面向对象工具市场的发展。 支持更高层次的开发概念。 为了解建模语言提供一个正式环境。 整合最佳的工作方法。  UML分类  机构性图表  类图 组件图 部署图 对象图 对象图 包图 复合机构图 轮廓图   行为性图表  用例图 活动图 状态机图 序列图 通讯图 交互概述图 时序图    UML词汇表及术语  抽象类 Actor 活动 活动图 聚合 工件 关联 关联类 属性 基类 分支 类 类图 分类器 协作 通信图 组件 组件图 概念 构建阶段 依赖关系 部署图 域 精化阶段 元素 封装 泛化 事件 最终状态 叉 泛化 GoF 高凝聚力 启动阶段 继承 初始状态 实例 接口 迭代 加入 成员 合并 消息 方法 模型 多重性 可导航型 符号 注意 对象 包 包图 模式 参数 多态性 私有 处理器 受保护 公开 读取方向箭头 实现 角色 顺序图 状态 状态图 静态 刻板印象 子类 互动区 时间拳击 过渡 过渡阶段 统一建模语言 用例 用例图 可见性： 工作流程：一组产生特定结果的活动。  </description>
@@ -101,19 +101,19 @@ UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化
     
     <item>
       <title>1.迭代器模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/</link>
+      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_1_iterator/</link>
       <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/</guid>
+      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_1_iterator/</guid>
       <description>迭代器模式 表1-1 类与接口说明    类名 备注     Aggregate 表示集合的接口   Iterator 遍历集合接口   Book 表示书的类   BookShelf 表示书架的类   BookShelfIterator 遍历书架的类    代码清单  Aggregate接口  1 2 3 4 5 6 7  /** * 表示集合接口 */ public interface Aggregate { /* 用于生成一个遍历集合的迭代器 */ public abstract Iterator iterator(); }    Iterator接口  1 2 3 4 5 6 7 8 9 10 11 12  /** * 遍历集合接口 */ public interface Iterator { /* 判断是否存在下一个元素 */ public abstract boolean hasNext(); /* 获取下一个元素 */ public abstract Object next(); }    Book类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  /** * 表示书的类 */ public class Book { /* 书名属性 */ private String name; /* Default constructor */ public Book(String name) { this.</description>
     </item>
     
     <item>
       <title>2.适配器模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</link>
+      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_2_adapter/</link>
       <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</guid>
+      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_2_adapter/</guid>
       <description>适配器模式 适配器模式包含两种：  类适配器模式(使用继承的适配器) 对象适配器模式(使用委托的适配器)  适配器模式角色组成：  目标角色 源角色 适配器角色  ①.类适配器模式 继承于源类的同时实现目标接口
 表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  1 2 3 4  public interface Print { abstract void printWeak(); abstract void printStrong(); }    Banner(源角色)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class Banner { private String nameString; public Banner(String nameString) { this.</description>
     </item>

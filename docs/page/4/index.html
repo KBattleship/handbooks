@@ -342,7 +342,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/">1.迭代器模式</a>
+      <a class="post-link" href="/post/coding/java/base/1_design/1_2_design/1_2_1_iterator/">1.迭代器模式</a>
     </h1>
     
     <div class="post-meta">
@@ -358,7 +358,7 @@
       
       
       
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/" class="leancloud_visitors" data-flag-title="1.迭代器模式">
+        <span id="/post/coding/java/base/1_design/1_2_design/1_2_1_iterator/" class="leancloud_visitors" data-flag-title="1.迭代器模式">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -372,7 +372,7 @@
       迭代器模式 表1-1 类与接口说明    类名 备注     Aggregate 表示集合的接口   Iterator 遍历集合接口   Book 表示书的类   BookShelf 表示书架的类   BookShelfIterator 遍历书架的类    代码清单  Aggregate接口  1 2 3 4 5 6 7  /** * 表示集合接口 */ public interface Aggregate { /* 用于生成一个遍历集合的迭代器 */ public abstract Iterator iterator(); }    Iterator接口  1 2 3 4 5 6 7 8 9 10 11 12  /** * 遍历集合接口 */ public interface Iterator { /* 判断是否存在下一个元素 */ public abstract boolean hasNext(); /* 获取下一个元素 */ public abstract Object next(); }    Book类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  /** * 表示书的类 */ public class Book { /* 书名属性 */ private String name; /* Default constructor */ public Book(String name) { this.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/1_design/1_2_design/1_2_1_iterator/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -383,7 +383,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/">2.适配器模式</a>
+      <a class="post-link" href="/post/coding/java/base/1_design/1_2_design/1_2_2_adapter/">2.适配器模式</a>
     </h1>
     
     <div class="post-meta">
@@ -399,7 +399,7 @@
       
       
       
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/" class="leancloud_visitors" data-flag-title="2.适配器模式">
+        <span id="/post/coding/java/base/1_design/1_2_design/1_2_2_adapter/" class="leancloud_visitors" data-flag-title="2.适配器模式">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -414,7 +414,7 @@
 表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  1 2 3 4  public interface Print { abstract void printWeak(); abstract void printStrong(); }    Banner(源角色)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class Banner { private String nameString; public Banner(String nameString) { this.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/1_design/1_2_design/1_2_2_adapter/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -425,7 +425,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/1-design/1-2-design/1_2_3_template/">3.模板模式</a>
+      <a class="post-link" href="/post/coding/java/base/1_design/1_2_design/1_2_3_template/">3.模板模式</a>
     </h1>
     
     <div class="post-meta">
@@ -441,7 +441,7 @@
       
       
       
-        <span id="/post/coding/java/base/1-design/1-2-design/1_2_3_template/" class="leancloud_visitors" data-flag-title="3.模板模式">
+        <span id="/post/coding/java/base/1_design/1_2_design/1_2_3_template/" class="leancloud_visitors" data-flag-title="3.模板模式">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -456,7 +456,7 @@
 ①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/1-design/1-2-design/1_2_3_template/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/1_design/1_2_design/1_2_3_template/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -467,7 +467,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/2-basis/2_10_io/">[Java] 10.Java IO</a>
+      <a class="post-link" href="/post/coding/java/base/2_basic/2_10_io/">[Java] 10.Java IO</a>
     </h1>
     
     <div class="post-meta">
@@ -483,7 +483,7 @@
       
       
       
-        <span id="/post/coding/java/base/2-basis/2_10_io/" class="leancloud_visitors" data-flag-title="[Java] 10.Java IO">
+        <span id="/post/coding/java/base/2_basic/2_10_io/" class="leancloud_visitors" data-flag-title="[Java] 10.Java IO">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -510,7 +510,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
 1 2 3 4 5 6 7 8 9  Java中每一种基本类型都将对应一种缓冲区 - ByteBuffer(字节缓冲区) # 最为常用 - CharBuffer(字符缓冲区) - ShortBuffer(短整型缓冲区) - IntBuffer(整型缓冲区) - LongBuffer(长整型缓冲区) - FloatBuffer(浮点型缓冲区) - DoubleBuffer(双精度浮点型缓存区)     Selector Selector选择器可以监听多个Channel。Selector只能管理非阻塞Channel：FileChannel是个例外，属于阻塞I/O，无法进行管理。
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/2-basis/2_10_io/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/2_basic/2_10_io/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -521,7 +521,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/2-basis/2_1_base/">[Java] 1.对象入门</a>
+      <a class="post-link" href="/post/coding/java/base/2_basic/2_1_base/">[Java] 1.对象入门</a>
     </h1>
     
     <div class="post-meta">
@@ -537,7 +537,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
       
       
       
-        <span id="/post/coding/java/base/2-basis/2_1_base/" class="leancloud_visitors" data-flag-title="[Java] 1.对象入门">
+        <span id="/post/coding/java/base/2_basic/2_1_base/" class="leancloud_visitors" data-flag-title="[Java] 1.对象入门">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -553,7 +553,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
  所有东西都是对象。可将对象想象成一种新型变量；它保存着数据，但是可要求它对自身进行操作。理论来说，可以从要解决的问题身上提出所有概念性的组件，然后在程序中将其表达为一个对象。 程序是一大堆对象的组合。通过消息的传递，各对象知道自己该做什么。为了向面向对象发出请求，需向那个对象发送一条消息。更确切的来说，可以将消息想象成为一个请求，他调用的是从属于目标对象的一个子例程或者说是函数。 每个对象都有自己的存储空间，可以容纳其他对象。或者说是，通过封装现有的对象，可以制造出一个新型对象。所以，尽管对象的概念非常简单，但是在程序中却可以达到任意高的复杂程度。 每个对象都有一个类型。根据语法，每个对象都是某个类中的一个实例。其中，类**(Class)**是类型(type)的同义词。一个类最为重要的特征就是“能将什么消息发送给它”。 同一个类所有的对象都能接收相同的消息。这实际是别有含义的一种说法。由于类型为“圆”的一个对象也属于类型为“形状”的一个对象。所以一个圆完全可以接收形状消息。这意味着可以让程序代码统一指挥“形状”，使得其自动控制所有的形状对象。其中自然包括圆这一个对象。这一个特性成为对象的可替代性。是OOP的重要概念之一。  二、对象的接口 
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/2-basis/2_1_base/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/2_basic/2_1_base/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -564,7 +564,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/2-basis/2_2_reflection/">[Java] 2.Java反射</a>
+      <a class="post-link" href="/post/coding/java/base/2_basic/2_2_reflection/">[Java] 2.Java反射</a>
     </h1>
     
     <div class="post-meta">
@@ -580,7 +580,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
       
       
       
-        <span id="/post/coding/java/base/2-basis/2_2_reflection/" class="leancloud_visitors" data-flag-title="[Java] 2.Java反射">
+        <span id="/post/coding/java/base/2_basic/2_2_reflection/" class="leancloud_visitors" data-flag-title="[Java] 2.Java反射">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -600,7 +600,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
  二、实现反射获取类的方法： 方式一 ： 通过Class.forName(&ldquo;类名字符串&rdquo;)获取（最为常用的方法） 1 2  //类名字符串是“包名+类名”，返回Class的对象。 Class class = Class.forName(&#34;cheneyHao.Student&#34;);   方式二 ： 通过示例对象的getClass()方法获取 1 2 3  //先创建一个对象，在调用对象的getClass()方法。（任何一个Java对象都会有getClass()方法） Student student = new Student(); Class class = student.getClass();   方法三 ： 通过 .class 获取 1 2  //通过类名.class,返回Class对象。(每个类都有Class属性) Class class = Student.class;   
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/2-basis/2_2_reflection/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/2_basic/2_2_reflection/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -611,7 +611,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/2-basis/2_3_annotations/">[Java] 3.Java注解</a>
+      <a class="post-link" href="/post/coding/java/base/2_basic/2_3_annotations/">[Java] 3.Java注解</a>
     </h1>
     
     <div class="post-meta">
@@ -627,7 +627,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
       
       
       
-        <span id="/post/coding/java/base/2-basis/2_3_annotations/" class="leancloud_visitors" data-flag-title="[Java] 3.Java注解">
+        <span id="/post/coding/java/base/2_basic/2_3_annotations/" class="leancloud_visitors" data-flag-title="[Java] 3.Java注解">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -642,7 +642,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
 1 2 3 4 5 6 7 8 9 10 11 12 13  // @Target注解传入ElementType指明Nullable的作用域 @Target({ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD}) // @Retention注解用来指定其声明周期为运行时 @Retention(RetentionPolicy.RUNTIME) // @Documented指定Javadoc进行记录此对象 @Documented // @Nonnull为了告诉编译器这个域不可能为空 @Nonnull(when = When.MAYBE) // @TypeQualifierNickname为类型限定符别称(备注部分具体解释此注解) @TypeQualifierNickname public @interface Nullable { // @interface 声明注解 }   2.JDK元注解    Annotation Type Action     @Override 普通注解 用来限定子类重写父类的方法   @Deprecated 普通注解 标记已经过时的方法   @SuppressWarnings 普通注解 抑制编译器的警告   @SafeVarargs 普通注解 Java7 抑制“堆污染”警告   @FunctionalInterface 普通注解 Java8 函数式接口   @Retention 元注解 指定本修饰的注解可以保留多长时间   @Target 元注解 指定被修饰的注解能用于哪些程序元素   @Documented 元注解 被该注解修饰的注解会被javadoc工具提取成文档   @Inherited 元注解 此注解修饰的注解具有继承性   @Repeatable 元注解 重复注解，Java8的新特性    3.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/2-basis/2_3_annotations/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/2_basic/2_3_annotations/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
