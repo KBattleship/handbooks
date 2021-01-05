@@ -342,7 +342,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/"></a>
+      <a class="post-link" href="/post/operation/linux/summary/"></a>
     </h1>
     
     <div class="post-meta">
@@ -350,12 +350,12 @@
         0001-01-01
       </time>
       
-      <span class="more-meta"> 约 77 字 </span>
+      <span class="more-meta"> 约 7 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/operation/linux/summary/" class="leancloud_visitors" data-flag-title="">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -366,12 +366,10 @@
   <div class="post-content">
     
     <div class="post-summary">
-      一、关于Spring Boot Actuator Spring Boot Actuator是Spring Boot官方提供的监控组件。只需为项目添加以下依赖，即可就整合Spring Boot Actuator。
-1 2 3 4  &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-actuator&lt;/artifactId&gt; &lt;/dependency&gt;   二、Actuator监控端点 只需访问http://{ip}:{port}/actuator/{endpoint} 端点，即可监控应用的运行状况。
-   端点（Spring Boot 2.x） 描述 HTTP方法 是否敏感 端点（Spring Boot 1.x）     conditions 显示自动配置的信息 GET 是 autoconfig   beans 显示应用程序上下文所有的Spring bean GET 是 beans   configprops 显示所有@ConfigurationProperties的配置属性列表 GET 是 configprops   dump 显示线程活动的快照 GET 是 dump   env 显示环境变量，包括系统环境变量以及应用环境变量 GET 是 env   health 显示应用程序的健康指标，值由HealthIndicator的实现类提供；结果有UP、 DOWN、OUT_OF_SERVICE、UNKNOWN；如需查看详情，需配置：management.
+      Linux杂记  CentOS系统基本操作  1.命令操作  ①.sed、grep、awk命令操作   2.CentOS修改镜像源   CentOS之KVM操作  1.KVM笔记    
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/spring/springcloud/2.springcloudfinchley%E7%89%88%E6%9C%AC-%E7%9B%91%E6%8E%A7springbootactuator/" class="read-more-link">阅读全文</a>
+      <a href="/post/operation/linux/summary/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -382,7 +380,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/spring/springcloud/2_gateway/gateway/1_1_gateway/"></a>
+      <a class="post-link" href="/post/operation/linux/virtual_devices/2020-09-28readme/"></a>
     </h1>
     
     <div class="post-meta">
@@ -390,12 +388,12 @@
         0001-01-01
       </time>
       
-      <span class="more-meta"> 约 57 字 </span>
+      <span class="more-meta"> 约 7 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/spring/springcloud/2_gateway/gateway/1_1_gateway/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/operation/linux/virtual_devices/2020-09-28readme/" class="leancloud_visitors" data-flag-title="">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -406,10 +404,10 @@
   <div class="post-content">
     
     <div class="post-summary">
-      GatewayCloud网关服务 1.项目配置说明 1.1 关于Project Yaml配置文件 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  spring:cloud:gateway:routes:# 自定义路由ID，要保持唯一- id:device# 目标服务地址(lb标识集群)uri:lb://cloud-service-media# 路由条件，Predicate接受一个输入参数，返回一个bool值。通过多种默认方法将Predicates组合成一个复杂路由逻辑# Predicate函数源于Java8，具体使用可参考Java源码进一步了解# 当匹配规则存在多种情况时，一个请求满足多个路由条件是请求将被第一个路由转发predicates:# 通过请求路径匹配- Path=/device# 通过时间匹配- After=2020-04-20T06:06:06+08:00[Asia/Shanghai]# 通过Cookie匹配- Cookie=cloudp.cc,cheneyin# 通过Header匹配- Header=X-Request-Id,\d+ # 通过Host匹配- Host=**.cloudp.cc# 通过请求匹配- Method=GET# 通过请求方式匹配- Query=deviceMac# 通过请求IP匹配- RemoteAddr=192.168.1.1/24  
+      Linux的虚拟网络设备  Bridge TAP VLAN Veth MacVlan IPVlan   
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/spring/springcloud/2_gateway/gateway/1_1_gateway/" class="read-more-link">阅读全文</a>
+      <a href="/post/operation/linux/virtual_devices/2020-09-28readme/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -420,20 +418,23 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/spring/springcloud/3.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E6%B3%A8%E5%86%8C/"></a>
+      <a class="post-link" href="/post/coding/java/base/ext/tools/1_guava_future_callback/">[Tools]1.关于Guava增强包异步回调</a>
     </h1>
     
     <div class="post-meta">
       <time datetime="0001-01-01" class="post-time">
         0001-01-01
       </time>
-      
-      <span class="more-meta"> 约 13 字 </span>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> Java </a>
+          
+        </div>
+      <span class="more-meta"> 约 5 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/spring/springcloud/3.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E6%B3%A8%E5%86%8C/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/coding/java/base/ext/tools/1_guava_future_callback/" class="leancloud_visitors" data-flag-title="[Tools]1.关于Guava增强包异步回调">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -444,290 +445,11 @@
   <div class="post-content">
     
     <div class="post-summary">
-      服务提供者、服务消费者、服务发现组件这三者之间的关系大致如下：
- 各个微服务在启动时，将自己的网络地址等信息注册到服务发现组件中，服务发现组件会存储这些信息； 服务消费者可从服务发现组件查询服务提供者的网络地址，并使用该地址调用服务提供者的接口； 各个微服务与服务发现组件使用一定机制（例如心跳）通信。服务发现组件如长时间无法与某微服务实例通信，就会自动注销（即：删除）该实例； 当微服务网络地址发生变更（例如实例增减或者IP端口发生变化等）时，会重新注册到服务发现组件； 客户端缓存：各个微服务将需要调用服务的地址缓存在本地，并使用一定机制更新（例如定时任务更新、事件推送更新等）。这样既能降低服务发现组件的压力，同时，即使服务发现组件出问题，也不会影响到服务之间的调用。  综上，服务发现组件应具备以下功能。
- 服务注册表：服务注册表是服务发现组件的核心（其实就是类似于上面的registry表），它用来记录各个微服务的信息，例如微服务的名称、IP、端口等。服务注册表提供查询API和管理API，查询API用于查询可用的微服务实例，管理API用于服务的注册和注销； 服务注册与服务发现：服务注册是指微服务在启动时，将自己的信息注册到服务发现组件上的过程。服务发现是指查询可用微服务列表及其网络地址的机制； 服务检查：服务发现组件使用一定机制定时检测已注册的服务，如发现某实例长时间无法访问，就会从服务注册表中移除该实例。  Spring Cloud为我们提供多种服务发现组件的支持，例如Eureka、Consul（spring-cloud-consul）、Zookeeper（spring-cloud-zookeeper）、Aliaba Nacos（孵化中：spring-cloud-alibaba）、Etcd（孵化中：spring-cloud-etcd）等。
+      关于Guava增强包异步回调 1.概述 Guava针对Java异步回调做出以下两点增强功能：
+ 1.引入新接口ListenableFuture。此接口继承于Java的Future接口，可监控、获取非阻塞异步执行结果。 2.引入新接口FutureCallback。此接口是新增独立接口，在异步任务完成后，根据异步结果，完成不同的回调事件，并处理异步结果。  
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/spring/springcloud/3.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9C%8D%E5%8A%A1%E5%8F%91%E7%8E%B0%E4%B8%8E%E6%B3%A8%E5%86%8C/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/spring/summary/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 12 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/spring/summary/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      目录  前言 第一部分:Spring5 第二部分:SpringBoot 第三部分:SpringCloud  1-SpringCloud注册中心  1-1.EurekaServer配置   2-SpringCloud网关  2-1.Gateway网关配置   3-SpringCloud配置中心 4-SpringCloud链路跟踪  4-1.分布式链路跟踪Sleuth      
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/spring/summary/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 9 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      一、OpenCV-Java的入门  OpenCV的Java官方文档地址
- 1.OpenCV的Java环境构建 首先，声明一下在本文中选用的环境配置如下：
-  MacOS操作系统
-  IntelliJ IDEA开发编译器
-   MacOS的安装有两种方式：一种是靠强大的BrewHome安装器自动安装；另外一种就是相对麻烦的手动安装了。
-在这里我选择的是BrewHome进行安装。（前提是MacOS已经安装了BrewHome）
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%80-%E8%81%8A%E8%81%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 42 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%80-%E8%81%8A%E8%81%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      一、相关概念的简介  在了解深度学习前应该还有两个专业名词大家也想必是耳熟能详，那么就是人工智能、机器学习。
-  人工智能(Artificial Intelligence)：也就是我们经常听到的AI。它是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学。但是在早期的时候，人工智能充满了局限性，只是在特定的环境范围下。 机器学习(Machine Learning)：简称ML。机器学习其实是人工智能的一个分支。如果一个程序可以在**任务*(T)上，随着经验(E)***的增加，*效果(P)***也可以随之增加，则就可以说这个程序可以从经验中得到学习。 深度学习(Deep Learning)：简称DL。深度学习也是机器学习的一个分支。主要是在机器学习的基础之上有所改进：它除了可以学习特征和任务之间的关联，还可以自动的将简单的特征组合成更加复杂的特征，并使用这些组合特征解决问题。   二、了解机器学习(ML)  1. 用例子认识机器学习的概念 其实，邮件系统中判断收到的邮件是否为垃圾邮件就可以看做是一个机器学习的过程。首先对垃圾邮件分类概念进行一个拆分、类比：
-  一个程序 &lt;======&gt; 需要用到的机器学习算法，比如逻辑回归算法 任务(T) &lt;======&gt; 区分此邮件是否是垃圾邮件这个任务 经验(E) &lt;======&gt; 已经区分过是否为垃圾邮件的历史事件 效果(P) &lt;======&gt; 机器学习算法在区分此邮件是否是垃圾邮件这个任务的精确率   在整个过程中，首先会从每一封邮件中抽取出对分类结果可能有影响的因素（比如：发件人的地址、邮件的标题、收件人的数量、邮件正题内容，so on）。这样的每一个因素其实可以成为是一个特征 (feature)。然而机器学习算法中的逻辑回归算法可以从训练数据中计算出每个特征和预测结果的相关度。例如，在垃圾邮件分类过程中，可能会发现如果一个邮件的收件人越多，那么这封邮件是垃圾邮件的可能性越大。 在对一封完全未知的邮件进行区分时，逻辑回归算法会根据这封邮件中抽取到的每一个特征以及这些特征和垃圾邮件的相关度进行判断是否为垃圾邮件。 所以，从例子中不难看出：一般情况下，在训练数据达到一定数量之前，越多的训练数据可以使得逻辑回归算法对未知邮件做出的判断越精确。
- 也就是说逻辑回归算法可以根据训练数据【经验(E)】提高垃圾邮件分类问题【任务(T)】上的准确率【效果(P)】
- 2.机器学习的分类  有监督学习(Supervised Learning)   有监督学习可分为回归和分类问题。例如上述示例垃圾邮件分类就属于有监督学习。 1.在回归问题中，我们会预测一个连续值；也就是我们试图将输入变量和输出用一个连续函数对应起来。 2.在分类问题中，我们会预测一个离散值，我们试图将输入变量与离散的类别对应起来。
-  无监督学习(Unsupervised Leanring)   这种学习方式，数据并不被特别标识，学习模型是为了推断出数据的一些内在结构。
-  增强式学习(Reinforcement Learning)   输入数据作为对模型的反馈，不像监督模型那样，输入数据仅仅是作为一个检查模型对错的方式，在强化学习下，输入数据直接反馈到模型，模型必须对此立刻作出调整。
- 
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%80-%E8%81%8A%E8%81%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89-%E5%85%B3%E4%BA%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 6 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89-%E5%85%B3%E4%BA%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      一、关于神经网络  训练神经网络主要包含以下四部分：  层，多个层组合成网络(模型) 输入数据和相应的目标 损失函数，即用于学习的反馈信号 优化器，决定学习过程如何进行    
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89-%E5%85%B3%E4%BA%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/operation/linux/centos/command/1-sedgrepawk/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/operation/linux/centos/command/1-sedgrepawk/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/operation/linux/centos/command/1-sedgrepawk/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/operation/linux/centos/command/awk%E6%93%8D%E4%BD%9C/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/operation/linux/centos/command/awk%E6%93%8D%E4%BD%9C/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      
-    </div>
-    <div class="read-more">
-      <a href="/post/operation/linux/centos/command/awk%E6%93%8D%E4%BD%9C/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/operation/linux/centos/command/grep%E6%93%8D%E4%BD%9C/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/operation/linux/centos/command/grep%E6%93%8D%E4%BD%9C/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      
-    </div>
-    <div class="read-more">
-      <a href="/post/operation/linux/centos/command/grep%E6%93%8D%E4%BD%9C/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/ext/tools/1_guava_future_callback/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -797,10 +519,6 @@
       
       <li  class="active" >
         <a href="/page/10/">10</a>
-      </li>
-      
-      <li >
-        <a href="/page/11/">11</a>
       </li>
       
     </ul>

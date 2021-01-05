@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="模板模式 **模板模式：**是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+  <meta name="description" content="模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
 ①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this." />
 <meta name="keywords" content="design pattern" />
 
@@ -61,24 +61,24 @@
 
 
 <meta property="og:title" content="3.模板模式" />
-<meta property="og:description" content="模板模式 **模板模式：**是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+<meta property="og:description" content="模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
 ①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_3_template/" />
 <meta property="article:published_time" content="2019-08-22T15:36:27+08:00" />
 <meta property="article:modified_time" content="2019-08-22T15:36:27+08:00" />
 <meta itemprop="name" content="3.模板模式">
-<meta itemprop="description" content="模板模式 **模板模式：**是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+<meta itemprop="description" content="模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
 ①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.">
 <meta itemprop="datePublished" content="2019-08-22T15:36:27&#43;08:00" />
 <meta itemprop="dateModified" content="2019-08-22T15:36:27&#43;08:00" />
-<meta itemprop="wordCount" content="196">
+<meta itemprop="wordCount" content="198">
 
 
 
 <meta itemprop="keywords" content="design pattern,java," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="3.模板模式"/>
-<meta name="twitter:description" content="模板模式 **模板模式：**是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+<meta name="twitter:description" content="模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
 ①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this."/>
 
 <!--[if lte IE 9]>
@@ -356,7 +356,7 @@
             <a href="https://touch-star.com/categories/java/"> java </a>
             
           </div>
-        <span class="more-meta"> 约 196 字 </span>
+        <span class="more-meta"> 约 198 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -549,9 +549,9 @@
     
     <div class="post-content">
       <h1 id="模板模式">模板模式</h1>
-<p><!-- raw HTML omitted -->**模板模式：**<!-- raw HTML omitted --><code>是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。</code></p>
+<p><!-- raw HTML omitted --> <strong>模板模式：</strong> <!-- raw HTML omitted --><code>是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。</code></p>
 <h4 id="uml图">①.UML图</h4>
-<p><img src="media/1_2_3_template_uml.jpg" alt="模板模式UML"></p>
+<p><img src="/image/docs_img/coding/java/media/1_2_3_template_uml.jpg" alt="模板模式UML"></p>
 <h4 id="代码清单">②.代码清单</h4>
 <ul>
 <li>AbstractDisplay类</li>
@@ -700,7 +700,7 @@
 <ul>
 <li>父、子类间的一致性</li>
 </ul>
-<p><code>通过父类类型定义子类实例变量，即时不使用instanceof指定子类的类型，程序依然可以正常运行。</code>***(里氏替换原则[LSP],通用的继承原则。)***</p>
+<p><code>通过父类类型定义子类实例变量，即时不使用instanceof指定子类的类型，程序依然可以正常运行。</code> <em><strong>(里氏替换原则[LSP],通用的继承原则。)</strong></em></p>
 <h4 id="类的层次与抽象类">④.类的层次与抽象类</h4>
 <ul>
 <li>父类对子类的约束

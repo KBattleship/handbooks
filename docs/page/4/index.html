@@ -436,7 +436,7 @@
           <a href="https://touch-star.com/categories/java/"> java </a>
           
         </div>
-      <span class="more-meta"> 约 196 字 </span>
+      <span class="more-meta"> 约 198 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
@@ -452,7 +452,7 @@
   <div class="post-content">
     
     <div class="post-summary">
-      模板模式 **模板模式：**是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+      模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
 ①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.
     </div>
     <div class="read-more">
@@ -653,7 +653,62 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/cloudnative/docker/readme/"></a>
+      <a class="post-link" href="/post/cloudnative/kubernetes/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 19 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Kubernetes Kubernetes(K8s)，译文成为【舵手】。从官网的Logo可以看出是轮船上的舵。结合container(集装箱，容器)的概念，Kubernetes看起来则是管理这些容器的。是一个自动化的容器编排平台，负责应用的部署、应用的弹性以及应用的管理，前提则是这些应用都是基于容器的。
+核心功能   服务的发现与负载均衡
+附属组件KubeDNS为系统内置了服务发现功能，可以将每一个Service增加DNS名称，使得集群内节点直接通过此名称访问到；同时Service通过iptables、ipvs支持了负载均衡。
+  自动装箱
+构建于容器之上，基于资源依赖及其他约束在不影响其可用性的情况下自动完成容器的部署工作。
+  自我修复
+容器故障后自动重启、节点故障后自动重新进行容器调度、节点健康状态检查异常后会关闭容器进行重新创建。
+  水平扩展
+通过命令、UI手动水平扩展、基于CPU等资源负载率进行自动水平扩展。
+  自动发布与回滚
+使用灰度方式更新应用或其配置，过程中的应用健康状态将得到监控，以保证不在同一时刻kill掉所有实例；同时，过程中健康状态出现异常情况，将会立即自动执行回滚。
+  存储编排
+Pod对象自动挂载不同类型的存储系统。
+  批量处理
+支持批处理作业、CI持续集成。
+  秘钥与配置管理
+K8s的configMap将配置与Docker镜像解耦，更新配置时，无需重新构建Docker镜像。同时，敏感数据将通过Secret对象进行解耦，以保障一定程度上的最大安全。
+  
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/readme/"></a>
     </h1>
     
     <div class="post-meta">
@@ -666,7 +721,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
       
       
       
-        <span id="/post/cloudnative/docker/readme/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/cloudnative/readme/" class="leancloud_visitors" data-flag-title="">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -677,10 +732,10 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
   <div class="post-content">
     
     <div class="post-summary">
-      Docker 
+      云原生 
     </div>
     <div class="read-more">
-      <a href="/post/cloudnative/docker/readme/" class="read-more-link">阅读全文</a>
+      <a href="/post/cloudnative/readme/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -691,7 +746,7 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/cloudnative/kubernetes/1-k8s-base/1_concept/"></a>
+      <a class="post-link" href="/post/cloudnative/summary/"></a>
     </h1>
     
     <div class="post-meta">
@@ -699,12 +754,12 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
         0001-01-01
       </time>
       
-      <span class="more-meta"> 约 78 字 </span>
+      <span class="more-meta"> 约 35 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/cloudnative/kubernetes/1-k8s-base/1_concept/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/cloudnative/summary/" class="leancloud_visitors" data-flag-title="">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -715,76 +770,14 @@ Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/
   <div class="post-content">
     
     <div class="post-summary">
-      1.初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
-  ApiServer
-集群的网关。
- 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
-   Controller Manager
-负责生命周期功能及API业务逻辑。
- **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
-   Scheduler
-在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
-  Etcd
-基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
- a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
-     Node(从节点:worker node)
-工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
-  Pod
-Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
-  Pod Controller(Pod 控制器)
-虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
-  Replication Controller(复制控制器)
-K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
-  Replica Set
-保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
- 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。
+      目录   云原生探索
+  第一部分-Goland学习
+ Go并发  协程      第二部分-Docker
+ 1.Docker命令 2.Docker安装 3.Docker之jdk最简镜像构建 4.Docker-SpringBoot构建 5.Docker-本地构建none包处理 6.Docker-Linux Namespace 7.Docker-Linux cgroup 8.Docker-Linux UFS    第三部分-Kubernetes
+ 1.初识K8s  1-1.K8s基础 1-2.Kubectl工具 1-3.Kubeadm工具 1-4.Kubenetes集群初始化 1-5.Kubenetes之Helm包管理工具   2.深入Pod  2-1.Pod对象 2-2.Pod示例 2-3.Pod详解   3.深入Service  3-1.Service对象   4.K8s服务构建  4-1.Mysql-K8s主从构建   K8s-PlugIn  1.Dashboard插件       第四部分-ServiceMesh
     </div>
     <div class="read-more">
-      <a href="/post/cloudnative/kubernetes/1-k8s-base/1_concept/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/kubernetes/1-k8s-base/2_kubectl/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 190 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/kubernetes/1-k8s-base/2_kubectl/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      1-2 Kubectl命令行工具 1.kubectl用法  $~: kubectl [command] [TYPE] [NAME] [flags]
-   [command] 子命令。用于操作Kubernetes集群资源对象。
-可取值：[create | delete | describe | get | apply]
-  [TYPE] 资源对象的类型。区分大小写
-备注：可以通过单数形式、复数形式、简写形式表示。
-1 2 3 4  # 例：不同写法的Type,但是效果一致 kubectl get pod pod1 kubectl get pods pod1 kubectl get po pod1     [NAME] 资源对象名称。区分大小写 备注： 如果不指定名称，将返回属于TYPE的所有对象列表。
-1 2  # 例：返回所有对象列表 kubectl get pods     [flags] kubectl子命令的可选参数
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/kubernetes/1-k8s-base/2_kubectl/" class="read-more-link">阅读全文</a>
+      <a href="/post/cloudnative/summary/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -854,10 +847,6 @@ K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制�
       
       <li >
         <a href="/page/10/">10</a>
-      </li>
-      
-      <li >
-        <a href="/page/11/">11</a>
       </li>
       
     </ul>

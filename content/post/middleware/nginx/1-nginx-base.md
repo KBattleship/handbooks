@@ -1,5 +1,5 @@
 ---
-title: "【Nginx那点事儿】之 ①【 Nginx入门】"
+title: "[Nginx] 1.Nginx入门"
 date: 2019-11-12T01:36:27+08:00
 lastmod: 2019-11-12T01:36:27+08:00
 keywords: ['middleware']
@@ -8,7 +8,7 @@ tags: ['nginx','Linux']
 categories: ['middleware']
 author: ""
 ---
-# 【Nginx那点事儿】之 ①【 Nginx入门】
+# 1.Nginx入门
 
 ### 一、Nginx为什么受青睐
 

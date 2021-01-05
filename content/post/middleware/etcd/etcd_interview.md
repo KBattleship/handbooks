@@ -3,10 +3,8 @@ title: "Etcd基础入门(1)"
 date: 2020-04-30
 lastmod: 2020-04-30
 menu: "etcd"
-weight: 50
 categories: ['K8s']
 tags: ['etcd','k8s','分布式']
-comment: true
 
 ---
 ## ETCD

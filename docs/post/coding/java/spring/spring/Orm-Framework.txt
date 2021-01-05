@@ -1,0 +1,96 @@
+﻿1、EV播放器即将停止使用（EV文件很大、据说有人破解了）
+   换成大黄蜂（由班主任老师分配账号和密码）
+
+2、VIP学员推荐有奖
+
+
+
+//ORM(对象关系映射    Object Relation Mapping)
+    //说的就是讲已经持久化的数据内容转换为一个Java对象
+    //用Java对象来描述对象与对象之间的关系和数据内容
+
+    //Hibernate MyBatis JPA  SpringJDBC
+
+    //Hibernate 全自动档  不需要写一句SQL语句、烧油（牺牲性能）
+    //MyBatis  手自一体（半自动） 支持单表映射，多表关联需要配置，轻量级一些
+    //SpringJDBC  手动挡 包括SQL语句，映射都是要自己实现的（最省油的）
+
+    //喜欢轻装上阵  Spring本来就是万能胶IOC/AOP/DI/MVC/JDBC/BigData/Cloud/Boot
+    //因为Spring形成一个生态
+
+
+
+    //为什么要自己写ORM框架
+    //1、解决实际的业务问题（根据业务需要）
+    //2、自定义需求，如果要直接第三方开源框架的话，需要进行二次开发
+    //3、解决团队成员之间水平参差不齐的问题
+    //4、可以实现统一的管理、监控、排错等等一系列底层操作
+
+
+
+//大数据监测系统：
+//数据吞吐量大
+//数据存储方式多样化
+//数据源需要频繁切换
+//API无法统一
+
+
+最底层的类
+
+1、统一方法名
+select
+insert
+delete
+update
+
+
+find/get/load/query
+
+
+//约定
+如果是删、改，以ID作为唯一的检索条件，如果没有ID，那么要先查出来得到ID
+
+
+2、统一参数
+  如果是做条件查询   QueryRule（自己封装）
+  批量更新和插入 ，方法名以All结尾  参数为List
+  删、改、插一条数据 ，参数用 T
+
+
+
+
+3、统一返回结果 所有的分页操作返回Page
+   所有的集合查询返回  List 
+
+   所有的单条查询返回  T
+
+   所有的ID采用Long类型
+
+   所有的删除、修改、增加操作返回boolean
+
+
+对外输出都用ResultMsg
+  
+
+java extends  core   common
+javax.core.common.utils  操作工具包
+javax.core.common.config  统一配置
+javax.core.common.doc     文档生成
+
+
+javax.core.common.jdbc    JDBC依赖
+javax.core.common.redis   Redis
+javax.core.common.mongodb   MongoDB
+javax.core.common.hbase    Hbase
+
+
+只要是Spring相关的配置都以 application-  开头
+建议不要把所有的东西在一个文件中，这样不便于团队开发的维护
+
+aop 配置切面，代理规则的
+beans 配置单例对象的
+common 配置通用的配置
+context 主入口
+db   数据库相关
+web  跟页面打交道的、拦截器、过滤器、监听器、模板
+

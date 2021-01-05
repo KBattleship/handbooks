@@ -2,20 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://touch-star.com/post/middleware/etcd/etcd_interview/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/middleware/etcd/etcd_sourcecode_1/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://touch-star.com/about/</loc>
     <lastmod>2020-04-28T21:41:52+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -191,56 +177,56 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/1-command/</loc>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/1_command/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/2-dockerinstall/</loc>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/2_docker_install/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/3-jdk_mirror/</loc>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/3_jdk_mirror/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/4-docker4springboot/</loc>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/4_docker4_springboot/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/5-docker4rmnone/</loc>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/5_docker4_remove_none/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/6-namespace-linux4docker/</loc>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/6_namespace_linux4docker/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/7-cgroup-linux4docker/</loc>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/7_cgroup_linux4docker/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/8-ufs-linux4docker/</loc>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/8_ufs_linux4docker/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -304,6 +290,20 @@
   
   <url>
     <loc>https://touch-star.com/tags/etcd/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/middleware/etcd/etcd_interview/</loc>
+    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/middleware/etcd/etcd_sourcecode_1/</loc>
     <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -415,7 +415,7 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/operation/linux/centos/command/vim/</loc>
+    <loc>https://touch-star.com/post/operation/linux/centos/command/3_vim/</loc>
     <lastmod>2019-11-12T01:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -423,6 +423,13 @@
   
   <url>
     <loc>https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</loc>
+    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/middleware/nginx/1-nginx-base/</loc>
     <lastmod>2019-11-12T01:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -479,13 +486,6 @@
   
   <url>
     <loc>https://touch-star.com/tags/zookeeper/</loc>
-    <lastmod>2019-11-12T01:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/middleware/nginx/1-nginx-base/</loc>
     <lastmod>2019-11-12T01:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -653,85 +653,7 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/readme/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/1-k8s-base/1_concept/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/1-k8s-base/2_kubectl/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/1-k8s-base/3_kubeadm/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/1-k8s-base/4_k8s_install/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/1-k8s-base/5_helm/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/2-k8s-pod/1.k8s-pod/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/2-k8s-pod/2.pods-example/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/2-k8s-pod/3.pod-detial/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/3-k8s-service/1.k8s-service/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/4-k8s-deployfile/1.mysql-k8s/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/5-k8s-crd/cunstom_resource_defination/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/k8s-plugin/1-k8s_dashboard/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/readme/</loc>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -941,19 +863,19 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/spring/spring5/spring-features/</loc>
+    <loc>https://touch-star.com/post/coding/java/spring/spring/spring-features/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/spring/spring5/spring-ioc/</loc>
+    <loc>https://touch-star.com/post/coding/java/spring/spring/spring-ioc/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/spring/spring5/spring-orm-framework/</loc>
+    <loc>https://touch-star.com/post/coding/java/spring/spring/spring-orm-framework/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -1013,31 +935,31 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/operation/linux/centos/command/1-sedgrepawk/</loc>
+    <loc>https://touch-star.com/post/operation/linux/centos/command/1_1_awk/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/operation/linux/centos/command/awk%E6%93%8D%E4%BD%9C/</loc>
+    <loc>https://touch-star.com/post/operation/linux/centos/command/1_2_grep/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/operation/linux/centos/command/grep%E6%93%8D%E4%BD%9C/</loc>
+    <loc>https://touch-star.com/post/operation/linux/centos/command/1_3_sed/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/operation/linux/centos/command/regularexpression%E6%AD%A3%E5%88%99/</loc>
+    <loc>https://touch-star.com/post/operation/linux/centos/command/1_sed_grep_awk/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/operation/linux/centos/command/sed%E6%93%8D%E4%BD%9C/</loc>
+    <loc>https://touch-star.com/post/operation/linux/centos/command/2_regular_expression/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

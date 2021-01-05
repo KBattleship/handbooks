@@ -3,10 +3,8 @@ title: "Etcd基础入门(2)"
 date: 2020-04-30
 lastmod: 2020-04-30
 menu: "etcd"
-weight: 50
 categories: ['K8s']
 tags: ['etcd','k8s','分布式']
-comment: true
 
 ---
 # Etcd源码阅读与分析①-raft demo

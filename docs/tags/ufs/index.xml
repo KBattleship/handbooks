@@ -13,10 +13,10 @@
     
     <item>
       <title>8.文件系统之UFS</title>
-      <link>https://touch-star.com/post/cloudnative/docker/docker/8-ufs-linux4docker/</link>
+      <link>https://touch-star.com/post/cloudnative/docker/docker/8_ufs_linux4docker/</link>
       <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/cloudnative/docker/docker/8-ufs-linux4docker/</guid>
+      <guid>https://touch-star.com/post/cloudnative/docker/docker/8_ufs_linux4docker/</guid>
       <description>文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
  原理： 使用branch把不同文件系统的文件、目录「透明的」进行覆盖，形成一个单一一直的文件系统。branch具有要么read-only,要么read-write的特点。
   思想： 写时复制(copy-on-write),如果一个资源重复，但并未被修改，将不被立即创建出新的资源，直接为新旧实例提供共享。创建新资源将发生在第一次被修改写入时。该资源共享方式，可以明显降低未修改资源复制时的消耗，但同样的，也会在写入修改是增加部分开销。
