@@ -64,5 +64,51 @@
 ①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.</description>
     </item>
     
+    <item>
+      <title>[ 设计模式 ] 6.原型模式</title>
+      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_6_prototype/</link>
+      <pubDate>Tue, 16 Jul 2019 23:36:27 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_6_prototype/</guid>
+      <description>原型模式 原型模式：通过复制生成实例。
+①.角色分配   Prototype(原型)
+负责定义用于复制现有实例来生成新实例的方法。
+  ConcretePrototype(具体原型)
+负责实现现有实例并生成新实例的方法。
+  Client(使用者)
+负责使用复制实例的方法生成的新实例。
+  ②.UML图 ③.代码清单  简单形式  定义抽象接口
+1 2 3  public interface Prototype extends Cloneable { Object clone(); }   具体实现原型拷贝
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  public class ConcretePrototype implements Prototype { public ConcretePrototype(){ System.out.println(&amp;#34;Prototype Design Patterns&amp;#34;); } @Override public Object clone() { ConcretePrototype concretePrototype=null; try { concretePrototype=(ConcretePrototype)super.</description>
+    </item>
+    
+    <item>
+      <title>[ 设计模式 ] 5.单例模式</title>
+      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_5_singleton/</link>
+      <pubDate>Thu, 11 Jul 2019 23:36:27 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_5_singleton/</guid>
+      <description>单例模式 **单例模式：**保证任何情况下都绝对的只生成一个实例的模式。
+①.单例角色  Singleton: 有且仅有的一个角色(实例)。  **Tips:**当存在多个实例时，实例间互相影响，会出现意想不到异常。当且仅当，第一次调用类中静态方法的时候，Singleton类会被初始化，生成唯一的静态实例，重复调用时直接返回已经初始化完成的实例。
+②.实现单例  **方式一：**简化实现的单例模式  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 1.简化实现的单例模式，但遇到多线程肯定有问题 */ public static Singleton getInstance(){ if (singleton==null){ singleton=new Singleton(); } return singleton; } }    **方式二：**加锁控制多线程  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 2.</description>
+    </item>
+    
+    <item>
+      <title>[ 设计模式 ] 4.工厂模式</title>
+      <link>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_4_factory/</link>
+      <pubDate>Wed, 03 Jul 2019 23:36:27 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_4_factory/</guid>
+      <description>工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
+ 一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
+ 多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
+1 2  # 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。 # 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。   ②.工厂角色职责   Product(产品) 一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类ConcreateProduct类所决定。
+  ConcreateProduct(具体产品) 属于具体加工职责：决定了具体生产出的产品。
+  Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
+  ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
+  ③.UML图 ④.代码清单 ⑤.注意事项 1 2 3  使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。   </description>
+    </item>
+    
   </channel>
 </rss>

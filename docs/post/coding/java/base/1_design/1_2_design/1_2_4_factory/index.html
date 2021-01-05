@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - Quinn</title>
+  <title>[ 设计模式 ] 4.工厂模式 - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="4.工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+  <meta name="description" content="工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
 ①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
  一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
  多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
@@ -32,8 +32,8 @@
   Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
   ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
   ③.UML图 ④.代码清单 ⑤.注意事项 1 2 3  使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。   " />
+<meta name="keywords" content="design pattern" />
 
-  <meta name="keywords" content="Quinn, k8s, docker" />
 
 
 
@@ -67,8 +67,8 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="4.工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+<meta property="og:title" content="[ 设计模式 ] 4.工厂模式" />
+<meta property="og:description" content="工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
 ①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
  一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
  多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
@@ -79,9 +79,10 @@
   ③.UML图 ④.代码清单 ⑤.注意事项 1 2 3  使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。   " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/coding/java/base/1_design/1_2_design/1_2_4_factory/" />
-
-<meta itemprop="name" content="">
-<meta itemprop="description" content="4.工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+<meta property="article:published_time" content="2019-07-03T23:36:27+08:00" />
+<meta property="article:modified_time" content="2019-07-03T23:36:27+08:00" />
+<meta itemprop="name" content="[ 设计模式 ] 4.工厂模式">
+<meta itemprop="description" content="工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
 ①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
  一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
  多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
@@ -90,14 +91,15 @@
   Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
   ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
   ③.UML图 ④.代码清单 ⑤.注意事项 1 2 3  使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。   ">
-
+<meta itemprop="datePublished" content="2019-07-03T23:36:27&#43;08:00" />
+<meta itemprop="dateModified" content="2019-07-03T23:36:27&#43;08:00" />
 <meta itemprop="wordCount" content="37">
 
 
 
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="4.工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+<meta itemprop="keywords" content="design pattern,java," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ 设计模式 ] 4.工厂模式"/>
+<meta name="twitter:description" content="工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
 ①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
  一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
  多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
@@ -372,13 +374,16 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">[ 设计模式 ] 4.工厂模式</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2019-07-03" class="post-time">
+          2019-07-03
         </time>
-        
+        <div class="post-category">
+            <a href="https://touch-star.com/categories/java/"> java </a>
+            
+          </div>
         <span class="more-meta"> 约 37 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
@@ -387,7 +392,7 @@
 
         
         
-          <span id="/post/coding/java/base/1_design/1_2_design/1_2_4_factory/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/coding/java/base/1_design/1_2_design/1_2_4_factory/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 4.工厂模式">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -422,8 +427,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#4%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f">
-                            4.工厂模式
+                            <a class="nav-link text-left" href="#%e5%b7%a5%e5%8e%82%e6%a8%a1%e5%bc%8f">
+                            工厂模式
                             </a>
                         </li>
                     
@@ -603,7 +608,7 @@
 
     
     <div class="post-content">
-      <h1 id="4工厂模式">4.工厂模式</h1>
+      <h1 id="工厂模式">工厂模式</h1>
 <p><!-- raw HTML omitted --><em><em>工厂模式：<strong><!-- raw HTML omitted --><code>父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。</code>是</strong></em>模板方法模式</em><em><em>的典型应用。<strong>工厂模式</strong>中应会有</em>模板方法模式</em>的出现。</p>
 <h4 id="工厂模式分类">①.工厂模式分类</h4>
 <ul>
@@ -681,12 +686,16 @@
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://touch-star.com/tags/design-pattern/">design pattern</a>
+          <a href="https://touch-star.com/tags/java/">java</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/coding/java/base/1_design/1_2_design/1_2_23_interpreter/">
+          <a class="prev" href="/post/coding/java/base/1_design/1_2_design/1_2_5_singleton/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -696,12 +705,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">[ 设计模式 ] 5.单例模式</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/coding/java/base/1_design/1_2_design/1_2_5_singleton/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/coding/java/base/2_basic/2_1_base/">
+            <span class="next-text nav-default">[Java] 1.对象入门</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
