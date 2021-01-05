@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>[Mybatis]1.Mybatis源码中设计模式 - Quinn</title>
+  <title>[ Mybatis ] 1.Mybatis源码中设计模式 - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -59,13 +59,13 @@
 
 
 
-<meta property="og:title" content="[Mybatis]1.Mybatis源码中设计模式" />
+<meta property="og:title" content="[ Mybatis ] 1.Mybatis源码中设计模式" />
 <meta property="og:description" content="Mybatis源码中设计模式  Builder模式：例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder； 工厂模式：例如SqlSessionFactory、ObjectFactory、MapperProxyFactory； 单例模式：例如ErrorContext和LogFactory； 代理模式：Mybatis实现的核心，比如MapperProxy、ConnectionLogger，用的jdk的&#43; 动态代理；还有executor.loader包使用了cglib或者javassist达到延迟加载的效果； 组合模式：例如SqlNode和各个子类ChooseSqlNode等； 模板方法模式：例如BaseExecutor和SimpleExecutor，还有BaseTypeHandler和所有的子类例如IntegerTypeHandler； 适配器模式：例如Log的Mybatis接口和它对jdbc、log4j等各种日志框架的适配实现； 装饰者模式：例如Cache包中的cache.decorators子包中等各个装饰者的实现； &#43;迭代器模式：例如迭代器模式PropertyTokenizer；  " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/middleware/mybatis/design_pattern/" />
 <meta property="article:published_time" content="2020-12-31T11:13:47+08:00" />
 <meta property="article:modified_time" content="2020-12-31T11:13:47+08:00" />
-<meta itemprop="name" content="[Mybatis]1.Mybatis源码中设计模式">
+<meta itemprop="name" content="[ Mybatis ] 1.Mybatis源码中设计模式">
 <meta itemprop="description" content="Mybatis源码中设计模式  Builder模式：例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder； 工厂模式：例如SqlSessionFactory、ObjectFactory、MapperProxyFactory； 单例模式：例如ErrorContext和LogFactory； 代理模式：Mybatis实现的核心，比如MapperProxy、ConnectionLogger，用的jdk的&#43; 动态代理；还有executor.loader包使用了cglib或者javassist达到延迟加载的效果； 组合模式：例如SqlNode和各个子类ChooseSqlNode等； 模板方法模式：例如BaseExecutor和SimpleExecutor，还有BaseTypeHandler和所有的子类例如IntegerTypeHandler； 适配器模式：例如Log的Mybatis接口和它对jdbc、log4j等各种日志框架的适配实现； 装饰者模式：例如Cache包中的cache.decorators子包中等各个装饰者的实现； &#43;迭代器模式：例如迭代器模式PropertyTokenizer；  ">
 <meta itemprop="datePublished" content="2020-12-31T11:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-12-31T11:13:47&#43;08:00" />
@@ -73,8 +73,8 @@
 
 
 
-<meta itemprop="keywords" content="java,mybatis,design-pattern," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[Mybatis]1.Mybatis源码中设计模式"/>
+<meta itemprop="keywords" content="java,mybatis,design_pattern," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ Mybatis ] 1.Mybatis源码中设计模式"/>
 <meta name="twitter:description" content="Mybatis源码中设计模式  Builder模式：例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder； 工厂模式：例如SqlSessionFactory、ObjectFactory、MapperProxyFactory； 单例模式：例如ErrorContext和LogFactory； 代理模式：Mybatis实现的核心，比如MapperProxy、ConnectionLogger，用的jdk的&#43; 动态代理；还有executor.loader包使用了cglib或者javassist达到延迟加载的效果； 组合模式：例如SqlNode和各个子类ChooseSqlNode等； 模板方法模式：例如BaseExecutor和SimpleExecutor，还有BaseTypeHandler和所有的子类例如IntegerTypeHandler； 适配器模式：例如Log的Mybatis接口和它对jdbc、log4j等各种日志框架的适配实现； 装饰者模式：例如Cache包中的cache.decorators子包中等各个装饰者的实现； &#43;迭代器模式：例如迭代器模式PropertyTokenizer；  "/>
 
 <!--[if lte IE 9]>
@@ -342,7 +342,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">[Mybatis]1.Mybatis源码中设计模式</h1>
+      <h1 class="post-title">[ Mybatis ] 1.Mybatis源码中设计模式</h1>
       
       <div class="post-meta">
         <time datetime="2020-12-31" class="post-time">
@@ -360,7 +360,7 @@
 
         
         
-          <span id="/post/middleware/mybatis/design_pattern/" class="leancloud_visitors" data-flag-title="[Mybatis]1.Mybatis源码中设计模式">
+          <span id="/post/middleware/mybatis/design_pattern/" class="leancloud_visitors" data-flag-title="[ Mybatis ] 1.Mybatis源码中设计模式">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -442,7 +442,7 @@
       <div class="post-tags">
           <a href="https://touch-star.com/tags/java/">java</a>
           <a href="https://touch-star.com/tags/mybatis/">mybatis</a>
-          <a href="https://touch-star.com/tags/design-pattern/">design-pattern</a>
+          <a href="https://touch-star.com/tags/design_pattern/">design_pattern</a>
           
         </div>
 
@@ -459,12 +459,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">[Interview]1.面试准备</span>
+            <span class="prev-text nav-default">[ Interview ] 1.面试准备</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
           <a class="next" href="/post/coding/java/spring/design_pattern/">
-            <span class="next-text nav-default">[Spring]1.Spring源码中设计模式</span>
+            <span class="next-text nav-default">[ Spring ] 1.Spring源码中设计模式</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

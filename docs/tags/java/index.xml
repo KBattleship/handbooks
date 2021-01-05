@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>[Netty] 1.Netty基础</title>
+      <title>[ Netty ] 1.Netty基础</title>
       <link>https://touch-star.com/post/coding/java/base/6_netty/6_1_netty/</link>
       <pubDate>Tue, 05 Jan 2021 10:36:27 +0800</pubDate>
       
@@ -27,7 +27,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
     </item>
     
     <item>
-      <title>[Interview]面试准备</title>
+      <title>[ Interview ] 2.面试准备</title>
       <link>https://touch-star.com/post/coding/java/interview/2-processor/</link>
       <pubDate>Tue, 05 Jan 2021 01:13:47 +0800</pubDate>
       
@@ -36,7 +36,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
     </item>
     
     <item>
-      <title>[Interview]1.面试准备</title>
+      <title>[ Interview ] 1.面试准备</title>
       <link>https://touch-star.com/post/coding/java/interview/1-one/</link>
       <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
       
@@ -45,7 +45,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
     </item>
     
     <item>
-      <title>[Mybatis]1.Mybatis源码中设计模式</title>
+      <title>[ Mybatis ] 1.Mybatis源码中设计模式</title>
       <link>https://touch-star.com/post/middleware/mybatis/design_pattern/</link>
       <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
       
@@ -54,7 +54,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
     </item>
     
     <item>
-      <title>[Spring]1.Spring源码中设计模式</title>
+      <title>[ Spring ] 1.Spring源码中设计模式</title>
       <link>https://touch-star.com/post/coding/java/spring/design_pattern/</link>
       <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
       
@@ -69,7 +69,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
     </item>
     
     <item>
-      <title>[JVM]1.关于JVM命令</title>
+      <title>[ JVM ] 1.关于JVM命令</title>
       <link>https://touch-star.com/post/coding/java/base/3_jvm/jvm-base/</link>
       <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
       
@@ -79,53 +79,48 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
     </item>
     
     <item>
-      <title>Dubbo基础概念</title>
-      <link>https://touch-star.com/post/middleware/dubbo/dubbobase/</link>
+      <title>[ Dubbo ] 1.Dubbo基础概念</title>
+      <link>https://touch-star.com/post/middleware/dubbo/1_dubbobase/</link>
       <pubDate>Tue, 22 Dec 2020 15:36:27 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/middleware/dubbo/dubbobase/</guid>
+      <guid>https://touch-star.com/post/middleware/dubbo/1_dubbobase/</guid>
       <description>Dubbo基础概念 1.Dubbo核心组件  Provider： 暴露服务的服务提供方 Consumer： 调用远程服务的消费方 Register： 服务注册与发现注册中心 Monitor： 监控中心和访问调用统计 Container：服务运行时容器   Dubbo分层主要为业务层、RPC层和Remote层，如果把每层进行详细划分的话，整体划分为：
   业务层：  service: 包含各业务代码的接口与实现；   RPC层：  config: 配置层，主要围绕ServiceConfig(暴露的服务配置)和ReferenceConfig(引用的服务配置)两个类展开，初始化配置信息； proxy: 服务代理层，不论生产者还是消费者，Dubbo都会生成一个代理类，在调用远程接口时，就可以像本地接口一样，代理层自动做远程调用并返回结果； registry: 注册层，负责Dubbo框架的服务注册与发现； cluster: 集群容错层，主要负责远程调用失败时的集群容错策略(如快速失败、快速重试等)； monitor: 监控层，负责监控统计调用次数和调用时间等； protocol: 远程调用层，封装RPC调用具体过程，是Invoker暴露和引用的主要功能入口，负责管理Invoker的整个生命周期；   Remote层：  exchange: 信息交换层，封装请求相应模式，如同步请求转换为异步请求； transport: 网络传输层，把网络传输抽象为统一接口； serialize: 序列化层，将需要网络传输的数据极性序列化，转为二进制流。    2.Dubbo服务器注册与发现流程  a. Container负责启动，加载，运行服务提供者 b. Provider启动时，向注册中心注册自己并提供服务 c. Consumer启动时，向注册中心订阅自已需调用服务 d. Register返回服务提供者地址列表给服务消费者，如运行期间，服务提供者发生变动，将通过长连接推送至服务消费者 e. Consumer通过负载均衡算法(软方式)，选取注册中心所返回的服务提供者列表中的一个节点进行调用，如果调用失败将尝试其他节点进行调用 f. Consumer、Provider将调用次数、时间记录于内存中，并定时每分钟发送至Monitor监控中心  3.Dubbo项目结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  $ tree -L 1 .</description>
     </item>
     
     <item>
-      <title>1.ElasticSearch集群搭建</title>
-      <link>https://touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</link>
-      <pubDate>Sun, 22 Dec 2019 15:36:27 +0800</pubDate>
+      <title>[ Tools ] 1.关于Guava增强包异步回调</title>
+      <link>https://touch-star.com/post/coding/java/base/13_ext/tools/1_guava_future_callback/</link>
+      <pubDate>Tue, 30 Jun 2020 21:10:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</guid>
-      <description>ElasticSearch集群搭建 注： 1 2 3 4 5 6 7 8 9 10 11 12 13 14  #A:修改/etc/security/limits.conf #&amp;lt;domain&amp;gt; &amp;lt;type&amp;gt; &amp;lt;item&amp;gt; &amp;lt;value&amp;gt; * soft nofile 65536 * hard nofile 131072 * soft nproc 2048 * hard nproc 4096 #B:修改/etc/sysctl.conf vm.max_map_count=262144 # 保存执行： sysctl -p # 或者 sysctl -w vm.max_map_count=262144   </description>
+      <guid>https://touch-star.com/post/coding/java/base/13_ext/tools/1_guava_future_callback/</guid>
+      <description>关于Guava增强包异步回调 1.概述 Guava针对Java异步回调做出以下两点增强功能：
+ 1.引入新接口ListenableFuture。此接口继承于Java的Future接口，可监控、获取非阻塞异步执行结果。 2.引入新接口FutureCallback。此接口是新增独立接口，在异步任务完成后，根据异步结果，完成不同的回调事件，并处理异步结果。  </description>
     </item>
     
     <item>
-      <title>2.ElasticSearch集群原理</title>
-      <link>https://touch-star.com/post/middleware/database/nosql/elasticsearch/2.elasticsearch-cluster-base/</link>
-      <pubDate>Sun, 22 Dec 2019 15:36:27 +0800</pubDate>
+      <title>[ 算法 ] 12.5 排序</title>
+      <link>https://touch-star.com/post/coding/java/base/12_algorithm/12_5_sort/</link>
+      <pubDate>Tue, 30 Jun 2020 21:10:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/middleware/database/nosql/elasticsearch/2.elasticsearch-cluster-base/</guid>
-      <description>ElasticSearch集群原理 一、关于ES集群需要思考几个问题  需要多大规模的集群？  1 2 3 4 5 6 7 8 9 10 11  # 首先从两个方面考虑 ①.数据量有多大？数据增长情况如何？ ②.服务器硬件设施配置：CPU、Memory、Disk # 推算依据 ES Jvm heap 最大设置为32G。 30G heap大约可以存储数据量10T；服务器memory若为128G，可运行多个实例节点。 # 应用场景 A:用于构建业务搜索模块，且多是垂直领域搜索。（数据量级几千万至十亿级,一般需要2-4台机器） B:用于大规模数据的实时联机处理分析(OLAP),例如ELK，数据规模可达上千亿乃至更多，需要几十甚至上百实例节点。    集群中节点角色如何分配？  1 2 3 4 5 6 7 8 9 10 11 12 13  # 一个节点可以充当一个或多个角色，默认三个角色都有 # 节点角色 ①.Master node.master: true # 实例节点为主节点 ②.DataNode node.data: true # 默认是数据节点。 ③.CoordinateNode # 以上两项置为false，则此节点为协调节点； # 协调节点：一个节点只作为接收请求、转发请求到其他节点、汇总各个节点返回数据等功能的节点。 # 具体分配 A:小规模集群不需要具体区分； B:中、大规模集群(十个节点以上)，并发查询量大，查询的合并量大，可以增加独立的协调节点。角色分开的好处是分工分开，不互影响。如不会因协调角色负载过高而影响数据节点的能力。    如何避免脑裂问题发生？  1     索引应该设置多少个分片？ 分片应该设置多少个副本？  </description>
+      <guid>https://touch-star.com/post/coding/java/base/12_algorithm/12_5_sort/</guid>
+      <description>排序 1.排序算法说明 1.1排序算法指标  稳定性：如果a==b且a在b前，排序后a仍保持在b前，则稳定，否则不稳定 内排序：算法程序的所有排序完全是在内存中执行的 外排序：由于数据量问题，需要把数据放置磁盘中，排序需要通过磁盘与内存间传输才可以进行 时间复杂度：运行一个算法程序所需要消耗的时长 空间复杂度：运行一个算法程序所需要消耗的内存大小  1.2各排序算法总结表    排序算法 最优情况 最差情况 时间复杂度 空间复杂度 排序方式 稳定性     冒泡排序 O(n²) O(n) O(n²) O(1) 内排序 稳定   选择排序 O(n²) O(n²) O(n²) O(1) 内排序 不稳定   插入排序 O(n) O(n²) O(n²) O(1) 内排序 稳定   希尔排序 O(n log² n) O(n log² n) O(n log n) O(1) 内排序 不稳定   归并排序 O(n log n) O(n log n) O(n log n) O(n) 外排序 稳定   快速排序 O(n log n) O(n²) O(n log n) O(log n) 内排序 不稳定   堆排序 O(n log n) O(n log n) O(n log n) O(1) 内排序 不稳定   计数排序 O(n+k) O(n+k) O(n+k) O(k) 外排序 不稳定   桶排序 O(n+k) O(n²) O(n+k) O(n+k) 外排序 稳定   基数排序 O(n*k) O(n*k) O(n*k) O(n+k) 外排序 稳定     n:数据量 k:桶的数量</description>
     </item>
     
     <item>
-      <title>[Java] 10.Java IO</title>
-      <link>https://touch-star.com/post/coding/java/base/2_basic/2_10_io/</link>
-      <pubDate>Fri, 12 Jul 2019 15:36:27 +0800</pubDate>
+      <title>[ 算法 ] 12.6 动态规划</title>
+      <link>https://touch-star.com/post/coding/java/base/12_algorithm/12_6_dynamic_programming/</link>
+      <pubDate>Tue, 30 Jun 2020 21:10:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/base/2_basic/2_10_io/</guid>
-      <description>Java IO 1.关于BIO、NIO、AIO   BIO(Blocking I/O,阻塞IO)
-数据的读取、写入必须阻塞在一个线程内等待完成。
-1 2 3  经典BIO案例：烧开水 存在一排水壶烧开水，BIO的工作模式：叫一个线程停留在水壶出，知道水壶烧开， 才去处理下一个水壶。(实际上线程在等待水壶烧开的过程，什么事情都没有做。)     使用场景：
-适用于连接数量较小且模式固定的架构。JDK1.4前的唯一选择。
-    NIO(Non-Blocking I/O,非阻塞IO)
-是一种同时支持阻塞与非阻塞模式I/O模型。处于 java.nio包中。是面向缓冲区的。
-  使用场景：
-适用于连接数目多且连接较短(轻操作)，例如聊天室服务器，并发局限在应用中，编程较为复杂。
-   NIO重点概念：Channel(通道)、Buffer(缓冲区)、Selector(选择器)
-   Channel(通道)
-Channel是一个通道，可以通过Channel读取和写入数据。Channel与Stream不同之处：数据在Channel中是双向的，在Stream中是单向的。同时Channel可以用于写、读或者读写。
-1 2 3 4 5  Channel存在四种实现方式： - FileChannel：从文件中读取数据 - DatagramChannel: 从UDP网络中读取或写入数据 - SocketChannel：从TCP网络中读取或者写入数据 - ServerSocketChannel：允许监听来自TCP的连接。每产生一个连接将产生一个SocketChannel。     Buffer(缓冲区)
-Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/O中，可以讲数据写入或者直接读取到stream中。实质上缓冲区是一个数组(通常使用ByteBuffer[])，但同时还提供有对数据的结构话访问、维护读写位置的信息。
-1 2 3 4 5 6 7 8 9  Java中每一种基本类型都将对应一种缓冲区 - ByteBuffer(字节缓冲区) # 最为常用 - CharBuffer(字符缓冲区) - ShortBuffer(短整型缓冲区) - IntBuffer(整型缓冲区) - LongBuffer(长整型缓冲区) - FloatBuffer(浮点型缓冲区) - DoubleBuffer(双精度浮点型缓存区)     Selector Selector选择器可以监听多个Channel。Selector只能管理非阻塞Channel：FileChannel是个例外，属于阻塞I/O，无法进行管理。</description>
+      <guid>https://touch-star.com/post/coding/java/base/12_algorithm/12_6_dynamic_programming/</guid>
+      <description>动态规划  动态规划(Dynamic Programming),每次决策依赖于当前决策状态，随即又伴随着状态偏移。决策序列就是在变化的状态中生成的(适用于多阶段优化问题)。
+ 1 算法原理 1.1 基本思想   基本思想是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的最优解。
+  通过保存下子问题的解到表中，从而避免重叠子问题的重复计算，优化计算过程时间。
+  动态规划类似但不同于分治算法。
+ 一句话概述：动态规划&amp;ndash;&amp;gt;各子问题重叠。分治算法&amp;ndash;&amp;gt;各子问题独立。 算法导论： 动态规划要求其子问题既要独立又要重叠。如果同一个问题的两个子问题不共享资源，则它们就是独立的。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则是重叠的。
+   动态规划算法具有很多种，但是计算子问题值的填表形式是同一种。
+  1.2 算法策略 2 算法实现 2.1 适用场景  适用于求解具有某种最优性质的问题。
+ 2.2 动图演示 2.3 代码实现 </description>
     </item>
     
   </channel>

@@ -1,10 +1,10 @@
 ---
-title: "[Mybatis]1.Mybatis源码中设计模式"
+title: "[ Mybatis ] 1.Mybatis源码中设计模式"
 date: 2020-12-31T11:13:47+08:00
 lastmod: 2020-12-31T11:13:47+08:00
 keywords: ['mybatis']
 description: ""
-tags: ['java','mybatis','design-pattern']
+tags: ['java','mybatis','design_pattern']
 categories: ['Java']
 author: ""
 ---

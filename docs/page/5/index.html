@@ -342,6 +342,45 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 3 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1_design_pattern/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      设计模式 设计模式是一把双刃剑。正确使用可以提高系统的适应性，误用、错用则会反过来降低系统的适应性。
+宗旨：帮助我们编写可复用的类，所谓的可复用：即，类的实现为‘组件’，当一个组件发生变化时，不需要对其他组件进行修改或者只需要做很小的改动。
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1_design_pattern/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/coding/java/base/2_basic/readme/"></a>
     </h1>
     
@@ -692,47 +731,6 @@ Spring5集成测试 JUnit集成 1、 * @BeforeEach 相当于 JUnit 4 @Before * @
     </div>
     <div class="read-more">
       <a href="/post/coding/java/spring/springcloud/1.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9E%84%E5%BB%BA%E5%9F%BA%E7%A1%80/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/spring/springcloud/1_server/eureka/1_1_eureka/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 50 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/spring/springcloud/1_server/eureka/1_1_eureka/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      SpringCloudEureka注册中心 1.基础注解  @EnableEurekaServer:一般用在SpringBoot的启动类上,直接声明当前Project为注册与发现中心。
-  @EnableEurekaClient:一般用在SpringBoot的启动类上，表明当前Project是一个EurekaClient。 需要将其本身连接并发送基本信息至注册中心（这一过程即发现注册）
- 2.配置及用法 所有Eureka服务都被称作实例，但其角色有所不同，可将其分为两类EurekaServer与EurekaClient。EurekaClient也将有两种不同的角色出现：Application Provider与Application Consumer。
- EurekaInstance  EurekaServer：即为发现注册中心(同时EurekaServer也将是一个特殊的EurekaClient) EurekaClient：除发现注册中心之外的所有Eureka实例  ApplicationProvider：服务提供者 ApplicationConsumer：服务调用者      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25  ### 以下一段内容将在EurekaInstanceProject中必须出现spring:application:name:icc-transfereureka:instance:# 声明当前实例的主机名称，用于发现注册hostname:cloud-eureka-peer1# 心跳频率，默认值30slease-renewal-interval-in-seconds:30# 无心跳超时频率，默认值90slease-expiration-duration-in-seconds:90# 以下内容将作为EurekaClient必须配置# 如果配置一个高可用的EurekaServer，也许进行此配置，EurekaServer将作为EurekaClient与其他节点进行数据同步client:serviceUrl:# 声明发现注册中心(EurekaServer)的地址defaultZone:http://cloud-eureka-peer:8080/eureka/,http://cloud-eureka-peer:8080/eureka/# 当前实例是否向EurekaServer注册自己，默认值为true即注册此实例register-with-eureka:true# 当前实例是否向EurekaServer服务器获取所有实例的注册信息表,默认值truefetch-registry:true# 拉取EurekaServer中EurekaInstance注册信息表频率,默认值为30sregister-fetch-interval-seconds:30  
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/spring/springcloud/1_server/eureka/1_1_eureka/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

@@ -6,18 +6,44 @@
     <description>Recent content in guava on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
+    <lastBuildDate>Tue, 30 Jun 2020 21:10:47 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/tags/guava/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>[Tools]1.关于Guava增强包异步回调</title>
+      <title>[ Tools ] 1.关于Guava增强包异步回调</title>
       <link>https://touch-star.com/post/coding/java/base/13_ext/tools/1_guava_future_callback/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 30 Jun 2020 21:10:47 +0800</pubDate>
       
       <guid>https://touch-star.com/post/coding/java/base/13_ext/tools/1_guava_future_callback/</guid>
       <description>关于Guava增强包异步回调 1.概述 Guava针对Java异步回调做出以下两点增强功能：
  1.引入新接口ListenableFuture。此接口继承于Java的Future接口，可监控、获取非阻塞异步执行结果。 2.引入新接口FutureCallback。此接口是新增独立接口，在异步任务完成后，根据异步结果，完成不同的回调事件，并处理异步结果。  </description>
+    </item>
+    
+    <item>
+      <title>[ 算法 ] 12.5 排序</title>
+      <link>https://touch-star.com/post/coding/java/base/12_algorithm/12_5_sort/</link>
+      <pubDate>Tue, 30 Jun 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/12_algorithm/12_5_sort/</guid>
+      <description>排序 1.排序算法说明 1.1排序算法指标  稳定性：如果a==b且a在b前，排序后a仍保持在b前，则稳定，否则不稳定 内排序：算法程序的所有排序完全是在内存中执行的 外排序：由于数据量问题，需要把数据放置磁盘中，排序需要通过磁盘与内存间传输才可以进行 时间复杂度：运行一个算法程序所需要消耗的时长 空间复杂度：运行一个算法程序所需要消耗的内存大小  1.2各排序算法总结表    排序算法 最优情况 最差情况 时间复杂度 空间复杂度 排序方式 稳定性     冒泡排序 O(n²) O(n) O(n²) O(1) 内排序 稳定   选择排序 O(n²) O(n²) O(n²) O(1) 内排序 不稳定   插入排序 O(n) O(n²) O(n²) O(1) 内排序 稳定   希尔排序 O(n log² n) O(n log² n) O(n log n) O(1) 内排序 不稳定   归并排序 O(n log n) O(n log n) O(n log n) O(n) 外排序 稳定   快速排序 O(n log n) O(n²) O(n log n) O(log n) 内排序 不稳定   堆排序 O(n log n) O(n log n) O(n log n) O(1) 内排序 不稳定   计数排序 O(n+k) O(n+k) O(n+k) O(k) 外排序 不稳定   桶排序 O(n+k) O(n²) O(n+k) O(n+k) 外排序 稳定   基数排序 O(n*k) O(n*k) O(n*k) O(n+k) 外排序 稳定     n:数据量 k:桶的数量</description>
+    </item>
+    
+    <item>
+      <title>[ 算法 ] 12.6 动态规划</title>
+      <link>https://touch-star.com/post/coding/java/base/12_algorithm/12_6_dynamic_programming/</link>
+      <pubDate>Tue, 30 Jun 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/12_algorithm/12_6_dynamic_programming/</guid>
+      <description>动态规划  动态规划(Dynamic Programming),每次决策依赖于当前决策状态，随即又伴随着状态偏移。决策序列就是在变化的状态中生成的(适用于多阶段优化问题)。
+ 1 算法原理 1.1 基本思想   基本思想是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的最优解。
+  通过保存下子问题的解到表中，从而避免重叠子问题的重复计算，优化计算过程时间。
+  动态规划类似但不同于分治算法。
+ 一句话概述：动态规划&amp;ndash;&amp;gt;各子问题重叠。分治算法&amp;ndash;&amp;gt;各子问题独立。 算法导论： 动态规划要求其子问题既要独立又要重叠。如果同一个问题的两个子问题不共享资源，则它们就是独立的。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则是重叠的。
+   动态规划算法具有很多种，但是计算子问题值的填表形式是同一种。
+  1.2 算法策略 2 算法实现 2.1 适用场景  适用于求解具有某种最优性质的问题。
+ 2.2 动图演示 2.3 代码实现 </description>
     </item>
     
   </channel>

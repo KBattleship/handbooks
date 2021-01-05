@@ -114,7 +114,7 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/design-pattern/</loc>
+    <loc>https://touch-star.com/tags/design_pattern/</loc>
     <lastmod>2020-12-31T11:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -156,14 +156,14 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/dubbo/</loc>
+    <loc>https://touch-star.com/post/middleware/dubbo/1_dubbobase/</loc>
     <lastmod>2020-12-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/middleware/dubbo/dubbobase/</loc>
+    <loc>https://touch-star.com/tags/dubbo/</loc>
     <lastmod>2020-12-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -284,6 +284,41 @@
   <url>
     <loc>https://touch-star.com/tags/%E5%AE%B9%E5%99%A8/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/13_ext/tools/1_guava_future_callback/</loc>
+    <lastmod>2020-06-30T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/12_algorithm/12_5_sort/</loc>
+    <lastmod>2020-06-30T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/12_algorithm/12_6_dynamic_programming/</loc>
+    <lastmod>2020-06-30T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/guava/</loc>
+    <lastmod>2020-06-30T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/java-tools/</loc>
+    <lastmod>2020-06-30T21:10:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -642,19 +677,7 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/12_algorithm/12_5_sort/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/12_algorithm/12_6_dynamic_programming/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design/</loc>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -805,24 +828,6 @@
   
   <url>
     <loc>https://touch-star.com/post/operation/linux/virtual_devices/2020-09-28readme/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/coding/java/base/13_ext/tools/1_guava_future_callback/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/tags/guava/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/tags/java-tools/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

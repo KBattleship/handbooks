@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>[Netty] 1.Netty基础</title>
+      <title>[ Netty ] 1.Netty基础</title>
       <link>https://touch-star.com/post/coding/java/base/6_netty/6_1_netty/</link>
       <pubDate>Tue, 05 Jan 2021 10:36:27 +0800</pubDate>
       
@@ -27,7 +27,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
     </item>
     
     <item>
-      <title>[Java] 10.Java IO</title>
+      <title>[ Java ] 10.Java IO</title>
       <link>https://touch-star.com/post/coding/java/base/2_basic/2_10_io/</link>
       <pubDate>Fri, 12 Jul 2019 15:36:27 +0800</pubDate>
       
