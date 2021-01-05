@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UML on Quinn</title>
+    <link>https://touch-star.com/tags/uml/</link>
+    <description>Recent content in UML on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 22 Aug 2019 15:36:27 +0800</lastBuildDate>
+    
+	<atom:link href="https://touch-star.com/tags/uml/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[ 设计模式 ] 0.关于UML图</title>
+      <link>https://touch-star.com/post/coding/java/base/1_design_pattern/1_uml/</link>
+      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/1_design_pattern/1_uml/</guid>
+      <description>关于UML图 学习设计模式前，UML还是需要学习了解一下。
+UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化、让规格与设计文档化的变现方法。
+旨在目的：  为用户提供现成的、有表现力的可视化建模语言，以便开发与交换有意义的模型。 为核心概念提供可扩展性与特殊化机制。 独立特定的编程语言与开发过程。 鼓励面向对象工具市场的发展。 支持更高层次的开发概念。 为了解建模语言提供一个正式环境。 整合最佳的工作方法。  UML分类  机构性图表  类图 组件图 部署图 对象图 对象图 包图 复合机构图 轮廓图   行为性图表  用例图 活动图 状态机图 序列图 通讯图 交互概述图 时序图    UML词汇表及术语  抽象类 Actor 活动 活动图 聚合 工件 关联 关联类 属性 基类 分支 类 类图 分类器 协作 通信图 组件 组件图 概念 构建阶段 依赖关系 部署图 域 精化阶段 元素 封装 泛化 事件 最终状态 叉 泛化 GoF 高凝聚力 启动阶段 继承 初始状态 实例 接口 迭代 加入 成员 合并 消息 方法 模型 多重性 可导航型 符号 注意 对象 包 包图 模式 参数 多态性 私有 处理器 受保护 公开 读取方向箭头 实现 角色 顺序图 状态 状态图 静态 刻板印象 子类 互动区 时间拳击 过渡 过渡阶段 统一建模语言 用例 用例图 可见性： 工作流程：一组产生特定结果的活动。  </description>
+    </item>
+    
+  </channel>
+</rss>
