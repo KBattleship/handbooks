@@ -1,7 +1,7 @@
 ---
-title: "6.关于命名空间(Linux Namespace)"
-date: 2020-08-22T15:36:27+08:00
-lastmod: 2020-08-22T15:36:27+08:00
+title: "[ Docker ] 6.关于命名空间(Linux Namespace)"
+date: 2020-08-21T15:36:27+08:00
+lastmod: 2020-08-21T15:36:27+08:00
 keywords: ['Docker']
 description: ""
 tags: ['namespace','docker','k8s','容器']

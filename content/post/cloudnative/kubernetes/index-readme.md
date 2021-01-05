@@ -1,3 +1,13 @@
+---
+title: "[ Kubernetes ] 0.Kubernetes"
+date: 2020-09-11T15:36:27+08:00
+lastmod: 2020-09-11T15:36:27+08:00
+keywords: ['Kubernetes']
+description: ""
+tags: ['k8s','容器']
+categories: ['K8s']
+author: ""
+---
 # Kubernetes
 `Kubernetes`(K8s)，译文成为【舵手】。从官网的Logo可以看出是轮船上的**舵**。结合container(集装箱，容器)的概念，Kubernetes看起来则是管理这些容器的。`是一个自动化的容器编排平台，负责应用的部署、应用的弹性以及应用的管理，前提则是这些应用都是基于容器的`。
 #### 核心功能

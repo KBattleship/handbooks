@@ -1,3 +1,13 @@
+---
+title: "[ Kubernetes ] 1-5.K8s之Helm包管理工具"
+date: 2020-09-12T15:36:27+08:00
+lastmod: 2020-09-12T15:36:27+08:00
+keywords: ['Kubernetes']
+description: ""
+tags: ['k8s','容器']
+categories: ['K8s']
+author: ""
+---
 # K8s之Helm包管理工具
 
 > Helm 是 Deis 开发的一个用于 Kubernetes 应用的包管理工具，主要用来管理 Charts。有点类似于 Ubuntu 中的 APT 或 CentOS 中的 YUM。

@@ -177,56 +177,133 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/1_command/</loc>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/3_k8s_service/1_k8s_service/</loc>
+    <lastmod>2020-09-18T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/categories/k8s/</loc>
+    <lastmod>2020-09-18T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/k8s/</loc>
+    <lastmod>2020-09-18T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/%E5%AE%B9%E5%99%A8/</loc>
+    <lastmod>2020-09-18T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/2_k8s_pod/1_k8s_pod/</loc>
+    <lastmod>2020-09-12T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/2_k8s_pod/2_pods_example/</loc>
+    <lastmod>2020-09-12T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/1_k8s_base/4_k8s_install/</loc>
+    <lastmod>2020-09-14T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/1_k8s_base/2_kubectl/</loc>
+    <lastmod>2020-09-12T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/1_k8s_base/3_kubeadm/</loc>
+    <lastmod>2020-09-12T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/1_k8s_base/5_helm/</loc>
+    <lastmod>2020-09-12T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/index-readme/</loc>
+    <lastmod>2020-09-11T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/1_k8s_base/1_concept/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/2_docker_install/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <loc>https://touch-star.com/post/middleware/etcd/etcd_interview/</loc>
+    <lastmod>2020-08-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/3_jdk_mirror/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <loc>https://touch-star.com/post/middleware/etcd/etcd_sourcecode_1/</loc>
+    <lastmod>2020-08-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/4_docker4_springboot/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/5_docker4_remove_none/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/6_namespace_linux4docker/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/cloudnative/docker/docker/7_cgroup_linux4docker/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <loc>https://touch-star.com/tags/etcd/</loc>
+    <lastmod>2020-08-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/post/cloudnative/docker/docker/8_ufs_linux4docker/</loc>
+    <lastmod>2020-08-23T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/docker/</loc>
+    <lastmod>2020-08-23T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/ufs/</loc>
+    <lastmod>2020-08-23T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/7_cgroup_linux4docker/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -240,49 +317,56 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/docker/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/5_docker4_remove_none/</loc>
+    <lastmod>2020-08-21T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/categories/k8s/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/tags/k8s/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/6_namespace_linux4docker/</loc>
+    <lastmod>2020-08-21T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/tags/namespace/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <lastmod>2020-08-21T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/4_docker4_springboot/</loc>
+    <lastmod>2020-08-20T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/tags/springboot/</loc>
+    <lastmod>2020-08-20T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/2_docker_install/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/ufs/</loc>
-    <lastmod>2020-08-22T15:36:27+08:00</lastmod>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/3_jdk_mirror/</loc>
+    <lastmod>2020-08-18T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/%E5%AE%B9%E5%99%A8/</loc>
+    <loc>https://touch-star.com/post/cloudnative/docker/docker/1_command/</loc>
     <lastmod>2020-08-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -319,27 +403,6 @@
   <url>
     <loc>https://touch-star.com/tags/java-tools/</loc>
     <lastmod>2020-06-30T21:10:47+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/tags/etcd/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/middleware/etcd/etcd_interview/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/post/middleware/etcd/etcd_sourcecode_1/</loc>
-    <lastmod>2020-04-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -597,6 +660,34 @@
   </url>
   
   <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/1_uml/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/programming/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/uml/</loc>
+    <lastmod>2019-08-22T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_6_prototype/</loc>
+    <lastmod>2019-07-16T23:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://touch-star.com/post/coding/java/base/2_basic/2_10_io/</loc>
     <lastmod>2019-07-12T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -604,8 +695,36 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/programming/</loc>
-    <lastmod>2019-07-12T15:36:27+08:00</lastmod>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_5_singleton/</loc>
+    <lastmod>2019-07-11T23:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_4_factory/</loc>
+    <lastmod>2019-07-10T23:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_3_template/</loc>
+    <lastmod>2019-07-08T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_2_adapter/</loc>
+    <lastmod>2019-07-06T15:36:27+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_1_iterator/</loc>
+    <lastmod>2019-07-06T05:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -653,7 +772,25 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/cloudnative/kubernetes/</loc>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/2_k8s_pod/3_pod_detial/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/4_k8s_deploy_file/1_mysql_k8s/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/5_k8s_crd/cunstom_resource_defination/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/cloudnative/kubernetes/k8s_plugin/1_k8s_dashboard/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
@@ -677,7 +814,109 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/</loc>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_10_strategy/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_11_composite/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_12_decorator/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_13_visitor/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_14_chain_of_responsibility/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_15_facade/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_16_mediator/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_17_observer/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_18_memento/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_19_state/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_20_flyweight/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_21_proxy/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_22_command/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_23_interpreter/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_7_builder/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_8_abstract_factory/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/2_9_bridge/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/1_design_pattern/readme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

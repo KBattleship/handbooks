@@ -342,284 +342,23 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/cloudnative/docker/docker/4_docker4_springboot/">4.SpringBoot项目Docker化</a>
+      <a class="post-link" href="/post/cloudnative/kubernetes/1_k8s_base/4_k8s_install/">[ Kubernetes ] 1-4.kubeadm命令使用</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2020-08-22" class="post-time">
-        2020-08-22
+      <time datetime="2020-09-14" class="post-time">
+        2020-09-14
       </time>
       <div class="post-category">
           <a href="https://touch-star.com/categories/k8s/"> K8s </a>
           
         </div>
-      <span class="more-meta"> 约 2 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/docker/docker/4_docker4_springboot/" class="leancloud_visitors" data-flag-title="4.SpringBoot项目Docker化">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      SpringBoot项目Docker化 一 
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/docker/docker/4_docker4_springboot/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/docker/docker/5_docker4_remove_none/">5.Docker-本地构建none包处理</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-08-22" class="post-time">
-        2020-08-22
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 65 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/docker/docker/5_docker4_remove_none/" class="leancloud_visitors" data-flag-title="5.Docker-本地构建none包处理">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Docker-本地构建none包处理 踩坑①.打包构建Dockerfile镜像 每次本地打包构建Dockerfile镜像，如果更新镜像版本号会出现none的镜像在仓库中
-1 2 3 4 5 6 7 8 9 10 11 12 13  # 停掉none相关的镜像进程占用 docker rm $(docker ps -a | grep &#34;Exited&#34; | awk &#39;{print $1 }&#39;) # 递归依次从仓库移除这些镜像 docker rmi $(docker images | grep &#34;^&lt;none&gt;&#34; | awk &#34;{print $3}&#34;) # 或者，使用一下命令进行移除 docker image prune # (此命令用于删除未使用的映像) # docker image prune [options] # -- options可选值： # -a 显示所有映像(默认隐藏中间映像) # -f 不提示确认，强制直接执行删除   
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/docker/docker/5_docker4_remove_none/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/docker/docker/6_namespace_linux4docker/">6.关于命名空间(Linux Namespace)</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-08-22" class="post-time">
-        2020-08-22
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 49 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/docker/docker/6_namespace_linux4docker/" class="leancloud_visitors" data-flag-title="6.关于命名空间(Linux Namespace)">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      关于命名空间(Linux Namespace) 概念  1.Linux Namespace 是Kernel的一个功能，可以针对一系列的系统资源进行隔离。例如：PID(process id)、UID(User id)、Network so on.
-  2.就像chroot允许把当前目录变成根目录一样进行隔离。
-  3.Namespace进行隔离用户，当前用户将在特定的Namespace中具有root权限。但在真是物理机层面，此用户仍然是以UID运行的那个用户。
- Linux包含的Namespace类型    Type Params Kernel Effect Information     Mount CLONE_NEWNS 2.4.19 隔离Namespace下的文件系统   UTS CLONE_NEWUTS 2.6.19 用作隔离nodename和domainname   IPC CLONE_NEWIPC 2.6.19 隔离System V IPC 和POSIX Message queues   PID CLONE_NEWPID 2.6.24 针对进程ID进行隔离   Network CLONE_NEWNET 2.6.29 用于隔离网络设备、IP地址端口等网络栈   User CLONE_NEWUSER 3.8 用于隔离用户及用户组    #Demo Coding 
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/docker/docker/6_namespace_linux4docker/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/docker/docker/7_cgroup_linux4docker/">7.关于Linux的Cgroups</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-08-22" class="post-time">
-        2020-08-22
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 47 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/docker/docker/7_cgroup_linux4docker/" class="leancloud_visitors" data-flag-title="7.关于Linux的Cgroups">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      关于Linux的Cgroups 概念  Linux Cgroups(Control Groups)在Linux Namespace为进程隔离出一定空间的基础上为此进行的资源限制、控制以及统计的能力。资源包含有：CPU、内存、存储、网络等。通过Cgroups可以限制某个进程的资源占用、并且可以实时监控进程以及统计信息。
- cgroups各模块   cgroup: 针对进程进行分组的一种策略机制。
- 每一个cgroup中包含有一组进程。并且可以使用subsystem模块进行参数控制作用于此cgroup上的进程。
-   subsystem: 此模块对资源进行控制。
- Ubuntu OS可以通过apt install cgroup-bin安装命令行工具，使用lssubsys查看Kernel所支持的subsystem list。
-  blkio: 设置对块设备输入输出进行控制 cpu: 设置cgroup中进程的CPU调度策略 cpuacct: 统计cgroup中进程CPU占用情况 cpuset: 在多核机器上设置cgroup中进程可以使用的CPU和内存(内存仅适用于NUMA架构) devices: 控制cgroup中进程对设备的访问 freezer: 用于挂起(suspend)和恢复(resume)cgroup中的进程 memory: 限制cgroup中进程的内存占用 net_cls: 将cgroup中进程的网络包进行分类，以至于通过分类区区分不同cgroup中进程的网络包，并进行监控、限流等。 net_prio: 设置cgroup中进程产生的网络流量的优先级 ns: 使cgroup中进程在新的Namespace中fork出新进程(NEWNS)，同时创建出新的cgroup，并且此cgroup包含有新Namespace中的进程。    hierarchy: cgroup进程的继承关系。
- 例如： 系统通过cgroup1针对一组定时任务进程进行CPU使用限制，同时其中一个进程还需要限制磁盘IO，这时候将可以通过cgroup2继承cgroup1限制CPU的同时增加磁盘IO限制。即cgroup2同时具有CPU、IO限制，并且不影响cgroup1组中其他进程的IO限制。
-   cgroup各模块间关系  系统创建hierarchy后，系统下所有进程都将被加入cgroup中，cgroup为根节点，被hierarchy创建的cgroup将被作为此cgroup根节点下的子节点; subsystem与hierarchy是1:1关系(即，一个subsystem只能作用于一个hierarchy之上); hierarchy与subsystem是1:n关系(即，一个hierarchy可以作用于多个subsystem之上); 一个进程可以分布在不同的cgroup中，但需满足cgroup分布在不同的hierarchy中; 一个进程fork出一个子进程的同时，子进程与父进程在同一cgroup中，但可以根据需求调整到其他cgroup中。  
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/docker/docker/7_cgroup_linux4docker/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/docker/docker/8_ufs_linux4docker/">8.文件系统之UFS</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-08-22" class="post-time">
-        2020-08-22
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 14 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/docker/docker/8_ufs_linux4docker/" class="leancloud_visitors" data-flag-title="8.文件系统之UFS">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
- 原理： 使用branch把不同文件系统的文件、目录「透明的」进行覆盖，形成一个单一一直的文件系统。branch具有要么read-only,要么read-write的特点。
-  思想： 写时复制(copy-on-write),如果一个资源重复，但并未被修改，将不被立即创建出新的资源，直接为新旧实例提供共享。创建新资源将发生在第一次被修改写入时。该资源共享方式，可以明显降低未修改资源复制时的消耗，但同样的，也会在写入修改是增加部分开销。
-  AFUS(Advanced Multi-Layered Unification FileSystem)  
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/docker/docker/8_ufs_linux4docker/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/13_ext/tools/1_guava_future_callback/">[ Tools ] 1.关于Guava增强包异步回调</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-06-30" class="post-time">
-        2020-06-30
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> Java </a>
-          
-        </div>
-      <span class="more-meta"> 约 5 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/13_ext/tools/1_guava_future_callback/" class="leancloud_visitors" data-flag-title="[ Tools ] 1.关于Guava增强包异步回调">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      关于Guava增强包异步回调 1.概述 Guava针对Java异步回调做出以下两点增强功能：
- 1.引入新接口ListenableFuture。此接口继承于Java的Future接口，可监控、获取非阻塞异步执行结果。 2.引入新接口FutureCallback。此接口是新增独立接口，在异步任务完成后，根据异步结果，完成不同的回调事件，并处理异步结果。  
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/13_ext/tools/1_guava_future_callback/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/12_algorithm/12_5_sort/">[ 算法 ] 12.5 排序</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-06-30" class="post-time">
-        2020-06-30
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> Java </a>
-          
-        </div>
-      <span class="more-meta"> 约 218 字 </span>
+      <span class="more-meta"> 约 366 字 </span>
       <span class="more-meta"> 预计阅读 2 分钟 </span>
       
       
       
-        <span id="/post/coding/java/base/12_algorithm/12_5_sort/" class="leancloud_visitors" data-flag-title="[ 算法 ] 12.5 排序">
+        <span id="/post/cloudnative/kubernetes/1_k8s_base/4_k8s_install/" class="leancloud_visitors" data-flag-title="[ Kubernetes ] 1-4.kubeadm命令使用">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -630,10 +369,12 @@
   <div class="post-content">
     
     <div class="post-summary">
-      排序 1.排序算法说明 1.1排序算法指标  稳定性：如果a==b且a在b前，排序后a仍保持在b前，则稳定，否则不稳定 内排序：算法程序的所有排序完全是在内存中执行的 外排序：由于数据量问题，需要把数据放置磁盘中，排序需要通过磁盘与内存间传输才可以进行 时间复杂度：运行一个算法程序所需要消耗的时长 空间复杂度：运行一个算法程序所需要消耗的内存大小  1.2各排序算法总结表    排序算法 最优情况 最差情况 时间复杂度 空间复杂度 排序方式 稳定性     冒泡排序 O(n²) O(n) O(n²) O(1) 内排序 稳定   选择排序 O(n²) O(n²) O(n²) O(1) 内排序 不稳定   插入排序 O(n) O(n²) O(n²) O(1) 内排序 稳定   希尔排序 O(n log² n) O(n log² n) O(n log n) O(1) 内排序 不稳定   归并排序 O(n log n) O(n log n) O(n log n) O(n) 外排序 稳定   快速排序 O(n log n) O(n²) O(n log n) O(log n) 内排序 不稳定   堆排序 O(n log n) O(n log n) O(n log n) O(1) 内排序 不稳定   计数排序 O(n+k) O(n+k) O(n+k) O(k) 外排序 不稳定   桶排序 O(n+k) O(n²) O(n+k) O(n+k) 外排序 稳定   基数排序 O(n*k) O(n*k) O(n*k) O(n+k) 外排序 稳定     n:数据量 k:桶的数量
+      安装初始化K8s集群 1.安装K8s 1.1CentOS安装   预先准备工作
+1 2 3 4 5 6 7 8 9 10 11 12 13  # 修改设置主机名称 hostnamectl set-hostname master # 绑定主机各节点hosts 192.168.0.1 master 192.168.0.2 node1 192.168.0.3 node2 # 验证每节点的Mac地址与UUID是否唯一 # mac地址注意查看网卡 cat /sys/class/net/eth1/address cat /sys/class/dmi/id/product_uuid # 关闭缓存交换swap swapoff -a # 临时关闭 sed -i.bak &#39;/swap/s/^/#/&#39; /etc/fstab #永久关闭     安装Kubernetes
+1 2  # 设置K8s安装源，由于防火墙问题使用阿里云源 cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo     [kubernetes] name=Kubernetes baseurl=https://mirrors.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/12_algorithm/12_5_sort/" class="read-more-link">阅读全文</a>
+      <a href="/post/cloudnative/kubernetes/1_k8s_base/4_k8s_install/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -644,23 +385,23 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/12_algorithm/12_6_dynamic_programming/">[ 算法 ] 12.6 动态规划</a>
+      <a class="post-link" href="/post/cloudnative/kubernetes/1_k8s_base/2_kubectl/">[ Kubernetes ] 1-2.Kubectl命令行工具</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2020-06-30" class="post-time">
-        2020-06-30
+      <time datetime="2020-09-12" class="post-time">
+        2020-09-12
       </time>
       <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> Java </a>
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
           
         </div>
-      <span class="more-meta"> 约 25 字 </span>
+      <span class="more-meta"> 约 189 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/base/12_algorithm/12_6_dynamic_programming/" class="leancloud_visitors" data-flag-title="[ 算法 ] 12.6 动态规划">
+        <span id="/post/cloudnative/kubernetes/1_k8s_base/2_kubectl/" class="leancloud_visitors" data-flag-title="[ Kubernetes ] 1-2.Kubectl命令行工具">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -671,17 +412,17 @@
   <div class="post-content">
     
     <div class="post-summary">
-      动态规划  动态规划(Dynamic Programming),每次决策依赖于当前决策状态，随即又伴随着状态偏移。决策序列就是在变化的状态中生成的(适用于多阶段优化问题)。
- 1 算法原理 1.1 基本思想   基本思想是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的最优解。
-  通过保存下子问题的解到表中，从而避免重叠子问题的重复计算，优化计算过程时间。
-  动态规划类似但不同于分治算法。
- 一句话概述：动态规划&ndash;&gt;各子问题重叠。分治算法&ndash;&gt;各子问题独立。 算法导论： 动态规划要求其子问题既要独立又要重叠。如果同一个问题的两个子问题不共享资源，则它们就是独立的。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则是重叠的。
-   动态规划算法具有很多种，但是计算子问题值的填表形式是同一种。
-  1.2 算法策略 2 算法实现 2.1 适用场景  适用于求解具有某种最优性质的问题。
- 2.2 动图演示 2.3 代码实现 
+      Kubectl命令行工具 1.kubectl用法  $~: kubectl [command] [TYPE] [NAME] [flags]
+   [command] 子命令。用于操作Kubernetes集群资源对象。
+可取值：[create | delete | describe | get | apply]
+  [TYPE] 资源对象的类型。区分大小写
+备注：可以通过单数形式、复数形式、简写形式表示。
+1 2 3 4  # 例：不同写法的Type,但是效果一致 kubectl get pod pod1 kubectl get pods pod1 kubectl get po pod1     [NAME] 资源对象名称。区分大小写 备注： 如果不指定名称，将返回属于TYPE的所有对象列表。
+1 2  # 例：返回所有对象列表 kubectl get pods     [flags] kubectl子命令的可选参数
+  2.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/12_algorithm/12_6_dynamic_programming/" class="read-more-link">阅读全文</a>
+      <a href="/post/cloudnative/kubernetes/1_k8s_base/2_kubectl/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -692,12 +433,220 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/middleware/etcd/etcd_interview/">Etcd基础入门(1)</a>
+      <a class="post-link" href="/post/cloudnative/kubernetes/1_k8s_base/3_kubeadm/">[ Kubernetes ] 1-3.kubeadm命令使用</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2020-04-30" class="post-time">
-        2020-04-30
+      <time datetime="2020-09-12" class="post-time">
+        2020-09-12
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 55 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/1_k8s_base/3_kubeadm/" class="leancloud_visitors" data-flag-title="[ Kubernetes ] 1-3.kubeadm命令使用">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      kubeadm命令使用 一、kubeadm概述 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  $~:kubeadm --help # kubeadm [command] |———— alpha [command] |———— completion |———— config |———— images |———— list 列出所有依赖镜像 |———— pull |———— help 查看命令详细描述 |———— init 初始化Kubernetes集群Master |———— join 在Kubernetes集群中增加Node |———— reset 重置Kubernetes集群 |———— token |———— upgrade |———— version   
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/1_k8s_base/3_kubeadm/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/kubernetes/1_k8s_base/5_helm/">[ Kubernetes ] 1-5.K8s之Helm包管理工具</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-09-12" class="post-time">
+        2020-09-12
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 151 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/1_k8s_base/5_helm/" class="leancloud_visitors" data-flag-title="[ Kubernetes ] 1-5.K8s之Helm包管理工具">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      K8s之Helm包管理工具  Helm 是 Deis 开发的一个用于 Kubernetes 应用的包管理工具，主要用来管理 Charts。有点类似于 Ubuntu 中的 APT 或 CentOS 中的 YUM。
+ 一、安装 Helm Release Link
+1.OS-CentOS 当前使用版本为Helm v3.1.2 linux
+1 2 3 4 5 6 7 8  # 下载二进制可执行文件压缩包 wget -O /data/helm.tar.gz https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz # 解压 tar -xzvf /data/helm.tar.gz # 移动helm二进制文件，方便全局访问 mv linux-amd64/helm /usr/local/bin/helm   2.OS-MacOS ①.自动安装 PS：操作系统已安装brew工具
+1  brew install helm   ②.手动安装 当前使用版本为Helm v3.1.2 darwin
+1 2 3 4 5 6 7 8  # 下载二进制可执行文件压缩包 wget -O ~/helm.
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/1_k8s_base/5_helm/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/kubernetes/index-readme/">[ Kubernetes ] 0.Kubernetes</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-09-11" class="post-time">
+        2020-09-11
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 19 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/index-readme/" class="leancloud_visitors" data-flag-title="[ Kubernetes ] 0.Kubernetes">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Kubernetes Kubernetes(K8s)，译文成为【舵手】。从官网的Logo可以看出是轮船上的舵。结合container(集装箱，容器)的概念，Kubernetes看起来则是管理这些容器的。是一个自动化的容器编排平台，负责应用的部署、应用的弹性以及应用的管理，前提则是这些应用都是基于容器的。
+核心功能   服务的发现与负载均衡
+附属组件KubeDNS为系统内置了服务发现功能，可以将每一个Service增加DNS名称，使得集群内节点直接通过此名称访问到；同时Service通过iptables、ipvs支持了负载均衡。
+  自动装箱
+构建于容器之上，基于资源依赖及其他约束在不影响其可用性的情况下自动完成容器的部署工作。
+  自我修复
+容器故障后自动重启、节点故障后自动重新进行容器调度、节点健康状态检查异常后会关闭容器进行重新创建。
+  水平扩展
+通过命令、UI手动水平扩展、基于CPU等资源负载率进行自动水平扩展。
+  自动发布与回滚
+使用灰度方式更新应用或其配置，过程中的应用健康状态将得到监控，以保证不在同一时刻kill掉所有实例；同时，过程中健康状态出现异常情况，将会立即自动执行回滚。
+  存储编排
+Pod对象自动挂载不同类型的存储系统。
+  批量处理
+支持批处理作业、CI持续集成。
+  秘钥与配置管理
+K8s的configMap将配置与Docker镜像解耦，更新配置时，无需重新构建Docker镜像。同时，敏感数据将通过Secret对象进行解耦，以保障一定程度上的最大安全。
+  
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/index-readme/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/kubernetes/1_k8s_base/1_concept/">[ Kubernetes ] 1-1.初识K8s</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-09-11" class="post-time">
+        2020-09-11
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 78 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/1_k8s_base/1_concept/" class="leancloud_visitors" data-flag-title="[ Kubernetes ] 1-1.初识K8s">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
+  ApiServer
+集群的网关。
+ 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
+   Controller Manager
+负责生命周期功能及API业务逻辑。
+ **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
+   Scheduler
+在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
+  Etcd
+基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
+ a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
+     Node(从节点:worker node)
+工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
+  Pod
+Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
+  Pod Controller(Pod 控制器)
+虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
+  Replication Controller(复制控制器)
+K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
+  Replica Set
+保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
+ 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/1_k8s_base/1_concept/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/middleware/etcd/etcd_interview/">[ Etcd ] 1.基础入门(1)</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-08-30" class="post-time">
+        2020-08-30
       </time>
       <div class="post-category">
           <a href="https://touch-star.com/categories/k8s/"> K8s </a>
@@ -708,7 +657,7 @@
       
       
       
-        <span id="/post/middleware/etcd/etcd_interview/" class="leancloud_visitors" data-flag-title="Etcd基础入门(1)">
+        <span id="/post/middleware/etcd/etcd_interview/" class="leancloud_visitors" data-flag-title="[ Etcd ] 1.基础入门(1)">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -736,12 +685,12 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/middleware/etcd/etcd_sourcecode_1/">Etcd基础入门(2)</a>
+      <a class="post-link" href="/post/middleware/etcd/etcd_sourcecode_1/">[ Etcd ] 2.基础入门(2)</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="2020-04-30" class="post-time">
-        2020-04-30
+      <time datetime="2020-08-30" class="post-time">
+        2020-08-30
       </time>
       <div class="post-category">
           <a href="https://touch-star.com/categories/k8s/"> K8s </a>
@@ -752,7 +701,7 @@
       
       
       
-        <span id="/post/middleware/etcd/etcd_sourcecode_1/" class="leancloud_visitors" data-flag-title="Etcd基础入门(2)">
+        <span id="/post/middleware/etcd/etcd_sourcecode_1/" class="leancloud_visitors" data-flag-title="[ Etcd ] 2.基础入门(2)">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -769,6 +718,98 @@
     </div>
     <div class="read-more">
       <a href="/post/middleware/etcd/etcd_sourcecode_1/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/docker/docker/8_ufs_linux4docker/">[ Docker ] 8.文件系统之UFS</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-08-23" class="post-time">
+        2020-08-23
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 14 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/docker/docker/8_ufs_linux4docker/" class="leancloud_visitors" data-flag-title="[ Docker ] 8.文件系统之UFS">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      文件系统之UFS UFS 联合文件系统[Union File System]，把其他文件系统联合到一个联合挂载点的文件系统服务(适用于Linux、FreeBSD、NetBSD OS)。
+ 原理： 使用branch把不同文件系统的文件、目录「透明的」进行覆盖，形成一个单一一直的文件系统。branch具有要么read-only,要么read-write的特点。
+  思想： 写时复制(copy-on-write),如果一个资源重复，但并未被修改，将不被立即创建出新的资源，直接为新旧实例提供共享。创建新资源将发生在第一次被修改写入时。该资源共享方式，可以明显降低未修改资源复制时的消耗，但同样的，也会在写入修改是增加部分开销。
+  AFUS(Advanced Multi-Layered Unification FileSystem)  
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/docker/docker/8_ufs_linux4docker/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/docker/docker/7_cgroup_linux4docker/">[ Docker ] 7.关于Linux的Cgroups</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-08-22" class="post-time">
+        2020-08-22
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 47 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/docker/docker/7_cgroup_linux4docker/" class="leancloud_visitors" data-flag-title="[ Docker ] 7.关于Linux的Cgroups">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      关于Linux的Cgroups 概念  Linux Cgroups(Control Groups)在Linux Namespace为进程隔离出一定空间的基础上为此进行的资源限制、控制以及统计的能力。资源包含有：CPU、内存、存储、网络等。通过Cgroups可以限制某个进程的资源占用、并且可以实时监控进程以及统计信息。
+ cgroups各模块   cgroup: 针对进程进行分组的一种策略机制。
+ 每一个cgroup中包含有一组进程。并且可以使用subsystem模块进行参数控制作用于此cgroup上的进程。
+   subsystem: 此模块对资源进行控制。
+ Ubuntu OS可以通过apt install cgroup-bin安装命令行工具，使用lssubsys查看Kernel所支持的subsystem list。
+  blkio: 设置对块设备输入输出进行控制 cpu: 设置cgroup中进程的CPU调度策略 cpuacct: 统计cgroup中进程CPU占用情况 cpuset: 在多核机器上设置cgroup中进程可以使用的CPU和内存(内存仅适用于NUMA架构) devices: 控制cgroup中进程对设备的访问 freezer: 用于挂起(suspend)和恢复(resume)cgroup中的进程 memory: 限制cgroup中进程的内存占用 net_cls: 将cgroup中进程的网络包进行分类，以至于通过分类区区分不同cgroup中进程的网络包，并进行监控、限流等。 net_prio: 设置cgroup中进程产生的网络流量的优先级 ns: 使cgroup中进程在新的Namespace中fork出新进程(NEWNS)，同时创建出新的cgroup，并且此cgroup包含有新Namespace中的进程。    hierarchy: cgroup进程的继承关系。
+ 例如： 系统通过cgroup1针对一组定时任务进程进行CPU使用限制，同时其中一个进程还需要限制磁盘IO，这时候将可以通过cgroup2继承cgroup1限制CPU的同时增加磁盘IO限制。即cgroup2同时具有CPU、IO限制，并且不影响cgroup1组中其他进程的IO限制。
+   cgroup各模块间关系  系统创建hierarchy后，系统下所有进程都将被加入cgroup中，cgroup为根节点，被hierarchy创建的cgroup将被作为此cgroup根节点下的子节点; subsystem与hierarchy是1:1关系(即，一个subsystem只能作用于一个hierarchy之上); hierarchy与subsystem是1:n关系(即，一个hierarchy可以作用于多个subsystem之上); 一个进程可以分布在不同的cgroup中，但需满足cgroup分布在不同的hierarchy中; 一个进程fork出一个子进程的同时，子进程与父进程在同一cgroup中，但可以根据需求调整到其他cgroup中。  
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/docker/docker/7_cgroup_linux4docker/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -826,6 +867,22 @@
       
       <li >
         <a href="/page/7/">7</a>
+      </li>
+      
+      <li >
+        <a href="/page/8/">8</a>
+      </li>
+      
+      <li >
+        <a href="/page/9/">9</a>
+      </li>
+      
+      <li >
+        <a href="/page/10/">10</a>
+      </li>
+      
+      <li >
+        <a href="/page/11/">11</a>
       </li>
       
     </ul>

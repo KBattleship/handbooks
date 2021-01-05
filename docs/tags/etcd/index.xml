@@ -6,15 +6,15 @@
     <description>Recent content in etcd on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 30 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 30 Aug 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/tags/etcd/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Etcd基础入门(1)</title>
+      <title>[ Etcd ] 1.基础入门(1)</title>
       <link>https://touch-star.com/post/middleware/etcd/etcd_interview/</link>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 30 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://touch-star.com/post/middleware/etcd/etcd_interview/</guid>
       <description>ETCD  其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
@@ -24,9 +24,9 @@
     </item>
     
     <item>
-      <title>Etcd基础入门(2)</title>
+      <title>[ Etcd ] 2.基础入门(2)</title>
       <link>https://touch-star.com/post/middleware/etcd/etcd_sourcecode_1/</link>
-      <pubDate>Thu, 30 Apr 2020 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 30 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://touch-star.com/post/middleware/etcd/etcd_sourcecode_1/</guid>
       <description>Etcd源码阅读与分析①-raft demo Etcd 与 Zookeeper 对比  一致性协议:配置共享&amp;amp;服务发现组件的核心基础。  Zookeeper采用ZAB协议(一种类Paxos协议)实现一致性 Etcd采用Raft协议，相比Paxos协议更容易理解，工程化。   API接口: 包含有两个版本V2、V3  V2: 提供HTTP+Json方式调用 V3: 提供grpc方式调用   性能  官方测试数据显示：10000+/s写入(优于Zookeeper性能)   安全  Etcd支持TSL(权限控制优于Zookeeper)    Etcd是一个基于Raft协议的简单内存KV项目

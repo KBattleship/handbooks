@@ -1,4 +1,14 @@
-# 1-2  Kubectl命令行工具
+---
+title: "[ Kubernetes ] 1-2.Kubectl命令行工具"
+date: 2020-09-12T15:36:27+08:00
+lastmod: 2020-09-12T15:36:27+08:00
+keywords: ['Kubernetes']
+description: ""
+tags: ['k8s','容器']
+categories: ['K8s']
+author: ""
+---
+# Kubectl命令行工具
 ### 1.kubectl用法
 >$~: **kubectl  [command]   [TYPE]  [NAME]  [flags]**
 

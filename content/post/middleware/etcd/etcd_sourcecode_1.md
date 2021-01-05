@@ -1,7 +1,7 @@
 ---
-title: "Etcd基础入门(2)"
-date: 2020-04-30
-lastmod: 2020-04-30
+title: "[ Etcd ] 2.基础入门(2)"
+date: 2020-08-30
+lastmod: 2020-08-30
 menu: "etcd"
 categories: ['K8s']
 tags: ['etcd','k8s','分布式']

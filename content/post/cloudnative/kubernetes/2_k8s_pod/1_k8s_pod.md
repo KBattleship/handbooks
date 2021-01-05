@@ -1,4 +1,14 @@
-# 一、了解Pod对象
+---
+title: "[ Kubernetes ] 2-1.了解Pod对象"
+date: 2020-09-17T15:36:27+08:00
+lastmod: 2020-09-12T15:36:27+08:00
+keywords: ['Kubernetes']
+description: ""
+tags: ['k8s','容器']
+categories: ['K8s']
+author: ""
+---
+# 了解Pod对象
 #### 1.Pod参数定义
 ```yaml
 # 必填,版本号

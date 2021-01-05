@@ -1,4 +1,14 @@
-# 3.K8S-kubeadm命令使用
+---
+title: "[ Kubernetes ] 1-3.kubeadm命令使用"
+date: 2020-09-12T15:36:27+08:00
+lastmod: 2020-09-12T15:36:27+08:00
+keywords: ['Kubernetes']
+description: ""
+tags: ['k8s','容器']
+categories: ['K8s']
+author: ""
+---
+# kubeadm命令使用
 
 ## 一、kubeadm概述
 ```shell

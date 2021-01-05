@@ -342,20 +342,23 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/1_design_pattern/"></a>
+      <a class="post-link" href="/post/operation/linux/kvm/2-ethernet_bridge/">2.KVM-双网卡网关配置</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-10-12" class="post-time">
+        2019-10-12
       </time>
-      
-      <span class="more-meta"> 约 3 字 </span>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/middleware/"> middleware </a>
+          
+        </div>
+      <span class="more-meta"> 约 84 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/base/1_design_pattern/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/operation/linux/kvm/2-ethernet_bridge/" class="leancloud_visitors" data-flag-title="2.KVM-双网卡网关配置">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -366,11 +369,12 @@
   <div class="post-content">
     
     <div class="post-summary">
-      设计模式 设计模式是一把双刃剑。正确使用可以提高系统的适应性，误用、错用则会反过来降低系统的适应性。
-宗旨：帮助我们编写可复用的类，所谓的可复用：即，类的实现为‘组件’，当一个组件发生变化时，不需要对其他组件进行修改或者只需要做很小的改动。
+      双网卡网关配置 1.在系统路由表文件/etc/iproute2/rt_tables增加配置
+1 2  252 e1 251 e0   2.执行以下命令，并在/etc/rc.d/network追加此内容
+1 2 3 4 5 6 7 8 9  # 此内容防止服务器重启路由失效 ip route flush table e0 ip route add default via 10.3.3.1 dev eth0 src 10.3.3.25 table e0 ip route add 127.0.0.0/8 dev lo table e0 ip rule add from 10.3.3.25 table e0 ip route flush table e1 ip route add default via 10.2.2.1 dev eth1 src 10.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/1_design_pattern/" class="read-more-link">阅读全文</a>
+      <a href="/post/operation/linux/kvm/2-ethernet_bridge/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -381,20 +385,23 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/2_basic/readme/"></a>
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/1_uml/">[ 设计模式 ] 0.关于UML图</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-08-22" class="post-time">
+        2019-08-22
       </time>
-      
-      <span class="more-meta"> 约 1 字 </span>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 110 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/base/2_basic/readme/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/coding/java/base/1_design_pattern/1_uml/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 0.关于UML图">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -405,10 +412,12 @@
   <div class="post-content">
     
     <div class="post-summary">
-      2.Java基础 
+      关于UML图 学习设计模式前，UML还是需要学习了解一下。
+UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化、让规格与设计文档化的变现方法。
+旨在目的：  为用户提供现成的、有表现力的可视化建模语言，以便开发与交换有意义的模型。 为核心概念提供可扩展性与特殊化机制。 独立特定的编程语言与开发过程。 鼓励面向对象工具市场的发展。 支持更高层次的开发概念。 为了解建模语言提供一个正式环境。 整合最佳的工作方法。  UML分类  机构性图表  类图 组件图 部署图 对象图 对象图 包图 复合机构图 轮廓图   行为性图表  用例图 活动图 状态机图 序列图 通讯图 交互概述图 时序图    UML词汇表及术语  抽象类 Actor 活动 活动图 聚合 工件 关联 关联类 属性 基类 分支 类 类图 分类器 协作 通信图 组件 组件图 概念 构建阶段 依赖关系 部署图 域 精化阶段 元素 封装 泛化 事件 最终状态 叉 泛化 GoF 高凝聚力 启动阶段 继承 初始状态 实例 接口 迭代 加入 成员 合并 消息 方法 模型 多重性 可导航型 符号 注意 对象 包 包图 模式 参数 多态性 私有 处理器 受保护 公开 读取方向箭头 实现 角色 顺序图 状态 状态图 静态 刻板印象 子类 互动区 时间拳击 过渡 过渡阶段 统一建模语言 用例 用例图 可见性： 工作流程：一组产生特定结果的活动。  
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/2_basic/readme/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/1_design_pattern/1_uml/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -419,20 +428,73 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/4_thread/4_3_synchronized/"></a>
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_6_prototype/">[ 设计模式 ] 6.原型模式</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-07-16" class="post-time">
+        2019-07-16
       </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 332 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
       
-      <span class="more-meta"> 约 209 字 </span>
+      
+      
+        <span id="/post/coding/java/base/1_design_pattern/2_6_prototype/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 6.原型模式">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      原型模式 原型模式：通过复制生成实例。
+①.角色分配   Prototype(原型)
+负责定义用于复制现有实例来生成新实例的方法。
+  ConcretePrototype(具体原型)
+负责实现现有实例并生成新实例的方法。
+  Client(使用者)
+负责使用复制实例的方法生成的新实例。
+  ②.UML图 ③.代码清单  简单形式  定义抽象接口
+1 2 3  public interface Prototype extends Cloneable { Object clone(); }   具体实现原型拷贝
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  public class ConcretePrototype implements Prototype { public ConcretePrototype(){ System.out.println(&#34;Prototype Design Patterns&#34;); } @Override public Object clone() { ConcretePrototype concretePrototype=null; try { concretePrototype=(ConcretePrototype)super.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1_design_pattern/2_6_prototype/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/2_basic/2_10_io/">[ Java ] 10.Java IO</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-07-12" class="post-time">
+        2019-07-12
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 98 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/base/4_thread/4_3_synchronized/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/coding/java/base/2_basic/2_10_io/" class="leancloud_visitors" data-flag-title="[ Java ] 10.Java IO">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -443,10 +505,23 @@
   <div class="post-content">
     
     <div class="post-summary">
-      4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo='synchronized';synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: 1 2 3 4 5 6 7 8 9 10 11  public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } }   将上述代码片段进行编译，使用javap -v SynchronizedTest.
+      Java IO 1.关于BIO、NIO、AIO   BIO(Blocking I/O,阻塞IO)
+数据的读取、写入必须阻塞在一个线程内等待完成。
+1 2 3  经典BIO案例：烧开水 存在一排水壶烧开水，BIO的工作模式：叫一个线程停留在水壶出，知道水壶烧开， 才去处理下一个水壶。(实际上线程在等待水壶烧开的过程，什么事情都没有做。)     使用场景：
+适用于连接数量较小且模式固定的架构。JDK1.4前的唯一选择。
+    NIO(Non-Blocking I/O,非阻塞IO)
+是一种同时支持阻塞与非阻塞模式I/O模型。处于 java.nio包中。是面向缓冲区的。
+  使用场景：
+适用于连接数目多且连接较短(轻操作)，例如聊天室服务器，并发局限在应用中，编程较为复杂。
+   NIO重点概念：Channel(通道)、Buffer(缓冲区)、Selector(选择器)
+   Channel(通道)
+Channel是一个通道，可以通过Channel读取和写入数据。Channel与Stream不同之处：数据在Channel中是双向的，在Stream中是单向的。同时Channel可以用于写、读或者读写。
+1 2 3 4 5  Channel存在四种实现方式： - FileChannel：从文件中读取数据 - DatagramChannel: 从UDP网络中读取或写入数据 - SocketChannel：从TCP网络中读取或者写入数据 - ServerSocketChannel：允许监听来自TCP的连接。每产生一个连接将产生一个SocketChannel。     Buffer(缓冲区)
+Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/O中，可以讲数据写入或者直接读取到stream中。实质上缓冲区是一个数组(通常使用ByteBuffer[])，但同时还提供有对数据的结构话访问、维护读写位置的信息。
+1 2 3 4 5 6 7 8 9  Java中每一种基本类型都将对应一种缓冲区 - ByteBuffer(字节缓冲区) # 最为常用 - CharBuffer(字符缓冲区) - ShortBuffer(短整型缓冲区) - IntBuffer(整型缓冲区) - LongBuffer(长整型缓冲区) - FloatBuffer(浮点型缓冲区) - DoubleBuffer(双精度浮点型缓存区)     Selector Selector选择器可以监听多个Channel。Selector只能管理非阻塞Channel：FileChannel是个例外，属于阻塞I/O，无法进行管理。
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/4_thread/4_3_synchronized/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/2_basic/2_10_io/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -457,20 +532,23 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/4_thread/readme/"></a>
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_5_singleton/">[ 设计模式 ] 5.单例模式</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-07-11" class="post-time">
+        2019-07-11
       </time>
-      
-      <span class="more-meta"> 约 1 字 </span>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 194 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/base/4_thread/readme/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/coding/java/base/1_design_pattern/2_5_singleton/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 5.单例模式">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -481,10 +559,12 @@
   <div class="post-content">
     
     <div class="post-summary">
-      4.Java多线程 
+      单例模式 **单例模式：**保证任何情况下都绝对的只生成一个实例的模式。
+①.单例角色  Singleton: 有且仅有的一个角色(实例)。  **Tips:**当存在多个实例时，实例间互相影响，会出现意想不到异常。当且仅当，第一次调用类中静态方法的时候，Singleton类会被初始化，生成唯一的静态实例，重复调用时直接返回已经初始化完成的实例。
+②.实现单例  **方式一：**简化实现的单例模式  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 1.简化实现的单例模式，但遇到多线程肯定有问题 */ public static Singleton getInstance(){ if (singleton==null){ singleton=new Singleton(); } return singleton; } }    **方式二：**加锁控制多线程  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 2.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/4_thread/readme/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/1_design_pattern/2_5_singleton/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -495,58 +575,23 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/6_netty/readme/"></a>
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_4_factory/">[ 设计模式 ] 4.工厂模式</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-07-10" class="post-time">
+        2019-07-10
       </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/6_netty/readme/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/6_netty/readme/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/spring/readme/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 1 字 </span>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 37 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/spring/readme/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/coding/java/base/1_design_pattern/2_4_factory/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 4.工厂模式">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -557,10 +602,18 @@
   <div class="post-content">
     
     <div class="post-summary">
-      Introduction 
+      工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
+ 一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
+ 多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
+1 2  # 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。 # 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。   ②.工厂角色职责   Product(产品) 一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类ConcreateProduct类所决定。
+  ConcreateProduct(具体产品) 属于具体加工职责：决定了具体生产出的产品。
+  Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
+  ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
+  ③.UML图 ④.代码清单 ⑤.注意事项 1 2 3  使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。   
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/spring/readme/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/1_design_pattern/2_4_factory/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -571,20 +624,23 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/spring/spring/spring-features/"></a>
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_3_template/">[ 设计模式 ] 3.模板模式</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-07-08" class="post-time">
+        2019-07-08
       </time>
-      
-      <span class="more-meta"> 约 141 字 </span>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 198 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/spring/spring/spring-features/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/coding/java/base/1_design_pattern/2_3_template/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 3.模板模式">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -595,19 +651,11 @@
   <div class="post-content">
     
     <div class="post-summary">
-      背景：不是为了推荐大家去使用Spring5 文档很少、资料难找 没有实战实践，包括老师自己没有用过 目的：1、带大家来看看眼界 2、了解一下未来的一个发展趋势
-鸡肋
-推荐：SpringBoot，Spring生态链（框架的框架）
-Spring5新特性：
- 依赖JDK 8+和Java EE7+以上版本 支持使用注解进行编程 新增函数式编程 支持使用REST断点执行反应式编程 支持HTTP 2.0 新增Kotlin和Spring WebFlux 可使用Lambda表达式注册Bean Spring WebMVC支持最新的API 使用JUnit5执行条件和并发测试 使用Spring WebFlux执行集成测试 核心容器优化  Spring5对WebFlux的支持
-Sevlet2.x 单实例多线程的阻塞式IO （BIO） Sevlet3.x 单实例多线程异步非阻塞式IO （AIO异步非阻塞、NIO 同步非阻塞）
-WebFlux 是在Servlet3.x 的基础之上应运而生
-特点： 1、基于Servlet3.x 实现异步非阻塞的HTTP响应 2、API完美支持Rest风格 3、支持函数式编程 4、Mono是表示返回单个对象、Flux表示返回集合
-结论： 1、为了让大家开一下眼界，了解未来的发展趋势 2、如果要应用在项目之中，建议大家直接用Spring Boot
-Spring5集成测试 JUnit集成 1、 * @BeforeEach 相当于 JUnit 4 @Before * @BeforeAll 相当于 JUnit 4 @BeforeClass * @AfterEach 相当于 JUnit 4 @After * @AfterAll 相当于 JUnit 4 @AfterClass * @Test 不在org.
+      模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+①.UML图 ②.代码清单  AbstractDisplay类  1 2 3 4 5 6 7 8 9 10 11 12  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }    CharDisplayTemplate类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/spring/spring/spring-features/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/1_design_pattern/2_3_template/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -618,20 +666,23 @@ Spring5集成测试 JUnit集成 1、 * @BeforeEach 相当于 JUnit 4 @Before * @
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/spring/spring/spring-ioc/"></a>
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_2_adapter/">[ 设计模式 ] 2.适配器模式</a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-07-06" class="post-time">
+        2019-07-06
       </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 251 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
       
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
       
       
-      
-        <span id="/post/coding/java/spring/spring/spring-ioc/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/coding/java/base/1_design_pattern/2_2_adapter/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 2.适配器模式">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -642,10 +693,11 @@ Spring5集成测试 JUnit集成 1、 * @BeforeEach 相当于 JUnit 4 @Before * @
   <div class="post-content">
     
     <div class="post-summary">
-      
+      适配器模式 适配器模式包含两种：  类适配器模式(使用继承的适配器) 对象适配器模式(使用委托的适配器)  适配器模式角色组成：  目标角色 源角色 适配器角色  ①.类适配器模式 继承于源类的同时实现目标接口
+表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  1 2 3 4  public interface Print { abstract void printWeak(); abstract void printStrong(); }    Banner(源角色)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class Banner { private String nameString; public Banner(String nameString) { this.
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/spring/spring/spring-ioc/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/1_design_pattern/2_2_adapter/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -656,20 +708,64 @@ Spring5集成测试 JUnit集成 1、 * @BeforeEach 相当于 JUnit 4 @Before * @
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/spring/spring/spring-orm-framework/"></a>
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_1_iterator/">[ 设计模式 ] 1.迭代器模式 </a>
     </h1>
     
     <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
+      <time datetime="2019-07-06" class="post-time">
+        2019-07-06
       </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> Java </a>
+          
+        </div>
+      <span class="more-meta"> 约 427 字 </span>
+      <span class="more-meta"> 预计阅读 3 分钟 </span>
       
-      <span class="more-meta"> 约 58 字 </span>
+      
+      
+        <span id="/post/coding/java/base/1_design_pattern/2_1_iterator/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 1.迭代器模式 ">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      迭代器模式 表1-1 类与接口说明    类名 备注     Aggregate 表示集合的接口   Iterator 遍历集合接口   Book 表示书的类   BookShelf 表示书架的类   BookShelfIterator 遍历书架的类    代码清单  Aggregate接口  1 2 3 4 5 6 7  /** * 表示集合接口 */ public interface Aggregate { /* 用于生成一个遍历集合的迭代器 */ public abstract Iterator iterator(); }    Iterator接口  1 2 3 4 5 6 7 8 9 10 11 12  /** * 遍历集合接口 */ public interface Iterator { /* 判断是否存在下一个元素 */ public abstract boolean hasNext(); /* 获取下一个元素 */ public abstract Object next(); }    Book类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  /** * 表示书的类 */ public class Book { /* 书名属性 */ private String name; /* Default constructor */ public Book(String name) { this.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1_design_pattern/2_1_iterator/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/base/2_basic/2_1_base/">[ Java ] 1.对象入门</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-06-22" class="post-time">
+        2019-06-22
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 21 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/coding/java/spring/spring/spring-orm-framework/" class="leancloud_visitors" data-flag-title="">
+        <span id="/post/coding/java/base/2_basic/2_1_base/" class="leancloud_visitors" data-flag-title="[ Java ] 1.对象入门">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -680,57 +776,12 @@ Spring5集成测试 JUnit集成 1、 * @BeforeEach 相当于 JUnit 4 @Before * @
   <div class="post-content">
     
     <div class="post-summary">
-      基于Spring5实现ORM 初衷： 单表查询不写一句SQL，自动生成 查询的结果自动映射为Java对象
-*1、我要传一个复杂的查询条件，怎么传？
-想到了用对象来传，但是有问题 a)、跨表联查的条件 b)、无法携带判断逻辑的运算符 c)、or 或者 and 无法区分
- 2、自动映射类型判断麻烦 ，用rs.getObject()方法  3、跨多种数据库如何统一API
-*4、数据源的动态切换如何来做？ AbstractRoutingDataSource数据源自动路由，执行数据连接以前，根据业务规则来动态获取到一个连接 从而达到动态切换数据库连接的效果 为了操作方便，每次执换完，执行成以后，会将数据源恢复到默认的设置
-*5、SQL注入 1、首先将QueryRule构建好，把所有的查询条件保存到一个ruleList中 2、再写一个工具类QueryRuleSqlBuilder，循环ruleList对每一个条件分别处理processAnything，主要是构建where后面语句 3、process以后propertisList 保存诸如 and name = ? ， values tom,利用索引位置相同，来进行一一对应
-问：selectbysql就相当于没有使用框架，不符合之前统一参数，统一查询方法拉？ 答：不推荐使用，如果一定要多表查询，只有两种方案 a) 写SQL语句 b) 查多次，在内存中处理数据关系，一般会在Service中进行处理 在Java代码中处理，会让程序员更加容易理解 如果给大串SQL，这后来接手的人直接想死 我见过一条SQL语句有10行之长的，我直接看晕了 &mdash;&mdash;&mdash;&ndash; 在我的团队中，极少数使用多表关联查询 &mdash;&mdash;&mdash;&mdash;-
-问：······这个PK主键传过来怎么用？有什么好处 答：&lt;T extends Serializable,PK extends Serializable&gt; 传于不传不影响功能 目的：返回结果不需要再手动的强制类型转换
-问：如用老师这个框架来组装sql，复杂查询的话，会不会难以组装， 比如说查某个表的字段是另外一个表的条件，以此类推多个表的话？ 答：这就是属于多表查询
-问：连接操作，还有如果表没有主键PK 还需要传？ 答：只要用的我框架，每个表必须有主键，哪怕是自增 为了降低程序设计的复杂度
+      对象入门 ​	首先一个重要的概念：OOP (Object Oriented Programming),即面向对象编程。对于面向对象会有三大特征：封装、继承、多态。
+ 封装：就是把客观事物封装成具体抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象进行操作，对不可信的进行隐藏。一个类就是封装了数据以及操作这些数据的代码的逻辑实体。在一个对象内部，某些代码或者某些数据可以是私有的，不能被外界所访问。通过这种方式，对象对内部数据提供了不同级别的保护，以防止程序中无关的部分意外的改变或者错误的使用了对象的私有部分。 继承：指可以让某个类型的对象获得另一个类型的对象的属性的方法。它支持按级分类的概念。继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展。 通过继承创建的新类称为“子类”或“派生类”，被继承的类称为“基类”、“父类”或“超类”。继承的过程，就是从一般到特殊的过程。要实现继承，可以通过 “继承”（Inheritance）和“组合”（Composition）来实现。继承概念的实现方式有二类：实现继承与接口继承。实现继承是指直接使用 基类的属性和方法而无需额外编码的能力；接口继承是指仅使用属性和方法的名称、但是子类必须提供实现的能力。 多态：是指一个类实例的相同方法在不同情形有不同表现形式。多态机制使具有不同内部结构的对象可以共享相同的外部接口。这意味着，虽然针对不同对象的具体操作不同，但通过一个公共的类，它们（那些操作）可以通过相同的方式予以调用。  一、抽象 ​	Java基础语言的面向对象程序设计方法具有的一下五大基本特征：
+ 所有东西都是对象。可将对象想象成一种新型变量；它保存着数据，但是可要求它对自身进行操作。理论来说，可以从要解决的问题身上提出所有概念性的组件，然后在程序中将其表达为一个对象。 程序是一大堆对象的组合。通过消息的传递，各对象知道自己该做什么。为了向面向对象发出请求，需向那个对象发送一条消息。更确切的来说，可以将消息想象成为一个请求，他调用的是从属于目标对象的一个子例程或者说是函数。 每个对象都有自己的存储空间，可以容纳其他对象。或者说是，通过封装现有的对象，可以制造出一个新型对象。所以，尽管对象的概念非常简单，但是在程序中却可以达到任意高的复杂程度。 每个对象都有一个类型。根据语法，每个对象都是某个类中的一个实例。其中，类**(Class)**是类型(type)的同义词。一个类最为重要的特征就是“能将什么消息发送给它”。 同一个类所有的对象都能接收相同的消息。这实际是别有含义的一种说法。由于类型为“圆”的一个对象也属于类型为“形状”的一个对象。所以一个圆完全可以接收形状消息。这意味着可以让程序代码统一指挥“形状”，使得其自动控制所有的形状对象。其中自然包括圆这一个对象。这一个特性成为对象的可替代性。是OOP的重要概念之一。  二、对象的接口 
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/spring/spring/spring-orm-framework/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/spring/springcloud/1.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9E%84%E5%BB%BA%E5%9F%BA%E7%A1%80/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 143 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/spring/springcloud/1.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9E%84%E5%BB%BA%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      一、关于springboot项目基础知识 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  /** * 初始化用户信息 * 注：Spring Boot2不能像1.x一样，用spring.datasource.schema/data指定初始化SQL脚本，否则与actuator不能共存 * 原因详见： * https://github.com/spring-projects/spring-boot/issues/13042 * https://github.com/spring-projects/spring-boot/issues/13539 * * @param repository repo * @return runner */ @Bean ApplicationRunner init(UserRepository repository) { return args -&gt; { User user1 = new User(1L, &#34;account1&#34;, &#34;张三&#34;, 20, new BigDecimal(100.00)); User user2 = new User(2L, &#34;account2&#34;, &#34;李四&#34;, 28, new BigDecimal(180.
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/spring/springcloud/1.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9E%84%E5%BB%BA%E5%9F%BA%E7%A1%80/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/base/2_basic/2_1_base/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -788,6 +839,22 @@ Spring5集成测试 JUnit集成 1、 * @BeforeEach 相当于 JUnit 4 @Before * @
       
       <li >
         <a href="/page/7/">7</a>
+      </li>
+      
+      <li >
+        <a href="/page/8/">8</a>
+      </li>
+      
+      <li >
+        <a href="/page/9/">9</a>
+      </li>
+      
+      <li >
+        <a href="/page/10/">10</a>
+      </li>
+      
+      <li >
+        <a href="/page/11/">11</a>
       </li>
       
     </ul>

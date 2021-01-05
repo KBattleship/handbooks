@@ -6,15 +6,15 @@
     <description>Recent content in namespace on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 22 Aug 2020 15:36:27 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 21 Aug 2020 15:36:27 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/tags/namespace/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>6.关于命名空间(Linux Namespace)</title>
+      <title>[ Docker ] 6.关于命名空间(Linux Namespace)</title>
       <link>https://touch-star.com/post/cloudnative/docker/docker/6_namespace_linux4docker/</link>
-      <pubDate>Sat, 22 Aug 2020 15:36:27 +0800</pubDate>
+      <pubDate>Fri, 21 Aug 2020 15:36:27 +0800</pubDate>
       
       <guid>https://touch-star.com/post/cloudnative/docker/docker/6_namespace_linux4docker/</guid>
       <description>关于命名空间(Linux Namespace) 概念  1.Linux Namespace 是Kernel的一个功能，可以针对一系列的系统资源进行隔离。例如：PID(process id)、UID(User id)、Network so on.

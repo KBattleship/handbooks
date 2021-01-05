@@ -1,3 +1,13 @@
+---
+title: "[ Kubernetes ] 1-4.kubeadm命令使用"
+date: 2020-09-14T15:36:27+08:00
+lastmod: 2020-09-14T15:36:27+08:00
+keywords: ['Kubernetes']
+description: ""
+tags: ['k8s','容器']
+categories: ['K8s']
+author: ""
+---
 # 安装初始化K8s集群
 ## 1.安装K8s
 ### 1.1CentOS安装

@@ -1,7 +1,7 @@
 ---
-title: "3.Docker之jdk1.8最简镜像构建"
-date: 2020-08-22T15:36:27+08:00
-lastmod: 2020-08-22T15:36:27+08:00
+title: "[ Docker ] 3.Docker之jdk1.8最简镜像构建"
+date: 2020-08-18T15:36:27+08:00
+lastmod: 2020-08-18T15:36:27+08:00
 keywords: ['Docker']
 description: ""
 tags: ['docker','k8s','容器']

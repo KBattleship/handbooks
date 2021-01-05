@@ -1,4 +1,14 @@
-# 1.SpringBoot--Pods项目初体验
+---
+title: "[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验"
+date: 2020-09-17T15:36:27+08:00
+lastmod: 2020-09-12T15:36:27+08:00
+keywords: ['Kubernetes']
+description: ""
+tags: ['k8s','容器']
+categories: ['K8s']
+author: ""
+---
+# SpringBoot--Pods项目初体验
 
 > 在SpringBoot项目中通过fabric8打包插件构建docker镜像
 

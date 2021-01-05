@@ -1,4 +1,14 @@
-# 1.初识K8s
+---
+title: "[ Kubernetes ] 1-1.初识K8s"
+date: 2020-09-11T15:36:27+08:00
+lastmod: 2020-08-22T15:36:27+08:00
+keywords: ['Kubernetes']
+description: ""
+tags: ['k8s','容器']
+categories: ['K8s']
+author: ""
+---
+# 初识K8s
 ### 术语及原理
 + **Master(主节点:control plane)**
     集群中的神经中枢网关。负责整个集群的**资源管理**、**Pod调度**、**弹性伸缩**、**安全控制**、**系统监控**、**纠错**等管理功能。

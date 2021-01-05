@@ -1,3 +1,13 @@
+---
+title: "[ Kubernetes ] 3-1.深入Service"
+date: 2020-09-18T15:36:27+08:00
+lastmod: 2020-09-18T15:36:27+08:00
+keywords: ['Kubernetes']
+description: ""
+tags: ['k8s','容器']
+categories: ['K8s']
+author: ""
+---
 # 深入Service
 >Service是Kubernetes最为核心的概念。Service可以为一组具有相同功能的容器应用提供一个统一的入口地址，并且将请求负载分发至后端的各个容器应用上。
 
