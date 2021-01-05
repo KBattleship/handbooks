@@ -6,10 +6,25 @@
     <description>Recent content in java on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 05 Jan 2021 01:13:47 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Jan 2021 10:36:27 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/tags/java/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[Netty] 1.Netty基础</title>
+      <link>https://touch-star.com/post/coding/java/base/6-netty/6_1_netty/</link>
+      <pubDate>Tue, 05 Jan 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/6-netty/6_1_netty/</guid>
+      <description>Netty基础 1.Netty面试   为什么用Netty？
+1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。     Netty应用场景
+1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统     Netty核心组件
+  Channel
+对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
+  EventLoop
+EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。</description>
+    </item>
     
     <item>
       <title>[Interview]面试准备</title>
@@ -98,16 +113,6 @@
       
       <guid>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_1_iterator/</guid>
       <description>迭代器模式 表1-1 类与接口说明    类名 备注     Aggregate 表示集合的接口   Iterator 遍历集合接口   Book 表示书的类   BookShelf 表示书架的类   BookShelfIterator 遍历书架的类    代码清单  Aggregate接口  1 2 3 4 5 6 7  /** * 表示集合接口 */ public interface Aggregate { /* 用于生成一个遍历集合的迭代器 */ public abstract Iterator iterator(); }    Iterator接口  1 2 3 4 5 6 7 8 9 10 11 12  /** * 遍历集合接口 */ public interface Iterator { /* 判断是否存在下一个元素 */ public abstract boolean hasNext(); /* 获取下一个元素 */ public abstract Object next(); }    Book类  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18  /** * 表示书的类 */ public class Book { /* 书名属性 */ private String name; /* Default constructor */ public Book(String name) { this.</description>
-    </item>
-    
-    <item>
-      <title>2.适配器模式</title>
-      <link>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</link>
-      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/1-design/1-2-design/1_2_2_adapter/</guid>
-      <description>适配器模式 适配器模式包含两种：  类适配器模式(使用继承的适配器) 对象适配器模式(使用委托的适配器)  适配器模式角色组成：  目标角色 源角色 适配器角色  ①.类适配器模式 继承于源类的同时实现目标接口
-表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  1 2 3 4  public interface Print { abstract void printWeak(); abstract void printStrong(); }    Banner(源角色)  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16  public class Banner { private String nameString; public Banner(String nameString) { this.</description>
     </item>
     
   </channel>

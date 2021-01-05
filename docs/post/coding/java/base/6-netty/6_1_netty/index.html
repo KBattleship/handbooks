@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - Quinn</title>
+  <title>[Netty] 1.Netty基础 - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,9 +23,15 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="入门Netty " />
+  <meta name="description" content="Netty基础 1.Netty面试   为什么用Netty？
+1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。     Netty应用场景
+1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统     Netty核心组件
+  Channel
+对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
+  EventLoop
+EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。" />
+<meta name="keywords" content="netty" />
 
-  <meta name="keywords" content="Quinn, k8s, docker" />
 
 
 
@@ -59,21 +65,41 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="入门Netty " />
+<meta property="og:title" content="[Netty] 1.Netty基础" />
+<meta property="og:description" content="Netty基础 1.Netty面试   为什么用Netty？
+1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。     Netty应用场景
+1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统     Netty核心组件
+  Channel
+对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
+  EventLoop
+EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/coding/java/base/6-netty/6_1_netty/" />
+<meta property="article:published_time" content="2021-01-05T10:36:27+08:00" />
+<meta property="article:modified_time" content="2021-01-05T10:36:27+08:00" />
+<meta itemprop="name" content="[Netty] 1.Netty基础">
+<meta itemprop="description" content="Netty基础 1.Netty面试   为什么用Netty？
+1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。     Netty应用场景
+1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统     Netty核心组件
+  Channel
+对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
+  EventLoop
+EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。">
+<meta itemprop="datePublished" content="2021-01-05T10:36:27&#43;08:00" />
+<meta itemprop="dateModified" content="2021-01-05T10:36:27&#43;08:00" />
+<meta itemprop="wordCount" content="87">
 
-<meta itemprop="name" content="">
-<meta itemprop="description" content="入门Netty ">
-
-<meta itemprop="wordCount" content="1">
 
 
-
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="入门Netty "/>
+<meta itemprop="keywords" content="java,netty,io," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[Netty] 1.Netty基础"/>
+<meta name="twitter:description" content="Netty基础 1.Netty面试   为什么用Netty？
+1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。     Netty应用场景
+1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统     Netty核心组件
+  Channel
+对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
+  EventLoop
+EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -340,14 +366,17 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">[Netty] 1.Netty基础</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2021-01-05" class="post-time">
+          2021-01-05
         </time>
-        
-        <span class="more-meta"> 约 1 字 </span>
+        <div class="post-category">
+            <a href="https://touch-star.com/categories/java/"> java </a>
+            
+          </div>
+        <span class="more-meta"> 约 87 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -355,7 +384,7 @@
 
         
         
-          <span id="/post/coding/java/base/6-netty/6_1_netty/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/coding/java/base/6-netty/6_1_netty/" class="leancloud_visitors" data-flag-title="[Netty] 1.Netty基础">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -390,11 +419,35 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e5%85%a5%e9%97%a8netty">
-                            入门Netty
+                            <a class="nav-link text-left" href="#netty%e5%9f%ba%e7%a1%80">
+                            Netty基础
                             </a>
                         </li>
                     
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#1netty%e9%9d%a2%e8%af%95">
+                            1.Netty面试
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
                     
                     </ul>
                     
@@ -411,7 +464,96 @@
 
     
     <div class="post-content">
-      <h1 id="入门netty">入门Netty</h1>
+      <h1 id="netty基础">Netty基础</h1>
+<h2 id="1netty面试">1.Netty面试</h2>
+<ol>
+<li>
+<p>为什么用Netty？</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发<span class="p">;</span>
+b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色<span class="p">;</span>
+c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议<span class="p">;</span>
+d. 统一的API、支持多种传输类型<span class="o">(</span>阻塞、非阻塞I/O<span class="o">)</span><span class="p">;</span>
+e. 简单且强大的线程模型<span class="p">;</span>
+f. 自带编解码器解决粘包、拆包问题<span class="p">;</span>
+g. 自带各种协议栈<span class="p">;</span>
+h. 安全性不错，支持完整的SSL/TLS及StartTLS协议<span class="p">;</span>
+i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制<span class="p">;</span>
+j. 成熟项目很多：Dubbo、RocketMQ。
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Netty应用场景</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">a. RPC框架的网络通信工具
+b. 自实现HTTP服务器
+c. 实现即时通信系统
+d. 实现消息推送系统
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>Netty核心组件</p>
+<ul>
+<li>
+<p>Channel</p>
+<p>对网络操作的抽象类。除I/O基本操作之外，支持<code>bind()</code>,<code>connect()</code>,<code>read()</code>,<code>write()</code>操作。</p>
+</li>
+<li>
+<p>EventLoop</p>
+<p>EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。
+主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。</p>
+<p><strong><code>EventLoop</code></strong> 负责处理注册到其上的 <strong><code>Channel</code></strong> 处理I/O操作，两者配合参与I/O操作。</p>
+</li>
+<li>
+<p>ChannelFuture</p>
+<p>Netty是<code>异步非阻塞</code>，所有的I/O操作都是异步。所以不可以立即得到操作结果。但是</p>
+<p>（1）通过 <strong><code>ChannelFuture</code></strong> 接口的 <strong><code>addListener()</code></strong> 注册一个 <strong><code>ChannelFutureListener</code></strong> 对象，操作执行成功或失败后，监听会自动触发返回结果；</p>
+<p>（2）也可以通过 <strong><code>ChannelFuture</code></strong> 的 <strong><code>channel()</code></strong> 获取关联的 <strong><code>Channel</code></strong> 对象；</p>
+<p>（3) 也可以通过 <strong><code>ChannelFuture</code></strong> 的 <strong><code>sync()</code></strong> 进行让异步的操作变成同步。</p>
+</li>
+<li>
+<p>ChannelHandler与ChannelPipeline</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Netty线程模型</p>
+</li>
+<li>
+<p>EventLoopGroup是什么？与EventLoop关系。</p>
+</li>
+<li>
+<p>Netty中TCP粘包、拆包</p>
+</li>
+<li>
+<p>Netty长连接、心跳机制</p>
+</li>
+<li>
+<p>Netty零拷贝</p>
+</li>
+</ol>
 
     </div>
 
@@ -423,12 +565,17 @@
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://touch-star.com/tags/java/">java</a>
+          <a href="https://touch-star.com/tags/netty/">netty</a>
+          <a href="https://touch-star.com/tags/io/">io</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/coding/java/base/4-thread/readme/">
+          <a class="prev" href="/post/middleware/etcd/etcd_sourcecode_1/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -438,12 +585,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">Etcd基础入门(2)</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/coding/java/base/6-netty/readme/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/coding/java/interview/2-processor/">
+            <span class="next-text nav-default">[Interview]面试准备</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
