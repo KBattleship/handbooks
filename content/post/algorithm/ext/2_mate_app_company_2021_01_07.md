@@ -12,28 +12,29 @@ author: ""
 
 ## 1.笔试
 
->   /**
-<br/>* 给定一个二叉树, 检查它是否是镜像对称的
-<br/>* 例如以下是镜像对称的
-<br/>*      1
-<br/>*     / \\\
-     *    2   2
-<br/>*   / \\ / \\\
-     *  3  4 4  3
-<br/>*
-<br/>* 下面这个则不是镜像对称的
-<br/>*      1
-<br/>*     / \\\
-     *    2   2
-<br/>*     \\   \\
-<br/>*      3   3
-<br/>*
-<br/>* TreeNode类的定义:
-<br/>*
-<br/>* @param TreeNode 一颗二叉树
-<br/>* @return boolean 是否是对称的
-<br/>*/
 ```java
+/**
+  * 给定一个二叉树, 检查它是否是镜像对称的
+  * 例如以下是镜像对称的
+  *      1
+  *     / \
+  *    2   2
+  *   / \ / \
+  *  3  4 4  3
+  *
+  * 下面这个则不是镜像对称的
+  *      1
+  *     / \
+  *    2   2
+  *     \   \
+  *      3   3
+  *
+  * TreeNode类的定义:
+  *
+  * @param TreeNode 一颗二叉树
+  * @return boolean 是否是对称的
+  */
+
 // 以下给出TreeNode类, 请勿修改
 static class TreeNode {
     int val;
@@ -46,37 +47,42 @@ static class TreeNode {
 
 **解答代码**
 
-> /**
-<br/>* 对任意一个Map<String, Object>, 其 key 为 String,
-<br/>* 其 value 为 Map<String, Object> Object[] Number String 中的任意一种,
-<br/>* 显然叶子节点是 value 类型为 Number 或 String的节点,
-<br/>* 将 Map 转为多条字符串, 每条字符串表达其中一个叶子节点,
-<br/>* 比如:
-<br/>* {"a":{"b":["v",2,{"c":0}]},"d":[1,null,3]}
-<br/>* 将转化为以下这些字符串
-<br/>* a.b[0] = v
-<br/>* a.b[1] = 2
-<br/>* a.b[2].c = 0
-<br/>* d[0] = 1
-<br/>* d[1] = null
-<br/>* d[2] = 3
-<br/>*
-<br/>* @param map 上述的 map
-<br/>* @return 所有的字符串
-<br/>*/
 
+```java
+/**
+  * 对任意一个Map<String, Object>, 其 key 为 String,
+  * 其 value 为 Map<String, Object> Object[] Number String 中的任意一种,
+  * 显然叶子节点是 value 类型为 Number 或 String的节点,
+  * 将 Map 转为多条字符串, 每条字符串表达其中一个叶子节点,
+  * 比如:
+  * {"a":{"b":["v",2,{"c":0}]},"d":[1,null,3]}
+  * 将转化为以下这些字符串
+  * a.b[0] = v
+  * a.b[1] = 2
+  * a.b[2].c = 0
+  * d[0] = 1
+  * d[1] = null
+  * d[2] = 3
+  *
+  * @param map 上述的 map
+  * @return 所有的字符串
+  */
+```
 **解题思路**
 
 **解答代码**
 
->  /**
-<br/>* <b>注意! 本题不要遍历二维数组. 要求时间复杂度严格低于n^2, 否则视为不得分 </b>
-<br/>*
-<br/>* 现有一个n\*n的二维正整数数组nums，每行元素保证递增，每列元素保证递增，求某正整数x是否存在于该二维数组中，需要尽量优化时间和空间复杂度；
-<br/>* @param int[][] nums
-<br/>* @param int x 目标数
-<br/>* @return boolean
-<br/>*/
+```java
+/**
+  * 注意! 本题不要遍历二维数组. 要求时间复杂度严格低于n^2, 否则视为不得分
+  *
+  * 现有一个n\*n的二维正整数数组nums，每行元素保证递增，每列元素保证递增，
+    求某正整数x是否存在于该二维数组中，需要尽量优化时间和空间复杂度；
+  * @param int[][] nums
+  * @param int x 目标数
+  * @return boolean
+  */
+```
 
 **解题思路**
 
