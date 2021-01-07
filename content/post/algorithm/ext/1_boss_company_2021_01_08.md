@@ -5,7 +5,7 @@ lastmod: 2021-01-07T01:13:47+08:00
 keywords: ['interview']
 description: ""
 tags: ['interview','笔试','algorithm']
-categories: ['algorithm']
+categories: ['Algorithm']
 author: ""
 ---
 # 面试之Boss
