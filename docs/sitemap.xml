@@ -450,6 +450,62 @@
   </url>
   
   <url>
+    <loc>https://touch-star.com/post/middleware/database/sql/mysql/2_1_mysql_base/</loc>
+    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/middleware/database/sql/mysql/2_2_sql_index/</loc>
+    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/index/</loc>
+    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/middleware/</loc>
+    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/categories/middleware/</loc>
+    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/mysql/</loc>
+    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/%E5%9F%BA%E7%A1%80/</loc>
+    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/%E7%B4%A2%E5%BC%95/</loc>
+    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://touch-star.com/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/</loc>
     <lastmod>2019-12-22T15:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -471,13 +527,6 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/categories/middleware/</loc>
-    <lastmod>2019-12-22T15:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://touch-star.com/post/middleware/database/sql/mysql/xtrabackup/1-real/</loc>
     <lastmod>2019-11-22T19:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -493,13 +542,6 @@
   
   <url>
     <loc>https://touch-star.com/tags/complite/</loc>
-    <lastmod>2019-11-22T19:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/tags/mysql/</loc>
     <lastmod>2019-11-22T19:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

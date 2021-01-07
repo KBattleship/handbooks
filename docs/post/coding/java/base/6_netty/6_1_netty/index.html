@@ -87,7 +87,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
 EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。">
 <meta itemprop="datePublished" content="2021-01-05T10:36:27&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-05T10:36:27&#43;08:00" />
-<meta itemprop="wordCount" content="87">
+<meta itemprop="wordCount" content="130">
 
 
 
@@ -376,7 +376,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
             <a href="https://touch-star.com/categories/java/"> java </a>
             
           </div>
-        <span class="more-meta"> 约 87 字 </span>
+        <span class="more-meta"> 约 130 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -551,7 +551,14 @@ d. 实现消息推送系统
 <p>Netty长连接、心跳机制</p>
 </li>
 <li>
-<p>Netty零拷贝</p>
+<p>Netty零拷贝
+在 OS 层面上的 Zero-copy 通常指避免在 用户态(User-space) 与 内核态(Kernel-space) 之间来回拷贝数据。而在 Netty 层面 ，零拷贝主要体现在对于数据操作的优化。
+Netty 中的零拷贝体现在以下几个方面：</p>
+<ol>
+<li>使用 Netty 提供的 CompositeByteBuf 类, 可以将多个ByteBuf 合并为一个逻辑上的 ByteBuf, 避免了各个 ByteBuf 之间的拷贝。</li>
+<li>ByteBuf 支持 slice 操作, 因此可以将 ByteBuf 分解为多个共享同一个存储区域的 ByteBuf, 避免了内存的拷贝。</li>
+<li>通过 FileRegion 包装的FileChannel.tranferTo 实现文件传输, 可以直接将文件缓冲区的数据发送到目标 Channel, 避免了传统通过循环 write 方式导致的内存拷贝问题.</li>
+</ol>
 </li>
 </ol>
 

@@ -179,23 +179,45 @@ author: ""
 6. MYSQL 优化方法有哪些？
 7. MySQL 的索引为什么快？有哪些索引？原理数据结构？
 8. 谈谈各种索引？为什么用 B+树不用 B 树？
+9. B+ Tree索引和Hash索引区别？
 
-**7.OS**
+**7. Redis**
+1. Redis
+
+**8.Spring**
+1. 谈谈 Spring AOP 和 IOC
+2. SpringBoot 常用哪些注解？
+
+**9.Mybatis**
+1. Mybatis
+
+**10.ElasticSearch**
+1. ES
+
+**11.Kafka**
+1. Kafka
+
+**12.Dubbo**
+
+**13.Netty**
+
+**14.RocketMQ**
+
+**15.Zookeeper**
+
+**16.OS**
 1. DNS 解析过程
 2. 进程间通信方式？哪种最高效？
 3. ARP 过程？
 4. 进程调度算法？
 
-**8.Network**
+**17.Network**
 1. TCP 如何保证可靠性传输？（校验和，序列号和确认应答号，重传，流量控制，拥塞控制）
 2. TCP拥塞控制算法？
 3. TCP 和 UDP 区别？
 4. HTTP 的状态码记得哪些？
 5. ICMP 是哪层的？有什么用？
 
-**9.Spring**
-1. 谈谈 Spring AOP 和 IOC
-2. SpringBoot 常用哪些注解？
 
-**10.分布式系统**
+**18.分布式系统**
 1. 谈谈你对分布式系统的认识？

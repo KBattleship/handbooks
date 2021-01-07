@@ -6,10 +6,41 @@
     <description>Recent content in middleware on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 22 Dec 2019 15:36:27 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 06 Jan 2020 01:13:47 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/categories/middleware/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[ MySQL ] 2-1.MySQL基础</title>
+      <link>https://touch-star.com/post/middleware/database/sql/mysql/2_1_mysql_base/</link>
+      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/database/sql/mysql/2_1_mysql_base/</guid>
+      <description>Mysql基础 Mysql引擎   MyISAM
+  InnoDB
+  Memory
+  Archive
+     功能点 MyISAM InnoDB Memory Archive      存储限制 256TB RAM 64TB -    事务 N N Y N    全文检索 Y N N N    B+ Tree索引        哈希索引        数据缓存        外键         </description>
+    </item>
+    
+    <item>
+      <title>[ MySQL ] 2.MySQL索引</title>
+      <link>https://touch-star.com/post/middleware/database/sql/mysql/2_2_sql_index/</link>
+      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/database/sql/mysql/2_2_sql_index/</guid>
+      <description>MySQL索引  Index(索引)，在存储引擎中用于快速找到记录的一种数据结构。索引用来快速寻找特定值的记录。
+ 如果没有索引，执行查询时，MySQL必须从第一个记录开始扫描整个表的所有记录，知道找到符合要求的记录。如果存在索引，MySQL无需扫描全表即可迅速查找到目标记录所在的位置。
+1. 索引类型  数据结构角度：   B+ Tree索引
+  Hash索引
+只有Memory存储引擎显示支持hash索引
+  FullText索引
+目前MyISAM和InnoDB引擎已支持。
+  R- Tree索引
+用于对GIS数据类型进行创建Spatial索引。
+   物理存储角度： 逻辑角度：  2. </description>
+    </item>
     
     <item>
       <title>1.ElasticSearch集群搭建</title>
@@ -109,17 +140,6 @@ master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显
       
       <guid>https://touch-star.com/post/operation/linux/tcp/1.overview/</guid>
       <description>TCP/IP入门 1.1 协议分层 ✌🏼😂😅😅</description>
-    </item>
-    
-    <item>
-      <title>2.KVM-双网卡网关配置</title>
-      <link>https://touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</link>
-      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/operation/linux/kvm/2-ethernet_bridge/</guid>
-      <description>双网卡网关配置 1.在系统路由表文件/etc/iproute2/rt_tables增加配置
-1 2  252 e1 251 e0   2.执行以下命令，并在/etc/rc.d/network追加此内容
-1 2 3 4 5 6 7 8 9  # 此内容防止服务器重启路由失效 ip route flush table e0 ip route add default via 10.3.3.1 dev eth0 src 10.3.3.25 table e0 ip route add 127.0.0.0/8 dev lo table e0 ip rule add from 10.3.3.25 table e0 ip route flush table e1 ip route add default via 10.2.2.1 dev eth1 src 10.</description>
     </item>
     
   </channel>

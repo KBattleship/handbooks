@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>middleware on Quinn</title>
+    <link>https://touch-star.com/tags/middleware/</link>
+    <description>Recent content in middleware on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 06 Jan 2020 01:13:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://touch-star.com/tags/middleware/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[ MySQL ] 2-1.MySQL基础</title>
+      <link>https://touch-star.com/post/middleware/database/sql/mysql/2_1_mysql_base/</link>
+      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/database/sql/mysql/2_1_mysql_base/</guid>
+      <description>Mysql基础 Mysql引擎   MyISAM
+  InnoDB
+  Memory
+  Archive
+     功能点 MyISAM InnoDB Memory Archive      存储限制 256TB RAM 64TB -    事务 N N Y N    全文检索 Y N N N    B+ Tree索引        哈希索引        数据缓存        外键         </description>
+    </item>
+    
+    <item>
+      <title>[ MySQL ] 2.MySQL索引</title>
+      <link>https://touch-star.com/post/middleware/database/sql/mysql/2_2_sql_index/</link>
+      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/database/sql/mysql/2_2_sql_index/</guid>
+      <description>MySQL索引  Index(索引)，在存储引擎中用于快速找到记录的一种数据结构。索引用来快速寻找特定值的记录。
+ 如果没有索引，执行查询时，MySQL必须从第一个记录开始扫描整个表的所有记录，知道找到符合要求的记录。如果存在索引，MySQL无需扫描全表即可迅速查找到目标记录所在的位置。
+1. 索引类型  数据结构角度：   B+ Tree索引
+  Hash索引
+只有Memory存储引擎显示支持hash索引
+  FullText索引
+目前MyISAM和InnoDB引擎已支持。
+  R- Tree索引
+用于对GIS数据类型进行创建Spatial索引。
+   物理存储角度： 逻辑角度：  2. </description>
+    </item>
+    
+  </channel>
+</rss>
