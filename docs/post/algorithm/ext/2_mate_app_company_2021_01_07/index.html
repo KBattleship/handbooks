@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>algorithm · Quinn</title>
+  <title>[ Interview ] 1.面试之MateAPP - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,14 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="笨笨豪の摘星辰" />
-  <meta name="keywords" content="Quinn, k8s, docker" />
+  <meta name="description" content="面试之MateAPP 1.笔试  /** * 给定一个二叉树, 检查它是否是镜像对称的 * 例如以下是镜像对称的 * 1 * / \
+* 2 2 * / \ / \
+* 3 4 4 3 * * 下面这个则不是镜像对称的 * 1 * / \
+* 2 2 * \ \
+* 3 3 * * TreeNode类的定义: * * @param TreeNode 一颗二叉树 * @return boolean 是否是对称的 */
+ 1 2 3 4 5 6 7  // 以下给出TreeNode类, 请勿修改 static class TreeNode { int val; TreeNode left; TreeNode right; TreeNode(int x) { val = x; } }   解题思路" />
+<meta name="keywords" content="interview" />
+
 
 
 
@@ -34,8 +40,8 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://touch-star.com/tags/algorithm/" />
-<link href="/tags/algorithm/index.xml" rel="alternate" type="application/rss+xml" title="Quinn" />
+<link rel="canonical" href="https://touch-star.com/post/algorithm/ext/2_mate_app_company_2021_01_07/" />
+
 
 
 
@@ -58,15 +64,38 @@
 
 
 
-<meta property="og:title" content="algorithm" />
-<meta property="og:description" content="笨笨豪の摘星辰" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://touch-star.com/tags/algorithm/" />
-<meta property="og:updated_time" content="2021-01-07T01:13:47+08:00" />
-<meta itemprop="name" content="algorithm">
-<meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="algorithm"/>
-<meta name="twitter:description" content="笨笨豪の摘星辰"/>
+<meta property="og:title" content="[ Interview ] 1.面试之MateAPP" />
+<meta property="og:description" content="面试之MateAPP 1.笔试  /** * 给定一个二叉树, 检查它是否是镜像对称的 * 例如以下是镜像对称的 * 1 * / \
+* 2 2 * / \ / \
+* 3 4 4 3 * * 下面这个则不是镜像对称的 * 1 * / \
+* 2 2 * \ \
+* 3 3 * * TreeNode类的定义: * * @param TreeNode 一颗二叉树 * @return boolean 是否是对称的 */
+ 1 2 3 4 5 6 7  // 以下给出TreeNode类, 请勿修改 static class TreeNode { int val; TreeNode left; TreeNode right; TreeNode(int x) { val = x; } }   解题思路" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://touch-star.com/post/algorithm/ext/2_mate_app_company_2021_01_07/" />
+<meta property="article:published_time" content="2021-01-07T01:13:47+08:00" />
+<meta property="article:modified_time" content="2021-01-07T01:13:47+08:00" />
+<meta itemprop="name" content="[ Interview ] 1.面试之MateAPP">
+<meta itemprop="description" content="面试之MateAPP 1.笔试  /** * 给定一个二叉树, 检查它是否是镜像对称的 * 例如以下是镜像对称的 * 1 * / \
+* 2 2 * / \ / \
+* 3 4 4 3 * * 下面这个则不是镜像对称的 * 1 * / \
+* 2 2 * \ \
+* 3 3 * * TreeNode类的定义: * * @param TreeNode 一颗二叉树 * @return boolean 是否是对称的 */
+ 1 2 3 4 5 6 7  // 以下给出TreeNode类, 请勿修改 static class TreeNode { int val; TreeNode left; TreeNode right; TreeNode(int x) { val = x; } }   解题思路">
+<meta itemprop="datePublished" content="2021-01-07T01:13:47&#43;08:00" />
+<meta itemprop="dateModified" content="2021-01-07T01:13:47&#43;08:00" />
+<meta itemprop="wordCount" content="182">
+
+
+
+<meta itemprop="keywords" content="interview,笔试,algorithm," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ Interview ] 1.面试之MateAPP"/>
+<meta name="twitter:description" content="面试之MateAPP 1.笔试  /** * 给定一个二叉树, 检查它是否是镜像对称的 * 例如以下是镜像对称的 * 1 * / \
+* 2 2 * / \ / \
+* 3 4 4 3 * * 下面这个则不是镜像对称的 * 1 * / \
+* 2 2 * \ \
+* 3 3 * * TreeNode类的定义: * * @param TreeNode 一颗二叉树 * @return boolean 是否是对称的 */
+ 1 2 3 4 5 6 7  // 以下给出TreeNode类, 请勿修改 static class TreeNode { int val; TreeNode left; TreeNode right; TreeNode(int x) { val = x; } }   解题思路"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -338,66 +367,257 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-
-<section id="archive" class="archive">
-  
+          <article class="post bg-white">
     
-      <div class="archive-title tag">
-        <h2 class="archive-name">标签： algorithm</h2>
+    <header class="post-header">
+      <h1 class="post-title">[ Interview ] 1.面试之MateAPP</h1>
+      
+      <div class="post-meta">
+        <time datetime="2021-01-07" class="post-time">
+          2021-01-07
+        </time>
+        <div class="post-category">
+            <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
+            
+          </div>
+        <span class="more-meta"> 约 182 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+
+        
+        
+
+        
+        
+          <span id="/post/algorithm/ext/2_mate_app_company_2021_01_07/" class="leancloud_visitors" data-flag-title="[ Interview ] 1.面试之MateAPP">
+            <span class="post-meta-item-text"> | 阅读 </span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
       </div>
+    </header>
+
     
+    
+
+
+
+
+
+
+
+
+
+<div class="toc">
+
+    <div class="page-header"><strong> 目录 </strong></div>
+
+    <div id="page-scrollspy" class="toc-nav">
+
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e9%9d%a2%e8%af%95%e4%b9%8bmateapp">
+                            面试之MateAPP
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#1%e7%ac%94%e8%af%95">
+                            1.笔试
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+
+    </div>
+
+</div>
+
+
+
+
+    
+    <div class="post-content">
+      <h1 id="面试之mateapp">面试之MateAPP</h1>
+<h2 id="1笔试">1.笔试</h2>
+<blockquote>
+<p>/**
+<!-- raw HTML omitted -->* 给定一个二叉树, 检查它是否是镜像对称的
+<!-- raw HTML omitted -->* 例如以下是镜像对称的
+<!-- raw HTML omitted -->*      1
+<!-- raw HTML omitted -->*     / \<br>
+*    2   2
+<!-- raw HTML omitted -->*   / \ / \<br>
+*  3  4 4  3
+<!-- raw HTML omitted -->*
+<!-- raw HTML omitted -->* 下面这个则不是镜像对称的
+<!-- raw HTML omitted -->*      1
+<!-- raw HTML omitted -->*     / \<br>
+*    2   2
+<!-- raw HTML omitted -->*     \   \<br>
+<!-- raw HTML omitted -->*      3   3
+<!-- raw HTML omitted -->*
+<!-- raw HTML omitted -->* TreeNode类的定义:
+<!-- raw HTML omitted -->*
+<!-- raw HTML omitted -->* @param TreeNode 一颗二叉树
+<!-- raw HTML omitted -->* @return boolean 是否是对称的
+<!-- raw HTML omitted -->*/</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 以下给出TreeNode类, 请勿修改
+</span><span class="c1"></span><span class="kd">static</span> <span class="kd">class</span> <span class="nc">TreeNode</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
+    <span class="n">TreeNode</span> <span class="n">left</span><span class="o">;</span>
+    <span class="n">TreeNode</span> <span class="n">right</span><span class="o">;</span>
+    <span class="n">TreeNode</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span> <span class="n">val</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>解题思路</strong></p>
+<p><strong>解答代码</strong></p>
+<blockquote>
+<p>/**
+<!-- raw HTML omitted -->* 对任意一个Map&lt;String, Object&gt;, 其 key 为 String,
+<!-- raw HTML omitted -->* 其 value 为 Map&lt;String, Object&gt; Object[] Number String 中的任意一种,
+<!-- raw HTML omitted -->* 显然叶子节点是 value 类型为 Number 或 String的节点,
+<!-- raw HTML omitted -->* 将 Map 转为多条字符串, 每条字符串表达其中一个叶子节点,
+<!-- raw HTML omitted -->* 比如:
+<!-- raw HTML omitted -->* {&ldquo;a&rdquo;:{&ldquo;b&rdquo;:[&ldquo;v&rdquo;,2,{&ldquo;c&rdquo;:0}]},&ldquo;d&rdquo;:[1,null,3]}
+<!-- raw HTML omitted -->* 将转化为以下这些字符串
+<!-- raw HTML omitted -->* a.b[0] = v
+<!-- raw HTML omitted -->* a.b[1] = 2
+<!-- raw HTML omitted -->* a.b[2].c = 0
+<!-- raw HTML omitted -->* d[0] = 1
+<!-- raw HTML omitted -->* d[1] = null
+<!-- raw HTML omitted -->* d[2] = 3
+<!-- raw HTML omitted -->*
+<!-- raw HTML omitted -->* @param map 上述的 map
+<!-- raw HTML omitted -->* @return 所有的字符串
+<!-- raw HTML omitted -->*/</p>
+</blockquote>
+<p><strong>解题思路</strong></p>
+<p><strong>解答代码</strong></p>
+<blockquote>
+<p>/**
+<!-- raw HTML omitted -->* <!-- raw HTML omitted -->注意! 本题不要遍历二维数组. 要求时间复杂度严格低于n^2, 否则视为不得分 <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->*
+<!-- raw HTML omitted -->* 现有一个n*n的二维正整数数组nums，每行元素保证递增，每列元素保证递增，求某正整数x是否存在于该二维数组中，需要尽量优化时间和空间复杂度；
+<!-- raw HTML omitted -->* @param int[][] nums
+<!-- raw HTML omitted -->* @param int x 目标数
+<!-- raw HTML omitted -->* @return boolean
+<!-- raw HTML omitted -->*/</p>
+</blockquote>
+<p><strong>解题思路</strong></p>
+<p><strong>解答代码</strong></p>
+
+    </div>
+
+    
+    
+
+
+    
+    
+
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://touch-star.com/tags/interview/">interview</a>
+          <a href="https://touch-star.com/tags/%E7%AC%94%E8%AF%95/">笔试</a>
+          <a href="https://touch-star.com/tags/algorithm/">algorithm</a>
+          
+        </div>
+
+      
+      <nav class="post-nav">
+        
+        
+          <a class="next" href="/post/algorithm/ext/1_boss_company_2021_01_08/">
+            <span class="next-text nav-default">[ Interview ] 2.面试之Boss</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+
+  
   
 
   
-    <div class="archive-post">
-      <time datetime="2021-01-07" class="archive-post-time">
-        2021-01-07
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/algorithm/ext/1_boss_company_2021_01_08/" class="archive-post-link">
-          [ Interview ] 2.面试之Boss
-        </a>
-      </span>
+  
+
+  
+
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "quinniup/handbooks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
     </div>
   
-    <div class="archive-post">
-      <time datetime="2021-01-07" class="archive-post-time">
-        2021-01-07
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/algorithm/ext/2_mate_app_company_2021_01_07/" class="archive-post-link">
-          [ Interview ] 1.面试之MateAPP
-        </a>
-      </span>
-    </div>
-  
-</section>
-
-
-
-
-
 
   
-  
+
   
 
   
-  
+
+    
 
   
-  
-
-  
-  
-
-  
-  
-
-
-
-
 
         </div>
       </div>
