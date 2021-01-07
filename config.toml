@@ -52,7 +52,7 @@ defaultContentLanguage = "zh-cn"           # Default language to use
   identifier = "categories"
   url = "/categories"
 [[menu.main]]
-  name = "Algo"
+  name = "Algorithm"
   parent = "categories"
   weight = 9
   identifier = "algorithm"
