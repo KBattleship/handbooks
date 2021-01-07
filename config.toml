@@ -52,6 +52,12 @@ defaultContentLanguage = "zh-cn"           # Default language to use
   identifier = "categories"
   url = "/categories"
 [[menu.main]]
+  name = "Algo"
+  parent = "categories"
+  weight = 9
+  identifier = "algorithm"
+  url = "/categories/algorithm"
+[[menu.main]]
   name = "Java"
   parent = "categories"
   weight = 10
@@ -72,13 +78,13 @@ defaultContentLanguage = "zh-cn"           # Default language to use
 [[menu.main]]
   name = "MiddleWare"
   parent = "categories"
-  weight = 10
+  weight = 40
   identifier = "middleware"
   url = "/categories/middleware"
 [[menu.main]]
   name = "Linux"
   parent = "categories"
-  weight = 10
+  weight = 50
   identifier = "linux"
   url = "/categories/linux"
 
