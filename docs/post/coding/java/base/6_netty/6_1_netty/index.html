@@ -81,7 +81,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
 EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。">
 <meta itemprop="datePublished" content="2021-01-05T10:36:27&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-05T10:36:27&#43;08:00" />
-<meta itemprop="wordCount" content="386">
+<meta itemprop="wordCount" content="385">
 
 
 
@@ -376,7 +376,7 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 386 字 </span>
+        <span class="more-meta"> 约 385 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -735,24 +735,24 @@ d. 实现消息推送系统
 </div><h3 id="3-netty核心组件">3. Netty核心组件</h3>
 <ul>
 <li>
-<p>Channel</p>
+<p><strong>Channel</strong></p>
 <p>对网络操作的抽象类。除I/O基本操作之外，支持<code>bind()</code>,<code>connect()</code>,<code>read()</code>,<code>write()</code>操作。</p>
 </li>
 <li>
-<p>EventLoop</p>
+<p><strong>EventLoop</strong></p>
 <p>EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。
 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。</p>
 <p><strong><code>EventLoop</code></strong> 负责处理注册到其上的 <strong><code>Channel</code></strong> 处理I/O操作，两者配合参与I/O操作。</p>
 </li>
 <li>
-<p>ChannelFuture</p>
+<p><strong>ChannelFuture</strong></p>
 <p>Netty是<code>异步非阻塞</code>，所有的I/O操作都是异步。所以不可以立即得到操作结果。但是</p>
 <p>（1）通过 <strong><code>ChannelFuture</code></strong> 接口的 <strong><code>addListener()</code></strong> 注册一个 <strong><code>ChannelFutureListener</code></strong> 对象，操作执行成功或失败后，监听会自动触发返回结果；</p>
 <p>（2）也可以通过 <strong><code>ChannelFuture</code></strong> 的 <strong><code>channel()</code></strong> 获取关联的 <strong><code>Channel</code></strong> 对象；</p>
 <p>（3) 也可以通过 <strong><code>ChannelFuture</code></strong> 的 <strong><code>sync()</code></strong> 进行让异步的操作变成同步。</p>
 </li>
 <li>
-<p>ChannelHandler与ChannelPipeline</p>
+<p><strong>ChannelHandler</strong>与<strong>ChannelPipeline</strong></p>
 <ol>
 <li>
 <p>ChannelHandler 是消息的具体处理器。他负责处理读写操作、客户端连接等事情。</p>
@@ -851,43 +851,60 @@ d. 实现消息推送系统
 <h3 id="5-eventloopgroup是什么与eventloop关系">5. EventLoopGroup是什么？与EventLoop关系。</h3>
 <ol>
 <li>
-<p>EventLoop 的主要作用实际就是负责监听网络事件并调用事件处理器进行相关 I/O 操作的处理。</p>
+<p><code>EventLoop</code> 的主要作用实际就是负责监听网络事件并调用事件处理器进行相关 I/O 操作的处理。</p>
 </li>
 <li>
-<p>EventLoopGroup 包含多个 EventLoop（每一个 EventLoop 通常内部包含一个线程）
+<p><code>EventLoopGroup</code> 包含多个 <code>EventLoop</code>（每一个 <code>EventLoop</code> 通常内部包含一个线程）。
 并且 EventLoop 处理的 I/O 事件都将在它专有的 Thread 上被处理，即 Thread 和 EventLoop 属于 1 : 1 的关系，从而保证线程安全。</p>
 </li>
 <li>
-<p>Boss EventloopGroup 用于接收连接，Worker EventloopGroup 用于具体的处理（消息的读写以及其他逻辑处理）</p>
+<p><code>BossEventLoopGroup</code> <code>用于接收连接，WorkerEventLoopGroup</code> 用于具体的处理（消息的读写以及其他逻辑处理）</p>
 </li>
 <li>
-<p>当客户端通过 connect 方法连接服务端时，bossGroup 处理客户端连接请求。当客户端处理完成后，会将这个连接提交给 workerGroup 来处理，然后 workerGroup 负责处理其 IO 相关操作。</p>
+<p>当客户端通过 <strong>connect()</strong> 连接服务端时，<code>BossEventLoopGroup</code> 处理客户端连接请求。当客户端处理完成后，会将这个连接提交给 <code>WorkerEventLoopGroup</code> 来处理，然后 <code>WorkerEventLoopGroup</code> 负责处理其 IO 相关操作。</p>
 </li>
 </ol>
 <h3 id="6-netty中tcp粘包拆包">6. Netty中TCP粘包、拆包</h3>
-<p><strong>TCP 粘包/拆包</strong> 就是你基于 TCP 发送数据的时候，出现了多个字符串“粘”在了一起或者一个字符串被“拆”开的问题。</p>
-<p>解决办法：</p>
+<p><strong>TCP 粘包/拆包</strong> 就是基于 TCP 发送数据的时候，出现了多个字符串“粘”在了一起或者一个字符串被“拆”开的问题。</p>
+<p><strong>解决办法：</strong></p>
 <ul>
 <li>使用 Netty 自带的解码器
 <ol>
 <li><strong>LineBasedFrameDecoder</strong> : 发送端发送数据包的时候，每个数据包之间以换行符作为分隔，<strong>LineBasedFrameDecoder</strong> 的工作原理是它依次遍历 <strong>ByteBuf</strong> 中的可读字节，判断是否有换行符，然后进行相应的截取。</li>
 <li><strong>DelimiterBasedFrameDecoder</strong> : 可以自定义分隔符解码器，<strong>LineBasedFrameDecoder</strong> 实际上是一种特殊的 <strong>DelimiterBasedFrameDecoder</strong> 解码器。</li>
 <li><strong>FixedLengthFrameDecoder</strong>: 固定长度解码器，它能够按照指定的长度对消息进行相应的拆包。</li>
-<li><strong>LengthFieldBasedFrameDecoder</strong> + :</li>
+<li><strong>LengthFieldBasedFrameDecoder</strong> + <strong>LengthFieldPrepender</strong> 配合使用: 处理粘拆包的主要思想是在生成的数据包中添加一个长度字段，用于记录当前数据包的长度。
+<ul>
+<li><code>LengthFieldBasedFrameDecoder</code>会按照参数指定的包长度偏移量数据对接收到的数据进行解码，从而得到目标消息体数据</li>
+<li><code>LengthFieldPrepender</code>则会在响应的数据前面添加指定的字节数据，这个字节数据中保存了当前消息体的整体字节数据长度</li>
+</ul>
+</li>
 </ol>
 </li>
-<li>自定义序列化编解码器</li>
+<li>自定义序列化编解码器
+<ul>
+<li>通过继承<code>LengthFieldBasedFrameDecoder</code>和<code>LengthFieldPrepender</code>来实现粘包和拆包的处理</li>
+</ul>
+</li>
 </ul>
 <h3 id="7-netty长连接心跳机制">7. Netty长连接、心跳机制</h3>
 <p>在 TCP 保持长连接的过程中，可能会出现断网等网络异常出现，异常发生的时候， client 与 server 之间如果没有交互的话，它们是无法发现对方已经掉线的。为了解决这个问题, 我们就需要引入 <strong>心跳机制</strong> 。</p>
+<ul>
+<li>
 <p><strong>心跳机制的工作原理是:</strong> 在 client 与 server 之间在一定时间内没有数据交互时, 即处于 idle 状态时, 客户端或服务器就会发送一个特殊的数据包给对方, 当接收方收到这个数据报文后, 也立即发送一个特殊的数据报文, 回应发送方, 此即一个 PING-PONG 交互。所以, 当某一端收到心跳消息后, 就知道了对方仍然在线, 这就确保 TCP 连接的有效性.</p>
+</li>
+<li>
 <p><strong>Netty中的心跳机制实现：</strong> TCP 实际上自带的就有长连接选项，本身是也有心跳包机制，也就是 TCP 的选项：SO_KEEPALIVE。但是，TCP 协议层面的长连接灵活性不够。所以，一般情况下我们都是在应用层协议上实现自定义心跳机制的，也就是在 Netty 层面通过编码实现。通过 Netty 实现心跳机制的话，核心类是 IdleStateHandler</p>
+</li>
+</ul>
 <h3 id="8-netty零拷贝">8. Netty零拷贝</h3>
-<p>在 OS 层面上的 Zero-copy 通常指避免在 用户态(User-space) 与 内核态(Kernel-space) 之间来回拷贝数据。而在 Netty 层面 ，零拷贝主要体现在对于数据操作的优化。
-Netty 中的零拷贝体现在以下几个方面：
-1. 使用 Netty 提供的 CompositeByteBuf 类, 可以将多个ByteBuf 合并为一个逻辑上的 ByteBuf, 避免了各个 ByteBuf 之间的拷贝。
-2. ByteBuf 支持 slice 操作, 因此可以将 ByteBuf 分解为多个共享同一个存储区域的 ByteBuf, 避免了内存的拷贝。
-3. 通过 FileRegion 包装的FileChannel.tranferTo 实现文件传输, 可以直接将文件缓冲区的数据发送到目标 Channel, 避免了传统通过循环 write 方式导致的内存拷贝问题.</p>
+<p>在 OS 层面上的 Zero-copy 通常指避免在 <code>用户态(User-space)</code> 与 <code>内核态(Kernel-space)</code> 之间来回拷贝数据。而在 Netty 层面，零拷贝主要体现在对于数据操作的优化。</p>
+<p>Netty 中的零拷贝体现在以下几个方面：</p>
+<ol>
+<li>使用 Netty 提供的 <code>CompositeByteBuf</code> 类， 可以将多个ByteBuffer 合并为一个逻辑上的 ByteBuffer， <strong>避免了各个 ByteBuf 之间的拷贝</strong>。</li>
+<li>ByteBuffer 支持 slice 操作， 因此可以将 ByteBuf 分解为多个共享同一个存储区域的 ByteBuf， <strong>避免了内存的拷贝</strong>。</li>
+<li>通过 FileRegion 包装的FileChannel.tranferTo 实现文件传输， 可以直接将文件缓冲区的数据发送到目标 Channel， <strong>避免了传统通过循环 write 方式导致的内存拷贝问题</strong>。</li>
+</ol>
 
     </div>
 
