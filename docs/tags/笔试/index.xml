@@ -6,30 +6,30 @@
     <description>Recent content in 笔试 on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 07 Jan 2021 01:13:47 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 08 Jan 2021 01:13:47 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/tags/%E7%AC%94%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>[ Interview ] 1.面试之MateAPP</title>
-      <link>https://touch-star.com/post/algorithm/ext/2_mate_app_company_2021_01_07/</link>
-      <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/algorithm/ext/2_mate_app_company_2021_01_07/</guid>
-      <description>面试之MateAPP 1.笔试 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29  /** * 给定一个二叉树, 检查它是否是镜像对称的 * 例如以下是镜像对称的 * 1 * / \ * 2 2 * / \ / \ * 3 4 4 3 * * 下面这个则不是镜像对称的 * 1 * / \ * 2 2 * \ \ * 3 3 * * TreeNode类的定义: * * @param TreeNode 一颗二叉树 * @return boolean 是否是对称的 */ // 以下给出TreeNode类, 请勿修改 static class TreeNode { int val; TreeNode left; TreeNode right; TreeNode(int x) { val = x; } }   解题思路</description>
-    </item>
-    
-    <item>
       <title>[ Interview ] 2.面试之Boss</title>
-      <link>https://touch-star.com/post/algorithm/ext/1_boss_company_2021_01_08/</link>
-      <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
+      <link>https://touch-star.com/post/algorithm/ext/2_boss_company_2021_01_08/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/algorithm/ext/1_boss_company_2021_01_08/</guid>
+      <guid>https://touch-star.com/post/algorithm/ext/2_boss_company_2021_01_08/</guid>
       <description>面试之Boss 1.笔试  删除UserList中年龄大于20的User对象。
  1 2 3 4 5 6 7  // User实体类 public class User{ private Integer age; public Integet getAge(){ return this.age; } }   解题思路：
 此题按照最简单的lambda方式进行解答(JDK8才支持)
 1 2 3 4 5 6  public class Main{ public static void remove(List&amp;lt;User&amp;gt; userList){ // removeIf(Predicate&amp;lt;? super E&amp;gt; filter)  userList.removeIf(x -&amp;gt; x != null &amp;amp;&amp;amp; x.getAge() != null &amp;amp;&amp;amp; x.getAge() &amp;gt; 20); } }    从1000W个数中取出最小的10个数，并按照顺序打印。</description>
+    </item>
+    
+    <item>
+      <title>[ Interview ] 1.面试之MateAPP</title>
+      <link>https://touch-star.com/post/algorithm/ext/1_mate_app_company_2021_01_07/</link>
+      <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/algorithm/ext/1_mate_app_company_2021_01_07/</guid>
+      <description>面试之MateAPP 1.笔试 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29  /** * 给定一个二叉树, 检查它是否是镜像对称的 * 例如以下是镜像对称的 * 1 * / \ * 2 2 * / \ / \ * 3 4 4 3 * * 下面这个则不是镜像对称的 * 1 * / \ * 2 2 * \ \ * 3 3 * * TreeNode类的定义: * * @param TreeNode 一颗二叉树 * @return boolean 是否是对称的 */ // 以下给出TreeNode类, 请勿修改 static class TreeNode { int val; TreeNode left; TreeNode right; TreeNode(int x) { val = x; } }   解题思路</description>
     </item>
     
   </channel>

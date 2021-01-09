@@ -62,7 +62,7 @@
 <meta property="og:description" content="笨笨豪の摘星辰" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://touch-star.com/" />
-<meta property="og:updated_time" content="2021-01-07T01:13:47+08:00" />
+<meta property="og:updated_time" content="2021-01-08T01:13:47+08:00" />
 <meta itemprop="name" content="Quinn">
 <meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quinn"/>
@@ -345,6 +345,156 @@
     
   
   
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/cloudnative/kubernetes/1_k8s_base/1_concept/">[ Kubernetes ] 1-1.初识K8s</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-09-11" class="post-time">
+        2020-09-11
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 78 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/cloudnative/kubernetes/1_k8s_base/1_concept/" class="leancloud_visitors" data-flag-title="[ Kubernetes ] 1-1.初识K8s">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
+  ApiServer
+集群的网关。
+ 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
+   Controller Manager
+负责生命周期功能及API业务逻辑。
+ **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
+   Scheduler
+在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
+  Etcd
+基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
+ a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
+     Node(从节点:worker node)
+工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
+  Pod
+Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
+  Pod Controller(Pod 控制器)
+虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
+  Replication Controller(复制控制器)
+K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
+  Replica Set
+保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
+ 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。
+    </div>
+    <div class="read-more">
+      <a href="/post/cloudnative/kubernetes/1_k8s_base/1_concept/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/middleware/etcd/etcd_interview/">[ Etcd ] 1.基础入门(1)</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-08-30" class="post-time">
+        2020-08-30
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 105 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/etcd/etcd_interview/" class="leancloud_visitors" data-flag-title="[ Etcd ] 1.基础入门(1)">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      ETCD  其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
+ raft协议  每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
+ 节点选举  使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel
+ 竞选流程 如果集群中的某一个 Follower 节点长时间内没有收到来自 Leader 的心跳请求，当前节点就会通过 MsgHup 消息进入预选举或者选举的流程。 如果收到 MsgHup 消息的节点不是 Leader 状态，就会根据当前集群的配置选择进入 PreElection 或者 Election 阶段，PreElection 阶段并不会真正增加当前节点的 Term，它的主要作用是得到当前集群能否成功选举出一个 Leader 的答案，如果当前集群中只有两个节点而且没有预选举阶段，那么这两个节点的 Term 会无休止的增加，预选举阶段就是为了解决这一问题而出现的。 当前节点会立刻调用 becomeCandidate 将当前节点的 Raft 状态变成候选人；在这之后，它会将票投给自己，如果当前集群只有一个节点，该节点就会直接成为集群中的 Leader 节点。
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/etcd/etcd_interview/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/middleware/etcd/etcd_sourcecode_1/">[ Etcd ] 2.基础入门(2)</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-08-30" class="post-time">
+        2020-08-30
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
+          
+        </div>
+      <span class="more-meta"> 约 167 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/etcd/etcd_sourcecode_1/" class="leancloud_visitors" data-flag-title="[ Etcd ] 2.基础入门(2)">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Etcd源码阅读与分析①-raft demo Etcd 与 Zookeeper 对比  一致性协议:配置共享&amp;服务发现组件的核心基础。  Zookeeper采用ZAB协议(一种类Paxos协议)实现一致性 Etcd采用Raft协议，相比Paxos协议更容易理解，工程化。   API接口: 包含有两个版本V2、V3  V2: 提供HTTP+Json方式调用 V3: 提供grpc方式调用   性能  官方测试数据显示：10000+/s写入(优于Zookeeper性能)   安全  Etcd支持TSL(权限控制优于Zookeeper)    Etcd是一个基于Raft协议的简单内存KV项目
+源码分析 本文档将以etcd作者在项目中所提供的demo程序进行源码试读。demo名称为raftexample。 路径在
+1.项目结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28  (base) {11:45}~/etcd:master ✗ ➭ tree -d -L 1 .
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/etcd/etcd_sourcecode_1/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
   
     <article class="post bg-white">
   <header class="post-header">
@@ -646,133 +796,6 @@
     </div>
     <div class="read-more">
       <a href="/post/cloudnative/docker/docker/3_jdk_mirror/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/docker/docker/1_command/">[ Docker ] 1.Docker命令</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-08-16" class="post-time">
-        2020-08-16
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 162 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/docker/docker/1_command/" class="leancloud_visitors" data-flag-title="[ Docker ] 1.Docker命令">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Docker命令  docker [option] command
-   option
- &ndash;config string: 客户端配置文件的位置 &ndash;context string[-c]: 用于连接到守护程序的上下文的名称 &ndash;debug[-D]: 调试模式 &ndash;host list[-H]: 要连接的守护程序套接字 &ndash;log-level string[-l]: 日志等级[ debug | info | warn | error | fatal ]默认为info &ndash;tls: 使用加密模式 &ndash;tlscacert string: 签名证书文件路径 &ndash;tlscert string: 密钥文件路径 &ndash;tlskey string: key文件路径 &ndash;tlsverify: 使用加密并验证远程连接 &ndash;version[-v]: 版本信息    Management Commands(管理命令)
- builder: 管理构建 config: 管理Docker配置 container: 管理容器 context: 管理镜像构建上下文 image: 管理镜像 network: 管理网络 node: 管理Swarm节点 plugin: 管理插件 secret: 管理Docker secrets service: 管理服务 stack: 管理Docker stacks swarm: 管理Swarm集群 system: 查看系统信息 trust: 管理对Docker映像的信任 volume: 管理卷    Commands(命令)
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/docker/docker/1_command/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/13_ext/tools/1_guava_future_callback/">[ Tools ] 1.关于Guava增强包异步回调</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-06-30" class="post-time">
-        2020-06-30
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> Java </a>
-          
-        </div>
-      <span class="more-meta"> 约 5 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/13_ext/tools/1_guava_future_callback/" class="leancloud_visitors" data-flag-title="[ Tools ] 1.关于Guava增强包异步回调">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      关于Guava增强包异步回调 1.概述 Guava针对Java异步回调做出以下两点增强功能：
- 1.引入新接口ListenableFuture。此接口继承于Java的Future接口，可监控、获取非阻塞异步执行结果。 2.引入新接口FutureCallback。此接口是新增独立接口，在异步任务完成后，根据异步结果，完成不同的回调事件，并处理异步结果。  
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/13_ext/tools/1_guava_future_callback/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/12_algorithm/12_5_sort/">[ 算法 ] 12.5 排序</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-06-30" class="post-time">
-        2020-06-30
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> Java </a>
-          
-        </div>
-      <span class="more-meta"> 约 218 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/12_algorithm/12_5_sort/" class="leancloud_visitors" data-flag-title="[ 算法 ] 12.5 排序">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      排序 1.排序算法说明 1.1排序算法指标  稳定性：如果a==b且a在b前，排序后a仍保持在b前，则稳定，否则不稳定 内排序：算法程序的所有排序完全是在内存中执行的 外排序：由于数据量问题，需要把数据放置磁盘中，排序需要通过磁盘与内存间传输才可以进行 时间复杂度：运行一个算法程序所需要消耗的时长 空间复杂度：运行一个算法程序所需要消耗的内存大小  1.2各排序算法总结表    排序算法 最优情况 最差情况 时间复杂度 空间复杂度 排序方式 稳定性     冒泡排序 O(n²) O(n) O(n²) O(1) 内排序 稳定   选择排序 O(n²) O(n²) O(n²) O(1) 内排序 不稳定   插入排序 O(n) O(n²) O(n²) O(1) 内排序 稳定   希尔排序 O(n log² n) O(n log² n) O(n log n) O(1) 内排序 不稳定   归并排序 O(n log n) O(n log n) O(n log n) O(n) 外排序 稳定   快速排序 O(n log n) O(n²) O(n log n) O(log n) 内排序 不稳定   堆排序 O(n log n) O(n log n) O(n log n) O(1) 内排序 不稳定   计数排序 O(n+k) O(n+k) O(n+k) O(k) 外排序 不稳定   桶排序 O(n+k) O(n²) O(n+k) O(n+k) 外排序 稳定   基数排序 O(n*k) O(n*k) O(n*k) O(n+k) 外排序 稳定     n:数据量 k:桶的数量
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/12_algorithm/12_5_sort/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

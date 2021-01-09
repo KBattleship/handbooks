@@ -9,70 +9,84 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/algorithm/ext/2_mate_app_company_2021_01_07/</loc>
-    <lastmod>2021-01-07T01:13:47+08:00</lastmod>
+    <loc>https://touch-star.com/post/algorithm/ext/2_boss_company_2021_01_08/</loc>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/algorithm/ext/1_boss_company_2021_01_08/</loc>
-    <lastmod>2021-01-07T01:13:47+08:00</lastmod>
+    <loc>https://touch-star.com/post/algorithm/ext/3_xueqiu_company_2021_01_09/</loc>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/categories/algorithm/</loc>
-    <lastmod>2021-01-07T01:13:47+08:00</lastmod>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/tags/algorithm/</loc>
-    <lastmod>2021-01-07T01:13:47+08:00</lastmod>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/categories/</loc>
-    <lastmod>2021-01-07T01:13:47+08:00</lastmod>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/tags/interview/</loc>
-    <lastmod>2021-01-07T01:13:47+08:00</lastmod>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/post/</loc>
-    <lastmod>2021-01-07T01:13:47+08:00</lastmod>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/</loc>
-    <lastmod>2021-01-07T01:13:47+08:00</lastmod>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/tags/</loc>
-    <lastmod>2021-01-07T01:13:47+08:00</lastmod>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
     <loc>https://touch-star.com/tags/%E7%AC%94%E8%AF%95/</loc>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/%E9%9D%A2%E8%AF%95/</loc>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/algorithm/ext/1_mate_app_company_2021_01_07/</loc>
     <lastmod>2021-01-07T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -121,13 +135,6 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/%E9%9D%A2%E8%AF%95/</loc>
-    <lastmod>2021-01-05T01:13:47+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://touch-star.com/post/coding/java/interview/1-one/</loc>
     <lastmod>2020-12-31T11:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -170,7 +177,21 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/3_jvm/jvm-base/</loc>
+    <loc>https://touch-star.com/post/coding/java/base/3_jvm/1_jvm-base/</loc>
+    <lastmod>2020-12-27T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/3_jvm/2_jvm_gc/</loc>
+    <lastmod>2020-12-27T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/3_jvm/3_jvm_memory_monitor/</loc>
     <lastmod>2020-12-27T21:10:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

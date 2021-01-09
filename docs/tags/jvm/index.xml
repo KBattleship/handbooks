@@ -13,12 +13,30 @@
     
     <item>
       <title>[ JVM ] 1.关于JVM命令</title>
-      <link>https://touch-star.com/post/coding/java/base/3_jvm/jvm-base/</link>
+      <link>https://touch-star.com/post/coding/java/base/3_jvm/1_jvm-base/</link>
       <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/base/3_jvm/jvm-base/</guid>
+      <guid>https://touch-star.com/post/coding/java/base/3_jvm/1_jvm-base/</guid>
       <description>关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&amp;lt;hostid&amp;gt;] Definitions: &amp;lt;hostid&amp;gt;: &amp;lt;hostname&amp;gt;[:&amp;lt;port&amp;gt;] # 若不指定&amp;lt;hostid&amp;gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解</description>
+    </item>
+    
+    <item>
+      <title>[ JVM ] 2.JVM垃圾回收</title>
+      <link>https://touch-star.com/post/coding/java/base/3_jvm/2_jvm_gc/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/3_jvm/2_jvm_gc/</guid>
+      <description>JVM垃圾回收 </description>
+    </item>
+    
+    <item>
+      <title>[ JVM ] 3.JVM内存模型</title>
+      <link>https://touch-star.com/post/coding/java/base/3_jvm/3_jvm_memory_monitor/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/3_jvm/3_jvm_memory_monitor/</guid>
+      <description>JVM内存模型 </description>
     </item>
     
   </channel>

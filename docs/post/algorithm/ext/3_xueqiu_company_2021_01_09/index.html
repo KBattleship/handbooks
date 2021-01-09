@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Java · Quinn</title>
+  <title>[ Interview ] 3.面试之XueQiu - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="笨笨豪の摘星辰" />
-  <meta name="keywords" content="Quinn, k8s, docker" />
+  <meta name="description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 " />
+<meta name="keywords" content="interview" />
+
 
 
 
@@ -34,8 +35,8 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://touch-star.com/categories/java/" />
-<link href="/categories/java/index.xml" rel="alternate" type="application/rss+xml" title="Quinn" />
+<link rel="canonical" href="https://touch-star.com/post/algorithm/ext/3_xueqiu_company_2021_01_09/" />
+
 
 
 
@@ -58,15 +59,23 @@
 
 
 
-<meta property="og:title" content="Java" />
-<meta property="og:description" content="笨笨豪の摘星辰" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://touch-star.com/categories/java/" />
-<meta property="og:updated_time" content="2021-01-05T10:36:27+08:00" />
-<meta itemprop="name" content="Java">
-<meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Java"/>
-<meta name="twitter:description" content="笨笨豪の摘星辰"/>
+<meta property="og:title" content="[ Interview ] 3.面试之XueQiu" />
+<meta property="og:description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 " />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://touch-star.com/post/algorithm/ext/3_xueqiu_company_2021_01_09/" />
+<meta property="article:published_time" content="2021-01-08T01:13:47+08:00" />
+<meta property="article:modified_time" content="2021-01-08T01:13:47+08:00" />
+<meta itemprop="name" content="[ Interview ] 3.面试之XueQiu">
+<meta itemprop="description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 ">
+<meta itemprop="datePublished" content="2021-01-08T01:13:47&#43;08:00" />
+<meta itemprop="dateModified" content="2021-01-08T01:13:47&#43;08:00" />
+<meta itemprop="wordCount" content="7">
+
+
+
+<meta itemprop="keywords" content="interview,面试,algorithm," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ Interview ] 3.面试之XueQiu"/>
+<meta name="twitter:description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 "/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -338,174 +347,340 @@
     <main id="main" class="main bg-llight">
       <div class="content-wrapper">
         <div id="content" class="content container">
-          
-
-<section id="archive" class="archive">
-  
+          <article class="post bg-white">
     
-      <div class="archive-title category">
-        <h2 class="archive-name">分类： Java</h2>
+    <header class="post-header">
+      <h1 class="post-title">[ Interview ] 3.面试之XueQiu</h1>
+      
+      <div class="post-meta">
+        <time datetime="2021-01-08" class="post-time">
+          2021-01-08
+        </time>
+        <div class="post-category">
+            <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
+            
+          </div>
+        <span class="more-meta"> 约 7 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
+
+        
+        
+
+        
+        
+          <span id="/post/algorithm/ext/3_xueqiu_company_2021_01_09/" class="leancloud_visitors" data-flag-title="[ Interview ] 3.面试之XueQiu">
+            <span class="post-meta-item-text"> | 阅读 </span>
+            <span class="leancloud-visitors-count"></span>
+          </span>
+        
       </div>
+    </header>
+
     
-  
+    
 
-  
-    <div class="archive-post">
-      <time datetime="2021-01-05" class="archive-post-time">
-        2021-01-05
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/coding/java/base/6_netty/6_1_netty/" class="archive-post-link">
-          [ Netty ] 1.Netty基础
-        </a>
-      </span>
+
+
+
+
+
+
+
+
+<div class="toc">
+
+    <div class="page-header"><strong> 目录 </strong></div>
+
+    <div id="page-scrollspy" class="toc-nav">
+
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e9%9d%a2%e8%af%95%e4%b9%8bxueqiu">
+                            面试之XueQiu
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#1jvm%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e6%9c%ba%e5%88%b6">
+                            1.JVM垃圾回收机制
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#2%e4%bb%80%e4%b9%88%e6%98%afnetty">
+                            2.什么是Netty？
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3netty%e7%b2%98%e5%8c%85%e6%8b%86%e5%8c%85">
+                            3.Netty粘包/拆包
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3kubernetes%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86">
+                            3.Kubernetes工作原理
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#4%e5%bf%ab%e6%8e%92%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86">
+                            4.快排实现原理
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#5tcpip%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b%e5%9b%9b%e6%ac%a1%e6%8f%a1%e6%89%8b">
+                            5.TCP/IP三次握手、四次握手
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+
     </div>
-  
-    <div class="archive-post">
-      <time datetime="2021-01-05" class="archive-post-time">
-        2021-01-05
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/coding/java/interview/2-processor/" class="archive-post-link">
-          [ Interview ] 2.面试准备
-        </a>
-      </span>
+
+</div>
+
+
+
+
+    
+    <div class="post-content">
+      <h1 id="面试之xueqiu">面试之XueQiu</h1>
+<h3 id="1jvm垃圾回收机制">1.JVM垃圾回收机制</h3>
+<h3 id="2什么是netty">2.什么是Netty？</h3>
+<h3 id="3netty粘包拆包">3.Netty粘包/拆包</h3>
+<h3 id="3kubernetes工作原理">3.Kubernetes工作原理</h3>
+<h3 id="4快排实现原理">4.快排实现原理</h3>
+<h3 id="5tcpip三次握手四次握手">5.TCP/IP三次握手、四次握手</h3>
+
     </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-12-31" class="archive-post-time">
-        2020-12-31
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/coding/java/spring/design_pattern/" class="archive-post-link">
-          [ Spring ] 1.Spring源码中设计模式
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-12-31" class="archive-post-time">
-        2020-12-31
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/middleware/mybatis/design_pattern/" class="archive-post-link">
-          [ Mybatis ] 1.Mybatis源码中设计模式
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-12-31" class="archive-post-time">
-        2020-12-31
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/coding/java/interview/1-one/" class="archive-post-link">
-          [ Interview ] 1.面试准备
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-12-27" class="archive-post-time">
-        2020-12-27
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/coding/java/base/3_jvm/3_jvm_memory_monitor/" class="archive-post-link">
-          [ JVM ] 3.JVM内存模型
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-12-27" class="archive-post-time">
-        2020-12-27
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/coding/java/base/3_jvm/2_jvm_gc/" class="archive-post-link">
-          [ JVM ] 2.JVM垃圾回收
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-12-27" class="archive-post-time">
-        2020-12-27
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/coding/java/base/3_jvm/1_jvm-base/" class="archive-post-link">
-          [ JVM ] 1.关于JVM命令
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-12-22" class="archive-post-time">
-        2020-12-22
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/middleware/dubbo/1_dubbobase/" class="archive-post-link">
-          [ Dubbo ] 1.Dubbo基础概念
-        </a>
-      </span>
-    </div>
-  
-    <div class="archive-post">
-      <time datetime="2020-06-30" class="archive-post-time">
-        2020-06-30
-      </time>
-      <span class="archive-post-title">
-        <a href="/post/coding/java/base/12_algorithm/12_6_dynamic_programming/" class="archive-post-link">
-          [ 算法 ] 12.6 动态规划
-        </a>
-      </span>
-    </div>
-  
-</section>
+
+    
+    
 
 
+    
+    
 
+    <footer class="post-footer">
+      <div class="post-tags">
+          <a href="https://touch-star.com/tags/interview/">interview</a>
+          <a href="https://touch-star.com/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+          <a href="https://touch-star.com/tags/algorithm/">algorithm</a>
+          
+        </div>
 
-
-
-  
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-
-  
-  
-  <nav class="pagination">
-    <ul>
       
-      <li  class="active" >
-        <a href="/categories/java/">1</a>
-      </li>
-      
-      <li >
-        <a href="/categories/java/page/2/">2</a>
-      </li>
-      
-      <li >
-        <a href="/categories/java/page/3/">3</a>
-      </li>
-      
-    </ul>
-  </nav>
+      <nav class="post-nav">
+        
+          <a class="prev" href="/post/algorithm/ext/2_boss_company_2021_01_08/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">[ Interview ] 2.面试之Boss</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
+        
+          <a class="next" href="/post/algorithm/ext/1_mate_app_company_2021_01_07/">
+            <span class="next-text nav-default">[ Interview ] 1.面试之MateAPP</span>
+            <span class="prev-text nav-mobile">下一篇</span>
+            
+            <i class="iconfont">
+              <svg class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M332.091514 74.487481l-75.369571 89.491197c-10.963703 12.998035-10.285251 32.864502 1.499144 44.378743l286.278095 300.375162L266.565125 819.058374c-11.338233 12.190647-11.035334 32.285311 0.638543 44.850487l80.46666 86.564541c11.680017 12.583596 30.356378 12.893658 41.662889 0.716314l377.434212-421.426145c11.332093-12.183484 11.041474-32.266891-0.657986-44.844348l-80.46666-86.564541c-1.772366-1.910513-3.706415-3.533476-5.750981-4.877077L373.270379 71.774697C361.493148 60.273758 343.054193 61.470003 332.091514 74.487481z"></path>
+</svg>
+
+            </i>
+          </a>
+      </nav>
+    </footer>
+  </article>
 
   
   
 
+  
+  
 
+  
 
+  
+  
+    <div class="post bg-white">
+      <script src="https://utteranc.es/client.js"
+            repo= "quinniup/handbooks"
+            issue-term="pathname"
+            theme="github-light"
+            crossorigin="anonymous"
+            async>
+      </script>
+    </div>
+  
 
+  
+
+  
+
+  
+
+    
+
+  
 
         </div>
       </div>

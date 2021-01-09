@@ -6,10 +6,19 @@
     <description>Recent content in 面试 on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 05 Jan 2021 01:13:47 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 08 Jan 2021 01:13:47 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/tags/%E9%9D%A2%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[ Interview ] 3.面试之XueQiu</title>
+      <link>https://touch-star.com/post/algorithm/ext/3_xueqiu_company_2021_01_09/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/algorithm/ext/3_xueqiu_company_2021_01_09/</guid>
+      <description>面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 </description>
+    </item>
     
     <item>
       <title>[ Interview ] 2.面试准备</title>

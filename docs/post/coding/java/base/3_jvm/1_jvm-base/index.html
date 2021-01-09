@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>[ Netty ] 1.Netty基础 - Quinn</title>
+  <title>[ JVM ] 1.关于JVM命令 - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,12 +23,9 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="Netty基础 从一答一问开始Netty 1. 为什么用Netty？ 1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。   2. Netty应用场景 1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统   3. Netty核心组件   Channel
-对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
-  EventLoop
-EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。
-EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。" />
-<meta name="keywords" content="netty" />
+  <meta name="description" content="关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&amp;lt;hostid&amp;gt;] Definitions: &amp;lt;hostid&amp;gt;: &amp;lt;hostname&amp;gt;[:&amp;lt;port&amp;gt;] # 若不指定&amp;lt;hostid&amp;gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解" />
+<meta name="keywords" content="jvm" />
 
 
 
@@ -39,7 +36,7 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://touch-star.com/post/coding/java/base/6_netty/6_1_netty/" />
+<link rel="canonical" href="https://touch-star.com/post/coding/java/base/3_jvm/1_jvm-base/" />
 
 
 
@@ -63,35 +60,26 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
 
 
 
-<meta property="og:title" content="[ Netty ] 1.Netty基础" />
-<meta property="og:description" content="Netty基础 从一答一问开始Netty 1. 为什么用Netty？ 1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。   2. Netty应用场景 1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统   3. Netty核心组件   Channel
-对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
-  EventLoop
-EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。
-EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。" />
+<meta property="og:title" content="[ JVM ] 1.关于JVM命令" />
+<meta property="og:description" content="关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&lt;hostid&gt;] Definitions: &lt;hostid&gt;: &lt;hostname&gt;[:&lt;port&gt;] # 若不指定&lt;hostid&gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://touch-star.com/post/coding/java/base/6_netty/6_1_netty/" />
-<meta property="article:published_time" content="2021-01-05T10:36:27+08:00" />
-<meta property="article:modified_time" content="2021-01-05T10:36:27+08:00" />
-<meta itemprop="name" content="[ Netty ] 1.Netty基础">
-<meta itemprop="description" content="Netty基础 从一答一问开始Netty 1. 为什么用Netty？ 1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。   2. Netty应用场景 1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统   3. Netty核心组件   Channel
-对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
-  EventLoop
-EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。
-EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。">
-<meta itemprop="datePublished" content="2021-01-05T10:36:27&#43;08:00" />
-<meta itemprop="dateModified" content="2021-01-05T10:36:27&#43;08:00" />
-<meta itemprop="wordCount" content="385">
+<meta property="og:url" content="https://touch-star.com/post/coding/java/base/3_jvm/1_jvm-base/" />
+<meta property="article:published_time" content="2020-12-27T21:10:47+08:00" />
+<meta property="article:modified_time" content="2020-12-27T21:10:47+08:00" />
+<meta itemprop="name" content="[ JVM ] 1.关于JVM命令">
+<meta itemprop="description" content="关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&lt;hostid&gt;] Definitions: &lt;hostid&gt;: &lt;hostname&gt;[:&lt;port&gt;] # 若不指定&lt;hostid&gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解">
+<meta itemprop="datePublished" content="2020-12-27T21:10:47&#43;08:00" />
+<meta itemprop="dateModified" content="2020-12-27T21:10:47&#43;08:00" />
+<meta itemprop="wordCount" content="398">
 
 
 
-<meta itemprop="keywords" content="java,netty,io," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[ Netty ] 1.Netty基础"/>
-<meta name="twitter:description" content="Netty基础 从一答一问开始Netty 1. 为什么用Netty？ 1 2 3 4 5 6 7 8 9 10  a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。   2. Netty应用场景 1 2 3 4  a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统   3. Netty核心组件   Channel
-对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
-  EventLoop
-EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。
-EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。"/>
+<meta itemprop="keywords" content="java,jvm,command," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ JVM ] 1.关于JVM命令"/>
+<meta name="twitter:description" content="关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&lt;hostid&gt;] Definitions: &lt;hostid&gt;: &lt;hostname&gt;[:&lt;port&gt;] # 若不指定&lt;hostid&gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -366,17 +354,17 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">[ Netty ] 1.Netty基础</h1>
+      <h1 class="post-title">[ JVM ] 1.关于JVM命令</h1>
       
       <div class="post-meta">
-        <time datetime="2021-01-05" class="post-time">
-          2021-01-05
+        <time datetime="2020-12-27" class="post-time">
+          2020-12-27
         </time>
         <div class="post-category">
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 385 字 </span>
+        <span class="more-meta"> 约 398 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -384,7 +372,7 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
 
         
         
-          <span id="/post/coding/java/base/6_netty/6_1_netty/" class="leancloud_visitors" data-flag-title="[ Netty ] 1.Netty基础">
+          <span id="/post/coding/java/base/3_jvm/1_jvm-base/" class="leancloud_visitors" data-flag-title="[ JVM ] 1.关于JVM命令">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -419,8 +407,8 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#netty%e5%9f%ba%e7%a1%80">
-                            Netty基础
+                            <a class="nav-link text-left" href="#%e5%85%b3%e4%ba%8ejvm%e5%91%bd%e4%bb%a4">
+                            关于JVM命令
                             </a>
                         </li>
                     
@@ -441,8 +429,8 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%bb%8e%e4%b8%80%e7%ad%94%e4%b8%80%e9%97%ae%e5%bc%80%e5%a7%8bnetty">
-                            从一答一问开始Netty
+                            <a class="nav-link text-left" href="#%e4%b8%80%e5%91%bd%e4%bb%a4%e5%88%97%e8%a1%a8">
+                            一、命令列表
                             </a>
                         </li>
                     
@@ -458,8 +446,6 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
             
                 
                 
-                    
-                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -467,13 +453,11 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#1-%e4%b8%ba%e4%bb%80%e4%b9%88%e7%94%a8netty">
-                            1. 为什么用Netty？
+                            <a class="nav-link text-left" href="#%e4%ba%8c%e5%91%bd%e4%bb%a4%e4%bd%bf%e7%94%a8">
+                            二、命令使用
                             </a>
                         </li>
                     
-                    
-                    </ul>
                     
                     </ul>
                     
@@ -495,36 +479,8 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#2-netty%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af">
-                            2. Netty应用场景
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#3-netty%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6">
-                            3. Netty核心组件
+                            <a class="nav-link text-left" href="#1-jps---jvm%e8%bf%9b%e7%a8%8b%e7%8a%b6%e6%80%81">
+                            1. jps - JVM进程状态
                             </a>
                         </li>
                     
@@ -551,8 +507,8 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#4-netty%e7%ba%bf%e7%a8%8b%e6%a8%a1%e5%9e%8b">
-                            4. Netty线程模型
+                            <a class="nav-link text-left" href="#2-jmap---jvm%e5%a0%86%e5%86%85%e5%ad%98%e5%88%86%e6%9e%90%e5%b7%a5%e5%85%b7">
+                            2. jmap - JVM堆内存分析工具
                             </a>
                         </li>
                     
@@ -579,8 +535,8 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#5-eventloopgroup%e6%98%af%e4%bb%80%e4%b9%88%e4%b8%8eeventloop%e5%85%b3%e7%b3%bb">
-                            5. EventLoopGroup是什么？与EventLoop关系。
+                            <a class="nav-link text-left" href="#3-jhat---%e7%94%a8%e4%ba%8e%e5%88%86%e6%9e%90jmap%e6%89%80%e7%94%9f%e6%88%90%e7%9a%84dump%e6%96%87%e4%bb%b6">
+                            3. jhat - 用于分析jmap所生成的dump文件
                             </a>
                         </li>
                     
@@ -607,8 +563,8 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#6-netty%e4%b8%adtcp%e7%b2%98%e5%8c%85%e6%8b%86%e5%8c%85">
-                            6. Netty中TCP粘包、拆包
+                            <a class="nav-link text-left" href="#4-jstat---jvm%e7%bb%9f%e8%ae%a1%e7%9b%91%e6%8e%a7%e5%b7%a5%e5%85%b7">
+                            4. jstat - JVM统计监控工具
                             </a>
                         </li>
                     
@@ -635,8 +591,8 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#7-netty%e9%95%bf%e8%bf%9e%e6%8e%a5%e5%bf%83%e8%b7%b3%e6%9c%ba%e5%88%b6">
-                            7. Netty长连接、心跳机制
+                            <a class="nav-link text-left" href="#5-jstack---jvm%e6%a0%88%e6%9f%a5%e7%9c%8b%e5%b7%a5%e5%85%b7">
+                            5. jstack - JVM栈查看工具
                             </a>
                         </li>
                     
@@ -663,8 +619,36 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#8-netty%e9%9b%b6%e6%8b%b7%e8%b4%9d">
-                            8. Netty零拷贝
+                            <a class="nav-link text-left" href="#6-jcmd---jvm%e5%91%bd%e4%bb%a4%e8%a1%8c%e8%b0%83%e8%af%95%e5%b7%a5%e5%85%b7">
+                            6. jcmd - JVM命令行调试工具
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#7-jinfo---jvm%e4%bf%a1%e6%81%af%e6%9f%a5%e7%9c%8b%e5%b7%a5%e5%85%b7">
+                            7. jinfo - JVM信息查看工具
                             </a>
                         </li>
                     
@@ -688,9 +672,22 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
 
     
     <div class="post-content">
-      <h1 id="netty基础">Netty基础</h1>
-<h2 id="从一答一问开始netty">从一答一问开始Netty</h2>
-<h3 id="1-为什么用netty">1. 为什么用Netty？</h3>
+      <h1 id="关于jvm命令">关于JVM命令</h1>
+<h2 id="一命令列表">一、命令列表</h2>
+<ol>
+<li><a href="#1-jps---jvm%E8%BF%9B%E7%A8%8B%E7%8A%B6%E6%80%81">jps</a></li>
+<li><a href="#2-jmap---jvm%E5%A0%86%E5%86%85%E5%AD%98%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7">jmap</a></li>
+<li><a href="#3-jhat---%E7%94%A8%E4%BA%8E%E5%88%86%E6%9E%90jmap%E6%89%80%E7%94%9F%E6%88%90%E7%9A%84dump%E6%96%87%E4%BB%B6">jhat</a></li>
+<li><a href="#4-jstat---jvm%E7%BB%9F%E8%AE%A1%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7">jstat</a></li>
+<li><a href="#5-jstack---jvm%E6%A0%88%E6%9F%A5%E7%9C%8B%E5%B7%A5%E5%85%B7">jstack</a></li>
+<li><a href="#6-jcmd---jvm%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7">jcmd</a></li>
+<li><a href="#7-jinfo---jvm%E4%BF%A1%E6%81%AF%E6%9F%A5%E7%9C%8B%E5%B7%A5%E5%85%B7">jinfo</a></li>
+</ol>
+<h2 id="二命令使用">二、命令使用</h2>
+<h3 id="1-jps---jvm进程状态"><strong>1. jps - JVM进程状态</strong></h3>
+<ul>
+<li>
+<p>用法</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -703,209 +700,243 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
 </span><span class="lnt"> 8
 </span><span class="lnt"> 9
 </span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发<span class="p">;</span>
-b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色<span class="p">;</span>
-c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议<span class="p">;</span>
-d. 统一的API、支持多种传输类型<span class="o">(</span>阻塞、非阻塞I/O<span class="o">)</span><span class="p">;</span>
-e. 简单且强大的线程模型<span class="p">;</span>
-f. 自带编解码器解决粘包、拆包问题<span class="p">;</span>
-g. 自带各种协议栈<span class="p">;</span>
-h. 安全性不错，支持完整的SSL/TLS及StartTLS协议<span class="p">;</span>
-i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制<span class="p">;</span>
-j. 成熟项目很多：Dubbo、RocketMQ。
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="2-netty应用场景">2. Netty应用场景</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">a. RPC框架的网络通信工具
-b. 自实现HTTP服务器
-c. 实现即时通信系统
-d. 实现消息推送系统
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="3-netty核心组件">3. Netty核心组件</h3>
-<ul>
-<li>
-<p><strong>Channel</strong></p>
-<p>对网络操作的抽象类。除I/O基本操作之外，支持<code>bind()</code>,<code>connect()</code>,<code>read()</code>,<code>write()</code>操作。</p>
-</li>
-<li>
-<p><strong>EventLoop</strong></p>
-<p>EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。
-主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。</p>
-<p><strong><code>EventLoop</code></strong> 负责处理注册到其上的 <strong><code>Channel</code></strong> 处理I/O操作，两者配合参与I/O操作。</p>
-</li>
-<li>
-<p><strong>ChannelFuture</strong></p>
-<p>Netty是<code>异步非阻塞</code>，所有的I/O操作都是异步。所以不可以立即得到操作结果。但是</p>
-<p>（1）通过 <strong><code>ChannelFuture</code></strong> 接口的 <strong><code>addListener()</code></strong> 注册一个 <strong><code>ChannelFutureListener</code></strong> 对象，操作执行成功或失败后，监听会自动触发返回结果；</p>
-<p>（2）也可以通过 <strong><code>ChannelFuture</code></strong> 的 <strong><code>channel()</code></strong> 获取关联的 <strong><code>Channel</code></strong> 对象；</p>
-<p>（3) 也可以通过 <strong><code>ChannelFuture</code></strong> 的 <strong><code>sync()</code></strong> 进行让异步的操作变成同步。</p>
-</li>
-<li>
-<p><strong>ChannelHandler</strong>与<strong>ChannelPipeline</strong></p>
-<ol>
-<li>
-<p>ChannelHandler 是消息的具体处理器。他负责处理读写操作、客户端连接等事情。</p>
-</li>
-<li>
-<p>ChannelPipeline 为 ChannelHandler 的链，提供了一个容器并定义了用于沿着链传播入站和出站事件流的 API 。当 Channel 被创建时，它会被自动地分配到它专属的 ChannelPipeline。</p>
-</li>
-<li>
-<p>我们可以在 ChannelPipeline 上通过 addLast() 方法添加一个或者多个ChannelHandler ，因为一个数据或者事件可能会被多个 Handler 处理。当一个 ChannelHandler 处理完之后就将数据交给下一个 ChannelHandler 。</p>
-</li>
-</ol>
-</li>
-</ul>
-<h3 id="4-netty线程模型">4. Netty线程模型</h3>
-<ol>
-<li>
-<p>单线程模型</p>
-<p>一个线程需要执行处理所有的 accept、read、decode、process、encode、send 事件。对于高负载、高并发，并且对性能要求比较高的场景不适用。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//1.eventGroup既用于处理客户端连接，又负责具体的处理。
-</span><span class="c1"></span>  <span class="n">EventLoopGroup</span> <span class="n">eventGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
-  <span class="c1">//2.创建服务端启动引导/辅助类：ServerBootstrap
-</span><span class="c1"></span>  <span class="n">ServerBootstrap</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
-  <span class="n">boobtstrap</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">eventGroup</span><span class="o">,</span> <span class="n">eventGroup</span><span class="o">)</span>
-  <span class="c1">//......
-</span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>多线程模型</p>
-<p>一个 Acceptor 线程只负责监听客户端的连接，一个 NIO 线程池负责具体处理
-满足绝大部分应用场景，并发连接量不大的时候没啥问题，但是遇到并发连接大的时候就可能会出现问题，成为性能瓶颈。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 1.bossGroup 用于接收连接，workerGroup 用于具体的处理
-</span><span class="c1"></span><span class="n">EventLoopGroup</span> <span class="n">bossGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
-<span class="n">EventLoopGroup</span> <span class="n">workerGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
-<span class="k">try</span> <span class="o">{</span>
-  <span class="c1">//2.创建服务端启动引导/辅助类：ServerBootstrap
-</span><span class="c1"></span>  <span class="n">ServerBootstrap</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
-  <span class="c1">//3.给引导类配置两大线程组,确定了线程模型
-</span><span class="c1"></span>  <span class="n">b</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">bossGroup</span><span class="o">,</span> <span class="n">workerGroup</span><span class="o">)</span>
-    <span class="c1">//......
-</span></code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p>主从多线程模型</p>
-<p>从一个 主线程 NIO 线程池中选择一个线程作为 Acceptor 线程，绑定监听端口，接收客户端连接的连接，其他线程负责后续的接入认证等工作。连接建立完成后，Sub NIO 线程池负责具体处理 I/O 读写。如果多线程模型无法满足你的需求的时候，可以考虑使用主从多线程模型 。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 1.bossGroup 用于接收连接，workerGroup 用于具体的处理
-</span><span class="c1"></span><span class="n">EventLoopGroup</span> <span class="n">bossGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
-<span class="n">EventLoopGroup</span> <span class="n">workerGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
-<span class="k">try</span> <span class="o">{</span>
-  <span class="c1">//2.创建服务端启动引导/辅助类：ServerBootstrap
-</span><span class="c1"></span>  <span class="n">ServerBootstrap</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
-  <span class="c1">//3.给引导类配置两大线程组,确定了线程模型
-</span><span class="c1"></span>  <span class="n">b</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">bossGroup</span><span class="o">,</span> <span class="n">workerGroup</span><span class="o">)</span>
-    <span class="c1">//.....
-</span></code></pre></td></tr></table>
-</div>
-</div></li>
-</ol>
-<h3 id="5-eventloopgroup是什么与eventloop关系">5. EventLoopGroup是什么？与EventLoop关系。</h3>
-<ol>
-<li>
-<p><code>EventLoop</code> 的主要作用实际就是负责监听网络事件并调用事件处理器进行相关 I/O 操作的处理。</p>
-</li>
-<li>
-<p><code>EventLoopGroup</code> 包含多个 <code>EventLoop</code>（每一个 <code>EventLoop</code> 通常内部包含一个线程）。
-并且 EventLoop 处理的 I/O 事件都将在它专有的 Thread 上被处理，即 Thread 和 EventLoop 属于 1 : 1 的关系，从而保证线程安全。</p>
-</li>
-<li>
-<p><code>BossEventLoopGroup</code> <code>用于接收连接，WorkerEventLoopGroup</code> 用于具体的处理（消息的读写以及其他逻辑处理）</p>
-</li>
-<li>
-<p>当客户端通过 <strong>connect()</strong> 连接服务端时，<code>BossEventLoopGroup</code> 处理客户端连接请求。当客户端处理完成后，会将这个连接提交给 <code>WorkerEventLoopGroup</code> 来处理，然后 <code>WorkerEventLoopGroup</code> 负责处理其 IO 相关操作。</p>
-</li>
-</ol>
-<h3 id="6-netty中tcp粘包拆包">6. Netty中TCP粘包、拆包</h3>
-<p><strong>TCP 粘包/拆包</strong> 就是基于 TCP 发送数据的时候，出现了多个字符串“粘”在了一起或者一个字符串被“拆”开的问题。</p>
-<p><strong>解决办法：</strong></p>
-<ul>
-<li>使用 Netty 自带的解码器
-<ol>
-<li><strong>LineBasedFrameDecoder</strong> : 发送端发送数据包的时候，每个数据包之间以换行符作为分隔，<strong>LineBasedFrameDecoder</strong> 的工作原理是它依次遍历 <strong>ByteBuf</strong> 中的可读字节，判断是否有换行符，然后进行相应的截取。</li>
-<li><strong>DelimiterBasedFrameDecoder</strong> : 可以自定义分隔符解码器，<strong>LineBasedFrameDecoder</strong> 实际上是一种特殊的 <strong>DelimiterBasedFrameDecoder</strong> 解码器。</li>
-<li><strong>FixedLengthFrameDecoder</strong>: 固定长度解码器，它能够按照指定的长度对消息进行相应的拆包。</li>
-<li><strong>LengthFieldBasedFrameDecoder</strong> + <strong>LengthFieldPrepender</strong> 配合使用: 处理粘拆包的主要思想是在生成的数据包中添加一个长度字段，用于记录当前数据包的长度。
-<ul>
-<li><code>LengthFieldBasedFrameDecoder</code>会按照参数指定的包长度偏移量数据对接收到的数据进行解码，从而得到目标消息体数据</li>
-<li><code>LengthFieldPrepender</code>则会在响应的数据前面添加指定的字节数据，这个字节数据中保存了当前消息体的整体字节数据长度</li>
-</ul>
-</li>
-</ol>
-</li>
-<li>自定义序列化编解码器
-<ul>
-<li>通过继承<code>LengthFieldBasedFrameDecoder</code>和<code>LengthFieldPrepender</code>来实现粘包和拆包的处理</li>
-</ul>
-</li>
-</ul>
-<h3 id="7-netty长连接心跳机制">7. Netty长连接、心跳机制</h3>
-<p>在 TCP 保持长连接的过程中，可能会出现断网等网络异常出现，异常发生的时候， client 与 server 之间如果没有交互的话，它们是无法发现对方已经掉线的。为了解决这个问题, 我们就需要引入 <strong>心跳机制</strong> 。</p>
-<ul>
-<li>
-<p><strong>心跳机制的工作原理是:</strong> 在 client 与 server 之间在一定时间内没有数据交互时, 即处于 idle 状态时, 客户端或服务器就会发送一个特殊的数据包给对方, 当接收方收到这个数据报文后, 也立即发送一个特殊的数据报文, 回应发送方, 此即一个 PING-PONG 交互。所以, 当某一端收到心跳消息后, 就知道了对方仍然在线, 这就确保 TCP 连接的有效性.</p>
-</li>
-<li>
-<p><strong>Netty中的心跳机制实现：</strong> TCP 实际上自带的就有长连接选项，本身是也有心跳包机制，也就是 TCP 的选项：SO_KEEPALIVE。但是，TCP 协议层面的长连接灵活性不够。所以，一般情况下我们都是在应用层协议上实现自定义心跳机制的，也就是在 Netty 层面通过编码实现。通过 Netty 实现心跳机制的话，核心类是 IdleStateHandler</p>
-</li>
-</ul>
-<h3 id="8-netty零拷贝">8. Netty零拷贝</h3>
-<p>在 OS 层面上的 Zero-copy 通常指避免在 <code>用户态(User-space)</code> 与 <code>内核态(Kernel-space)</code> 之间来回拷贝数据。而在 Netty 层面，零拷贝主要体现在对于数据操作的优化。</p>
-<p>Netty 中的零拷贝体现在以下几个方面：</p>
-<ol>
-<li>使用 Netty 提供的 <code>CompositeByteBuf</code> 类， 可以将多个ByteBuffer 合并为一个逻辑上的 ByteBuffer， <strong>避免了各个 ByteBuf 之间的拷贝</strong>。</li>
-<li>ByteBuffer 支持 slice 操作， 因此可以将 ByteBuf 分解为多个共享同一个存储区域的 ByteBuf， <strong>避免了内存的拷贝</strong>。</li>
-<li>通过 FileRegion 包装的FileChannel.tranferTo 实现文件传输， 可以直接将文件缓冲区的数据发送到目标 Channel， <strong>避免了传统通过循环 write 方式导致的内存拷贝问题</strong>。</li>
-</ol>
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ jps -help
+usage: jps <span class="o">[</span>-help<span class="o">]</span>
+    jps <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>-mlvV<span class="o">]</span> <span class="o">[</span>&lt;hostid&gt;<span class="o">]</span>
 
+Definitions:
+    &lt;hostid&gt;:      &lt;hostname&gt;<span class="o">[</span>:&lt;port&gt;<span class="o">]</span>
+
+    <span class="c1"># 若不指定&lt;hostid&gt;,则表示当前默认主机或服务器</span>
+
+    <span class="c1"># -q  仅输出当前进程号</span>
+
+    <span class="c1"># -m  输出JVM启动时传递给main()的参数</span>
+    <span class="c1"># -l  输出主类名称；如果进程是jar，将输出jar路径</span>
+    <span class="c1"># -v  输出传递给JVM的参数</span>
+    <span class="c1"># -V  仅输出本地JVM标识符</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>实例讲解</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ jps -ml
+<span class="m">33270</span> org.jetbrains.idea.maven.server.RemoteMavenServer36
+
+$ jps -v
+<span class="m">33270</span> RemoteMavenServer36 -Djava.awt.headless<span class="o">=</span><span class="nb">true</span> -Dmaven.defaultProjectBuilder.disableGlobalModelCache<span class="o">=</span><span class="nb">true</span> -Didea.maven.embedder.version<span class="o">=</span>3.6.3 -Xmx768m -Dmaven.ext.class.path<span class="o">=</span>/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven-event-listener.jar -Dfile.encoding<span class="o">=</span>UTF-8
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<h3 id="2-jmap---jvm堆内存分析工具"><strong>2. jmap - JVM堆内存分析工具</strong></h3>
+<blockquote>
+<p>1.用于监控生成<strong>堆</strong>转储快照(heapdump或dump)；</p>
+</blockquote>
+<blockquote>
+<p>2.用于查询<code>finalize</code>执行队列、Java堆和永久代的详细信息：当前使用率、当前使用什么类型垃圾回收器；</p>
+</blockquote>
+<blockquote>
+<p>3.也可在启动时增加JVM参数 <code>-XX:+HeapDumpOnOutOfMemoryError</code>，在发生OOM时自动生成dump文件。</p>
+</blockquote>
+<ul>
+<li>
+<p>用法</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ jmap -h
+Usage:
+    jmap <span class="o">[</span>option<span class="o">]</span> &lt;pid&gt;
+        <span class="o">(</span>to connect to running process<span class="o">)</span>
+    jmap <span class="o">[</span>option<span class="o">]</span> &lt;executable &lt;core&gt;
+        <span class="o">(</span>to connect to a core file<span class="o">)</span>
+    jmap <span class="o">[</span>option<span class="o">]</span> <span class="o">[</span>server_id@<span class="o">]</span>&lt;remote server IP or hostname&gt;
+        <span class="o">(</span>to connect to remote debug server<span class="o">)</span>
+
+where &lt;option&gt; is one of:
+    &lt;none&gt;               to print same info as Solaris pmap
+    -heap                to print java heap summary
+    -histo<span class="o">[</span>:live<span class="o">]</span>        to print histogram of java object heap<span class="p">;</span> <span class="k">if</span> the <span class="s2">&#34;live&#34;</span>
+                        suboption is specified, only count live objects
+    -clstats             to print class loader statistics
+    -finalizerinfo       to print information on objects awaiting finalization
+    -dump:&lt;dump-options&gt; to dump java heap in hprof binary format
+                        dump-options:
+                        live         dump only live objects<span class="p">;</span> <span class="k">if</span> not specified,
+                                        all objects in the heap are dumped.
+                        <span class="nv">format</span><span class="o">=</span>b     binary format
+                        <span class="nv">file</span><span class="o">=</span>&lt;file&gt;  dump heap to &lt;file&gt;
+                        Example: jmap -dump:live,format<span class="o">=</span>b,file<span class="o">=</span>heap.bin &lt;pid&gt;
+    -F                   force. Use with -dump:&lt;dump-options&gt; &lt;pid&gt; or -histo
+                        to force a heap dump or histogram when &lt;pid&gt; does not
+                        respond. The <span class="s2">&#34;live&#34;</span> suboption is not supported
+                        in this mode.
+    -h <span class="p">|</span> -help           to print this <span class="nb">help</span> message
+    -J&lt;flag&gt;             to pass &lt;flag&gt; directly to the runtime system
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li><strong>jmap</strong> <em>[option]</em> &lt;pid&gt;
+<ul>
+<li><em>none</em>    &ndash;  打印共享参数对象，含有共享对象起始地址、映射大小以及共享对象文件的路径全称。</li>
+<li><em>heap</em>    &ndash;  展示&lt;pid&gt;整体堆信息，含有概要信息、GC所使用的的算法、Heap配置、wise heap使用情况。</li>
+<li><em>histo</em>   &ndash;  打印每个class的实例数目、内存占用、类全名信息(VM内部类都会以<code>*</code>作为前缀)。</li>
+<li><em>histo:live</em>  &ndash;   仅打印存活的对象数量</li>
+<li><em>clstats</em>     &ndash;   全称叫做class loader statistics，用输出类加载有关的统计信息</li>
+<li><em>finalizerinfo</em>   &ndash;  列出准备finalizerinfo对象信息</li>
+<li><em>dump:</em>[dump-options]
+<ul>
+<li>live  &ndash;  存活对象</li>
+<li>file=&lt;filename&gt;  &ndash;  dump到指定&lt;filename&gt;文件中</li>
+<li>format=b  &ndash;  以二进制形式</li>
+</ul>
+</li>
+<li><em>F</em>  &ndash;   强制</li>
+<li><em>J</em>&lt;flag&gt;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>实例讲解</p>
+<ul>
+<li><code>jmap heap &lt;pid&gt;</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li></li>
+</ul>
+</li>
+</ul>
+<h3 id="3-jhat---用于分析jmap所生成的dump文件"><strong>3. jhat - 用于分析jmap所生成的dump文件</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 1.用法</span>
+
+------
+<span class="c1"># 2.实例</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="4-jstat---jvm统计监控工具"><strong>4. jstat - JVM统计监控工具</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 1.用法</span>
+
+------
+<span class="c1"># 2.实例</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="5-jstack---jvm栈查看工具"><strong>5. jstack - JVM栈查看工具</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 1.用法</span>
+
+------
+<span class="c1"># 2.实例</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="6-jcmd---jvm命令行调试工具"><strong>6. jcmd - JVM命令行调试工具</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 1.用法</span>
+
+------
+<span class="c1"># 2.实例</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="7-jinfo---jvm信息查看工具"><strong>7. jinfo - JVM信息查看工具</strong></h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 1.用法</span>
+
+------
+<span class="c1"># 2.实例</span>
+</code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     
@@ -918,15 +949,15 @@ d. 实现消息推送系统
     <footer class="post-footer">
       <div class="post-tags">
           <a href="https://touch-star.com/tags/java/">java</a>
-          <a href="https://touch-star.com/tags/netty/">netty</a>
-          <a href="https://touch-star.com/tags/io/">io</a>
+          <a href="https://touch-star.com/tags/jvm/">jvm</a>
+          <a href="https://touch-star.com/tags/command/">command</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/algorithm/ext/1_mate_app_company_2021_01_07/">
+          <a class="prev" href="/post/coding/java/spring/design_pattern/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -936,12 +967,12 @@ d. 实现消息推送系统
 </svg>
 
             </i>
-            <span class="prev-text nav-default">[ Interview ] 1.面试之MateAPP</span>
+            <span class="prev-text nav-default">[ Spring ] 1.Spring源码中设计模式</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/coding/java/interview/2-processor/">
-            <span class="next-text nav-default">[ Interview ] 2.面试准备</span>
+          <a class="next" href="/post/coding/java/base/3_jvm/2_jvm_gc/">
+            <span class="next-text nav-default">[ JVM ] 2.JVM垃圾回收</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
