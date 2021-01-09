@@ -87,7 +87,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
 EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。">
 <meta itemprop="datePublished" content="2021-01-05T10:36:27&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-05T10:36:27&#43;08:00" />
-<meta itemprop="wordCount" content="130">
+<meta itemprop="wordCount" content="375">
 
 
 
@@ -384,8 +384,8 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 130 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <span class="more-meta"> 约 375 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
         
@@ -543,24 +543,137 @@ d. 实现消息推送系统
 </li>
 <li>
 <p>ChannelHandler与ChannelPipeline</p>
+<ol>
+<li>
+<p>ChannelHandler 是消息的具体处理器。他负责处理读写操作、客户端连接等事情。</p>
+</li>
+<li>
+<p>ChannelPipeline 为 ChannelHandler 的链，提供了一个容器并定义了用于沿着链传播入站和出站事件流的 API 。当 Channel 被创建时，它会被自动地分配到它专属的 ChannelPipeline。</p>
+</li>
+<li>
+<p>我们可以在 ChannelPipeline 上通过 addLast() 方法添加一个或者多个ChannelHandler ，因为一个数据或者事件可能会被多个 Handler 处理。当一个 ChannelHandler 处理完之后就将数据交给下一个 ChannelHandler 。</p>
+</li>
+</ol>
 </li>
 </ul>
 </li>
 <li>
 <p>Netty线程模型</p>
+<ol>
+<li>
+<p>单线程模型</p>
+<p>一个线程需要执行处理所有的 accept、read、decode、process、encode、send 事件。对于高负载、高并发，并且对性能要求比较高的场景不适用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//1.eventGroup既用于处理客户端连接，又负责具体的处理。
+</span><span class="c1"></span>  <span class="n">EventLoopGroup</span> <span class="n">eventGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+  <span class="c1">//2.创建服务端启动引导/辅助类：ServerBootstrap
+</span><span class="c1"></span>  <span class="n">ServerBootstrap</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
+  <span class="n">boobtstrap</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">eventGroup</span><span class="o">,</span> <span class="n">eventGroup</span><span class="o">)</span>
+  <span class="c1">//......
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>多线程模型</p>
+<p>一个 Acceptor 线程只负责监听客户端的连接，一个 NIO 线程池负责具体处理
+满足绝大部分应用场景，并发连接量不大的时候没啥问题，但是遇到并发连接大的时候就可能会出现问题，成为性能瓶颈。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 1.bossGroup 用于接收连接，workerGroup 用于具体的处理
+</span><span class="c1"></span><span class="n">EventLoopGroup</span> <span class="n">bossGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+<span class="n">EventLoopGroup</span> <span class="n">workerGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+  <span class="c1">//2.创建服务端启动引导/辅助类：ServerBootstrap
+</span><span class="c1"></span>  <span class="n">ServerBootstrap</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
+  <span class="c1">//3.给引导类配置两大线程组,确定了线程模型
+</span><span class="c1"></span>  <span class="n">b</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">bossGroup</span><span class="o">,</span> <span class="n">workerGroup</span><span class="o">)</span>
+    <span class="c1">//......
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>主从多线程模型</p>
+<p>从一个 主线程 NIO 线程池中选择一个线程作为 Acceptor 线程，绑定监听端口，接收客户端连接的连接，其他线程负责后续的接入认证等工作。连接建立完成后，Sub NIO 线程池负责具体处理 I/O 读写。如果多线程模型无法满足你的需求的时候，可以考虑使用主从多线程模型 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 1.bossGroup 用于接收连接，workerGroup 用于具体的处理
+</span><span class="c1"></span><span class="n">EventLoopGroup</span> <span class="n">bossGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
+<span class="n">EventLoopGroup</span> <span class="n">workerGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+  <span class="c1">//2.创建服务端启动引导/辅助类：ServerBootstrap
+</span><span class="c1"></span>  <span class="n">ServerBootstrap</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
+  <span class="c1">//3.给引导类配置两大线程组,确定了线程模型
+</span><span class="c1"></span>  <span class="n">b</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">bossGroup</span><span class="o">,</span> <span class="n">workerGroup</span><span class="o">)</span>
+    <span class="c1">//.....
+</span></code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
 </li>
 <li>
 <p>EventLoopGroup是什么？与EventLoop关系。</p>
+<p>EventLoop 的主要作用实际就是负责监听网络事件并调用事件处理器进行相关 I/O 操作的处理。
+EventLoopGroup 包含多个 EventLoop（每一个 EventLoop 通常内部包含一个线程）
+并且 EventLoop 处理的 I/O 事件都将在它专有的 Thread 上被处理，即 Thread 和 EventLoop 属于 1 : 1 的关系，从而保证线程安全。</p>
+<p>Boss EventloopGroup 用于接收连接，Worker EventloopGroup 用于具体的处理（消息的读写以及其他逻辑处理）</p>
+<p>当客户端通过 connect 方法连接服务端时，bossGroup 处理客户端连接请求。当客户端处理完成后，会将这个连接提交给 workerGroup 来处理，然后 workerGroup 负责处理其 IO 相关操作。</p>
 </li>
 <li>
 <p>Netty中TCP粘包、拆包</p>
+<p><strong>TCP 粘包/拆包</strong> 就是你基于 TCP 发送数据的时候，出现了多个字符串“粘”在了一起或者一个字符串被“拆”开的问题。</p>
+<p>解决办法：</p>
+<ul>
+<li>使用 Netty 自带的解码器
+<ol>
+<li><strong>LineBasedFrameDecoder</strong> : 发送端发送数据包的时候，每个数据包之间以换行符作为分隔，<strong>LineBasedFrameDecoder</strong> 的工作原理是它依次遍历 <strong>ByteBuf</strong> 中的可读字节，判断是否有换行符，然后进行相应的截取。</li>
+<li><strong>DelimiterBasedFrameDecoder</strong> : 可以自定义分隔符解码器，<strong>LineBasedFrameDecoder</strong> 实际上是一种特殊的 <strong>DelimiterBasedFrameDecoder</strong> 解码器。</li>
+<li><strong>FixedLengthFrameDecoder</strong>: 固定长度解码器，它能够按照指定的长度对消息进行相应的拆包。</li>
+<li><strong>LengthFieldBasedFrameDecoder</strong> + :</li>
+</ol>
+</li>
+<li>自定义序列化编解码器</li>
+</ul>
 </li>
 <li>
 <p>Netty长连接、心跳机制</p>
+<p>在 TCP 保持长连接的过程中，可能会出现断网等网络异常出现，异常发生的时候， client 与 server 之间如果没有交互的话，它们是无法发现对方已经掉线的。为了解决这个问题, 我们就需要引入 <strong>心跳机制</strong> 。</p>
+<p><strong>心跳机制的工作原理是:</strong> 在 client 与 server 之间在一定时间内没有数据交互时, 即处于 idle 状态时, 客户端或服务器就会发送一个特殊的数据包给对方, 当接收方收到这个数据报文后, 也立即发送一个特殊的数据报文, 回应发送方, 此即一个 PING-PONG 交互。所以, 当某一端收到心跳消息后, 就知道了对方仍然在线, 这就确保 TCP 连接的有效性.</p>
+<p><strong>Netty中的心跳机制实现：</strong> TCP 实际上自带的就有长连接选项，本身是也有心跳包机制，也就是 TCP 的选项：SO_KEEPALIVE。但是，TCP 协议层面的长连接灵活性不够。所以，一般情况下我们都是在应用层协议上实现自定义心跳机制的，也就是在 Netty 层面通过编码实现。通过 Netty 实现心跳机制的话，核心类是 IdleStateHandler</p>
 </li>
 <li>
-<p>Netty零拷贝
-在 OS 层面上的 Zero-copy 通常指避免在 用户态(User-space) 与 内核态(Kernel-space) 之间来回拷贝数据。而在 Netty 层面 ，零拷贝主要体现在对于数据操作的优化。
+<p>Netty零拷贝</p>
+<p>在 OS 层面上的 Zero-copy 通常指避免在 用户态(User-space) 与 内核态(Kernel-space) 之间来回拷贝数据。而在 Netty 层面 ，零拷贝主要体现在对于数据操作的优化。
 Netty 中的零拷贝体现在以下几个方面：</p>
 <ol>
 <li>使用 Netty 提供的 CompositeByteBuf 类, 可以将多个ByteBuf 合并为一个逻辑上的 ByteBuf, 避免了各个 ByteBuf 之间的拷贝。</li>
