@@ -6,10 +6,19 @@
     <description>Recent content in Categories on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 08 Jan 2021 01:13:47 +0800</lastBuildDate>
+    <lastBuildDate>Sun, 10 Jan 2021 11:10:47 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Java</title>
+      <link>https://touch-star.com/categories/java/</link>
+      <pubDate>Sun, 10 Jan 2021 11:10:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/categories/java/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Algorithm</title>
@@ -21,11 +30,11 @@
     </item>
     
     <item>
-      <title>Java</title>
-      <link>https://touch-star.com/categories/java/</link>
-      <pubDate>Tue, 05 Jan 2021 10:36:27 +0800</pubDate>
+      <title>middleware</title>
+      <link>https://touch-star.com/categories/middleware/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/categories/java/</guid>
+      <guid>https://touch-star.com/categories/middleware/</guid>
       <description></description>
     </item>
     
@@ -44,15 +53,6 @@
       <pubDate>Wed, 22 Apr 2020 21:36:27 +0800</pubDate>
       
       <guid>https://touch-star.com/categories/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>middleware</title>
-      <link>https://touch-star.com/categories/middleware/</link>
-      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
-      
-      <guid>https://touch-star.com/categories/middleware/</guid>
       <description></description>
     </item>
     

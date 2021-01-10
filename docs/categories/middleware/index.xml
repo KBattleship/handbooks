@@ -6,10 +6,19 @@
     <description>Recent content in middleware on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 06 Jan 2020 01:13:47 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 08 Jan 2021 01:13:47 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/categories/middleware/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[ RocketMQ ] 1.面试</title>
+      <link>https://touch-star.com/post/middleware/mq/rocket_mq/1_rocket_message_queue/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/mq/rocket_mq/1_rocket_message_queue/</guid>
+      <description>面试准备 1. 什么是解耦 2. 什么是异步 3. 什么是消峰填谷 4. RocketMQ执行流程 5. 怎么理解Producer 6. 怎么理解Consumer 7. 消费者消费模式有哪些 8. 消费者获取消息有几种模式 9. 定时消息是什么样的？如何实现的？ 10. RocketMQ如何保证高可用的？ 11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？ 12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？ 13. 如何保证消息的顺序性？ 14. 如何解决消息队列的延时以及过期失效问题？ 15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？ 16. 如何解决高性能读写数据问题？ </description>
+    </item>
     
     <item>
       <title>[ MySQL ] 2-1.MySQL基础</title>
@@ -80,10 +89,10 @@
     
     <item>
       <title>1.zookeeper分布式部署</title>
-      <link>https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</link>
+      <link>https://touch-star.com/post/middleware/register_center/zookeeper/1-zookeeper-cluster-deploy/</link>
       <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</guid>
+      <guid>https://touch-star.com/post/middleware/register_center/zookeeper/1-zookeeper-cluster-deploy/</guid>
       <description>zookeeper分布式部署 一.配置服务器IP地址映射 [root@localhost zk]~#: vim /etc/hosts
 1 2 3 4 5  192.168.1.111 zoo1 192.168.1.112 zoo2 192.168.1.113 zoo3 192.168.1.114 zoo4 192.168.1.115 zoo5   二.修改配置ZK文件 1.下载Zookeeper
 1 2  # 进入ZK路径 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.6/apache-zookeeper-3.5.6-bin.tar.gz   2.修改配置文件 进入conf目录，在配置文件前，先cp zoo_sample.cfg zoo.cfg,然后vim zoo.cfg。配置如下：
@@ -131,15 +140,6 @@ master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显
       
       <guid>https://touch-star.com/post/operation/linux/kvm/1-base/</guid>
       <description>KVM入门  1.基础操作 ①.创建虚拟机 1 2 3 4 5 6 7  virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart   ②.虚拟机相关操作 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36  # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 停止指定虚拟机 virsh shutdown &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 销毁指定虚拟机(强制断电) virsh destory &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 登入指定虚拟机 virsh console &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*)   ③.</description>
-    </item>
-    
-    <item>
-      <title>1.TCP/IP入门</title>
-      <link>https://touch-star.com/post/operation/linux/tcp/1.overview/</link>
-      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/operation/linux/tcp/1.overview/</guid>
-      <description>TCP/IP入门 1.1 协议分层 ✌🏼😂😅😅</description>
     </item>
     
   </channel>

@@ -23,7 +23,22 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="JVM垃圾回收 " />
+  <meta name="description" content="JVM垃圾回收 1. 垃圾回收机制 在Java中，编写代码时不需要通过显式方式去释放一个对象的内存，而是通过JVM自行进行垃圾回收。JVM中，存在一个垃圾回收线程，它属于一个 低优先级线程 ，正常情况下是不会执行的，只有在 JVM空闲 或者 当前堆内存不足 时，才会触发执行，扫描那些 没有被任何引用的对象 ，并将它们添加到回收集合中，进行内存释放。
+2. 引用类型   强引用
+发生GC时，对象不会被回收。
+  软引用
+有用但不是必须的对象，在发生内存溢出之前会被回收
+  弱引用
+有用但不是必须的对象，在下一次GC时会被回收
+  虚引用
+无法通过虚引用获取到对象(通过 PhantomReference 实现虚引用)，作用是在GC时返回一个通知。
+  3. 如何判断对象是否可以被回收？ 垃圾收集器在做垃圾回收的时候，首先需要判定的就是 哪些对象内存需要被释放 ， 哪些对象依旧存活，不可释放 。
+一般通过两种方式进行判断：
+  引用计数器法：
+为每一个对象创建一个引用计数，有对象引用时计数器进行 &#43;&#43; ，应用被释放时计数 &amp;ndash; ，当 计数器==0 时可以被回收。(不足： 无法解决循环引用问题)
+  可达性分析算法：
+从 GC Roots 开始向下搜索，搜索所走过的路径成为引用链。当一个对象到 GC Roots没有任何引用链是，则可以进行回收。
+  4. 在Java中，对象什么时候可以被进行垃圾回收？  当对象对当前使用这个对象的应用程序 变得不可触及 的时候，这个对象就可以进行垃圾回收。 垃圾回收不会发生在永久代，如果 永久代满了 或者 超出了临界值，会触发完全垃圾回收(FGC)。 查看垃圾收集器的输出信息，可以发现永久代也是会被回收的，这就是为什么正确的永久代大小对避免FGC是非常重要的原因。  5." />
 <meta name="keywords" content="jvm" />
 
 
@@ -60,22 +75,67 @@
 
 
 <meta property="og:title" content="[ JVM ] 2.JVM垃圾回收" />
-<meta property="og:description" content="JVM垃圾回收 " />
+<meta property="og:description" content="JVM垃圾回收 1. 垃圾回收机制 在Java中，编写代码时不需要通过显式方式去释放一个对象的内存，而是通过JVM自行进行垃圾回收。JVM中，存在一个垃圾回收线程，它属于一个 低优先级线程 ，正常情况下是不会执行的，只有在 JVM空闲 或者 当前堆内存不足 时，才会触发执行，扫描那些 没有被任何引用的对象 ，并将它们添加到回收集合中，进行内存释放。
+2. 引用类型   强引用
+发生GC时，对象不会被回收。
+  软引用
+有用但不是必须的对象，在发生内存溢出之前会被回收
+  弱引用
+有用但不是必须的对象，在下一次GC时会被回收
+  虚引用
+无法通过虚引用获取到对象(通过 PhantomReference 实现虚引用)，作用是在GC时返回一个通知。
+  3. 如何判断对象是否可以被回收？ 垃圾收集器在做垃圾回收的时候，首先需要判定的就是 哪些对象内存需要被释放 ， 哪些对象依旧存活，不可释放 。
+一般通过两种方式进行判断：
+  引用计数器法：
+为每一个对象创建一个引用计数，有对象引用时计数器进行 &#43;&#43; ，应用被释放时计数 &ndash; ，当 计数器==0 时可以被回收。(不足： 无法解决循环引用问题)
+  可达性分析算法：
+从 GC Roots 开始向下搜索，搜索所走过的路径成为引用链。当一个对象到 GC Roots没有任何引用链是，则可以进行回收。
+  4. 在Java中，对象什么时候可以被进行垃圾回收？  当对象对当前使用这个对象的应用程序 变得不可触及 的时候，这个对象就可以进行垃圾回收。 垃圾回收不会发生在永久代，如果 永久代满了 或者 超出了临界值，会触发完全垃圾回收(FGC)。 查看垃圾收集器的输出信息，可以发现永久代也是会被回收的，这就是为什么正确的永久代大小对避免FGC是非常重要的原因。  5." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/coding/java/base/3_jvm/2_jvm_gc/" />
 <meta property="article:published_time" content="2020-12-27T21:10:47+08:00" />
 <meta property="article:modified_time" content="2020-12-27T21:10:47+08:00" />
 <meta itemprop="name" content="[ JVM ] 2.JVM垃圾回收">
-<meta itemprop="description" content="JVM垃圾回收 ">
+<meta itemprop="description" content="JVM垃圾回收 1. 垃圾回收机制 在Java中，编写代码时不需要通过显式方式去释放一个对象的内存，而是通过JVM自行进行垃圾回收。JVM中，存在一个垃圾回收线程，它属于一个 低优先级线程 ，正常情况下是不会执行的，只有在 JVM空闲 或者 当前堆内存不足 时，才会触发执行，扫描那些 没有被任何引用的对象 ，并将它们添加到回收集合中，进行内存释放。
+2. 引用类型   强引用
+发生GC时，对象不会被回收。
+  软引用
+有用但不是必须的对象，在发生内存溢出之前会被回收
+  弱引用
+有用但不是必须的对象，在下一次GC时会被回收
+  虚引用
+无法通过虚引用获取到对象(通过 PhantomReference 实现虚引用)，作用是在GC时返回一个通知。
+  3. 如何判断对象是否可以被回收？ 垃圾收集器在做垃圾回收的时候，首先需要判定的就是 哪些对象内存需要被释放 ， 哪些对象依旧存活，不可释放 。
+一般通过两种方式进行判断：
+  引用计数器法：
+为每一个对象创建一个引用计数，有对象引用时计数器进行 &#43;&#43; ，应用被释放时计数 &ndash; ，当 计数器==0 时可以被回收。(不足： 无法解决循环引用问题)
+  可达性分析算法：
+从 GC Roots 开始向下搜索，搜索所走过的路径成为引用链。当一个对象到 GC Roots没有任何引用链是，则可以进行回收。
+  4. 在Java中，对象什么时候可以被进行垃圾回收？  当对象对当前使用这个对象的应用程序 变得不可触及 的时候，这个对象就可以进行垃圾回收。 垃圾回收不会发生在永久代，如果 永久代满了 或者 超出了临界值，会触发完全垃圾回收(FGC)。 查看垃圾收集器的输出信息，可以发现永久代也是会被回收的，这就是为什么正确的永久代大小对避免FGC是非常重要的原因。  5.">
 <meta itemprop="datePublished" content="2020-12-27T21:10:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-12-27T21:10:47&#43;08:00" />
-<meta itemprop="wordCount" content="1">
+<meta itemprop="wordCount" content="124">
 
 
 
 <meta itemprop="keywords" content="java,jvm,command," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[ JVM ] 2.JVM垃圾回收"/>
-<meta name="twitter:description" content="JVM垃圾回收 "/>
+<meta name="twitter:description" content="JVM垃圾回收 1. 垃圾回收机制 在Java中，编写代码时不需要通过显式方式去释放一个对象的内存，而是通过JVM自行进行垃圾回收。JVM中，存在一个垃圾回收线程，它属于一个 低优先级线程 ，正常情况下是不会执行的，只有在 JVM空闲 或者 当前堆内存不足 时，才会触发执行，扫描那些 没有被任何引用的对象 ，并将它们添加到回收集合中，进行内存释放。
+2. 引用类型   强引用
+发生GC时，对象不会被回收。
+  软引用
+有用但不是必须的对象，在发生内存溢出之前会被回收
+  弱引用
+有用但不是必须的对象，在下一次GC时会被回收
+  虚引用
+无法通过虚引用获取到对象(通过 PhantomReference 实现虚引用)，作用是在GC时返回一个通知。
+  3. 如何判断对象是否可以被回收？ 垃圾收集器在做垃圾回收的时候，首先需要判定的就是 哪些对象内存需要被释放 ， 哪些对象依旧存活，不可释放 。
+一般通过两种方式进行判断：
+  引用计数器法：
+为每一个对象创建一个引用计数，有对象引用时计数器进行 &#43;&#43; ，应用被释放时计数 &ndash; ，当 计数器==0 时可以被回收。(不足： 无法解决循环引用问题)
+  可达性分析算法：
+从 GC Roots 开始向下搜索，搜索所走过的路径成为引用链。当一个对象到 GC Roots没有任何引用链是，则可以进行回收。
+  4. 在Java中，对象什么时候可以被进行垃圾回收？  当对象对当前使用这个对象的应用程序 变得不可触及 的时候，这个对象就可以进行垃圾回收。 垃圾回收不会发生在永久代，如果 永久代满了 或者 超出了临界值，会触发完全垃圾回收(FGC)。 查看垃圾收集器的输出信息，可以发现永久代也是会被回收的，这就是为什么正确的永久代大小对避免FGC是非常重要的原因。  5."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -360,7 +420,7 @@
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 1 字 </span>
+        <span class="more-meta"> 约 124 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -414,6 +474,246 @@
                 
             
         
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#1-%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e6%9c%ba%e5%88%b6">
+                            1. 垃圾回收机制
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#2-%e5%bc%95%e7%94%a8%e7%b1%bb%e5%9e%8b">
+                            2. 引用类型
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3-%e5%a6%82%e4%bd%95%e5%88%a4%e6%96%ad%e5%af%b9%e8%b1%a1%e6%98%af%e5%90%a6%e5%8f%af%e4%bb%a5%e8%a2%ab%e5%9b%9e%e6%94%b6">
+                            3. 如何判断对象是否可以被回收？
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#4-%e5%9c%a8java%e4%b8%ad%e5%af%b9%e8%b1%a1%e4%bb%80%e4%b9%88%e6%97%b6%e5%80%99%e5%8f%af%e4%bb%a5%e8%a2%ab%e8%bf%9b%e8%a1%8c%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6">
+                            4. 在Java中，对象什么时候可以被进行垃圾回收？
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#5-jvm%e4%b8%ad%e6%b0%b8%e4%b9%85%e4%bb%a3%e4%bc%9a%e5%8f%91%e7%94%9fgc%e5%90%97">
+                            5. JVM中永久代会发生GC吗？
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#6-%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e7%ae%97%e6%b3%95">
+                            6. 垃圾回收算法
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#7-%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e5%99%a8">
+                            7. 垃圾回收器
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#8-%e5%85%b3%e4%ba%8ecms%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e5%99%a8">
+                            8. 关于CMS垃圾回收器
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#9-%e6%96%b0%e7%94%9f%e4%bb%a3%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e5%99%a8%e4%b8%8e%e8%80%81%e5%b9%b4%e4%bb%a3%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e5%99%a8%e6%9c%89%e5%93%aa%e4%ba%9b%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88">
+                            9. 新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#10-%e7%ae%80%e8%bf%b0%e5%88%86%e4%bb%a3%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e5%99%a8%e6%98%af%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c%e7%9a%84">
+                            10. 简述分代垃圾回收器是如何工作的。
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
 
     </div>
 
@@ -425,6 +725,88 @@
     
     <div class="post-content">
       <h1 id="jvm垃圾回收">JVM垃圾回收</h1>
+<h2 id="1-垃圾回收机制">1. 垃圾回收机制</h2>
+<p>在Java中，编写代码时不需要通过显式方式去释放一个对象的内存，而是通过JVM自行进行垃圾回收。JVM中，存在一个垃圾回收线程，它属于一个 <strong>低优先级线程</strong> ，正常情况下是不会执行的，只有在 <strong>JVM空闲</strong> 或者 <strong>当前堆内存不足</strong> 时，才会触发执行，扫描那些 <strong>没有被任何引用的对象</strong> ，并将它们添加到回收集合中，进行内存释放。</p>
+<h2 id="2-引用类型">2. 引用类型</h2>
+<ul>
+<li>
+<p>强引用</p>
+<p>发生GC时，对象不会被回收。</p>
+</li>
+<li>
+<p>软引用</p>
+<p>有用但不是必须的对象，在发生内存溢出之前会被回收</p>
+</li>
+<li>
+<p>弱引用</p>
+<p>有用但不是必须的对象，在下一次GC时会被回收</p>
+</li>
+<li>
+<p>虚引用</p>
+<p>无法通过虚引用获取到对象(通过 <strong>PhantomReference</strong> 实现虚引用)，作用是在GC时返回一个通知。</p>
+</li>
+</ul>
+<h2 id="3-如何判断对象是否可以被回收">3. 如何判断对象是否可以被回收？</h2>
+<p>垃圾收集器在做垃圾回收的时候，首先需要判定的就是 <em><strong>哪些对象内存需要被释放</strong></em> ， <em><strong>哪些对象依旧存活，不可释放</strong></em> 。</p>
+<p>一般通过两种方式进行判断：</p>
+<ul>
+<li>
+<p><strong>引用计数器法</strong>：</p>
+<p>为每一个对象创建一个引用计数，有对象引用时计数器进行 <strong>++</strong> ，应用被释放时计数 <strong>&ndash;</strong> ，当 <strong>计数器==0</strong> 时可以被回收。(不足： <strong>无法解决循环引用问题</strong>)</p>
+</li>
+<li>
+<p><strong>可达性分析算法</strong>：</p>
+<p>从 <strong>GC Roots</strong> 开始向下搜索，搜索所走过的路径成为引用链。当一个对象到 GC Roots没有任何引用链是，则可以进行回收。</p>
+</li>
+</ul>
+<h2 id="4-在java中对象什么时候可以被进行垃圾回收">4. 在Java中，对象什么时候可以被进行垃圾回收？</h2>
+<ol>
+<li>当对象对当前使用这个对象的应用程序 <strong>变得不可触及</strong> 的时候，这个对象就可以进行垃圾回收。</li>
+<li>垃圾回收不会发生在永久代，如果 <strong>永久代满了</strong> 或者 <strong>超出了临界值</strong>，会触发完全垃圾回收(FGC)。
+<code>查看垃圾收集器的输出信息，可以发现永久代也是会被回收的，这就是为什么正确的永久代大小对避免FGC是非常重要的原因。</code></li>
+</ol>
+<h2 id="5-jvm中永久代会发生gc吗">5. JVM中永久代会发生GC吗？</h2>
+<p>垃圾回收不会发生在永久代。如果 <strong>永久代满了</strong> 或者 <strong>超出了临界值</strong>，会触发完全垃圾回收(FGC)。</p>
+<p><code>JDK8 中移除了永久代，新增加了元数据区的Native内存区</code></p>
+<h2 id="6-垃圾回收算法">6. 垃圾回收算法</h2>
+<ul>
+<li><strong>标记-清除算法：</strong> 标记无用对象，然后进行清除回收。(缺点：效率低，无法清除垃圾碎片)</li>
+<li><strong>复制算法：</strong> 按照容量划分两个大小相等的内存区域，当一块用完之后将活着的对象移动至另外一块，然后再把已使用的内存空间一次性释放掉。(缺点：内存使用率低，只有原来的一半)</li>
+<li><strong>标记-整理算法：</strong> 标记无用对象，让所有存活的对象都向一端移动，然后直接清除掉边界以外的内存。</li>
+<li><strong>分代算法：</strong> 根据对象存活周期的不同将内存划分为几块(一般情况是新生代、老生代)，新生代采用复制，老年代采用标记-整理算法。</li>
+</ul>
+<h2 id="7-垃圾回收器">7. 垃圾回收器</h2>
+<p>用于新生代的收集器：Serial、PraNew、 ParallelScavenge
+用于老年代的收集器：Serial Old、Parallel Old、CMS
+用于回收整个堆的：G1</p>
+<ul>
+<li><strong>Serial(复制算法)：</strong> 新生代单线程收集器，标记-清理都是单线程，简单高效</li>
+<li><strong>ParNew(复制算法)：</strong> 新生代并行收集器，实际上Serial收集器的多线程版本。在多核CPU下比Serial具有更好表现</li>
+<li><strong>ParallelScavenge(复制算法)：</strong> 新生代并行收集器，追求高吞吐量，高效利用CPU。</li>
+<li><strong>Serial Old(标记-整理)：</strong> 老年代单线程收集器</li>
+<li><strong>Parallel Old(标记-整理)：</strong> 老年代并行收集器，吞吐量优先，ParallelScavenge的老年代版本。</li>
+<li><strong>CMS(Concurrent Mask Sweep，标记-清除)：</strong> 老年代并行收集器，以获取最短回收停顿时间为目，具有高并发、低停顿的特点。追求最短GC回收停顿时间。</li>
+<li><strong>G1(Garbage First，标记-整理)：</strong> Java堆并行收集器，始于JDK1.7，G1是基于标记-整理算法实现，不会产生垃圾碎片。此外，重要的特点：G1回收的范围是整个Java堆，而前几种回收范围仅限于 新生代 或 老年代。</li>
+</ul>
+<h2 id="8-关于cms垃圾回收器">8. 关于CMS垃圾回收器</h2>
+<p><strong>CMS垃圾回收器(Concurrent Mask Sweep)</strong> ，是以牺牲吞吐量为代价来获取最短回收停顿时间的垃圾回收器。对于要求服务器响应速度的应用，此垃圾回收器很适合。
+<code>使用CMS回收器方法：</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 在JVM启动参数增加此参数项：</span>
+ -XX:+UseConcMaskSweepGC
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="9-新生代垃圾回收器与老年代垃圾回收器有哪些区别是什么">9. 新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？</h2>
+<ul>
+<li>新生代垃圾回收器一般采用：<strong>复制算法</strong>。优点：效率高；缺点：使用率低。</li>
+<li>老生代垃圾回收器一般采用：<strong>标记-整理</strong>。</li>
+</ul>
+<h2 id="10-简述分代垃圾回收器是如何工作的">10. 简述分代垃圾回收器是如何工作的。</h2>
 
     </div>
 

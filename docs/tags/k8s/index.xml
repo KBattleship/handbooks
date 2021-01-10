@@ -150,10 +150,10 @@ K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制�
     
     <item>
       <title>[ Etcd ] 1.基础入门(1)</title>
-      <link>https://touch-star.com/post/middleware/etcd/etcd_interview/</link>
+      <link>https://touch-star.com/post/middleware/register_center/etcd/etcd_interview/</link>
       <pubDate>Sun, 30 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://touch-star.com/post/middleware/etcd/etcd_interview/</guid>
+      <guid>https://touch-star.com/post/middleware/register_center/etcd/etcd_interview/</guid>
       <description>ETCD  其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
  raft协议  每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
  节点选举  使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel

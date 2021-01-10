@@ -23,7 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="JVM内存模型 " />
+  <meta name="description" content="JVM内存 1. 简述Java内存分配与回收策略 2. Minor GC 与 Major GC 3. Java中 堆 和 栈 的区别 JVM中 堆 和 栈 是不同的内存区域，使用目的也不同。
+ 栈  用于 保存方法帧 和 局部变量 不会在多个线程之间进行共享，即 线程私有 栈不足，产生异常错误是、：java.lang.StackOverFlowError   堆：  Java 对象 始终在堆上分配 堆将会被整个JVM的所有线程进行共享，即 所有线程共有 堆不足，产生异常错误：java.lang.OutofMemoryError 空间上，堆 远远大于 栈    " />
 <meta name="keywords" content="jvm" />
 
 
@@ -60,22 +61,25 @@
 
 
 <meta property="og:title" content="[ JVM ] 3.JVM内存模型" />
-<meta property="og:description" content="JVM内存模型 " />
+<meta property="og:description" content="JVM内存 1. 简述Java内存分配与回收策略 2. Minor GC 与 Major GC 3. Java中 堆 和 栈 的区别 JVM中 堆 和 栈 是不同的内存区域，使用目的也不同。
+ 栈  用于 保存方法帧 和 局部变量 不会在多个线程之间进行共享，即 线程私有 栈不足，产生异常错误是、：java.lang.StackOverFlowError   堆：  Java 对象 始终在堆上分配 堆将会被整个JVM的所有线程进行共享，即 所有线程共有 堆不足，产生异常错误：java.lang.OutofMemoryError 空间上，堆 远远大于 栈    " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/coding/java/base/3_jvm/3_jvm_memory_monitor/" />
 <meta property="article:published_time" content="2020-12-27T21:10:47+08:00" />
 <meta property="article:modified_time" content="2020-12-27T21:10:47+08:00" />
 <meta itemprop="name" content="[ JVM ] 3.JVM内存模型">
-<meta itemprop="description" content="JVM内存模型 ">
+<meta itemprop="description" content="JVM内存 1. 简述Java内存分配与回收策略 2. Minor GC 与 Major GC 3. Java中 堆 和 栈 的区别 JVM中 堆 和 栈 是不同的内存区域，使用目的也不同。
+ 栈  用于 保存方法帧 和 局部变量 不会在多个线程之间进行共享，即 线程私有 栈不足，产生异常错误是、：java.lang.StackOverFlowError   堆：  Java 对象 始终在堆上分配 堆将会被整个JVM的所有线程进行共享，即 所有线程共有 堆不足，产生异常错误：java.lang.OutofMemoryError 空间上，堆 远远大于 栈    ">
 <meta itemprop="datePublished" content="2020-12-27T21:10:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-12-27T21:10:47&#43;08:00" />
-<meta itemprop="wordCount" content="1">
+<meta itemprop="wordCount" content="38">
 
 
 
 <meta itemprop="keywords" content="java,jvm,command," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[ JVM ] 3.JVM内存模型"/>
-<meta name="twitter:description" content="JVM内存模型 "/>
+<meta name="twitter:description" content="JVM内存 1. 简述Java内存分配与回收策略 2. Minor GC 与 Major GC 3. Java中 堆 和 栈 的区别 JVM中 堆 和 栈 是不同的内存区域，使用目的也不同。
+ 栈  用于 保存方法帧 和 局部变量 不会在多个线程之间进行共享，即 线程私有 栈不足，产生异常错误是、：java.lang.StackOverFlowError   堆：  Java 对象 始终在堆上分配 堆将会被整个JVM的所有线程进行共享，即 所有线程共有 堆不足，产生异常错误：java.lang.OutofMemoryError 空间上，堆 远远大于 栈    "/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -360,7 +364,7 @@
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 1 字 </span>
+        <span class="more-meta"> 约 38 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -403,11 +407,83 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#jvm%e5%86%85%e5%ad%98%e6%a8%a1%e5%9e%8b">
-                            JVM内存模型
+                            <a class="nav-link text-left" href="#jvm%e5%86%85%e5%ad%98">
+                            JVM内存
                             </a>
                         </li>
                     
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#1-%e7%ae%80%e8%bf%b0java%e5%86%85%e5%ad%98%e5%88%86%e9%85%8d%e4%b8%8e%e5%9b%9e%e6%94%b6%e7%ad%96%e7%95%a5">
+                            1. 简述Java内存分配与回收策略
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#2-minor-gc-%e4%b8%8e-major-gc">
+                            2. Minor GC 与 Major GC
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3-java%e4%b8%ad-%e5%a0%86-%e5%92%8c-%e6%a0%88-%e7%9a%84%e5%8c%ba%e5%88%ab">
+                            3. Java中 堆 和 栈 的区别
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
                     
                     </ul>
                     
@@ -424,7 +500,28 @@
 
     
     <div class="post-content">
-      <h1 id="jvm内存模型">JVM内存模型</h1>
+      <h1 id="jvm内存">JVM内存</h1>
+<h2 id="1-简述java内存分配与回收策略">1. 简述Java内存分配与回收策略</h2>
+<h2 id="2-minor-gc-与-major-gc">2. Minor GC 与 Major GC</h2>
+<h2 id="3-java中-堆-和-栈-的区别">3. Java中 堆 和 栈 的区别</h2>
+<p>JVM中 <strong>堆</strong> 和 <strong>栈</strong> 是不同的内存区域，使用目的也不同。</p>
+<ul>
+<li><strong>栈</strong>
+<ul>
+<li>用于 <strong>保存方法帧</strong> 和 <strong>局部变量</strong></li>
+<li>不会在多个线程之间进行共享，即 <strong>线程私有</strong></li>
+<li>栈不足，产生异常错误是、：<code>java.lang.StackOverFlowError</code></li>
+</ul>
+</li>
+<li><strong>堆</strong>：
+<ul>
+<li><strong>Java 对象</strong> 始终在堆上分配</li>
+<li>堆将会被整个JVM的所有线程进行共享，即 <strong>所有线程共有</strong></li>
+<li>堆不足，产生异常错误：<code>java.lang.OutofMemoryError</code></li>
+<li>空间上，<em><strong>堆</strong></em> 远远大于 <em><strong>栈</strong></em></li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -460,8 +557,8 @@
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/middleware/dubbo/1_dubbobase/">
-            <span class="next-text nav-default">[ Dubbo ] 1.Dubbo基础概念</span>
+          <a class="next" href="/post/coding/java/base/3_jvm/4_jvm_class_loader/">
+            <span class="next-text nav-default">[ JVM ] 4.JVM类加载机制</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

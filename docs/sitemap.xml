@@ -9,6 +9,69 @@
   </url>
   
   <url>
+    <loc>https://touch-star.com/post/coding/java/base/4_thread/4_2_aqs/</loc>
+    <lastmod>2021-01-10T11:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/categories/</loc>
+    <lastmod>2021-01-10T11:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/categories/java/</loc>
+    <lastmod>2021-01-10T11:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/java/</loc>
+    <lastmod>2021-01-10T11:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/juc/</loc>
+    <lastmod>2021-01-10T11:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/lock/</loc>
+    <lastmod>2021-01-10T11:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/</loc>
+    <lastmod>2021-01-10T11:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/</loc>
+    <lastmod>2021-01-10T11:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/</loc>
+    <lastmod>2021-01-10T11:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://touch-star.com/post/algorithm/ext/2_boss_company_2021_01_08/</loc>
     <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -17,6 +80,13 @@
   
   <url>
     <loc>https://touch-star.com/post/algorithm/ext/3_xueqiu_company_2021_01_09/</loc>
+    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/middleware/mq/rocket_mq/1_rocket_message_queue/</loc>
     <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -37,13 +107,6 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/categories/</loc>
-    <lastmod>2021-01-08T01:13:47+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://touch-star.com/tags/interview/</loc>
     <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -51,21 +114,21 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/</loc>
+    <loc>https://touch-star.com/tags/middleware/</loc>
     <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/</loc>
+    <loc>https://touch-star.com/categories/middleware/</loc>
     <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/</loc>
+    <loc>https://touch-star.com/tags/rocketmq/</loc>
     <lastmod>2021-01-08T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -93,7 +156,7 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/6_netty/6_1_netty/</loc>
+    <loc>https://touch-star.com/post/middleware/netty/6_1_netty/</loc>
     <lastmod>2021-01-05T10:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -101,20 +164,6 @@
   
   <url>
     <loc>https://touch-star.com/tags/io/</loc>
-    <lastmod>2021-01-05T10:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/categories/java/</loc>
-    <lastmod>2021-01-05T10:36:27+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/tags/java/</loc>
     <lastmod>2021-01-05T10:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -142,7 +191,7 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/middleware/mybatis/design_pattern/</loc>
+    <loc>https://touch-star.com/post/coding/java/spring/mybatis/design_pattern/</loc>
     <lastmod>2020-12-31T11:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -177,6 +226,13 @@
   </url>
   
   <url>
+    <loc>https://touch-star.com/post/coding/java/base/4_thread/4_1_locks/</loc>
+    <lastmod>2020-12-27T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://touch-star.com/post/coding/java/base/3_jvm/1_jvm-base/</loc>
     <lastmod>2020-12-27T21:10:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -192,6 +248,13 @@
   
   <url>
     <loc>https://touch-star.com/post/coding/java/base/3_jvm/3_jvm_memory_monitor/</loc>
+    <lastmod>2020-12-27T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/3_jvm/4_jvm_class_loader/</loc>
     <lastmod>2020-12-27T21:10:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -317,14 +380,14 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/middleware/etcd/etcd_interview/</loc>
+    <loc>https://touch-star.com/post/middleware/register_center/etcd/etcd_interview/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/middleware/etcd/etcd_sourcecode_1/</loc>
+    <loc>https://touch-star.com/post/middleware/register_center/etcd/etcd_sourcecode_1/</loc>
     <lastmod>2020-08-30T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -527,20 +590,6 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/tags/middleware/</loc>
-    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
-    <loc>https://touch-star.com/categories/middleware/</loc>
-    <lastmod>2020-01-06T01:13:47+08:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://touch-star.com/tags/mysql/</loc>
     <lastmod>2020-01-06T01:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -618,7 +667,7 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/middleware/zookeeper/1-zookeeper-cluster-deploy/</loc>
+    <loc>https://touch-star.com/post/middleware/register_center/zookeeper/1-zookeeper-cluster-deploy/</loc>
     <lastmod>2019-11-12T01:36:27+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1038,12 +1087,6 @@
   </url>
   
   <url>
-    <loc>https://touch-star.com/post/coding/java/base/6_netty/readme/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  
-  <url>
     <loc>https://touch-star.com/post/coding/java/spring/readme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -1117,6 +1160,12 @@
   
   <url>
     <loc>https://touch-star.com/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89-%E5%85%B3%E4%BA%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/middleware/netty/readme/</loc>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>

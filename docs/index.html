@@ -62,7 +62,7 @@
 <meta property="og:description" content="笨笨豪の摘星辰" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://touch-star.com/" />
-<meta property="og:updated_time" content="2021-01-08T01:13:47+08:00" />
+<meta property="og:updated_time" content="2021-01-10T11:10:47+08:00" />
 <meta itemprop="name" content="Quinn">
 <meta itemprop="description" content="笨笨豪の摘星辰"><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Quinn"/>
@@ -350,6 +350,49 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/coding/java/base/4_thread/4_2_aqs/">[ Java ] 4-2.JUC之AQS</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2021-01-10" class="post-time">
+        2021-01-10
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> Java </a>
+          
+        </div>
+      <span class="more-meta"> 约 115 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/4_thread/4_2_aqs/" class="leancloud_visitors" data-flag-title="[ Java ] 4-2.JUC之AQS">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      JUC之AQS 1.基础知识 1_1. AQS原理 AQS(AbstractQueuedSynchronizer),是java.util.concurrent.locks下的一个普通类。用作构建 锁 和 同步器 框架。例如基于AQS构建的有：ReentrantLock, Semaphore, ReentrantReadWriteLock, SynchronousQueue, FutureTask 等等。
+核心思想：
+ 如果被请求的共享资源处于 空闲状态 ，则将当前请求资源的线程设置为 有效的工作线程 ，并且将共享资源设置为 锁定状态。 如果被请求的共享资源处于 占用状态 ，则需要一套 线程阻塞等待 以及 被唤醒时锁分配 的流程机制。 AQS 通过 CLH (Craig, Landin, Hagersten) 队列锁实现：将暂时获取不到锁的线程加入至队列中。 AQS使用一个 int 成员变量来标识同步状态，通过内置的 FIFO 队列完成获取资源线程的排队工作，使用 CAS(compare and swap) 对改状态进行原子操作实现对其值的更改。  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  // 共享变量，使用volatile修饰符保证线程可见性 private volatile int state; /** 状态信息通过protected修饰符修饰 getState(), setState(), compareAndSetState()进行操作 */ // 返回同步状态的当前值 protected final int getState(){ return state; } // 设置同步状态当前值 protected final void setState(int newState){ this.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/4_thread/4_2_aqs/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/algorithm/ext/2_boss_company_2021_01_08/">[ Interview ] 2.面试之Boss</a>
     </h1>
     
@@ -435,6 +478,47 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/middleware/mq/rocket_mq/1_rocket_message_queue/">[ RocketMQ ] 1.面试</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2021-01-08" class="post-time">
+        2021-01-08
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/middleware/"> middleware </a>
+          
+        </div>
+      <span class="more-meta"> 约 33 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/mq/rocket_mq/1_rocket_message_queue/" class="leancloud_visitors" data-flag-title="[ RocketMQ ] 1.面试">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      面试准备 1. 什么是解耦 2. 什么是异步 3. 什么是消峰填谷 4. RocketMQ执行流程 5. 怎么理解Producer 6. 怎么理解Consumer 7. 消费者消费模式有哪些 8. 消费者获取消息有几种模式 9. 定时消息是什么样的？如何实现的？ 10. RocketMQ如何保证高可用的？ 11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？ 12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？ 13. 如何保证消息的顺序性？ 14. 如何解决消息队列的延时以及过期失效问题？ 15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？ 16. 如何解决高性能读写数据问题？ 
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/mq/rocket_mq/1_rocket_message_queue/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/algorithm/ext/1_mate_app_company_2021_01_07/">[ Interview ] 1.面试之MateAPP</a>
     </h1>
     
@@ -476,7 +560,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/coding/java/base/6_netty/6_1_netty/">[ Netty ] 1.Netty基础</a>
+      <a class="post-link" href="/post/middleware/netty/6_1_netty/">[ Netty ] 1.Netty基础</a>
     </h1>
     
     <div class="post-meta">
@@ -487,12 +571,12 @@
           <a href="https://touch-star.com/categories/java/"> Java </a>
           
         </div>
-      <span class="more-meta"> 约 385 字 </span>
+      <span class="more-meta"> 约 386 字 </span>
       <span class="more-meta"> 预计阅读 2 分钟 </span>
       
       
       
-        <span id="/post/coding/java/base/6_netty/6_1_netty/" class="leancloud_visitors" data-flag-title="[ Netty ] 1.Netty基础">
+        <span id="/post/middleware/netty/6_1_netty/" class="leancloud_visitors" data-flag-title="[ Netty ] 1.Netty基础">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -510,7 +594,7 @@ EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生
 EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。
     </div>
     <div class="read-more">
-      <a href="/post/coding/java/base/6_netty/6_1_netty/" class="read-more-link">阅读全文</a>
+      <a href="/post/middleware/netty/6_1_netty/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -603,7 +687,7 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/middleware/mybatis/design_pattern/">[ Mybatis ] 1.Mybatis源码中设计模式</a>
+      <a class="post-link" href="/post/coding/java/spring/mybatis/design_pattern/">[ Mybatis ] 1.Mybatis源码中设计模式</a>
     </h1>
     
     <div class="post-meta">
@@ -619,7 +703,7 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
       
       
       
-        <span id="/post/middleware/mybatis/design_pattern/" class="leancloud_visitors" data-flag-title="[ Mybatis ] 1.Mybatis源码中设计模式">
+        <span id="/post/coding/java/spring/mybatis/design_pattern/" class="leancloud_visitors" data-flag-title="[ Mybatis ] 1.Mybatis源码中设计模式">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -633,7 +717,7 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
       Mybatis源码中设计模式  Builder模式：例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder； 工厂模式：例如SqlSessionFactory、ObjectFactory、MapperProxyFactory； 单例模式：例如ErrorContext和LogFactory； 代理模式：Mybatis实现的核心，比如MapperProxy、ConnectionLogger，用的jdk的+ 动态代理；还有executor.loader包使用了cglib或者javassist达到延迟加载的效果； 组合模式：例如SqlNode和各个子类ChooseSqlNode等； 模板方法模式：例如BaseExecutor和SimpleExecutor，还有BaseTypeHandler和所有的子类例如IntegerTypeHandler； 适配器模式：例如Log的Mybatis接口和它对jdbc、log4j等各种日志框架的适配实现； 装饰者模式：例如Cache包中的cache.decorators子包中等各个装饰者的实现； +迭代器模式：例如迭代器模式PropertyTokenizer；  
     </div>
     <div class="read-more">
-      <a href="/post/middleware/mybatis/design_pattern/" class="read-more-link">阅读全文</a>
+      <a href="/post/coding/java/spring/mybatis/design_pattern/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -681,89 +765,6 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
     </div>
     <div class="read-more">
       <a href="/post/coding/java/spring/design_pattern/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/3_jvm/1_jvm-base/">[ JVM ] 1.关于JVM命令</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-12-27" class="post-time">
-        2020-12-27
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> Java </a>
-          
-        </div>
-      <span class="more-meta"> 约 398 字 </span>
-      <span class="more-meta"> 预计阅读 2 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/3_jvm/1_jvm-base/" class="leancloud_visitors" data-flag-title="[ JVM ] 1.关于JVM命令">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&lt;hostid&gt;] Definitions: &lt;hostid&gt;: &lt;hostname&gt;[:&lt;port&gt;] # 若不指定&lt;hostid&gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/3_jvm/1_jvm-base/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/base/3_jvm/2_jvm_gc/">[ JVM ] 2.JVM垃圾回收</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-12-27" class="post-time">
-        2020-12-27
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> Java </a>
-          
-        </div>
-      <span class="more-meta"> 约 1 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/base/3_jvm/2_jvm_gc/" class="leancloud_visitors" data-flag-title="[ JVM ] 2.JVM垃圾回收">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      JVM垃圾回收 
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/base/3_jvm/2_jvm_gc/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -837,6 +838,10 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
       
       <li >
         <a href="/page/11/">11</a>
+      </li>
+      
+      <li >
+        <a href="/page/12/">12</a>
       </li>
       
     </ul>
