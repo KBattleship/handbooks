@@ -23,6 +23,17 @@
     </item>
     
     <item>
+      <title>[ Spring ] 1. Spring</title>
+      <link>https://touch-star.com/post/coding/java/spring/spring/1_spring_ioc/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/spring/spring/1_spring_ioc/</guid>
+      <description>Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;amp;符号。    2. Spring加载机制？何时加载？ 3. SpringAOP 4. </description>
+    </item>
+    
+    <item>
       <title>[ Netty ] 1.Netty基础</title>
       <link>https://touch-star.com/post/middleware/netty/6_1_netty/</link>
       <pubDate>Tue, 05 Jan 2021 10:36:27 +0800</pubDate>
@@ -109,15 +120,6 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
 1 2 3 4 5 6 7 8 9  synchronized void setA() throw Exception{ Thread.sleep(1000); // 如果不是可重入锁，setB()将可能不会被当前线程执行，造成死锁。  setB(); } synchronized void setB() throw Exception{ Thread.sleep(1000); }    不可重复锁： 与 可重入锁刚好相反，不可重复进行递归调用，递归调用将造成死锁。
  Coding Demo One：
 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  // 通过 自旋锁 实现一个不可重入锁  public class UnreentrantLock{ private AtomicReference&amp;lt;Thread&amp;gt; owner = new AtomicReference&amp;lt;&amp;gt;(); public void lock(){ Thread curr = Thread.</description>
-    </item>
-    
-    <item>
-      <title>[ Java ] 4.0 多线程问题</title>
-      <link>https://touch-star.com/post/coding/java/base/4_thread/4_0_interview/</link>
-      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/4_thread/4_0_interview/</guid>
-      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 </description>
     </item>
     
   </channel>

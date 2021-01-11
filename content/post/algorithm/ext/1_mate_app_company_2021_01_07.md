@@ -87,3 +87,39 @@ static class TreeNode {
 **解题思路**
 
 **解答代码**
+
+## Java
+### 1.synchronized锁以及锁升级。
+### 2.线程的几种状态以及如何转化的。
+### 3.线程池几个重要参数
+### 4.线程池拒绝策略
+
+## Mysql
+### 1.Mysql索引
+### 2.Mysql索引失效的几种情况
+### 3.Mysql强制索引
+### 4.分库分表如何实现的
+### 5.分库分表中间件
+
+## Redis
+
+### 1. 什么是击穿？什么是雪崩？
+### 2. Redis支持的几种数据结构
+### 3. Redis跳表
+
+## Spring
+
+### 1.SpringIOC
+### 2.SpringAOP
+### 3.SpringBoot循环依赖
+### 4.SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？
+### 5.JDK动态代理和CGLIB动态代理的区别
+### 6.SpringAOP常用的切入点
+### 7.SpringIOC常用注解。
+### 8.@Autowired与@Resource区别
+### 9.@Qualifier与@Autowired
+### 10.Springboot上下文切换
+
+## 设计模式
+### 1.观察者模式
+### 2.单例模式

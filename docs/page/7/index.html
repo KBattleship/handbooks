@@ -350,6 +350,55 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_4_factory/">[ 设计模式 ] 4.工厂模式</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-07-10" class="post-time">
+        2019-07-10
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 37 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1_design_pattern/2_4_factory/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 4.工厂模式">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
+ 一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
+ 多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
+1 2  # 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。 # 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。   ②.工厂角色职责   Product(产品) 一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类ConcreateProduct类所决定。
+  ConcreateProduct(具体产品) 属于具体加工职责：决定了具体生产出的产品。
+  Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
+  ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
+  ③.UML图 ④.代码清单 ⑤.注意事项 1 2 3  使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。   
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1_design_pattern/2_4_factory/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_3_template/">[ 设计模式 ] 3.模板模式</a>
     </h1>
     
@@ -712,45 +761,6 @@
     </div>
     <div class="read-more">
       <a href="/post/cloudnative/kubernetes/5_k8s_crd/cunstom_resource_defination/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/kubernetes/k8s_plugin/1_k8s_dashboard/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 3 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/kubernetes/k8s_plugin/1_k8s_dashboard/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      1.Kuberbetes-dashboard(Web UI)  Kuberbetes-dashboard是基于web的Kubernetes用户界面。
- 
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/kubernetes/k8s_plugin/1_k8s_dashboard/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

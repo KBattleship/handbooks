@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - Quinn</title>
+  <title>[ Spring ] 1. Spring - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,9 +23,11 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="一、关于springboot项目基础知识 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  /** * 初始化用户信息 * 注：Spring Boot2不能像1.x一样，用spring.datasource.schema/data指定初始化SQL脚本，否则与actuator不能共存 * 原因详见： * https://github.com/spring-projects/spring-boot/issues/13042 * https://github.com/spring-projects/spring-boot/issues/13539 * * @param repository repo * @return runner */ @Bean ApplicationRunner init(UserRepository repository) { return args -&amp;gt; { User user1 = new User(1L, &amp;#34;account1&amp;#34;, &amp;#34;张三&amp;#34;, 20, new BigDecimal(100.00)); User user2 = new User(2L, &amp;#34;account2&amp;#34;, &amp;#34;李四&amp;#34;, 28, new BigDecimal(180." />
+  <meta name="description" content="Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;amp;符号。    2. Spring加载机制？何时加载？ 3. SpringAOP 4. " />
+<meta name="keywords" content="spring" />
 
-  <meta name="keywords" content="Quinn, k8s, docker" />
 
 
 
@@ -35,7 +37,7 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://touch-star.com/post/coding/java/spring/springcloud/1.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9E%84%E5%BB%BA%E5%9F%BA%E7%A1%80/" />
+<link rel="canonical" href="https://touch-star.com/post/coding/java/spring/spring/1_spring_ioc/" />
 
 
 
@@ -59,21 +61,29 @@
 
 
 
-<meta property="og:title" content="" />
-<meta property="og:description" content="一、关于springboot项目基础知识 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  /** * 初始化用户信息 * 注：Spring Boot2不能像1.x一样，用spring.datasource.schema/data指定初始化SQL脚本，否则与actuator不能共存 * 原因详见： * https://github.com/spring-projects/spring-boot/issues/13042 * https://github.com/spring-projects/spring-boot/issues/13539 * * @param repository repo * @return runner */ @Bean ApplicationRunner init(UserRepository repository) { return args -&gt; { User user1 = new User(1L, &#34;account1&#34;, &#34;张三&#34;, 20, new BigDecimal(100.00)); User user2 = new User(2L, &#34;account2&#34;, &#34;李四&#34;, 28, new BigDecimal(180." />
+<meta property="og:title" content="[ Spring ] 1. Spring" />
+<meta property="og:description" content="Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;符号。    2. Spring加载机制？何时加载？ 3. SpringAOP 4. " />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://touch-star.com/post/coding/java/spring/springcloud/1.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9E%84%E5%BB%BA%E5%9F%BA%E7%A1%80/" />
+<meta property="og:url" content="https://touch-star.com/post/coding/java/spring/spring/1_spring_ioc/" />
+<meta property="article:published_time" content="2021-01-08T01:13:47+08:00" />
+<meta property="article:modified_time" content="2021-01-08T01:13:47+08:00" />
+<meta itemprop="name" content="[ Spring ] 1. Spring">
+<meta itemprop="description" content="Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;符号。    2. Spring加载机制？何时加载？ 3. SpringAOP 4. ">
+<meta itemprop="datePublished" content="2021-01-08T01:13:47&#43;08:00" />
+<meta itemprop="dateModified" content="2021-01-08T01:13:47&#43;08:00" />
+<meta itemprop="wordCount" content="22">
 
-<meta itemprop="name" content="">
-<meta itemprop="description" content="一、关于springboot项目基础知识 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  /** * 初始化用户信息 * 注：Spring Boot2不能像1.x一样，用spring.datasource.schema/data指定初始化SQL脚本，否则与actuator不能共存 * 原因详见： * https://github.com/spring-projects/spring-boot/issues/13042 * https://github.com/spring-projects/spring-boot/issues/13539 * * @param repository repo * @return runner */ @Bean ApplicationRunner init(UserRepository repository) { return args -&gt; { User user1 = new User(1L, &#34;account1&#34;, &#34;张三&#34;, 20, new BigDecimal(100.00)); User user2 = new User(2L, &#34;account2&#34;, &#34;李四&#34;, 28, new BigDecimal(180.">
-
-<meta itemprop="wordCount" content="143">
 
 
-
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
-<meta name="twitter:description" content="一、关于springboot项目基础知识 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20  /** * 初始化用户信息 * 注：Spring Boot2不能像1.x一样，用spring.datasource.schema/data指定初始化SQL脚本，否则与actuator不能共存 * 原因详见： * https://github.com/spring-projects/spring-boot/issues/13042 * https://github.com/spring-projects/spring-boot/issues/13539 * * @param repository repo * @return runner */ @Bean ApplicationRunner init(UserRepository repository) { return args -&gt; { User user1 = new User(1L, &#34;account1&#34;, &#34;张三&#34;, 20, new BigDecimal(100.00)); User user2 = new User(2L, &#34;account2&#34;, &#34;李四&#34;, 28, new BigDecimal(180."/>
+<meta itemprop="keywords" content="interview,java,spring," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ Spring ] 1. Spring"/>
+<meta name="twitter:description" content="Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;符号。    2. Spring加载机制？何时加载？ 3. SpringAOP 4. "/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -348,14 +358,17 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">[ Spring ] 1. Spring</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2021-01-08" class="post-time">
+          2021-01-08
         </time>
-        
-        <span class="more-meta"> 约 143 字 </span>
+        <div class="post-category">
+            <a href="https://touch-star.com/categories/java/"> Java </a>
+            
+          </div>
+        <span class="more-meta"> 约 22 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -363,7 +376,7 @@
 
         
         
-          <span id="/post/coding/java/spring/springcloud/1.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9E%84%E5%BB%BA%E5%9F%BA%E7%A1%80/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/coding/java/spring/spring/1_spring_ioc/" class="leancloud_visitors" data-flag-title="[ Spring ] 1. Spring">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -396,14 +409,32 @@
                     
                     <ul class="nav">
                     
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#spring">
+                            Spring
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
                     <ul class="nav">
                     
                     <ul class="nav">
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%b8%80%e5%85%b3%e4%ba%8espringboot%e9%a1%b9%e7%9b%ae%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86">
-                            一、关于springboot项目基础知识
+                            <a class="nav-link text-left" href="#1-spring-beanfactory%e4%b8%8efactorybean%e7%9a%84%e5%8c%ba%e5%88%ab">
+                            1. Spring BeanFactory与FactoryBean的区别
                             </a>
                         </li>
                     
@@ -412,8 +443,6 @@
                     
                     </ul>
                     
-                    </ul>
-                    
                 
             
         
@@ -421,8 +450,6 @@
             
                 
                 
-                    
-                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -430,8 +457,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%ba%8cspringcloud%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd">
-                            二、SpringCloud核心功能
+                            <a class="nav-link text-left" href="#2-spring%e5%8a%a0%e8%bd%bd%e6%9c%ba%e5%88%b6%e4%bd%95%e6%97%b6%e5%8a%a0%e8%bd%bd">
+                            2. Spring加载机制？何时加载？
                             </a>
                         </li>
                     
@@ -440,8 +467,6 @@
                     
                     </ul>
                     
-                    </ul>
-                    
                 
             
         
@@ -449,8 +474,6 @@
             
                 
                 
-                    
-                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -458,8 +481,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%b8%89springboot%e4%b8%8espringcloud%e7%89%88%e6%9c%ac%e5%af%b9%e5%ba%94%e5%85%b3%e7%b3%bb">
-                            三、SpringBoot与SpringCloud版本对应关系
+                            <a class="nav-link text-left" href="#3-springaop">
+                            3. SpringAOP
                             </a>
                         </li>
                     
@@ -468,8 +491,6 @@
                     
                     </ul>
                     
-                    </ul>
-                    
                 
             
         
@@ -477,8 +498,6 @@
             
                 
                 
-                    
-                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -486,13 +505,11 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e5%9b%9b%e5%85%b3%e4%ba%8e%e7%bb%86%e8%8a%82">
-                            四、关于细节
+                            <a class="nav-link text-left" href="#4">
+                            4.
                             </a>
                         </li>
                     
-                    
-                    </ul>
                     
                     </ul>
                     
@@ -511,102 +528,29 @@
 
     
     <div class="post-content">
-      <h3 id="一关于springboot项目基础知识">一、关于springboot项目基础知识</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-fallback" data-lang="fallback">/**
-   * 初始化用户信息
-   * 注：Spring Boot2不能像1.x一样，用spring.datasource.schema/data指定初始化SQL脚本，否则与actuator不能共存
-   * 原因详见：
-   * https://github.com/spring-projects/spring-boot/issues/13042
-   * https://github.com/spring-projects/spring-boot/issues/13539
-   *
-   * @param repository repo
-   * @return runner
-   */
-  @Bean
-  ApplicationRunner init(UserRepository repository) {
-    return args -&gt; {
-      User user1 = new User(1L, &#34;account1&#34;, &#34;张三&#34;, 20, new BigDecimal(100.00));
-      User user2 = new User(2L, &#34;account2&#34;, &#34;李四&#34;, 28, new BigDecimal(180.00));
-      User user3 = new User(3L, &#34;account3&#34;, &#34;王五&#34;, 32, new BigDecimal(280.00));
-      Stream.of(user1, user2, user3)
-        .forEach(repository::save);
-    };
-  }
-</code></pre></td></tr></table>
-</div>
-</div><ol>
-<li>
-<p><code>@SpringBootApplication</code>是一个组合注解，它整合了<code>@Configuration</code>、<code>@EnableAutoConfiguration</code>和<code>@ComponentScan</code>注解，并开启了Spring Boot程序的组件扫描和自动配置功能。在开发Spring Boot程序的过程中，常常会组合使用<code>@Configuration</code>、<code>@EnableAutoConfiguration</code>和<code>@ComponentScan</code>等注解，所以Spring Boot提供了<code>@SpringBootApplication</code>，来简化开发。</p>
-</li>
-<li>
-<p><code>@Bean</code> 则是一个方法注解，作用是实例化一个Bean并使用该方法的名称命名。</p>
-</li>
-</ol>
-<h3 id="二springcloud核心功能">二、SpringCloud核心功能</h3>
+      <h1 id="spring">Spring</h1>
+<h2 id="1-spring-beanfactory与factorybean的区别">1. Spring BeanFactory与FactoryBean的区别</h2>
 <ul>
-<li>Distributed/versioned configuration 分布式/版本化的配置管理</li>
-<li>Service registration and discovery 服务注册与服务发现</li>
-<li>Routing 路由</li>
-<li>Service-to-service calls 端到端的调用</li>
-<li>Load balancing 负载均衡</li>
-<li>Circuit Breakers 断路器</li>
-<li>Global locks 全局锁</li>
-<li>Leadership election and cluster state 选举与集群状态管理</li>
-<li>Distributed messaging 分布式消息</li>
+<li>
+<p>BeanFactory:</p>
+<ul>
+<li>BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 <strong>管理Bean</strong> 的工厂。</li>
+<li>职责包括：<strong>实例化</strong>、<strong>定位</strong>、<strong>配置应用程序中对象</strong> 以及 <strong>对象间的依赖关系</strong>。</li>
 </ul>
-<h3 id="三springboot与springcloud版本对应关系">三、SpringBoot与SpringCloud版本对应关系</h3>
-<table>
-<thead>
-<tr>
-<th align="left">Spring Cloud版本</th>
-<th align="left">Spring Boot版本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td align="left">Greenwich</td>
-<td align="left">2.1.x</td>
-</tr>
-<tr>
-<td align="left">Finchley</td>
-<td align="left">2.0.x</td>
-</tr>
-<tr>
-<td align="left">Edgware</td>
-<td align="left">1.5.x</td>
-</tr>
-<tr>
-<td align="left">Dalston</td>
-<td align="left">1.5.x</td>
-</tr>
-</tbody>
-</table>
-<h3 id="四关于细节">四、关于细节</h3>
-<p>Spring 5开始，WebFlux提供了Reactive的Web Client：<code>WebClinet</code> ，<strong>使用方式和RestTemplate基本类似，但性能更强，吞吐更好</strong>。</p>
+</li>
+<li>
+<p>FactoryBean:</p>
+<ul>
+<li>为IOC容器中的Bean的实现提供更加灵活的方式。</li>
+<li>FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。</li>
+<li>当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。</li>
+<li>如果想要获取FactoryBean的实现，需要在getBean()参数<code>BeanName</code>前添加<code>&amp;</code>符号。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-spring加载机制何时加载">2. Spring加载机制？何时加载？</h2>
+<h2 id="3-springaop">3. SpringAOP</h2>
+<h2 id="4">4.</h2>
 
     </div>
 
@@ -618,12 +562,17 @@
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://touch-star.com/tags/interview/">interview</a>
+          <a href="https://touch-star.com/tags/java/">java</a>
+          <a href="https://touch-star.com/tags/spring/">spring</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/coding/java/spring/spring/uml/0_spring/">
+          <a class="prev" href="/post/middleware/mq/rocket_mq/1_rocket_message_queue/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -633,12 +582,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">[ RocketMQ ] 1.面试</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/coding/java/spring/springcloud/1_server/eureka/1_1_eureka/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/algorithm/ext/1_mate_app_company_2021_01_07/">
+            <span class="next-text nav-default">[ Interview ] 1.面试之MateAPP</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

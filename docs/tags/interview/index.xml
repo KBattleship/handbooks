@@ -42,6 +42,17 @@
     </item>
     
     <item>
+      <title>[ Spring ] 1. Spring</title>
+      <link>https://touch-star.com/post/coding/java/spring/spring/1_spring_ioc/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/spring/spring/1_spring_ioc/</guid>
+      <description>Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;amp;符号。    2. Spring加载机制？何时加载？ 3. SpringAOP 4. </description>
+    </item>
+    
+    <item>
       <title>[ Interview ] 1.面试之MateAPP</title>
       <link>https://touch-star.com/post/algorithm/ext/1_mate_app_company_2021_01_07/</link>
       <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
@@ -83,7 +94,7 @@
       <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
       
       <guid>https://touch-star.com/post/coding/java/base/4_thread/4_0_interview/</guid>
-      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 </description>
+      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 CountDownLatch</description>
     </item>
     
   </channel>

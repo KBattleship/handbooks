@@ -73,6 +73,19 @@
     </item>
     
     <item>
+      <title>[ Spring ] 1. Spring</title>
+      <link>https://touch-star.com/post/coding/java/spring/spring/1_spring_ioc/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/spring/spring/1_spring_ioc/</guid>
+      
+        <description>Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;amp;符号。    2. Spring加载机制？何时加载？ 3. SpringAOP 4. </description>
+      
+    </item>
+    
+    <item>
       <title>[ Interview ] 1.面试之MateAPP</title>
       <link>https://touch-star.com/post/algorithm/ext/1_mate_app_company_2021_01_07/</link>
       <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
@@ -117,18 +130,6 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
       <guid>https://touch-star.com/post/coding/java/interview/1-one/</guid>
       
         <description>面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  SPI(Service Provider Interface)，主要用于框架，框架定义接口。 不同使用者将存在不同需求，也必然出现不同实现方式。而SPI就是通过定义 一个特定的位置，Java SPI约定在Classpath下的META-INF/services/ 路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的 具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可 以在运行时动态为接口替换实现类。 Dubbo SPI 1.</description>
-      
-    </item>
-    
-    <item>
-      <title>[ Java ] 2.4 HashMap虐杀，完败</title>
-      <link>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</link>
-      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</guid>
-      
-        <description>HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
- 1. HashMap工作原理  Put操作  当调用put操作时，HashMap计算键值K的哈希值，然后将其对应到HashMap的某一个桶(bucket)上； 此时找到以这个桶为头结点的一个单链表，然后顺序遍历该单链表找到某个节点的Entry中的Key是等于给定的参数K； 若找到，则将其的old V替换为参数指定的V； 否则直接在链表尾部插入一个新的Entry节点。   Get操作  对于get(K)操作类似于put操作，HashMap通过计算键的哈希值，先找到对应的桶 然后遍历桶存放的单链表通过比照Entry的键来找到对应的值    2. 3. ConcurrentHashMap.get()是否线程安全，是否有加锁？  安全，读操作不受影响。 不加锁。  4. ConcurrentHashMap如何保证线程安全  在JDK8以前，ConcurrentHashMap都是基于Segment分段锁来实现的， 在JDK8以后，就换成synchronized和CAS这套实现机制了。  使用 volatile 保证当Node中的值变化时对于其他线程是 可见的 使用 table数组的头结点 作为synchronized的锁来 保证写操作 的安全 当头结点为 null 时，使用 CAS操作 来保证数据能正确的 写入   和JDK1.8中的HashMap类似，对于hashCode相同的时候，在Node节点的数量少于8个时，这时的Node存储结构是链表形式，时间复杂度为O(N)，当Node节点的个数超过8个时，则会转换为红黑树，此时访问的时间复杂度为O(long(N))    5. HashMap、TreeMap、 LinkedHashMap区别   HashMap：</description>
       
     </item>
     

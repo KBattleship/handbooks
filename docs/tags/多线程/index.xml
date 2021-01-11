@@ -17,7 +17,7 @@
       <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
       
       <guid>https://touch-star.com/post/coding/java/base/4_thread/4_0_interview/</guid>
-      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 </description>
+      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 CountDownLatch</description>
     </item>
     
   </channel>
