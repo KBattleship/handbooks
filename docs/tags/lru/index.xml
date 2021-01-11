@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>LRU on Quinn</title>
+    <link>https://touch-star.com/tags/lru/</link>
+    <description>Recent content in LRU on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 31 Dec 2020 11:13:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://touch-star.com/tags/lru/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[ Java ] 2.5 手写LRU</title>
+      <link>https://touch-star.com/post/coding/java/base/2_basic/2_5_lru/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/2_basic/2_5_lru/</guid>
+      <description>手写LRU 1. 利用数组实现 2. 使用LinkedHashMap偷个懒 </description>
+    </item>
+    
+  </channel>
+</rss>

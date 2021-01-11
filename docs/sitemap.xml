@@ -191,6 +191,20 @@
   </url>
   
   <url>
+    <loc>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</loc>
+    <lastmod>2020-12-31T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/2_basic/2_5_lru/</loc>
+    <lastmod>2020-12-31T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://touch-star.com/post/coding/java/spring/mybatis/design_pattern/</loc>
     <lastmod>2020-12-31T11:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -212,6 +226,20 @@
   </url>
   
   <url>
+    <loc>https://touch-star.com/tags/hashmap/</loc>
+    <lastmod>2020-12-31T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/lru/</loc>
+    <lastmod>2020-12-31T11:13:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
     <loc>https://touch-star.com/tags/mybatis/</loc>
     <lastmod>2020-12-31T11:13:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -227,6 +255,13 @@
   
   <url>
     <loc>https://touch-star.com/post/coding/java/base/4_thread/4_1_locks/</loc>
+    <lastmod>2020-12-27T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/post/coding/java/base/4_thread/4_0_interview/</loc>
     <lastmod>2020-12-27T21:10:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
@@ -269,6 +304,13 @@
   
   <url>
     <loc>https://touch-star.com/tags/jvm/</loc>
+    <lastmod>2020-12-27T21:10:47+08:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  
+  <url>
+    <loc>https://touch-star.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
     <lastmod>2020-12-27T21:10:47+08:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>

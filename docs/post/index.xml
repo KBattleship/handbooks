@@ -93,27 +93,22 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
     </item>
     
     <item>
-      <title>[ Mybatis ] 1.Mybatis源码中设计模式</title>
-      <link>https://touch-star.com/post/coding/java/spring/mybatis/design_pattern/</link>
+      <title>[ Java ] 2.4 HashMap虐杀，完败</title>
+      <link>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</link>
       <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/spring/mybatis/design_pattern/</guid>
-      <description>Mybatis源码中设计模式  Builder模式：例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder； 工厂模式：例如SqlSessionFactory、ObjectFactory、MapperProxyFactory； 单例模式：例如ErrorContext和LogFactory； 代理模式：Mybatis实现的核心，比如MapperProxy、ConnectionLogger，用的jdk的+ 动态代理；还有executor.loader包使用了cglib或者javassist达到延迟加载的效果； 组合模式：例如SqlNode和各个子类ChooseSqlNode等； 模板方法模式：例如BaseExecutor和SimpleExecutor，还有BaseTypeHandler和所有的子类例如IntegerTypeHandler； 适配器模式：例如Log的Mybatis接口和它对jdbc、log4j等各种日志框架的适配实现； 装饰者模式：例如Cache包中的cache.decorators子包中等各个装饰者的实现； +迭代器模式：例如迭代器模式PropertyTokenizer；  </description>
+      <guid>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</guid>
+      <description>HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
+ 1. HashMap工作原理  Put操作  当调用put操作时，HashMap计算键值K的哈希值，然后将其对应到HashMap的某一个桶(bucket)上； 此时找到以这个桶为头结点的一个单链表，然后顺序遍历该单链表找到某个节点的Entry中的Key是等于给定的参数K； 若找到，则将其的old V替换为参数指定的V； 否则直接在链表尾部插入一个新的Entry节点。   Get操作  对于get(K)操作类似于put操作，HashMap通过计算键的哈希值，先找到对应的桶 然后遍历桶存放的单链表通过比照Entry的键来找到对应的值    2. 3. ConcurrentHashMap.get()是否线程安全，是否有加锁？  安全，读操作不受影响。 不加锁。  4. ConcurrentHashMap如何保证线程安全  在JDK8以前，ConcurrentHashMap都是基于Segment分段锁来实现的， 在JDK8以后，就换成synchronized和CAS这套实现机制了。  使用 volatile 保证当Node中的值变化时对于其他线程是 可见的 使用 table数组的头结点 作为synchronized的锁来 保证写操作 的安全 当头结点为 null 时，使用 CAS操作 来保证数据能正确的 写入   和JDK1.8中的HashMap类似，对于hashCode相同的时候，在Node节点的数量少于8个时，这时的Node存储结构是链表形式，时间复杂度为O(N)，当Node节点的个数超过8个时，则会转换为红黑树，此时访问的时间复杂度为O(long(N))    5. HashMap、TreeMap、 LinkedHashMap区别   HashMap：</description>
     </item>
     
     <item>
-      <title>[ Spring ] 1.Spring源码中设计模式</title>
-      <link>https://touch-star.com/post/coding/java/spring/design_pattern/</link>
+      <title>[ Java ] 2.5 手写LRU</title>
+      <link>https://touch-star.com/post/coding/java/base/2_basic/2_5_lru/</link>
       <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/spring/design_pattern/</guid>
-      <description>Spring源码中设计模式   工程模式：Spring中的BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得Bean对象
-  单例模式：Spring依赖注入Bean实例默认是单例的。Spring的依赖注入（包括lazy-init方式）都是发生在AbstractBeanFactory的getBean里。getBean的doGetBean方法调用getSingleton进行bean的创建。
-  装饰器模式：Spring中用到的包装器模式在类名上有两种表现：一种是类名中含有Wrapper，另一种是类名中含有Decorator。
-  代理模式：AOP底层，就是动态代理模式的实现
-  观察者模式：spring的事件驱动模型使用的是 观察者模式 ，Spring中Observer模式常用的地方是listener的实现。如：ApplicationContextEvent、ApplicationListener
-  策略模式：Spring框架的资源访问Resource接口。该接口提供了更强的资源访问能力，Spring 框架本身大量使用了 Resource 接口来访问底层资源。
- UrlResource：访问网络资源的实现类。 ClassPathResource：访问类加载路径里资源的实现类。 FileSystemResource：访问文件系统里资源的实现类。 ServletContextResource：访问相对于 ServletContext 路径里的资源的实现类. InputStreamResource：访问输入流资源的实现类。 ByteArrayResource：访问字节数组资源的实现类。    </description>
+      <guid>https://touch-star.com/post/coding/java/base/2_basic/2_5_lru/</guid>
+      <description>手写LRU 1. 利用数组实现 2. 使用LinkedHashMap偷个懒 </description>
     </item>
     
   </channel>

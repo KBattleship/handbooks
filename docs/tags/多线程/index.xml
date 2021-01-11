@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>多线程 on Quinn</title>
+    <link>https://touch-star.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link>
+    <description>Recent content in 多线程 on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 27 Dec 2020 21:10:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://touch-star.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[ Java ] 4.0 多线程问题</title>
+      <link>https://touch-star.com/post/coding/java/base/4_thread/4_0_interview/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/4_thread/4_0_interview/</guid>
+      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 </description>
+    </item>
+    
+  </channel>
+</rss>

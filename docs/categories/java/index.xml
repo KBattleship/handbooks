@@ -54,6 +54,25 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
     </item>
     
     <item>
+      <title>[ Java ] 2.4 HashMap虐杀，完败</title>
+      <link>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</guid>
+      <description>HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
+ 1. HashMap工作原理  Put操作  当调用put操作时，HashMap计算键值K的哈希值，然后将其对应到HashMap的某一个桶(bucket)上； 此时找到以这个桶为头结点的一个单链表，然后顺序遍历该单链表找到某个节点的Entry中的Key是等于给定的参数K； 若找到，则将其的old V替换为参数指定的V； 否则直接在链表尾部插入一个新的Entry节点。   Get操作  对于get(K)操作类似于put操作，HashMap通过计算键的哈希值，先找到对应的桶 然后遍历桶存放的单链表通过比照Entry的键来找到对应的值    2. 3. ConcurrentHashMap.get()是否线程安全，是否有加锁？  安全，读操作不受影响。 不加锁。  4. ConcurrentHashMap如何保证线程安全  在JDK8以前，ConcurrentHashMap都是基于Segment分段锁来实现的， 在JDK8以后，就换成synchronized和CAS这套实现机制了。  使用 volatile 保证当Node中的值变化时对于其他线程是 可见的 使用 table数组的头结点 作为synchronized的锁来 保证写操作 的安全 当头结点为 null 时，使用 CAS操作 来保证数据能正确的 写入   和JDK1.8中的HashMap类似，对于hashCode相同的时候，在Node节点的数量少于8个时，这时的Node存储结构是链表形式，时间复杂度为O(N)，当Node节点的个数超过8个时，则会转换为红黑树，此时访问的时间复杂度为O(long(N))    5. HashMap、TreeMap、 LinkedHashMap区别   HashMap：</description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 2.5 手写LRU</title>
+      <link>https://touch-star.com/post/coding/java/base/2_basic/2_5_lru/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/2_basic/2_5_lru/</guid>
+      <description>手写LRU 1. 利用数组实现 2. 使用LinkedHashMap偷个懒 </description>
+    </item>
+    
+    <item>
       <title>[ Mybatis ] 1.Mybatis源码中设计模式</title>
       <link>https://touch-star.com/post/coding/java/spring/mybatis/design_pattern/</link>
       <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
@@ -93,47 +112,12 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
     </item>
     
     <item>
-      <title>[ JVM ] 1.关于JVM命令</title>
-      <link>https://touch-star.com/post/coding/java/base/3_jvm/1_jvm-base/</link>
+      <title>[ Java ] 4.0 多线程问题</title>
+      <link>https://touch-star.com/post/coding/java/base/4_thread/4_0_interview/</link>
       <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
       
-      <guid>https://touch-star.com/post/coding/java/base/3_jvm/1_jvm-base/</guid>
-      <description>关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15  $ jps -help usage: jps [-help] jps [-q] [-mlvV] [&amp;lt;hostid&amp;gt;] Definitions: &amp;lt;hostid&amp;gt;: &amp;lt;hostname&amp;gt;[:&amp;lt;port&amp;gt;] # 若不指定&amp;lt;hostid&amp;gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符     实例讲解</description>
-    </item>
-    
-    <item>
-      <title>[ JVM ] 2.JVM垃圾回收</title>
-      <link>https://touch-star.com/post/coding/java/base/3_jvm/2_jvm_gc/</link>
-      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/3_jvm/2_jvm_gc/</guid>
-      <description>JVM垃圾回收 1. 垃圾回收机制 在Java中，编写代码时不需要通过显式方式去释放一个对象的内存，而是通过JVM自行进行垃圾回收。JVM中，存在一个垃圾回收线程，它属于一个 低优先级线程 ，正常情况下是不会执行的，只有在 JVM空闲 或者 当前堆内存不足 时，才会触发执行，扫描那些 没有被任何引用的对象 ，并将它们添加到回收集合中，进行内存释放。
-2. 引用类型   强引用
-发生GC时，对象不会被回收。
-  软引用
-有用但不是必须的对象，在发生内存溢出之前会被回收
-  弱引用
-有用但不是必须的对象，在下一次GC时会被回收
-  虚引用
-无法通过虚引用获取到对象(通过 PhantomReference 实现虚引用)，作用是在GC时返回一个通知。
-  3. 如何判断对象是否可以被回收？ 垃圾收集器在做垃圾回收的时候，首先需要判定的就是 哪些对象内存需要被释放 ， 哪些对象依旧存活，不可释放 。
-一般通过两种方式进行判断：
-  引用计数器法：
-为每一个对象创建一个引用计数，有对象引用时计数器进行 ++ ，应用被释放时计数 &amp;ndash; ，当 计数器==0 时可以被回收。(不足： 无法解决循环引用问题)
-  可达性分析算法：
-从 GC Roots 开始向下搜索，搜索所走过的路径成为引用链。当一个对象到 GC Roots没有任何引用链是，则可以进行回收。
-  4. 在Java中，对象什么时候可以被进行垃圾回收？  当对象对当前使用这个对象的应用程序 变得不可触及 的时候，这个对象就可以进行垃圾回收。 垃圾回收不会发生在永久代，如果 永久代满了 或者 超出了临界值，会触发完全垃圾回收(FGC)。 查看垃圾收集器的输出信息，可以发现永久代也是会被回收的，这就是为什么正确的永久代大小对避免FGC是非常重要的原因。  5.</description>
-    </item>
-    
-    <item>
-      <title>[ JVM ] 3.JVM内存模型</title>
-      <link>https://touch-star.com/post/coding/java/base/3_jvm/3_jvm_memory_monitor/</link>
-      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/3_jvm/3_jvm_memory_monitor/</guid>
-      <description>JVM内存 1. 简述Java内存分配与回收策略 2. Minor GC 与 Major GC 3. Java中 堆 和 栈 的区别 JVM中 堆 和 栈 是不同的内存区域，使用目的也不同。
- 栈  用于 保存方法帧 和 局部变量 不会在多个线程之间进行共享，即 线程私有 栈不足，产生异常错误是、：java.lang.StackOverFlowError   堆：  Java 对象 始终在堆上分配 堆将会被整个JVM的所有线程进行共享，即 所有线程共有 堆不足，产生异常错误：java.lang.OutofMemoryError 空间上，堆 远远大于 栈    </description>
+      <guid>https://touch-star.com/post/coding/java/base/4_thread/4_0_interview/</guid>
+      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 </description>
     </item>
     
   </channel>

@@ -66,8 +66,12 @@
       <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
       
       <guid>https://touch-star.com/post/coding/java/base/3_jvm/3_jvm_memory_monitor/</guid>
-      <description>JVM内存 1. 简述Java内存分配与回收策略 2. Minor GC 与 Major GC 3. Java中 堆 和 栈 的区别 JVM中 堆 和 栈 是不同的内存区域，使用目的也不同。
- 栈  用于 保存方法帧 和 局部变量 不会在多个线程之间进行共享，即 线程私有 栈不足，产生异常错误是、：java.lang.StackOverFlowError   堆：  Java 对象 始终在堆上分配 堆将会被整个JVM的所有线程进行共享，即 所有线程共有 堆不足，产生异常错误：java.lang.OutofMemoryError 空间上，堆 远远大于 栈    </description>
+      <description>JVM内存 1. 简述Java内存分配与回收策略 2. Minor GC 与 Major GC   Minor GC： 又称 新生代GC
+Java对象大多数是朝生夕灭，所以 Minor GC 非常频繁，一般回收速度也比较快
+  Major GC： 又称 老年代GC
+指发生在 老年代 的GC。出现 FGC 经常会伴有 至少一次的 Minor GC(不是绝对，Parallel Scavenge收集器可以选择Major GC策略)。Major GC 一般比 Minor GC 慢上 10倍以上
+  3. Java中 堆 和 栈 的区别 JVM中 堆 和 栈 是不同的内存区域，使用目的也不同。
+ 栈  用于 保存方法帧 和 局部变量 不会在多个线程之间进行共享，即 线程私有 栈不足，产生异常错误是、：java.lang.StackOverFlowError   堆：  Java 对象 始终在堆上分配 堆将会被整个JVM的所有线程进行共享，即 所有线程共有 堆不足，产生异常错误：java.</description>
     </item>
     
     <item>

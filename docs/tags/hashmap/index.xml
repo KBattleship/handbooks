@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hashMap on Quinn</title>
+    <link>https://touch-star.com/tags/hashmap/</link>
+    <description>Recent content in hashMap on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 31 Dec 2020 11:13:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://touch-star.com/tags/hashmap/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[ Java ] 2.4 HashMap虐杀，完败</title>
+      <link>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</guid>
+      <description>HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
+ 1. HashMap工作原理  Put操作  当调用put操作时，HashMap计算键值K的哈希值，然后将其对应到HashMap的某一个桶(bucket)上； 此时找到以这个桶为头结点的一个单链表，然后顺序遍历该单链表找到某个节点的Entry中的Key是等于给定的参数K； 若找到，则将其的old V替换为参数指定的V； 否则直接在链表尾部插入一个新的Entry节点。   Get操作  对于get(K)操作类似于put操作，HashMap通过计算键的哈希值，先找到对应的桶 然后遍历桶存放的单链表通过比照Entry的键来找到对应的值    2. 3. ConcurrentHashMap.get()是否线程安全，是否有加锁？  安全，读操作不受影响。 不加锁。  4. ConcurrentHashMap如何保证线程安全  在JDK8以前，ConcurrentHashMap都是基于Segment分段锁来实现的， 在JDK8以后，就换成synchronized和CAS这套实现机制了。  使用 volatile 保证当Node中的值变化时对于其他线程是 可见的 使用 table数组的头结点 作为synchronized的锁来 保证写操作 的安全 当头结点为 null 时，使用 CAS操作 来保证数据能正确的 写入   和JDK1.8中的HashMap类似，对于hashCode相同的时候，在Node节点的数量少于8个时，这时的Node存储结构是链表形式，时间复杂度为O(N)，当Node节点的个数超过8个时，则会转换为红黑树，此时访问的时间复杂度为O(long(N))    5. HashMap、TreeMap、 LinkedHashMap区别   HashMap：</description>
+    </item>
+    
+  </channel>
+</rss>
