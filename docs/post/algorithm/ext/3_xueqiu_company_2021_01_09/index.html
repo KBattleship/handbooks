@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>[ Interview ] 3.面试之XueQiu - Quinn</title>
+  <title>[ Interview ] 3.面试 - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,7 +23,13 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 " />
+  <meta name="description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 BD 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：
+ 平衡性(Balance)：指哈希的结果能够尽可能分不到所有的缓冲中，这样可以使得所有缓冲空间都得到利用。 单调性(Monotonicity)：单调性是指如果已经有一些内容通过Hash算法分配到了缓冲中，又有新的缓冲加入到系统中，Hash的结果应该能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去，而不会被映射到旧的缓冲集合中的其他缓冲区。 分散性(Spread)：在分布式环境中，终端有可能看不到所有的缓冲。不同的终端可能通过Hash的过程将同样的缓冲内容应设在不同的缓冲中。应尽量降低分散性。 负载(Load)：实际上是另一个角度看待分散性。对于一个特定的缓冲区而言，可能被不同的用户映射到不同的内容。应尽量降低缓冲的负荷。    Hash一致性算法：
+ 是一个2^32个点组成的Hash圆环 按照 顺时针方向 进行组织 将数据 Key 使用相同的 hash() 计算出Hash值，并确定在此 Hash环 上的位置，从此位置按照 顺时针方式 寻找，碰到的第一台节点将是定位到的节点。    Hash环发生数据倾斜
+ 在服务节点太少的情况，数据容易发生倾斜 解决办法：  增加虚拟节点，形成均匀的Hash环避免数据倾斜。 通过 Hash(&amp;ldquo;${Node1}#1&amp;rdquo;) 的方式构造成虚拟节点。      2." />
 <meta name="keywords" content="interview" />
 
 
@@ -59,23 +65,41 @@
 
 
 
-<meta property="og:title" content="[ Interview ] 3.面试之XueQiu" />
-<meta property="og:description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 " />
+<meta property="og:title" content="[ Interview ] 3.面试" />
+<meta property="og:description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 BD 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：
+ 平衡性(Balance)：指哈希的结果能够尽可能分不到所有的缓冲中，这样可以使得所有缓冲空间都得到利用。 单调性(Monotonicity)：单调性是指如果已经有一些内容通过Hash算法分配到了缓冲中，又有新的缓冲加入到系统中，Hash的结果应该能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去，而不会被映射到旧的缓冲集合中的其他缓冲区。 分散性(Spread)：在分布式环境中，终端有可能看不到所有的缓冲。不同的终端可能通过Hash的过程将同样的缓冲内容应设在不同的缓冲中。应尽量降低分散性。 负载(Load)：实际上是另一个角度看待分散性。对于一个特定的缓冲区而言，可能被不同的用户映射到不同的内容。应尽量降低缓冲的负荷。    Hash一致性算法：
+ 是一个2^32个点组成的Hash圆环 按照 顺时针方向 进行组织 将数据 Key 使用相同的 hash() 计算出Hash值，并确定在此 Hash环 上的位置，从此位置按照 顺时针方式 寻找，碰到的第一台节点将是定位到的节点。    Hash环发生数据倾斜
+ 在服务节点太少的情况，数据容易发生倾斜 解决办法：  增加虚拟节点，形成均匀的Hash环避免数据倾斜。 通过 Hash(&ldquo;${Node1}#1&rdquo;) 的方式构造成虚拟节点。      2." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/algorithm/ext/3_xueqiu_company_2021_01_09/" />
 <meta property="article:published_time" content="2021-01-08T01:13:47+08:00" />
 <meta property="article:modified_time" content="2021-01-08T01:13:47+08:00" />
-<meta itemprop="name" content="[ Interview ] 3.面试之XueQiu">
-<meta itemprop="description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 ">
+<meta itemprop="name" content="[ Interview ] 3.面试">
+<meta itemprop="description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 BD 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：
+ 平衡性(Balance)：指哈希的结果能够尽可能分不到所有的缓冲中，这样可以使得所有缓冲空间都得到利用。 单调性(Monotonicity)：单调性是指如果已经有一些内容通过Hash算法分配到了缓冲中，又有新的缓冲加入到系统中，Hash的结果应该能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去，而不会被映射到旧的缓冲集合中的其他缓冲区。 分散性(Spread)：在分布式环境中，终端有可能看不到所有的缓冲。不同的终端可能通过Hash的过程将同样的缓冲内容应设在不同的缓冲中。应尽量降低分散性。 负载(Load)：实际上是另一个角度看待分散性。对于一个特定的缓冲区而言，可能被不同的用户映射到不同的内容。应尽量降低缓冲的负荷。    Hash一致性算法：
+ 是一个2^32个点组成的Hash圆环 按照 顺时针方向 进行组织 将数据 Key 使用相同的 hash() 计算出Hash值，并确定在此 Hash环 上的位置，从此位置按照 顺时针方式 寻找，碰到的第一台节点将是定位到的节点。    Hash环发生数据倾斜
+ 在服务节点太少的情况，数据容易发生倾斜 解决办法：  增加虚拟节点，形成均匀的Hash环避免数据倾斜。 通过 Hash(&ldquo;${Node1}#1&rdquo;) 的方式构造成虚拟节点。      2.">
 <meta itemprop="datePublished" content="2021-01-08T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-08T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="7">
+<meta itemprop="wordCount" content="137">
 
 
 
 <meta itemprop="keywords" content="interview,面试,algorithm," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[ Interview ] 3.面试之XueQiu"/>
-<meta name="twitter:description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 "/>
+<meta name="twitter:title" content="[ Interview ] 3.面试"/>
+<meta name="twitter:description" content="面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 BD 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：
+ 平衡性(Balance)：指哈希的结果能够尽可能分不到所有的缓冲中，这样可以使得所有缓冲空间都得到利用。 单调性(Monotonicity)：单调性是指如果已经有一些内容通过Hash算法分配到了缓冲中，又有新的缓冲加入到系统中，Hash的结果应该能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去，而不会被映射到旧的缓冲集合中的其他缓冲区。 分散性(Spread)：在分布式环境中，终端有可能看不到所有的缓冲。不同的终端可能通过Hash的过程将同样的缓冲内容应设在不同的缓冲中。应尽量降低分散性。 负载(Load)：实际上是另一个角度看待分散性。对于一个特定的缓冲区而言，可能被不同的用户映射到不同的内容。应尽量降低缓冲的负荷。    Hash一致性算法：
+ 是一个2^32个点组成的Hash圆环 按照 顺时针方向 进行组织 将数据 Key 使用相同的 hash() 计算出Hash值，并确定在此 Hash环 上的位置，从此位置按照 顺时针方式 寻找，碰到的第一台节点将是定位到的节点。    Hash环发生数据倾斜
+ 在服务节点太少的情况，数据容易发生倾斜 解决办法：  增加虚拟节点，形成均匀的Hash环避免数据倾斜。 通过 Hash(&ldquo;${Node1}#1&rdquo;) 的方式构造成虚拟节点。      2."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -350,7 +374,7 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">[ Interview ] 3.面试之XueQiu</h1>
+      <h1 class="post-title">[ Interview ] 3.面试</h1>
       
       <div class="post-meta">
         <time datetime="2021-01-08" class="post-time">
@@ -360,7 +384,7 @@
             <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
             
           </div>
-        <span class="more-meta"> 约 7 字 </span>
+        <span class="more-meta"> 约 137 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -368,7 +392,7 @@
 
         
         
-          <span id="/post/algorithm/ext/3_xueqiu_company_2021_01_09/" class="leancloud_visitors" data-flag-title="[ Interview ] 3.面试之XueQiu">
+          <span id="/post/algorithm/ext/3_xueqiu_company_2021_01_09/" class="leancloud_visitors" data-flag-title="[ Interview ] 3.面试">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -561,19 +585,251 @@
                     
                     <ul class="nav">
                     
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#bd">
+                            BD
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
                     <ul class="nav">
                     
                     <ul class="nav">
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#5tcpip%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b%e5%9b%9b%e6%ac%a1%e6%8f%a1%e6%89%8b">
-                            5.TCP/IP三次握手、四次握手
+                            <a class="nav-link text-left" href="#1-hash%e6%9c%80%e7%bb%88%e4%b8%80%e8%87%b4%e6%80%a7%e7%ae%97%e6%b3%95">
+                            1. Hash最终一致性算法
                             </a>
                         </li>
                     
                     
                     </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#2-tcp%e4%b8%8eudp%e7%9a%84%e5%8c%ba%e5%88%ab">
+                            2. TCP与UDP的区别
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3-tcp%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e7%bd%91%e7%bb%9c%e5%ae%89%e5%85%a8%e7%9a%84">
+                            3. TCP如何保证网络安全的
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#4-tcp%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b">
+                            4. TCP三次握手
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#5-kubernetes%e4%b8%adpod%e9%97%b4%e5%a6%82%e4%bd%95%e9%80%9a%e8%ae%af%e7%9a%84">
+                            5. Kubernetes中Pod间如何通讯的
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#6-mysql%e7%b4%a2%e5%bc%95">
+                            6. Mysql索引
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#7-mysql-b-tree%e7%b4%a2%e5%bc%95%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86">
+                            7. Mysql B&#43; Tree索引实现原理
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#8-zookeeper%e5%9c%a8kafka%e4%b8%ad%e7%9a%84%e4%bd%9c%e7%94%a8">
+                            8. Zookeeper在Kafka中的作用
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#9-%e6%9c%89%e6%b2%a1%e6%9c%89%e5%81%9a%e8%bf%87dockerimage%e7%b2%be%e7%ae%80">
+                            9. 有没有做过DockerImage精简
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#10-%e6%9c%8d%e5%8a%a1%e6%98%af%e5%a6%82%e4%bd%95%e5%9c%a8%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%bf%90%e8%a1%8c%e7%9a%84%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e5%8f%91%e5%b8%83dockerimage%e5%8f%91%e5%b8%83%e7%9a%84">
+                            10. 服务是如何在服务器运行的，如何实现发布DockerImage发布的
+                            </a>
+                        </li>
+                    
                     
                     </ul>
                     
@@ -598,7 +854,170 @@
 <h3 id="3netty粘包拆包">3.Netty粘包/拆包</h3>
 <h3 id="3kubernetes工作原理">3.Kubernetes工作原理</h3>
 <h3 id="4快排实现原理">4.快排实现原理</h3>
-<h3 id="5tcpip三次握手四次握手">5.TCP/IP三次握手、四次握手</h3>
+<h1 id="bd">BD</h1>
+<h2 id="1-hash最终一致性算法">1. Hash最终一致性算法</h2>
+<ul>
+<li>
+<p><strong>算法目标：</strong></p>
+<p>当<code>K</code>个Key的请求时，后台增减节点，只会引起 <strong>K/N</strong> 的 Key发生重新映射。</p>
+<ul>
+<li>在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。</li>
+<li>在后台节点增减时，此算法尽量将 <strong>K</strong> 个Key映射到之前相同的节点上。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hash存在问题：</strong></p>
+<ul>
+<li>假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 <strong><code>模运算(hash(key)%N)</code></strong> 来讲请求分发在不同的节点上。</li>
+<li>对前台请求于<code>后台无状态服务节点</code>不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。</li>
+<li>但在对于<code>分布式缓存</code>，或者<code>分布式数据</code>这样<code>有状态服务</code>的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：
+<ul>
+<li>针对分布式缓存而言，均发生cache miss；</li>
+<li>针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>判断标准：</strong></p>
+<ul>
+<li>平衡性(Balance)：指哈希的结果能够尽可能分不到所有的缓冲中，这样可以使得所有缓冲空间都得到利用。</li>
+<li>单调性(Monotonicity)：单调性是指如果已经有一些内容通过Hash算法分配到了缓冲中，又有新的缓冲加入到系统中，Hash的结果应该能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去，而不会被映射到旧的缓冲集合中的其他缓冲区。</li>
+<li>分散性(Spread)：在分布式环境中，终端有可能看不到所有的缓冲。不同的终端可能通过Hash的过程将同样的缓冲内容应设在不同的缓冲中。<code>应尽量降低分散性</code>。</li>
+<li>负载(Load)：实际上是另一个角度看待分散性。对于一个特定的缓冲区而言，可能被不同的用户映射到不同的内容。<code>应尽量降低缓冲的负荷</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hash一致性算法：</strong></p>
+<ul>
+<li>是一个2^32个点组成的Hash圆环</li>
+<li>按照 <strong>顺时针方向</strong> 进行组织</li>
+<li>将数据 <strong>Key</strong> 使用相同的 <code>hash()</code> 计算出Hash值，并确定在此 Hash环 上的位置，从此位置按照 <strong>顺时针方式</strong> 寻找，碰到的第一台节点将是定位到的节点。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hash环发生数据倾斜</strong></p>
+<ul>
+<li>在服务节点太少的情况，数据容易发生倾斜</li>
+<li>解决办法：
+<ul>
+<li>增加虚拟节点，形成均匀的Hash环避免数据倾斜。</li>
+<li>通过 <strong>Hash(&ldquo;${Node1}#1&rdquo;)</strong> 的方式构造成虚拟节点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-tcp与udp的区别">2. TCP与UDP的区别</h2>
+<ul>
+<li>TCP
+<ul>
+<li>面向有连接
+<ul>
+<li>发送数据前两端必须进行连接。因 <strong>三次握手</strong> 建立连接，使得数据传输更加可靠</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>仅支持单播方式</li>
+<li>面向字节流
+<ul>
+<li>不保留报文边界，通过字节流的方式进行传输</li>
+</ul>
+</li>
+<li>可靠传输
+<ul>
+<li>为保证可靠传输，每个包都拥有序号，同时保证包传输的顺序性也保证包的完整性。</li>
+<li>接收端接收到数据后需要返回确认帧，如果在规定时延内发送端未收到确认帧，将视为丢包进行重传。</li>
+</ul>
+</li>
+<li>拥塞机制
+<ul>
+<li>在网络出现拥塞的情况下，TCP可以减小向网络注入数据的速率和数量，缓解拥塞</li>
+</ul>
+</li>
+<li>提供全双工通信
+<ul>
+<li>通讯双方的应用程序在任何时候都能发送数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>UDP
+<ul>
+<li>面向无连接</li>
+<li>支持单播、多播、广播方式</li>
+<li>面向报文
+<ul>
+<li>UDP对应用成交付的报文不合并不拆分，而是保留报文的边界，应用程序必须要控制合适的报文大小。</li>
+</ul>
+</li>
+<li>不可靠性
+<ul>
+<li>通信不需要建立连接。想发就发，并且不关心对方接收到的数据是否正确无误</li>
+<li>没有拥塞控制，可能出现丢包情况。</li>
+</ul>
+</li>
+<li>头部数据小，数据传输高效。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-tcp如何保证网络安全的">3. TCP如何保证网络安全的</h2>
+<blockquote>
+<p><code>  即TCP的特性</code></p>
+</blockquote>
+<h2 id="4-tcp三次握手">4. TCP三次握手</h2>
+<ul>
+<li>第一次握手
+<ul>
+<li>客户端 向 服务端 发出连接请求的报文，请求发送成功后，客户端进入 <code>SYN-SENT</code> 状态</li>
+</ul>
+</li>
+<li>第二次握手
+<ul>
+<li>服务端 收到 客户端 连接请求的报文后，如同意连接，发出一个应答，发送完成后进入 <code>SYN-RECEIVED</code> 状态</li>
+</ul>
+</li>
+<li>第三次握手
+<ul>
+<li>当 客户端 收到连接同意的应答后，需向服务端发送一个确认报文。发送完成后，客户端进入 <code>ESTABLISHED</code> 状态， 服务端 收到这个确认应答后也将进入 <code>ESTABLISHED</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="5-kubernetes中pod间如何通讯的">5. Kubernetes中Pod间如何通讯的</h2>
+<blockquote>
+<p>通过 <code>CNI</code>(Container Network Interface) 进行网络通讯。</p>
+</blockquote>
+<h2 id="6-mysql索引">6. Mysql索引</h2>
+<blockquote>
+<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index">Mysql索引</a></p>
+</blockquote>
+<h2 id="7-mysql-b-tree索引实现原理">7. Mysql B+ Tree索引实现原理</h2>
+<h2 id="8-zookeeper在kafka中的作用">8. Zookeeper在Kafka中的作用</h2>
+<ul>
+<li>
+<p>Broker注册</p>
+<p>分布式下的Broker之间相互独立，需要一个注册中心将其Broker集群管理起来，Zookeeper将会对Broker集群列表进行记录。</p>
+</li>
+<li>
+<p>Topic注册</p>
+<p>同一个Topic的消息会被分成多个分区分散在不同的Broker，Zookeeper将会维护分区信息以及与broker之间对应关系。</p>
+</li>
+<li>
+<p>负责Producer、Consumer负载均衡</p>
+<p>Zookeeper通过负载均衡，协助Producer、Consumer将消息合理的发送或消费到指定的Broker。</p>
+</li>
+<li>
+<p>分区与Consumer的关系</p>
+<p>每一个消费者一旦确定一个消息分区的消费能力，需要将其对应信息写入至Zookeeper对应消息分区的临时节点上。</p>
+</li>
+<li>
+<p>记录Consumer消费进度Offset</p>
+<p>在Consumer对指定消息分区进行消费的过程中，会定时将分区消息的Offset记录到Zookeeper上。以便此消费者重启或变更其他消费者消费时再次继续进行消费。</p>
+</li>
+</ul>
+<h2 id="9-有没有做过dockerimage精简">9. 有没有做过DockerImage精简</h2>
+<h2 id="10-服务是如何在服务器运行的如何实现发布dockerimage发布的">10. 服务是如何在服务器运行的，如何实现发布DockerImage发布的</h2>
 
     </div>
 

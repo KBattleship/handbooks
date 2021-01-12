@@ -437,7 +437,7 @@
   <header class="post-header">
     <h1 class="post-title">
       
-      <a class="post-link" href="/post/algorithm/ext/3_xueqiu_company_2021_01_09/">[ Interview ] 3.面试之XueQiu</a>
+      <a class="post-link" href="/post/algorithm/ext/3_xueqiu_company_2021_01_09/">[ Interview ] 3.面试</a>
     </h1>
     
     <div class="post-meta">
@@ -448,12 +448,12 @@
           <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
           
         </div>
-      <span class="more-meta"> 约 7 字 </span>
+      <span class="more-meta"> 约 137 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
       
-        <span id="/post/algorithm/ext/3_xueqiu_company_2021_01_09/" class="leancloud_visitors" data-flag-title="[ Interview ] 3.面试之XueQiu">
+        <span id="/post/algorithm/ext/3_xueqiu_company_2021_01_09/" class="leancloud_visitors" data-flag-title="[ Interview ] 3.面试">
           <span class="post-meta-item-text"> | 阅读 </span>
           <span class="leancloud-visitors-count"></span>
         </span>
@@ -464,7 +464,13 @@
   <div class="post-content">
     
     <div class="post-summary">
-      面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 5.TCP/IP三次握手、四次握手 
+      面试之XueQiu 1.JVM垃圾回收机制 2.什么是Netty？ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 BD 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：
+ 平衡性(Balance)：指哈希的结果能够尽可能分不到所有的缓冲中，这样可以使得所有缓冲空间都得到利用。 单调性(Monotonicity)：单调性是指如果已经有一些内容通过Hash算法分配到了缓冲中，又有新的缓冲加入到系统中，Hash的结果应该能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去，而不会被映射到旧的缓冲集合中的其他缓冲区。 分散性(Spread)：在分布式环境中，终端有可能看不到所有的缓冲。不同的终端可能通过Hash的过程将同样的缓冲内容应设在不同的缓冲中。应尽量降低分散性。 负载(Load)：实际上是另一个角度看待分散性。对于一个特定的缓冲区而言，可能被不同的用户映射到不同的内容。应尽量降低缓冲的负荷。    Hash一致性算法：
+ 是一个2^32个点组成的Hash圆环 按照 顺时针方向 进行组织 将数据 Key 使用相同的 hash() 计算出Hash值，并确定在此 Hash环 上的位置，从此位置按照 顺时针方式 寻找，碰到的第一台节点将是定位到的节点。    Hash环发生数据倾斜
+ 在服务节点太少的情况，数据容易发生倾斜 解决办法：  增加虚拟节点，形成均匀的Hash环避免数据倾斜。 通过 Hash(&ldquo;${Node1}#1&rdquo;) 的方式构造成虚拟节点。      2.
     </div>
     <div class="read-more">
       <a href="/post/algorithm/ext/3_xueqiu_company_2021_01_09/" class="read-more-link">阅读全文</a>
