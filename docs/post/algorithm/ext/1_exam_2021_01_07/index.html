@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>[ Java ] 4-2.JUC之AQS - Quinn</title>
+  <title>[ Interview ] 1. 面试之清单 - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,10 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="JUC之AQS 1.基础知识 1_1. AQS原理 AQS(AbstractQueuedSynchronizer),是java.util.concurrent.locks下的一个普通类。用作构建 锁 和 同步器 框架。例如基于AQS构建的有：ReentrantLock, Semaphore, ReentrantReadWriteLock, SynchronousQueue, FutureTask 等等。
-核心思想：
- 如果被请求的共享资源处于 空闲状态 ，则将当前请求资源的线程设置为 有效的工作线程 ，并且将共享资源设置为 锁定状态。 如果被请求的共享资源处于 占用状态 ，则需要一套 线程阻塞等待 以及 被唤醒时锁分配 的流程机制。 AQS 通过 CLH (Craig, Landin, Hagersten) 队列锁实现：将暂时获取不到锁的线程加入至队列中。 AQS使用一个 int 成员变量来标识同步状态，通过内置的 FIFO 队列完成获取资源线程的排队工作，使用 CAS(compare and swap) 对改状态进行原子操作实现对其值的更改。  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  // 共享变量，使用volatile修饰符保证线程可见性 private volatile int state; /** 状态信息通过protected修饰符修饰 getState(), setState(), compareAndSetState()进行操作 */ // 返回同步状态的当前值 protected final int getState(){ return state; } // 设置同步状态当前值 protected final void setState(int newState){ this." />
-<meta name="keywords" content="JUC" />
+  <meta name="description" content="面试之MateAPP  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合 2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池拒绝策略  3. JVM 二、 Mysql  讲讲Mysql索引 Mysql索引失效的几种情况 Mysql强制索引 分库分表如何实现的 分库分表中间件  三、 Redis  什么是击穿？什么是雪崩？ Redis支持的几种数据结构 Redis跳表  四、 Spring  SpringIOC SpringAOP SpringBoot循环依赖 SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？ JDK动态代理和CGLIB动态代理的区别 SpringAOP常用的切入点 SpringIOC常用注解。 @Autowired与@Resource区别 @Qualifier与@Autowired Springboot上下文切换  五、 分布式 六、 开源框架 1. Netty 2. Dubbo 3. Zookeeper 4. Kafka 5. 七、 设计模式 1." />
+<meta name="keywords" content="interview" />
 
 
 
@@ -37,7 +35,7 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://touch-star.com/post/coding/java/base/4_thread/4_2_aqs/" />
+<link rel="canonical" href="https://touch-star.com/post/algorithm/ext/1_exam_2021_01_07/" />
 
 
 
@@ -61,29 +59,23 @@
 
 
 
-<meta property="og:title" content="[ Java ] 4-2.JUC之AQS" />
-<meta property="og:description" content="JUC之AQS 1.基础知识 1_1. AQS原理 AQS(AbstractQueuedSynchronizer),是java.util.concurrent.locks下的一个普通类。用作构建 锁 和 同步器 框架。例如基于AQS构建的有：ReentrantLock, Semaphore, ReentrantReadWriteLock, SynchronousQueue, FutureTask 等等。
-核心思想：
- 如果被请求的共享资源处于 空闲状态 ，则将当前请求资源的线程设置为 有效的工作线程 ，并且将共享资源设置为 锁定状态。 如果被请求的共享资源处于 占用状态 ，则需要一套 线程阻塞等待 以及 被唤醒时锁分配 的流程机制。 AQS 通过 CLH (Craig, Landin, Hagersten) 队列锁实现：将暂时获取不到锁的线程加入至队列中。 AQS使用一个 int 成员变量来标识同步状态，通过内置的 FIFO 队列完成获取资源线程的排队工作，使用 CAS(compare and swap) 对改状态进行原子操作实现对其值的更改。  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  // 共享变量，使用volatile修饰符保证线程可见性 private volatile int state; /** 状态信息通过protected修饰符修饰 getState(), setState(), compareAndSetState()进行操作 */ // 返回同步状态的当前值 protected final int getState(){ return state; } // 设置同步状态当前值 protected final void setState(int newState){ this." />
+<meta property="og:title" content="[ Interview ] 1. 面试之清单" />
+<meta property="og:description" content="面试之MateAPP  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合 2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池拒绝策略  3. JVM 二、 Mysql  讲讲Mysql索引 Mysql索引失效的几种情况 Mysql强制索引 分库分表如何实现的 分库分表中间件  三、 Redis  什么是击穿？什么是雪崩？ Redis支持的几种数据结构 Redis跳表  四、 Spring  SpringIOC SpringAOP SpringBoot循环依赖 SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？ JDK动态代理和CGLIB动态代理的区别 SpringAOP常用的切入点 SpringIOC常用注解。 @Autowired与@Resource区别 @Qualifier与@Autowired Springboot上下文切换  五、 分布式 六、 开源框架 1. Netty 2. Dubbo 3. Zookeeper 4. Kafka 5. 七、 设计模式 1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://touch-star.com/post/coding/java/base/4_thread/4_2_aqs/" />
-<meta property="article:published_time" content="2021-01-10T11:10:47+08:00" />
-<meta property="article:modified_time" content="2021-01-10T11:10:47+08:00" />
-<meta itemprop="name" content="[ Java ] 4-2.JUC之AQS">
-<meta itemprop="description" content="JUC之AQS 1.基础知识 1_1. AQS原理 AQS(AbstractQueuedSynchronizer),是java.util.concurrent.locks下的一个普通类。用作构建 锁 和 同步器 框架。例如基于AQS构建的有：ReentrantLock, Semaphore, ReentrantReadWriteLock, SynchronousQueue, FutureTask 等等。
-核心思想：
- 如果被请求的共享资源处于 空闲状态 ，则将当前请求资源的线程设置为 有效的工作线程 ，并且将共享资源设置为 锁定状态。 如果被请求的共享资源处于 占用状态 ，则需要一套 线程阻塞等待 以及 被唤醒时锁分配 的流程机制。 AQS 通过 CLH (Craig, Landin, Hagersten) 队列锁实现：将暂时获取不到锁的线程加入至队列中。 AQS使用一个 int 成员变量来标识同步状态，通过内置的 FIFO 队列完成获取资源线程的排队工作，使用 CAS(compare and swap) 对改状态进行原子操作实现对其值的更改。  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  // 共享变量，使用volatile修饰符保证线程可见性 private volatile int state; /** 状态信息通过protected修饰符修饰 getState(), setState(), compareAndSetState()进行操作 */ // 返回同步状态的当前值 protected final int getState(){ return state; } // 设置同步状态当前值 protected final void setState(int newState){ this.">
-<meta itemprop="datePublished" content="2021-01-10T11:10:47&#43;08:00" />
-<meta itemprop="dateModified" content="2021-01-10T11:10:47&#43;08:00" />
-<meta itemprop="wordCount" content="115">
+<meta property="og:url" content="https://touch-star.com/post/algorithm/ext/1_exam_2021_01_07/" />
+<meta property="article:published_time" content="2021-01-07T01:13:47+08:00" />
+<meta property="article:modified_time" content="2021-01-07T01:13:47+08:00" />
+<meta itemprop="name" content="[ Interview ] 1. 面试之清单">
+<meta itemprop="description" content="面试之MateAPP  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合 2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池拒绝策略  3. JVM 二、 Mysql  讲讲Mysql索引 Mysql索引失效的几种情况 Mysql强制索引 分库分表如何实现的 分库分表中间件  三、 Redis  什么是击穿？什么是雪崩？ Redis支持的几种数据结构 Redis跳表  四、 Spring  SpringIOC SpringAOP SpringBoot循环依赖 SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？ JDK动态代理和CGLIB动态代理的区别 SpringAOP常用的切入点 SpringIOC常用注解。 @Autowired与@Resource区别 @Qualifier与@Autowired Springboot上下文切换  五、 分布式 六、 开源框架 1. Netty 2. Dubbo 3. Zookeeper 4. Kafka 5. 七、 设计模式 1.">
+<meta itemprop="datePublished" content="2021-01-07T01:13:47&#43;08:00" />
+<meta itemprop="dateModified" content="2021-01-07T01:13:47&#43;08:00" />
+<meta itemprop="wordCount" content="63">
 
 
 
-<meta itemprop="keywords" content="java,JUC,Lock," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[ Java ] 4-2.JUC之AQS"/>
-<meta name="twitter:description" content="JUC之AQS 1.基础知识 1_1. AQS原理 AQS(AbstractQueuedSynchronizer),是java.util.concurrent.locks下的一个普通类。用作构建 锁 和 同步器 框架。例如基于AQS构建的有：ReentrantLock, Semaphore, ReentrantReadWriteLock, SynchronousQueue, FutureTask 等等。
-核心思想：
- 如果被请求的共享资源处于 空闲状态 ，则将当前请求资源的线程设置为 有效的工作线程 ，并且将共享资源设置为 锁定状态。 如果被请求的共享资源处于 占用状态 ，则需要一套 线程阻塞等待 以及 被唤醒时锁分配 的流程机制。 AQS 通过 CLH (Craig, Landin, Hagersten) 队列锁实现：将暂时获取不到锁的线程加入至队列中。 AQS使用一个 int 成员变量来标识同步状态，通过内置的 FIFO 队列完成获取资源线程的排队工作，使用 CAS(compare and swap) 对改状态进行原子操作实现对其值的更改。  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19  // 共享变量，使用volatile修饰符保证线程可见性 private volatile int state; /** 状态信息通过protected修饰符修饰 getState(), setState(), compareAndSetState()进行操作 */ // 返回同步状态的当前值 protected final int getState(){ return state; } // 设置同步状态当前值 protected final void setState(int newState){ this."/>
+<meta itemprop="keywords" content="interview,笔试,algorithm," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ Interview ] 1. 面试之清单"/>
+<meta name="twitter:description" content="面试之MateAPP  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合 2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池拒绝策略  3. JVM 二、 Mysql  讲讲Mysql索引 Mysql索引失效的几种情况 Mysql强制索引 分库分表如何实现的 分库分表中间件  三、 Redis  什么是击穿？什么是雪崩？ Redis支持的几种数据结构 Redis跳表  四、 Spring  SpringIOC SpringAOP SpringBoot循环依赖 SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？ JDK动态代理和CGLIB动态代理的区别 SpringAOP常用的切入点 SpringIOC常用注解。 @Autowired与@Resource区别 @Qualifier与@Autowired Springboot上下文切换  五、 分布式 六、 开源框架 1. Netty 2. Dubbo 3. Zookeeper 4. Kafka 5. 七、 设计模式 1."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -358,17 +350,17 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">[ Java ] 4-2.JUC之AQS</h1>
+      <h1 class="post-title">[ Interview ] 1. 面试之清单</h1>
       
       <div class="post-meta">
-        <time datetime="2021-01-10" class="post-time">
-          2021-01-10
+        <time datetime="2021-01-07" class="post-time">
+          2021-01-07
         </time>
         <div class="post-category">
-            <a href="https://touch-star.com/categories/java/"> Java </a>
+            <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
             
           </div>
-        <span class="more-meta"> 约 115 字 </span>
+        <span class="more-meta"> 约 63 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -376,7 +368,7 @@
 
         
         
-          <span id="/post/coding/java/base/4_thread/4_2_aqs/" class="leancloud_visitors" data-flag-title="[ Java ] 4-2.JUC之AQS">
+          <span id="/post/algorithm/ext/1_exam_2021_01_07/" class="leancloud_visitors" data-flag-title="[ Interview ] 1. 面试之清单">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -411,8 +403,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#juc%e4%b9%8baqs">
-                            JUC之AQS
+                            <a class="nav-link text-left" href="#%e9%9d%a2%e8%af%95%e4%b9%8bmateapp">
+                            面试之MateAPP
                             </a>
                         </li>
                     
@@ -433,39 +425,11 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#1%e5%9f%ba%e7%a1%80%e7%9f%a5%e8%af%86">
-                            1.基础知识
+                            <a class="nav-link text-left" href="#%e4%b8%80-java">
+                            一、 Java
                             </a>
                         </li>
                     
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#1_1-aqs%e5%8e%9f%e7%90%86">
-                            1_1. AQS原理
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
                     
                     </ul>
                     
@@ -487,8 +451,64 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#1_2-aqs%e5%af%b9%e8%b5%84%e6%ba%90%e7%9a%84%e5%85%b1%e4%ba%ab%e6%96%b9%e5%bc%8f">
-                            1_2. AQS对资源的共享方式
+                            <a class="nav-link text-left" href="#1-%e9%9b%86%e5%90%88">
+                            1. 集合
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#2-%e5%a4%9a%e7%ba%bf%e7%a8%8b">
+                            2. 多线程
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3-jvm">
+                            3. JVM
                             </a>
                         </li>
                     
@@ -513,11 +533,327 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#2%e7%9b%b8%e5%85%b3%e7%bb%84%e4%bb%b6">
-                            2.相关组件
+                            <a class="nav-link text-left" href="#%e4%ba%8c-mysql">
+                            二、 Mysql
                             </a>
                         </li>
                     
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e4%b8%89-redis">
+                            三、 Redis
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e5%9b%9b-spring">
+                            四、 Spring
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e4%ba%94-%e5%88%86%e5%b8%83%e5%bc%8f">
+                            五、 分布式
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e5%85%ad-%e5%bc%80%e6%ba%90%e6%a1%86%e6%9e%b6">
+                            六、 开源框架
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#1-netty">
+                            1. Netty
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#2-dubbo">
+                            2. Dubbo
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3-zookeeper">
+                            3. Zookeeper
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#4-kafka">
+                            4. Kafka
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#5">
+                            5.
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e4%b8%83-%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f">
+                            七、 设计模式
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#1%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f">
+                            1.观察者模式
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#2%e5%8d%95%e4%be%8b%e6%a8%a1%e5%bc%8f">
+                            2.单例模式
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
                     
                     </ul>
                     
@@ -536,70 +872,59 @@
 
     
     <div class="post-content">
-      <h1 id="juc之aqs">JUC之AQS</h1>
-<h2 id="1基础知识">1.基础知识</h2>
-<h3 id="1_1-aqs原理">1_1. AQS原理</h3>
-<p><code>AQS(AbstractQueuedSynchronizer)</code>,是<code>java.util.concurrent.locks</code>下的一个普通类。用作构建 <strong>锁</strong> 和 <strong>同步器</strong> 框架。例如基于AQS构建的有：<strong>ReentrantLock</strong>, <strong>Semaphore</strong>, <strong>ReentrantReadWriteLock</strong>, <strong>SynchronousQueue</strong>, <strong>FutureTask</strong> 等等。</p>
-<p><strong>核心思想：</strong></p>
-<ol>
-<li>如果被请求的共享资源处于 <strong>空闲状态</strong> ，则将当前请求资源的线程设置为 <strong>有效的工作线程</strong> ，并且将共享资源设置为 <strong>锁定状态</strong>。</li>
-<li>如果被请求的共享资源处于 <strong>占用状态</strong> ，则需要一套 <strong>线程阻塞等待</strong> 以及 <strong>被唤醒时锁分配</strong> 的流程机制。 <code>AQS</code> 通过 <strong>CLH</strong> <em>(Craig, Landin, Hagersten)</em> 队列锁实现：<strong>将暂时获取不到锁的线程加入至队列中</strong>。</li>
-<li>AQS使用一个 <strong>int</strong> 成员变量来标识同步状态，通过内置的 <strong>FIFO</strong> 队列完成获取资源线程的排队工作，使用 <strong>CAS(compare and swap)</strong> 对改状态进行原子操作实现对其值的更改。</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 共享变量，使用volatile修饰符保证线程可见性
-</span><span class="c1"></span><span class="kd">private</span> <span class="kd">volatile</span> <span class="kt">int</span> <span class="n">state</span><span class="o">;</span>
-
-<span class="cm">/** 状态信息通过protected修饰符修饰 getState(), setState(), compareAndSetState()进行操作 */</span>
-
-<span class="c1">// 返回同步状态的当前值
-</span><span class="c1"></span><span class="kd">protected</span> <span class="kd">final</span> <span class="kt">int</span> <span class="nf">getState</span><span class="o">(){</span>
-    <span class="k">return</span> <span class="n">state</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="c1">// 设置同步状态当前值
-</span><span class="c1"></span><span class="kd">protected</span> <span class="kd">final</span> <span class="kt">void</span> <span class="nf">setState</span><span class="o">(</span><span class="kt">int</span> <span class="n">newState</span><span class="o">){</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">state</span> <span class="o">=</span> <span class="n">newState</span><span class="o">;</span>
-<span class="o">}</span>
-
-<span class="c1">// 原子操作(CAS操作)将同步状态值设置为给定值update，如果当前同步状态值等于expect(期望值)
-</span><span class="c1"></span><span class="kd">protected</span> <span class="kd">final</span> <span class="kt">boolean</span> <span class="nf">compareAndSetState</span><span class="o">(</span><span class="kt">int</span> <span class="n">expect</span><span class="o">,</span> <span class="kt">int</span> <span class="n">update</span><span class="o">){</span>
-    <span class="k">return</span> <span class="n">unsafe</span><span class="o">.</span><span class="na">compareAndSwapInt</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">stateOffset</span><span class="o">,</span> <span class="n">expect</span><span class="o">,</span> <span class="n">update</span><span class="o">);</span>
-<span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="1_2-aqs对资源的共享方式">1_2. AQS对资源的共享方式</h3>
+      <h1 id="面试之mateapp">面试之MateAPP</h1>
 <ul>
-<li>
-<p>Exclusive(独占)</p>
-</li>
-<li>
-<p>Share(共享)</p>
-</li>
+<li><em><strong>加粗加斜</strong></em> : <code>为本人面试所遇到重复出现的点儿</code></li>
+<li><strong>加粗</strong> : <code>为本人面试所遇到的点儿</code></li>
+<li>正常 : <code>为本人面试刷的面经</code></li>
 </ul>
-<h2 id="2相关组件">2.相关组件</h2>
+<h2 id="一-java">一、 Java</h2>
+<h3 id="1-集合">1. 集合</h3>
+<h3 id="2-多线程">2. 多线程</h3>
+<ul>
+<li><a href=""><em><strong>synchronized锁以及锁升级</strong></em></a></li>
+<li><a href=""><em><strong>线程的几种状态以及如何转化的</strong></em></a></li>
+<li><a href=""><em><strong>线程池几个重要参数</strong></em></a></li>
+<li><a href=""><em><strong>线程池拒绝策略</strong></em></a></li>
+</ul>
+<h3 id="3-jvm">3. JVM</h3>
+<h2 id="二-mysql">二、 Mysql</h2>
+<ul>
+<li><a href=""><em><strong>讲讲Mysql索引</strong></em></a></li>
+<li><a href=""><em><strong>Mysql索引失效的几种情况</strong></em></a></li>
+<li><a href=""><em><strong>Mysql强制索引</strong></em></a></li>
+<li><a href=""><em><strong>分库分表如何实现的</strong></em></a></li>
+<li><a href=""><em><strong>分库分表中间件</strong></em></a></li>
+</ul>
+<h2 id="三-redis">三、 Redis</h2>
+<ul>
+<li><a href=""><em><strong>什么是击穿？什么是雪崩？</strong></em></a></li>
+<li><a href=""><em><strong>Redis支持的几种数据结构</strong></em></a></li>
+<li><a href=""><em><strong>Redis跳表</strong></em></a></li>
+</ul>
+<h2 id="四-spring">四、 Spring</h2>
+<ul>
+<li><a href=""><em><strong>SpringIOC</strong></em></a></li>
+<li><a href=""><em><strong>SpringAOP</strong></em></a></li>
+<li><a href=""><em><strong>SpringBoot循环依赖</strong></em></a></li>
+<li><a href=""><em><strong>SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？</strong></em></a></li>
+<li><a href=""><em><strong>JDK动态代理和CGLIB动态代理的区别</strong></em></a></li>
+<li><a href=""><em><strong>SpringAOP常用的切入点</strong></em></a></li>
+<li><a href=""><em><strong>SpringIOC常用注解。</strong></em></a></li>
+<li><a href=""><em><strong>@Autowired与@Resource区别</strong></em></a></li>
+<li><a href=""><em><strong>@Qualifier与@Autowired</strong></em></a></li>
+<li><a href=""><em><strong>Springboot上下文切换</strong></em></a></li>
+</ul>
+<h2 id="五-分布式">五、 分布式</h2>
+<h2 id="六-开源框架">六、 开源框架</h2>
+<h3 id="1-netty">1. Netty</h3>
+<h3 id="2-dubbo">2. Dubbo</h3>
+<h3 id="3-zookeeper">3. Zookeeper</h3>
+<h3 id="4-kafka">4. Kafka</h3>
+<h3 id="5">5.</h3>
+<h2 id="七-设计模式">七、 设计模式</h2>
+<h3 id="1观察者模式">1.观察者模式</h3>
+<h3 id="2单例模式">2.单例模式</h3>
 
     </div>
 
@@ -612,18 +937,31 @@
 
     <footer class="post-footer">
       <div class="post-tags">
-          <a href="https://touch-star.com/tags/java/">java</a>
-          <a href="https://touch-star.com/tags/juc/">JUC</a>
-          <a href="https://touch-star.com/tags/lock/">Lock</a>
+          <a href="https://touch-star.com/tags/interview/">interview</a>
+          <a href="https://touch-star.com/tags/%E7%AC%94%E8%AF%95/">笔试</a>
+          <a href="https://touch-star.com/tags/algorithm/">algorithm</a>
           
         </div>
 
       
       <nav class="post-nav">
         
+          <a class="prev" href="/post/coding/java/spring/spring/1_spring_ioc/">
+            
+            <i class="iconfont">
+              <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="18" height="18">
+  <path d="M691.908486 949.511495l75.369571-89.491197c10.963703-12.998035 10.285251-32.864502-1.499144-44.378743L479.499795 515.267417 757.434875 204.940602c11.338233-12.190647 11.035334-32.285311-0.638543-44.850487l-80.46666-86.564541c-11.680017-12.583596-30.356378-12.893658-41.662889-0.716314L257.233596 494.235404c-11.332093 12.183484-11.041474 32.266891 0.657986 44.844348l80.46666 86.564541c1.772366 1.910513 3.706415 3.533476 5.750981 4.877077l306.620399 321.703933C662.505829 963.726242 680.945807 962.528973 691.908486 949.511495z"></path>
+</svg>
+
+            </i>
+            <span class="prev-text nav-default">[ Spring ] 1. Spring</span>
+            <span class="prev-text nav-mobile">上一篇</span>
+          </a>
         
-          <a class="next" href="/post/algorithm/ext/2_algorithm_2021_01_08/">
-            <span class="next-text nav-default">[ Interview ] 2. 面试之算法</span>
+          <a class="next" href="/post/middleware/netty/6_1_netty/">
+            <span class="next-text nav-default">[ Netty ] 1.Netty基础</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

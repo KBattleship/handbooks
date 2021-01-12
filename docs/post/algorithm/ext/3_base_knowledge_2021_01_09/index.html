@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>[ RocketMQ ] 1.面试 - Quinn</title>
+  <title>[ Interview ] 3. 面试之Java - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -23,8 +23,15 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="面试准备 1. 什么是解耦 2. 什么是异步 3. 什么是消峰填谷 4. RocketMQ执行流程 5. 怎么理解Producer 6. 怎么理解Consumer 7. 消费者消费模式有哪些 8. 消费者获取消息有几种模式 9. 定时消息是什么样的？如何实现的？ 10. RocketMQ如何保证高可用的？ 11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？ 12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？ 13. 如何保证消息的顺序性？ 14. 如何解决消息队列的延时以及过期失效问题？ 15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？ 16. 如何解决高性能读写数据问题？ " />
-<meta name="keywords" content="rocketmq" />
+  <meta name="description" content="面试 X_Q 1.JVM垃圾回收机制 Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。 JVM中存在一个 优先级较低 的线程，只有当 JVM处于空闲 或者 堆空间不足 的情况触发执行。此过程中，将扫描到 没有被引用的对象 防止垃圾回收集合中，进行垃圾回收。
+ 判断对象是否可以被回收   引用计数器：
+ 为每一个对象创建一个引用计数器，有引用此对象，计数器进行&#43;1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(不能解决循环引用问题)    可达性分析算法
+ 从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 GC Roots不存在任何引用链式，说明此对象可以进行回收。      2.什么是Netty？  见 Netty
+ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 B_D 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：" />
+<meta name="keywords" content="interview" />
 
 
 
@@ -35,7 +42,7 @@
 <meta name="generator" content="Hugo 0.72.0" />
 
 
-<link rel="canonical" href="https://touch-star.com/post/middleware/mq/rocket_mq/1_rocket_message_queue/" />
+<link rel="canonical" href="https://touch-star.com/post/algorithm/ext/3_base_knowledge_2021_01_09/" />
 
 
 
@@ -59,23 +66,44 @@
 
 
 
-<meta property="og:title" content="[ RocketMQ ] 1.面试" />
-<meta property="og:description" content="面试准备 1. 什么是解耦 2. 什么是异步 3. 什么是消峰填谷 4. RocketMQ执行流程 5. 怎么理解Producer 6. 怎么理解Consumer 7. 消费者消费模式有哪些 8. 消费者获取消息有几种模式 9. 定时消息是什么样的？如何实现的？ 10. RocketMQ如何保证高可用的？ 11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？ 12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？ 13. 如何保证消息的顺序性？ 14. 如何解决消息队列的延时以及过期失效问题？ 15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？ 16. 如何解决高性能读写数据问题？ " />
+<meta property="og:title" content="[ Interview ] 3. 面试之Java" />
+<meta property="og:description" content="面试 X_Q 1.JVM垃圾回收机制 Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。 JVM中存在一个 优先级较低 的线程，只有当 JVM处于空闲 或者 堆空间不足 的情况触发执行。此过程中，将扫描到 没有被引用的对象 防止垃圾回收集合中，进行垃圾回收。
+ 判断对象是否可以被回收   引用计数器：
+ 为每一个对象创建一个引用计数器，有引用此对象，计数器进行&#43;1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(不能解决循环引用问题)    可达性分析算法
+ 从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 GC Roots不存在任何引用链式，说明此对象可以进行回收。      2.什么是Netty？  见 Netty
+ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 B_D 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://touch-star.com/post/middleware/mq/rocket_mq/1_rocket_message_queue/" />
+<meta property="og:url" content="https://touch-star.com/post/algorithm/ext/3_base_knowledge_2021_01_09/" />
 <meta property="article:published_time" content="2021-01-08T01:13:47+08:00" />
 <meta property="article:modified_time" content="2021-01-08T01:13:47+08:00" />
-<meta itemprop="name" content="[ RocketMQ ] 1.面试">
-<meta itemprop="description" content="面试准备 1. 什么是解耦 2. 什么是异步 3. 什么是消峰填谷 4. RocketMQ执行流程 5. 怎么理解Producer 6. 怎么理解Consumer 7. 消费者消费模式有哪些 8. 消费者获取消息有几种模式 9. 定时消息是什么样的？如何实现的？ 10. RocketMQ如何保证高可用的？ 11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？ 12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？ 13. 如何保证消息的顺序性？ 14. 如何解决消息队列的延时以及过期失效问题？ 15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？ 16. 如何解决高性能读写数据问题？ ">
+<meta itemprop="name" content="[ Interview ] 3. 面试之Java">
+<meta itemprop="description" content="面试 X_Q 1.JVM垃圾回收机制 Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。 JVM中存在一个 优先级较低 的线程，只有当 JVM处于空闲 或者 堆空间不足 的情况触发执行。此过程中，将扫描到 没有被引用的对象 防止垃圾回收集合中，进行垃圾回收。
+ 判断对象是否可以被回收   引用计数器：
+ 为每一个对象创建一个引用计数器，有引用此对象，计数器进行&#43;1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(不能解决循环引用问题)    可达性分析算法
+ 从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 GC Roots不存在任何引用链式，说明此对象可以进行回收。      2.什么是Netty？  见 Netty
+ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 B_D 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：">
 <meta itemprop="datePublished" content="2021-01-08T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-08T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="33">
+<meta itemprop="wordCount" content="160">
 
 
 
-<meta itemprop="keywords" content="interview,rocketmq,middleware," /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="[ RocketMQ ] 1.面试"/>
-<meta name="twitter:description" content="面试准备 1. 什么是解耦 2. 什么是异步 3. 什么是消峰填谷 4. RocketMQ执行流程 5. 怎么理解Producer 6. 怎么理解Consumer 7. 消费者消费模式有哪些 8. 消费者获取消息有几种模式 9. 定时消息是什么样的？如何实现的？ 10. RocketMQ如何保证高可用的？ 11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？ 12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？ 13. 如何保证消息的顺序性？ 14. 如何解决消息队列的延时以及过期失效问题？ 15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？ 16. 如何解决高性能读写数据问题？ "/>
+<meta itemprop="keywords" content="interview,面试,algorithm," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ Interview ] 3. 面试之Java"/>
+<meta name="twitter:description" content="面试 X_Q 1.JVM垃圾回收机制 Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。 JVM中存在一个 优先级较低 的线程，只有当 JVM处于空闲 或者 堆空间不足 的情况触发执行。此过程中，将扫描到 没有被引用的对象 防止垃圾回收集合中，进行垃圾回收。
+ 判断对象是否可以被回收   引用计数器：
+ 为每一个对象创建一个引用计数器，有引用此对象，计数器进行&#43;1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(不能解决循环引用问题)    可达性分析算法
+ 从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 GC Roots不存在任何引用链式，说明此对象可以进行回收。      2.什么是Netty？  见 Netty
+ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 B_D 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准："/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -350,17 +378,17 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title">[ RocketMQ ] 1.面试</h1>
+      <h1 class="post-title">[ Interview ] 3. 面试之Java</h1>
       
       <div class="post-meta">
         <time datetime="2021-01-08" class="post-time">
           2021-01-08
         </time>
         <div class="post-category">
-            <a href="https://touch-star.com/categories/middleware/"> middleware </a>
+            <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
             
           </div>
-        <span class="more-meta"> 约 33 字 </span>
+        <span class="more-meta"> 约 160 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -368,7 +396,7 @@
 
         
         
-          <span id="/post/middleware/mq/rocket_mq/1_rocket_message_queue/" class="leancloud_visitors" data-flag-title="[ RocketMQ ] 1.面试">
+          <span id="/post/algorithm/ext/3_base_knowledge_2021_01_09/" class="leancloud_visitors" data-flag-title="[ Interview ] 3. 面试之Java">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -403,8 +431,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e9%9d%a2%e8%af%95%e5%87%86%e5%a4%87">
-                            面试准备
+                            <a class="nav-link text-left" href="#%e9%9d%a2%e8%af%95">
+                            面试
                             </a>
                         </li>
                     
@@ -425,11 +453,151 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#1-%e4%bb%80%e4%b9%88%e6%98%af%e8%a7%a3%e8%80%a6">
-                            1. 什么是解耦
+                            <a class="nav-link text-left" href="#x_q">
+                            X_Q
                             </a>
                         </li>
                     
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#1jvm%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e6%9c%ba%e5%88%b6">
+                            1.JVM垃圾回收机制
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#2%e4%bb%80%e4%b9%88%e6%98%afnetty">
+                            2.什么是Netty？
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3netty%e7%b2%98%e5%8c%85%e6%8b%86%e5%8c%85">
+                            3.Netty粘包/拆包
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3kubernetes%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86">
+                            3.Kubernetes工作原理
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#4%e5%bf%ab%e6%8e%92%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86">
+                            4.快排实现原理
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
                     
                     </ul>
                     
@@ -449,8 +617,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#2-%e4%bb%80%e4%b9%88%e6%98%af%e5%bc%82%e6%ad%a5">
-                            2. 什么是异步
+                            <a class="nav-link text-left" href="#b_d">
+                            B_D
                             </a>
                         </li>
                     
@@ -466,6 +634,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -473,8 +643,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#3-%e4%bb%80%e4%b9%88%e6%98%af%e6%b6%88%e5%b3%b0%e5%a1%ab%e8%b0%b7">
-                            3. 什么是消峰填谷
+                            <a class="nav-link text-left" href="#1-hash%e6%9c%80%e7%bb%88%e4%b8%80%e8%87%b4%e6%80%a7%e7%ae%97%e6%b3%95">
+                            1. Hash最终一致性算法
                             </a>
                         </li>
                     
@@ -483,6 +653,8 @@
                     
                     </ul>
                     
+                    </ul>
+                    
                 
             
         
@@ -490,6 +662,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -497,8 +671,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#4-rocketmq%e6%89%a7%e8%a1%8c%e6%b5%81%e7%a8%8b">
-                            4. RocketMQ执行流程
+                            <a class="nav-link text-left" href="#2-tcp%e4%b8%8eudp%e7%9a%84%e5%8c%ba%e5%88%ab">
+                            2. TCP与UDP的区别
                             </a>
                         </li>
                     
@@ -507,6 +681,8 @@
                     
                     </ul>
                     
+                    </ul>
+                    
                 
             
         
@@ -514,6 +690,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -521,8 +699,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#5-%e6%80%8e%e4%b9%88%e7%90%86%e8%a7%a3producer">
-                            5. 怎么理解Producer
+                            <a class="nav-link text-left" href="#3-tcp%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e7%bd%91%e7%bb%9c%e5%ae%89%e5%85%a8%e7%9a%84">
+                            3. TCP如何保证网络安全的
                             </a>
                         </li>
                     
@@ -531,6 +709,8 @@
                     
                     </ul>
                     
+                    </ul>
+                    
                 
             
         
@@ -538,6 +718,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -545,8 +727,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#6-%e6%80%8e%e4%b9%88%e7%90%86%e8%a7%a3consumer">
-                            6. 怎么理解Consumer
+                            <a class="nav-link text-left" href="#4-tcp%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b">
+                            4. TCP三次握手
                             </a>
                         </li>
                     
@@ -555,6 +737,8 @@
                     
                     </ul>
                     
+                    </ul>
+                    
                 
             
         
@@ -562,6 +746,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -569,8 +755,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#7-%e6%b6%88%e8%b4%b9%e8%80%85%e6%b6%88%e8%b4%b9%e6%a8%a1%e5%bc%8f%e6%9c%89%e5%93%aa%e4%ba%9b">
-                            7. 消费者消费模式有哪些
+                            <a class="nav-link text-left" href="#5-kubernetes%e4%b8%adpod%e9%97%b4%e5%a6%82%e4%bd%95%e9%80%9a%e8%ae%af%e7%9a%84">
+                            5. Kubernetes中Pod间如何通讯的
                             </a>
                         </li>
                     
@@ -579,6 +765,8 @@
                     
                     </ul>
                     
+                    </ul>
+                    
                 
             
         
@@ -586,6 +774,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -593,8 +783,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#8-%e6%b6%88%e8%b4%b9%e8%80%85%e8%8e%b7%e5%8f%96%e6%b6%88%e6%81%af%e6%9c%89%e5%87%a0%e7%a7%8d%e6%a8%a1%e5%bc%8f">
-                            8. 消费者获取消息有几种模式
+                            <a class="nav-link text-left" href="#6-mysql%e7%b4%a2%e5%bc%95">
+                            6. Mysql索引
                             </a>
                         </li>
                     
@@ -603,6 +793,8 @@
                     
                     </ul>
                     
+                    </ul>
+                    
                 
             
         
@@ -610,6 +802,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -617,8 +811,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#9-%e5%ae%9a%e6%97%b6%e6%b6%88%e6%81%af%e6%98%af%e4%bb%80%e4%b9%88%e6%a0%b7%e7%9a%84%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e7%9a%84">
-                            9. 定时消息是什么样的？如何实现的？
+                            <a class="nav-link text-left" href="#7-mysql-b-tree%e7%b4%a2%e5%bc%95%e5%ae%9e%e7%8e%b0%e5%8e%9f%e7%90%86">
+                            7. Mysql B&#43; Tree索引实现原理
                             </a>
                         </li>
                     
@@ -627,6 +821,8 @@
                     
                     </ul>
                     
+                    </ul>
+                    
                 
             
         
@@ -634,6 +830,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -641,8 +839,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#10-rocketmq%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e9%ab%98%e5%8f%af%e7%94%a8%e7%9a%84">
-                            10. RocketMQ如何保证高可用的？
+                            <a class="nav-link text-left" href="#8-zookeeper%e5%9c%a8kafka%e4%b8%ad%e7%9a%84%e4%bd%9c%e7%94%a8">
+                            8. Zookeeper在Kafka中的作用
                             </a>
                         </li>
                     
@@ -651,6 +849,8 @@
                     
                     </ul>
                     
+                    </ul>
+                    
                 
             
         
@@ -658,6 +858,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -665,8 +867,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#11-%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e6%b6%88%e6%81%af%e4%b8%8d%e8%a2%ab%e9%87%8d%e5%a4%8d%e6%b6%88%e8%b4%b9%e6%88%96%e8%80%85%e8%af%b4%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e6%b6%88%e6%81%af%e6%b6%88%e8%b4%b9%e6%98%af%e7%9a%84%e5%b9%82%e7%ad%89%e6%80%a7">
-                            11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？
+                            <a class="nav-link text-left" href="#9-%e6%9c%89%e6%b2%a1%e6%9c%89%e5%81%9a%e8%bf%87dockerimage%e7%b2%be%e7%ae%80">
+                            9. 有没有做过DockerImage精简
                             </a>
                         </li>
                     
@@ -675,6 +877,8 @@
                     
                     </ul>
                     
+                    </ul>
+                    
                 
             
         
@@ -682,6 +886,8 @@
             
                 
                 
+                    
+                    <ul class="nav">
                     
                     <ul class="nav">
                     
@@ -689,107 +895,13 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#12-%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e6%b6%88%e6%81%af%e7%9a%84%e5%8f%af%e9%9d%a0%e6%80%a7%e4%bc%a0%e8%be%93%e8%8b%a5%e6%b6%88%e6%81%af%e5%87%ba%e7%8e%b0%e4%b8%a2%e5%a4%b1%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86">
-                            12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？
+                            <a class="nav-link text-left" href="#10-%e6%9c%8d%e5%8a%a1%e6%98%af%e5%a6%82%e4%bd%95%e5%9c%a8%e6%9c%8d%e5%8a%a1%e5%99%a8%e8%bf%90%e8%a1%8c%e7%9a%84%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e5%8f%91%e5%b8%83dockerimage%e5%8f%91%e5%b8%83%e7%9a%84">
+                            10. 服务是如何在服务器运行的，如何实现发布DockerImage发布的
                             </a>
                         </li>
                     
                     
                     </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#13-%e5%a6%82%e4%bd%95%e4%bf%9d%e8%af%81%e6%b6%88%e6%81%af%e7%9a%84%e9%a1%ba%e5%ba%8f%e6%80%a7">
-                            13. 如何保证消息的顺序性？
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#14-%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97%e7%9a%84%e5%bb%b6%e6%97%b6%e4%bb%a5%e5%8f%8a%e8%bf%87%e6%9c%9f%e5%a4%b1%e6%95%88%e9%97%ae%e9%a2%98">
-                            14. 如何解决消息队列的延时以及过期失效问题？
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#15-%e6%b6%88%e6%81%af%e9%98%9f%e5%88%97%e6%bb%a1%e4%ba%86%e4%bb%a5%e5%90%8e%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86%e6%9c%89%e5%87%a0%e7%99%be%e4%b8%87%e6%b6%88%e6%81%af%e6%8c%81%e7%bb%ad%e6%8c%a4%e5%8e%8b%e5%87%a0%e5%b0%8f%e6%97%b6%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3">
-                            15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#16-%e5%a6%82%e4%bd%95%e8%a7%a3%e5%86%b3%e9%ab%98%e6%80%a7%e8%83%bd%e8%af%bb%e5%86%99%e6%95%b0%e6%8d%ae%e9%97%ae%e9%a2%98">
-                            16. 如何解决高性能读写数据问题？
-                            </a>
-                        </li>
-                    
                     
                     </ul>
                     
@@ -808,23 +920,200 @@
 
     
     <div class="post-content">
-      <h1 id="面试准备">面试准备</h1>
-<h2 id="1-什么是解耦">1. 什么是解耦</h2>
-<h2 id="2-什么是异步">2. 什么是异步</h2>
-<h2 id="3-什么是消峰填谷">3. 什么是消峰填谷</h2>
-<h2 id="4-rocketmq执行流程">4. RocketMQ执行流程</h2>
-<h2 id="5-怎么理解producer">5. 怎么理解Producer</h2>
-<h2 id="6-怎么理解consumer">6. 怎么理解Consumer</h2>
-<h2 id="7-消费者消费模式有哪些">7. 消费者消费模式有哪些</h2>
-<h2 id="8-消费者获取消息有几种模式">8. 消费者获取消息有几种模式</h2>
-<h2 id="9-定时消息是什么样的如何实现的">9. 定时消息是什么样的？如何实现的？</h2>
-<h2 id="10-rocketmq如何保证高可用的">10. RocketMQ如何保证高可用的？</h2>
-<h2 id="11-如何保证消息不被重复消费或者说如何保证消息消费是的幂等性">11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？</h2>
-<h2 id="12-如何保证消息的可靠性传输若消息出现丢失如何处理">12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？</h2>
-<h2 id="13-如何保证消息的顺序性">13. 如何保证消息的顺序性？</h2>
-<h2 id="14-如何解决消息队列的延时以及过期失效问题">14. 如何解决消息队列的延时以及过期失效问题？</h2>
-<h2 id="15-消息队列满了以后如何处理有几百万消息持续挤压几小时如何解决">15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？</h2>
-<h2 id="16-如何解决高性能读写数据问题">16. 如何解决高性能读写数据问题？</h2>
+      <h1 id="面试">面试</h1>
+<h2 id="x_q">X_Q</h2>
+<h3 id="1jvm垃圾回收机制">1.JVM垃圾回收机制</h3>
+<p>Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。
+JVM中存在一个 <strong><code>优先级较低</code></strong> 的线程，只有当 <strong><code>JVM处于空闲</code></strong> 或者 <strong><code>堆空间不足</code></strong> 的情况触发执行。此过程中，将扫描到 <strong>没有被引用的对象</strong> 防止垃圾回收集合中，进行垃圾回收。</p>
+<ul>
+<li><strong><code>判断对象是否可以被回收</code></strong>
+<ul>
+<li>
+<p>引用计数器：</p>
+<ul>
+<li>为每一个对象创建一个引用计数器，有引用此对象，计数器进行+1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(<strong>不能解决循环引用问题</strong>)</li>
+</ul>
+</li>
+<li>
+<p>可达性分析算法</p>
+<ul>
+<li>从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 <strong>GC Roots</strong>不存在任何引用链式，说明此对象可以进行回收。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2什么是netty">2.什么是Netty？</h3>
+<blockquote>
+<p>见 <a href="/post/middleware/netty/6_1_netty">Netty</a></p>
+</blockquote>
+<h3 id="3netty粘包拆包">3.Netty粘包/拆包</h3>
+<h3 id="3kubernetes工作原理">3.Kubernetes工作原理</h3>
+<h3 id="4快排实现原理">4.快排实现原理</h3>
+<h2 id="b_d">B_D</h2>
+<h3 id="1-hash最终一致性算法">1. Hash最终一致性算法</h3>
+<ul>
+<li>
+<p><strong>算法目标：</strong></p>
+<p>当<code>K</code>个Key的请求时，后台增减节点，只会引起 <strong>K/N</strong> 的 Key发生重新映射。</p>
+<ul>
+<li>在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。</li>
+<li>在后台节点增减时，此算法尽量将 <strong>K</strong> 个Key映射到之前相同的节点上。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hash存在问题：</strong></p>
+<ul>
+<li>假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 <strong><code>模运算(hash(key)%N)</code></strong> 来讲请求分发在不同的节点上。</li>
+<li>对前台请求于<code>后台无状态服务节点</code>不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。</li>
+<li>但在对于<code>分布式缓存</code>，或者<code>分布式数据</code>这样<code>有状态服务</code>的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：
+<ul>
+<li>针对分布式缓存而言，均发生cache miss；</li>
+<li>针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>判断标准：</strong></p>
+<ul>
+<li>平衡性(Balance)：指哈希的结果能够尽可能分不到所有的缓冲中，这样可以使得所有缓冲空间都得到利用。</li>
+<li>单调性(Monotonicity)：单调性是指如果已经有一些内容通过Hash算法分配到了缓冲中，又有新的缓冲加入到系统中，Hash的结果应该能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去，而不会被映射到旧的缓冲集合中的其他缓冲区。</li>
+<li>分散性(Spread)：在分布式环境中，终端有可能看不到所有的缓冲。不同的终端可能通过Hash的过程将同样的缓冲内容应设在不同的缓冲中。<code>应尽量降低分散性</code>。</li>
+<li>负载(Load)：实际上是另一个角度看待分散性。对于一个特定的缓冲区而言，可能被不同的用户映射到不同的内容。<code>应尽量降低缓冲的负荷</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hash一致性算法：</strong></p>
+<ul>
+<li>是一个2^32个点组成的Hash圆环</li>
+<li>按照 <strong>顺时针方向</strong> 进行组织</li>
+<li>将数据 <strong>Key</strong> 使用相同的 <code>hash()</code> 计算出Hash值，并确定在此 Hash环 上的位置，从此位置按照 <strong>顺时针方式</strong> 寻找，碰到的第一台节点将是定位到的节点。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hash环发生数据倾斜</strong></p>
+<ul>
+<li>在服务节点太少的情况，数据容易发生倾斜</li>
+<li>解决办法：
+<ul>
+<li>增加虚拟节点，形成均匀的Hash环避免数据倾斜。</li>
+<li>通过 <strong>Hash(&ldquo;${Node1}#1&rdquo;)</strong> 的方式构造成虚拟节点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-tcp与udp的区别">2. TCP与UDP的区别</h3>
+<ul>
+<li>TCP
+<ul>
+<li>面向有连接
+<ul>
+<li>发送数据前两端必须进行连接。因 <strong>三次握手</strong> 建立连接，使得数据传输更加可靠</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>仅支持单播方式</li>
+<li>面向字节流
+<ul>
+<li>不保留报文边界，通过字节流的方式进行传输</li>
+</ul>
+</li>
+<li>可靠传输
+<ul>
+<li>为保证可靠传输，每个包都拥有序号，同时保证包传输的顺序性也保证包的完整性。</li>
+<li>接收端接收到数据后需要返回确认帧，如果在规定时延内发送端未收到确认帧，将视为丢包进行重传。</li>
+</ul>
+</li>
+<li>拥塞机制
+<ul>
+<li>在网络出现拥塞的情况下，TCP可以减小向网络注入数据的速率和数量，缓解拥塞</li>
+</ul>
+</li>
+<li>提供全双工通信
+<ul>
+<li>通讯双方的应用程序在任何时候都能发送数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>UDP
+<ul>
+<li>面向无连接</li>
+<li>支持单播、多播、广播方式</li>
+<li>面向报文
+<ul>
+<li>UDP对应用成交付的报文不合并不拆分，而是保留报文的边界，应用程序必须要控制合适的报文大小。</li>
+</ul>
+</li>
+<li>不可靠性
+<ul>
+<li>通信不需要建立连接。想发就发，并且不关心对方接收到的数据是否正确无误</li>
+<li>没有拥塞控制，可能出现丢包情况。</li>
+</ul>
+</li>
+<li>头部数据小，数据传输高效。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-tcp如何保证网络安全的">3. TCP如何保证网络安全的</h3>
+<blockquote>
+<p><code>  即TCP的特性</code></p>
+</blockquote>
+<h3 id="4-tcp三次握手">4. TCP三次握手</h3>
+<ul>
+<li>第一次握手
+<ul>
+<li>客户端 向 服务端 发出连接请求的报文，请求发送成功后，客户端进入 <code>SYN-SENT</code> 状态</li>
+</ul>
+</li>
+<li>第二次握手
+<ul>
+<li>服务端 收到 客户端 连接请求的报文后，如同意连接，发出一个应答，发送完成后进入 <code>SYN-RECEIVED</code> 状态</li>
+</ul>
+</li>
+<li>第三次握手
+<ul>
+<li>当 客户端 收到连接同意的应答后，需向服务端发送一个确认报文。发送完成后，客户端进入 <code>ESTABLISHED</code> 状态， 服务端 收到这个确认应答后也将进入 <code>ESTABLISHED</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="5-kubernetes中pod间如何通讯的">5. Kubernetes中Pod间如何通讯的</h3>
+<blockquote>
+<p>通过 <code>CNI</code>(Container Network Interface) 进行网络通讯。</p>
+</blockquote>
+<h3 id="6-mysql索引">6. Mysql索引</h3>
+<blockquote>
+<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index">Mysql索引</a></p>
+</blockquote>
+<h3 id="7-mysql-b-tree索引实现原理">7. Mysql B+ Tree索引实现原理</h3>
+<h3 id="8-zookeeper在kafka中的作用">8. Zookeeper在Kafka中的作用</h3>
+<ul>
+<li>
+<p>Broker注册</p>
+<p>分布式下的Broker之间相互独立，需要一个注册中心将其Broker集群管理起来，Zookeeper将会对Broker集群列表进行记录。</p>
+</li>
+<li>
+<p>Topic注册</p>
+<p>同一个Topic的消息会被分成多个分区分散在不同的Broker，Zookeeper将会维护分区信息以及与broker之间对应关系。</p>
+</li>
+<li>
+<p>负责Producer、Consumer负载均衡</p>
+<p>Zookeeper通过负载均衡，协助Producer、Consumer将消息合理的发送或消费到指定的Broker。</p>
+</li>
+<li>
+<p>分区与Consumer的关系</p>
+<p>每一个消费者一旦确定一个消息分区的消费能力，需要将其对应信息写入至Zookeeper对应消息分区的临时节点上。</p>
+</li>
+<li>
+<p>记录Consumer消费进度Offset</p>
+<p>在Consumer对指定消息分区进行消费的过程中，会定时将分区消息的Offset记录到Zookeeper上。以便此消费者重启或变更其他消费者消费时再次继续进行消费。</p>
+</li>
+</ul>
+<h3 id="9-有没有做过dockerimage精简">9. 有没有做过DockerImage精简</h3>
+<h3 id="10-服务是如何在服务器运行的如何实现发布dockerimage发布的">10. 服务是如何在服务器运行的，如何实现发布DockerImage发布的</h3>
 
     </div>
 
@@ -838,15 +1127,15 @@
     <footer class="post-footer">
       <div class="post-tags">
           <a href="https://touch-star.com/tags/interview/">interview</a>
-          <a href="https://touch-star.com/tags/rocketmq/">rocketmq</a>
-          <a href="https://touch-star.com/tags/middleware/">middleware</a>
+          <a href="https://touch-star.com/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+          <a href="https://touch-star.com/tags/algorithm/">algorithm</a>
           
         </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/algorithm/ext/3_base_knowledge_2021_01_09/">
+          <a class="prev" href="/post/algorithm/ext/2_algorithm_2021_01_08/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -856,12 +1145,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default">[ Interview ] 3. 面试之Java</span>
+            <span class="prev-text nav-default">[ Interview ] 2. 面试之算法</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/coding/java/spring/spring/1_spring_ioc/">
-            <span class="next-text nav-default">[ Spring ] 1. Spring</span>
+          <a class="next" href="/post/middleware/mq/rocket_mq/1_rocket_message_queue/">
+            <span class="next-text nav-default">[ RocketMQ ] 1.面试</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
