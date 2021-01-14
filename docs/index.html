@@ -595,7 +595,7 @@
   <div class="post-content">
     
     <div class="post-summary">
-      面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程   ConcurrentHashMap如何保证线程安全  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
+      面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
   栈（JVM Stacks）
  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常    堆
     </div>
@@ -749,7 +749,7 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
           <a href="https://touch-star.com/categories/java/"> Java </a>
           
         </div>
-      <span class="more-meta"> 约 500 字 </span>
+      <span class="more-meta"> 约 529 字 </span>
       <span class="more-meta"> 预计阅读 3 分钟 </span>
       
       
@@ -766,7 +766,8 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
     
     <div class="post-summary">
       HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
- 1. HashMap工作原理  Put操作  当调用put操作时，HashMap计算键值K的哈希值，然后将其对应到HashMap的某一个桶(bucket)上； 此时找到以这个桶为头结点的一个单链表，然后顺序遍历该单链表找到某个节点的Entry中的Key是等于给定的参数K； 若找到，则将其的old V替换为参数指定的V； 否则直接在链表尾部插入一个新的Entry节点。   Get操作  对于get(K)操作类似于put操作，HashMap通过计算键的哈希值，先找到对应的桶 然后遍历桶存放的单链表通过比照Entry的键来找到对应的值    2. 3. ConcurrentHashMap.get()是否线程安全，是否有加锁？  安全，读操作不受影响。 不加锁。  4. ConcurrentHashMap如何保证线程安全  在JDK8以前，ConcurrentHashMap都是基于Segment分段锁来实现的， 在JDK8以后，就换成synchronized和CAS这套实现机制了。  使用 volatile 保证当Node中的值变化时对于其他线程是 可见的 使用 table数组的头结点 作为synchronized的锁来 保证写操作 的安全 当头结点为 null 时，使用 CAS操作 来保证数据能正确的 写入   和JDK1.8中的HashMap类似，对于hashCode相同的时候，在Node节点的数量少于8个时，这时的Node存储结构是链表形式，时间复杂度为O(N)，当Node节点的个数超过8个时，则会转换为红黑树，此时访问的时间复杂度为O(long(N))    5. HashMap、TreeMap、 LinkedHashMap区别   HashMap：
+ 1. HashMap工作原理  Put操作  当调用put操作时，HashMap计算键值K的哈希值，然后将其对应到HashMap的某一个桶(bucket)上； 此时找到以这个桶为头结点的一个单链表，然后顺序遍历该单链表找到某个节点的Entry中的Key是等于给定的参数K； 若找到，则将其的old V替换为参数指定的V； 否则直接在链表尾部插入一个新的Entry节点。   Get操作  对于get(K)操作类似于put操作，HashMap通过计算键的哈希值，先找到对应的桶 然后遍历桶存放的单链表通过比照Entry的键来找到对应的值    2. HashMap的put()流程 先根据key确定其在Hash表中的下标，找到对应的bucket，遍历链表(或者红黑树)进行插入操作。
+ 先判断Hash表是否为null或者长度是否为0，是则进行一次扩容； 根据 key 确定 Hash表 中的 index，在找到对应的 bucket，如果 bucket 上没有节点，直接新增一个节点； 如果当前 bucket 上存在链表，且头节点可以匹配上，直接进行替换； 如果当前 bucket 上是红黑树，则按照红黑树操作进行插入或替换； 如果以上情况都不满足，将开始遍历链表，如果匹配到就进行替换；如果未匹配到将在链表尾部添加一个节点，同时会判断链表长度是否大于 8 、Hash表数组是否大于 64，同时满足这两个条件，将链表会转化为红黑树；如果链表长度仅大于 8，将会进行扩容； 执行完成后，会判断 Map中 K-V对 数量是否大于 threshold ，是则进行扩容。  3. ConcurrentHashMap.get()是否线程安全，是否有加锁？  安全，读操作不受影响。 不加锁。  4. ConcurrentHashMap如何保证线程安全  在JDK8以前，ConcurrentHashMap都是基于Segment分段锁来实现的， 在JDK8以后，就换成synchronized和CAS这套实现机制了。  使用 volatile 保证当Node中的值变化时对于其他线程是 可见的 使用 table数组的头结点 作为synchronized的锁来 保证写操作 的安全 当头结点为 null 时，使用 CAS操作 来保证数据能正确的 写入   和JDK1.
     </div>
     <div class="read-more">
       <a href="/post/coding/java/base/2_basic/2_4_hashmap/" class="read-more-link">阅读全文</a>

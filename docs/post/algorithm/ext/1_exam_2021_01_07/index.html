@@ -23,7 +23,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程   ConcurrentHashMap如何保证线程安全  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
+  <meta name="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
   栈（JVM Stacks）
  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常    堆" />
 <meta name="keywords" content="interview" />
@@ -62,7 +62,7 @@
 
 
 <meta property="og:title" content="[ Interview ] 1. 面试之清单" />
-<meta property="og:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程   ConcurrentHashMap如何保证线程安全  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
+<meta property="og:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
   栈（JVM Stacks）
  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常    堆" />
 <meta property="og:type" content="article" />
@@ -70,7 +70,7 @@
 <meta property="article:published_time" content="2021-01-07T01:13:47+08:00" />
 <meta property="article:modified_time" content="2021-01-07T01:13:47+08:00" />
 <meta itemprop="name" content="[ Interview ] 1. 面试之清单">
-<meta itemprop="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程   ConcurrentHashMap如何保证线程安全  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
+<meta itemprop="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
   栈（JVM Stacks）
  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常    堆">
 <meta itemprop="datePublished" content="2021-01-07T01:13:47&#43;08:00" />
@@ -81,7 +81,7 @@
 
 <meta itemprop="keywords" content="interview,笔试,algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[ Interview ] 1. 面试之清单"/>
-<meta name="twitter:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程   ConcurrentHashMap如何保证线程安全  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
+<meta name="twitter:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
   栈（JVM Stacks）
  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常    堆"/>
 
@@ -969,15 +969,15 @@
 <h2 id="一-java">一、 Java</h2>
 <h3 id="1-集合">1. 集合</h3>
 <ul>
-<li>HashMap
+<li><a href="/post/coding/java/base/2_basic/2_4_hashmap">HashMap</a>
 <ul>
-<li><a href=""><em><strong>HashMap实现原理</strong></em></a></li>
-<li><a href=""><em><strong>HashMap put()流程</strong></em></a></li>
-<li><a href=""><em><strong>HashMap gut()流程</strong></em></a></li>
-<li><a href=""><em><strong>HashMap扩容流程</strong></em></a></li>
+<li><em><strong>HashMap实现原理</strong></em></li>
+<li><em><strong>HashMap put()流程</strong></em></li>
+<li><em><strong>HashMap gut()流程</strong></em></li>
+<li><em><strong>HashMap扩容流程</strong></em></li>
+<li><strong>ConcurrentHashMap如何保证线程安全</strong></li>
 </ul>
 </li>
-<li><a href="/post/coding/java/base/2_basic/2_4_hashmap#4.ConcurrentHashMap%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8"><strong>ConcurrentHashMap如何保证线程安全</strong></a></li>
 </ul>
 <h3 id="2-多线程">2. 多线程</h3>
 <ul>
