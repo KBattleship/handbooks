@@ -24,8 +24,11 @@
 
 <meta name="author" content="Quinn" />
   <meta name="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
-  栈（JVM Stacks）
- 存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常    堆" />
+  final修饰的常量处于JVM中哪部分内存
+  JVM垃圾回收机制
+  引用类型
+  JVM垃圾回收器，各有什么特点
+  垃圾回收算法" />
 <meta name="keywords" content="interview" />
 
 
@@ -63,27 +66,36 @@
 
 <meta property="og:title" content="[ Interview ] 1. 面试之清单" />
 <meta property="og:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
-  栈（JVM Stacks）
- 存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常    堆" />
+  final修饰的常量处于JVM中哪部分内存
+  JVM垃圾回收机制
+  引用类型
+  JVM垃圾回收器，各有什么特点
+  垃圾回收算法" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/algorithm/ext/1_exam_2021_01_07/" />
 <meta property="article:published_time" content="2021-01-07T01:13:47+08:00" />
 <meta property="article:modified_time" content="2021-01-07T01:13:47+08:00" />
 <meta itemprop="name" content="[ Interview ] 1. 面试之清单">
 <meta itemprop="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
-  栈（JVM Stacks）
- 存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常    堆">
+  final修饰的常量处于JVM中哪部分内存
+  JVM垃圾回收机制
+  引用类型
+  JVM垃圾回收器，各有什么特点
+  垃圾回收算法">
 <meta itemprop="datePublished" content="2021-01-07T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-07T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="527">
+<meta itemprop="wordCount" content="131">
 
 
 
 <meta itemprop="keywords" content="interview,笔试,algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[ Interview ] 1. 面试之清单"/>
 <meta name="twitter:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
-  栈（JVM Stacks）
- 存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常    堆"/>
+  final修饰的常量处于JVM中哪部分内存
+  JVM垃圾回收机制
+  引用类型
+  JVM垃圾回收器，各有什么特点
+  垃圾回收算法"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -368,8 +380,8 @@
             <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
             
           </div>
-        <span class="more-meta"> 约 527 字 </span>
-          <span class="more-meta"> 预计阅读 3 分钟 </span>
+        <span class="more-meta"> 约 131 字 </span>
+          <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
         
@@ -619,30 +631,6 @@
                         <li class="nav-item">
                             <a class="nav-link text-left" href="#%e5%9b%9b-spring">
                             四、 Spring
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#spring%e5%90%af%e5%8a%a8%e5%8a%a0%e8%bd%bd%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e7%9a%84%e6%b5%81%e7%a8%8b">
-                            Spring启动加载配置文件的流程
                             </a>
                         </li>
                     
@@ -950,6 +938,58 @@
                 
             
         
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e5%85%ab-%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f">
+                            八、 操作系统
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#1-tcpip">
+                            1. TCP/IP
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
 
     </div>
 
@@ -1002,280 +1042,65 @@
 <h3 id="3-jvm">3. JVM</h3>
 <ul>
 <li>
-<p><a href=""><strong>JVM内存结构</strong></a></p>
-<ul>
-<li>
-<p>栈（JVM Stacks）</p>
-<ul>
-<li>存放基本数据类型、对象的引用、方法出口等，线程私有</li>
-<li>栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常</li>
-</ul>
-</li>
-<li>
-<p>堆</p>
-<ul>
-<li>所有线程共享的，它在虚拟机启动时就会被创建</li>
-<li>内存空间占据的最大一块区域</li>
-<li>用来存放对象实例及数组，通过 new 关键字 new 出来的对象都存放在这里</li>
-<li>垃圾回收器的主要回收对象</li>
-<li>老年代 + 新生代 = 老年代 + Eden + S0 + S1</li>
-</ul>
-</li>
-<li>
-<p>方法区  （Metaspace元空间）</p>
-<ul>
-<li>都是各个线程共享的</li>
-<li>类信息、常量、静态变量、即时编译器编译后的代码</li>
-<li></li>
-</ul>
-</li>
-<li>
-<p>本地方法区</p>
-<ul>
-<li>只不过它服务于Native方法，线程私有</li>
-<li>HotSpot虚拟机直接就把本地方法栈和虚拟机栈合二为一</li>
-</ul>
-</li>
-<li>
-<p>程序计数器</p>
-<ul>
-<li>当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节指令地址，线程私有</li>
-<li>程序计数器是唯一一个在Java虚拟机规范中没有规定任何 OutOfMemoryError 情况的区域。</li>
-</ul>
-</li>
-</ul>
+<p><a href="/post/coding/java/base/3_jvm/3_jvm_memory_monitor"><strong>JVM内存结构</strong></a></p>
 </li>
 <li>
 <p><a href=""><strong>final修饰的常量处于JVM中哪部分内存</strong></a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">  方法区 
-</code></pre></td></tr></table>
-</div>
-</div></li>
-<li>
-<p><a href=""><strong>JVM垃圾回收机制</strong></a></p>
-<p>在Java中，编写代码时不需要通过显式方式去释放一个对象的内存，而是通过JVM自行进行垃圾回收。JVM中，存在一个垃圾回收线程，它属于一个 <strong>低优先级线程</strong> ，正常情况下是不会执行的，只有在 <strong>JVM空闲</strong> 或者 <strong>当前堆内存不足</strong> 时，才会触发执行，扫描那些 <strong>没有被任何引用的对象</strong> ，并将它们添加到回收集合中，进行内存释放。</p>
 </li>
 <li>
-<p><a href=""><strong>引用类型</strong></a></p>
-<ul>
-<li>
-<p>强引用</p>
-<p>发生GC时，对象不会被回收。</p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#1.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><strong>JVM垃圾回收机制</strong></a></p>
 </li>
 <li>
-<p>软引用</p>
-<p>有用但不是必须的对象，在发生内存溢出之前会被回收</p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#2.%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><strong>引用类型</strong></a></p>
 </li>
 <li>
-<p>弱引用</p>
-<p>有用但不是必须的对象，在下一次GC时会被回收</p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#7.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><strong>JVM垃圾回收器，各有什么特点</strong></a></p>
 </li>
 <li>
-<p>虚引用</p>
-<p>无法通过虚引用获取到对象(通过 <strong>PhantomReference</strong> 实现虚引用)，作用是在GC时返回一个通知。</p>
-</li>
-</ul>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#6.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><strong>垃圾回收算法</strong></a></p>
 </li>
 <li>
-<p><a href=""><strong>JVM垃圾回收器，各有什么特点</strong></a></p>
-<p>用于新生代的收集器：Serial、PraNew、 ParallelScavenge
-用于老年代的收集器：Serial Old、Parallel Old、CMS
-用于回收整个堆的：G1</p>
-<ul>
-<li><strong>Serial(复制算法)：</strong> 新生代单线程收集器，标记-清理都是单线程，简单高效</li>
-<li><strong>ParNew(复制算法)：</strong> 新生代并行收集器，实际上Serial收集器的多线程版本。在多核CPU下比Serial具有更好表现</li>
-<li><strong>ParallelScavenge(复制算法)：</strong> 新生代并行收集器，追求高吞吐量，高效利用CPU。</li>
-<li><strong>Serial Old(标记-整理)：</strong> 老年代单线程收集器</li>
-<li><strong>Parallel Old(标记-整理)：</strong> 老年代并行收集器，吞吐量优先，ParallelScavenge的老年代版本。</li>
-<li><strong>CMS(Concurrent Mask Sweep，标记-清除)：</strong> 老年代并行收集器，以获取最短回收停顿时间为目，具有高并发、低停顿的特点。追求最短GC回收停顿时间。</li>
-<li><strong>G1(Garbage First，标记-整理)：</strong> Java堆并行收集器，始于JDK1.7，G1是基于标记-整理算法实现，不会产生垃圾碎片。此外，重要的特点：G1回收的范围是整个Java堆，而前几种回收范围仅限于 新生代 或 老年代。</li>
-</ul>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#4.%E5%9C%A8Java%E4%B8%AD%EF%BC%8C%E5%AF%B9%E8%B1%A1%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E8%A2%AB%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%9F"><strong>对象什么时间可以被回收</strong></a></p>
 </li>
 <li>
-<p><a href=""><strong>垃圾回收算法</strong></a></p>
-<ul>
-<li><strong>标记-清除算法：</strong> 标记无用对象，然后进行清除回收。(缺点：效率低，无法清除垃圾碎片)</li>
-<li><strong>复制算法：</strong> 按照容量划分两个大小相等的内存区域，当一块用完之后将活着的对象移动至另外一块，然后再把已使用的内存空间一次性释放掉。(缺点：内存使用率低，只有原来的一半)</li>
-<li><strong>标记-整理算法：</strong> 标记无用对象，让所有存活的对象都向一端移动，然后直接清除掉边界以外的内存。</li>
-<li><strong>分代算法：</strong> 根据对象存活周期的不同将内存划分为几块(一般情况是新生代、老生代)，新生代采用复制，老年代采用标记-整理算法。</li>
-</ul>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#9.%E6%96%B0%E7%94%9F%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E4%B8%8E%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><strong>新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？</strong></a></p>
 </li>
 <li>
-<p><a href=""><strong>对象什么时间可以被回收</strong></a></p>
-<ol>
-<li>当对象对当前使用这个对象的应用程序 <strong>变得不可触及</strong> 的时候，这个对象就可以进行垃圾回收。</li>
-<li>垃圾回收不会发生在永久代，如果 <strong>永久代满了</strong> 或者 <strong>超出了临界值</strong>，会触发完全垃圾回收(FGC)。
-<code>查看垃圾收集器的输出信息，可以发现永久代也是会被回收的，这就是为什么正确的永久代大小对避免FGC是非常重要的原因。</code></li>
-</ol>
-<p>垃圾收集器在做垃圾回收的时候，首先需要判定的就是 <em><strong>哪些对象内存需要被释放</strong></em> ， <em><strong>哪些对象依旧存活，不可释放</strong></em> 。</p>
-<p>一般通过两种方式进行判断：</p>
-<ul>
-<li>
-<p><strong>引用计数器法</strong>：</p>
-<p>为每一个对象创建一个引用计数，有对象引用时计数器进行 <strong>++</strong> ，应用被释放时计数 <strong>&ndash;</strong> ，当 <strong>计数器==0</strong> 时可以被回收。(不足： <strong>无法解决循环引用问题</strong>)</p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#8.%E5%85%B3%E4%BA%8ECMS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><strong>CMS垃圾回收器</strong></a></p>
 </li>
-<li>
-<p><strong>可达性分析算法</strong>：</p>
-<p>从 <strong>GC Roots</strong> 开始向下搜索，搜索所走过的路径成为引用链。当一个对象到 GC Roots没有任何引用链是，则可以进行回收。</p>
-</li>
-</ul>
-</li>
-<li>
-<p><a href=""><strong>新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？</strong></a></p>
-<ul>
-<li>新生代垃圾回收器一般采用：<strong>复制算法</strong>。优点：效率高；缺点：使用率低。</li>
-<li>老生代垃圾回收器一般采用：<strong>标记-整理</strong>。</li>
-</ul>
-</li>
-<li>
-<p><a href=""><strong>CMS垃圾回收器</strong></a></p>
-<p><strong>CMS垃圾回收器(Concurrent Mask Sweep)</strong> ，是以牺牲吞吐量为代价来获取最短回收停顿时间的垃圾回收器。对于要求服务器响应速度的应用，此垃圾回收器很适合。
-<code>使用CMS回收器方法：</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 在JVM启动参数增加此参数项：</span>
--XX:+UseConcMaskSweepGC
-</code></pre></td></tr></table>
-</div>
-</div></li>
 <li>
 <p><a href=""><strong>JVM中Survivor空间是做什么的</strong></a></p>
 </li>
 </ul>
 <h3 id="4-algothrim">4. Algothrim</h3>
 <ul>
-<li><a href=""><strong>手撸插入排序</strong></a></li>
+<li>
+<p><a href=""><strong>手撸插入排序</strong></a></p>
+</li>
+<li>
+<p><a href=""><strong>手撸二分查找</strong></a></p>
+</li>
+<li>
+<p><a href=""><em><strong>堆排序(Top K)</strong></em></a></p>
+</li>
+<li>
+<p><a href=""><strong>快素排序思想</strong></a></p>
+</li>
+<li>
+<p><a href=""><strong>反转单链表</strong></a></p>
+</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li><a href=""><strong>手撸二分查找</strong></a></li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li><a href=""><em><strong>Top K</strong></em></a></li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-java" data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">vec</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
-        <span class="c1">// 重写PriorityQueue为大根堆
-</span><span class="c1"></span>        <span class="c1">// PriorityQueue&lt;Integer&gt; queue = new PriorityQueue&lt;&gt;();默认为小根堆
-</span><span class="c1"></span>        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;((</span><span class="n">num1</span><span class="o">,</span> <span class="n">num2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">num2</span> <span class="o">-</span> <span class="n">num1</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-        <span class="o">}</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="k">if</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
-                <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-                <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">vec</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
-        <span class="o">}</span>
-        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">vec</span><span class="o">));</span>
-    <span class="o">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li><a href=""><strong>快素排序思想</strong></a></li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">
-</code></pre></td></tr></table>
-</div>
-</div><h2 id="二-mysql">二、 Mysql</h2>
+<h2 id="二-mysql">二、 Mysql</h2>
 <ul>
 <li>
 <p><a href=""><em><strong>讲讲Mysql索引</strong></em></a></p>
-<p>Index(索引)，在存储引擎中用于快速找到记录的一种数据结构。索引用来快速寻找特定值的记录。</p>
-<ul>
-<li>B+ Tree索引
-+</li>
-<li>Hash索引</li>
-</ul>
 </li>
 <li>
-<p><a href=""><em><strong>Mysql索引失效的几种情况</strong></em></a></p>
-<ul>
-<li>如果条件中有or，即使其中有条件带索引也不会使用</li>
-<li>对于多列索引，不是使用的第一部分(第一个)，则不会使用索引</li>
-<li>like查询是以%开头</li>
-<li>如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引</li>
-<li>如果mysql估计使用全表扫描要比使用索引快,则不使用索引</li>
-<li>not in ,not exist.</li>
-<li>范围查询</li>
-</ul>
+<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#2.MySQL%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5"><em><strong>Mysql索引失效的几种情况</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>Mysql强制索引</strong></em></a></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span> <span class="err">强制索引</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="k">table</span> <span class="k">force</span> <span class="k">index</span><span class="p">(</span><span class="n">PRI</span><span class="p">)</span> <span class="k">limit</span> <span class="mi">2</span><span class="p">;</span>
-
-<span class="o">#</span> <span class="err">禁止索引</span>
-<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="k">table</span> <span class="k">ignore</span> <span class="k">index</span><span class="p">(</span><span class="n">PRI</span><span class="p">)</span> <span class="k">limit</span> <span class="mi">2</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#3.%E5%BC%BA%E5%88%B6%E7%B4%A2%E5%BC%95"><em><strong>Mysql强制索引</strong></em></a></p>
+</li>
 <li>
 <p><a href=""><em><strong>分库分表如何实现的</strong></em></a></p>
 </li>
@@ -1292,186 +1117,58 @@
 <p><a href=""><em><strong>Redis支持的几种数据结构</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>Redis跳表</strong></em></a></p>
-<ul>
-<li>跳跃表是一种有序的数据结构，它通过在每个节点中维持多个指向其他的几点指针，从而达到快速访问队尾目的。跳跃表的效率可以和平衡树想媲美了，最关键是它的实现相对于平衡树来说，代码的实现上简单很多</li>
-<li>跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。</li>
-<li>一是实现有序集合键，二是集群节点中用作内部数据结构。</li>
-<li>相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。</li>
-</ul>
+<p><a href="/post/middleware/database/nosql/redis/1_redis_interview#1.%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%B3%E8%A1%A8"><em><strong>Redis跳表</strong></em></a></p>
 </li>
 </ul>
 <h2 id="四-spring">四、 Spring</h2>
 <ul>
 <li>
-<p><a href=""><em><strong>SpringIOC原理</strong></em></a></p>
-<p>控制反转，通过依赖注入方式实现，IOC利用java反射机制，AOP利用代理模式。所谓控制反转是指，本来被调用者的实例是由调用者来创建的，这样的缺点是耦合性太强，IOC则是统一交给spring来管理创建，将对象交给容器管理，你只需要在spring配置文件总配置相应的bean，以及设置相关的属性，让spring容器来生成类的实例对象以及管理对象。在spring容器启动的时候，spring会把你在配置文件中配置的bean都初始化好，然后在你需要调用的时候，就把它已经初始化好的那些bean分配给你需要调用这些bean的类</p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#4.SpringIOC"><em><strong>SpringIOC原理</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>容器加载Bean流程</strong></em></a></p>
-<ol>
-<li>BeanDefinitionReader读取Resource所执行的配置文件资源，解析配置文件，并将生成的BeanDefinition对象保存到BeanDefinitionRegistry中。</li>
-<li>容器扫描Bean定义注册表中的BeanDefinition对象，调用InstantiationStrategy进行Bean实例化的工作；采用BeanWrapper完成Bean属性的设置工作。</li>
-<li>若是单例的Bean，则将Bean缓存在Bean缓存器中。</li>
-</ol>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#5.Spring%E5%AE%B9%E5%99%A8%E5%8A%A0%E8%BD%BDBean"><em><strong>容器加载Bean流程</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>SpringAOP原理</strong></em></a></p>
-<ul>
-<li>代理创建
-<ul>
-<li>首先，需要创建代理工厂，代理工厂需要 3 个重要的信息：拦截器数组，目标对象接口数组，目标对象。</li>
-<li>创建代理工厂时，默认会在拦截器数组尾部再增加一个默认拦截器 —— 用于最终的调用目标方法。</li>
-<li>当调用 getProxy 方法的时候，会根据接口数量大余 0 条件返回一个代理对象（JDK or Cglib）。</li>
-</ul>
-</li>
-<li>代理调用
-<ul>
-<li>当对代理对象进行调用时，就会触发外层拦截器。</li>
-</ul>
-<ul>
-<li>外层拦截器根据代理配置信息，创建内层拦截器链。创建的过程中，会根据表达式判断当前拦截是否匹配这个拦截器。而这个拦截器链设计模式就是职责链模式。</li>
-<li>当整个链条执行到最后时，就会触发创建代理时那个尾部的默认拦截器，从而调用目标方法。最后返回</li>
-</ul>
-</li>
-</ul>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#8.SpringAOP"><em><strong>SpringAOP原理</strong></em></a></p>
 </li>
 <li>
-<p><a href=""> FactoryBean 与 BeanFactory区别</a></p>
-<ul>
-<li>
-<p>BeanFactory:</p>
-<ul>
-<li>BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 <strong>管理Bean</strong> 的工厂。</li>
-<li>职责包括：<strong>实例化</strong>、<strong>定位</strong>、<strong>配置应用程序中对象</strong> 以及 <strong>对象间的依赖关系</strong>。</li>
-</ul>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#1.SpringBeanFactory%E4%B8%8EFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB">FactoryBean 与 BeanFactory区别</a></p>
 </li>
 <li>
-<p>FactoryBean:</p>
-<ul>
-<li>为IOC容器中的Bean的实现提供更加灵活的方式。</li>
-<li>FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。</li>
-<li>当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。</li>
-<li>如果想要获取FactoryBean的实现，需要在getBean()参数<code>BeanName</code>前添加<code>&amp;</code>符号。</li>
-</ul>
-</li>
-</ul>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#6.Spring%E4%B8%89%E7%BA%A7%E7%BC%93%E5%AD%98"><em><strong>Spring三级缓存</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>Spring三级缓存</strong></em></a></p>
-<ul>
-<li>一级缓存：Map&lt;String, Object&gt; singletonObjects
-<ul>
-<li>作用
-<ul>
-<li>用于存储单例模式下创建的Bean实例（已经创建完毕）。</li>
-<li>该缓存是对外使用的，指的就是使用Spring框架的程序员。</li>
-</ul>
-</li>
-<li>对象
-<ul>
-<li>K：bean的名称</li>
-<li>V：bean的实例对象（有代理对象则指的是代理对象，已经创建完毕）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>第二级缓存：Map&lt;String, Object&gt; earlySingletonObjects
-<ul>
-<li>作用：
-<ul>
-<li>用于存储单例模式下创建的Bean实例（该Bean被提前暴露的引用,该Bean还在创建中）。</li>
-<li>该缓存是对内使用的，指的就是Spring框架内部逻辑使用该缓存。</li>
-</ul>
-</li>
-<li>对象：
-<ul>
-<li>K：bean的名称</li>
-<li>V：bean的实例对象（有代理对象则指的是代理对象，该Bean还在创建中）</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>第三级缓存：Map&lt;String, ObjectFactory&lt;?&raquo; singletonFactories
-<ul>
-<li>作用：
-<ul>
-<li>通过ObjectFactory对象来存储单例模式下提前暴露的Bean实例的引用（正在创建中）。</li>
-<li>该缓存是对内使用的，指的就是Spring框架内部逻辑使用该缓存。</li>
-<li>此缓存是解决循环依赖最大的功臣</li>
-</ul>
-</li>
-<li>对象：
-<ul>
-<li>K：bean的名称</li>
-<li>V：ObjectFactory，该对象持有提前暴露的bean的引用</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#7.Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><em><strong>SpringBoot循环依赖</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>SpringBoot循环依赖</strong></em></a></p>
-<ul>
-<li>出现循环依赖的Bean必须要是单例</li>
-<li>依赖注入的方式不能全是构造器注入的方式</li>
-<li>Spring通过三级缓存解决了循环依赖，其中一级缓存为单例池（singletonObjects）,二级缓存为早期曝光对象earlySingletonObjects，三级缓存为早期曝光对象工厂（singletonFactories）</li>
-</ul>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#17.SpringBoot%E8%AE%A2%E9%98%85%E5%8F%91%E5%B8%83%E6%A8%A1%E5%BC%8F%E3%80%82ApplicationEvent%E5%A4%84%E4%BA%8E%E4%BB%80%E4%B9%88%E8%A7%92%E8%89%B2%EF%BC%8C%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><em><strong>SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#9.JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB"><em><strong>JDK动态代理和CGLIB动态代理的区别</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>JDK动态代理和CGLIB动态代理的区别</strong></em></a></p>
-<ul>
-<li>JDK动态代理只提供接口的代理，不支持类的代理。核心InvocationHandler接口和Proxy类，InvocationHandler 通过invoke()方法反射来调用目标类中的代码，动态地将横切逻辑和业务编织在一起；接着，Proxy利用 InvocationHandler动态创建一个符合某一接口的的实例, 生成目标类的代理对象。</li>
-<li>如果代理类没有实现 InvocationHandler 接口，那么Spring AOP会选择使用CGLIB来动态代理目标类。CGLIB（Code Generation Library），是一个代码生成的类库，可以在运行时动态的生成指定类的一个子类对象，并覆盖其中特定方法并添加增强代码，从而实现AOP。CGLIB是通过继承的方式做的动态代理，因此如果某个类被标记为final，那么它是无法使用CGLIB做动态代理的。</li>
-<li>静态代理与动态代理区别在于生成AOP代理对象的时机不同，相对来说AspectJ的静态代理方式具有更好的性能，但是AspectJ需要特定的编译器进行处理，而Spring AOP则无需特定的编译器处理。</li>
-</ul>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#15.SpringAOP%E5%B8%B8%E7%94%A8%E7%9A%84%E5%88%87%E5%85%A5%E7%82%B9"><em><strong>SpringAOP常用的切入点</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>SpringAOP常用的切入点</strong></em></a></p>
-<ul>
-<li>切面（Aspect） @AspectJ</li>
-<li>连接点</li>
-<li>通知</li>
-<li>切入点</li>
-<li>引入</li>
-<li>目标对象</li>
-<li>织入</li>
-</ul>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#16.SpringIOC%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><em><strong>SpringIOC常用注解</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>SpringIOC常用注解</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#12.@Autowired%E4%B8%8E@Resource%E5%8C%BA%E5%88%AB"><em><strong>@Autowired与@Resource区别</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>@Autowired与@Resource区别</strong></em></a></p>
-<ul>
-<li>@Autowired默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置它required属性为false）。@Autowired 注解提供了更细粒度的控制，包括在何处以及如何完成自动装配。它的用法和@Required一样，修饰setter方法、构造器、属性或者具有任意名称和/或多个参数的PN方法。</li>
-<li>@Autowired默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置它required属性为false）。</li>
-<li>@Resource默认是按照名称来装配注入的，只有当找不到与名称匹配的bean才会按照类型来装配注入。</li>
-<li>@Autowired可用于：构造函数、成员变量、Setter方法</li>
-</ul>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#13.@Qualifier%E4%B8%8E@Autowired"><em><strong>@Qualifier与@Autowired</strong></em></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>@Qualifier与@Autowired</strong></em></a></p>
-<ul>
-<li>当您创建多个相同类型的 bean 并希望仅使用属性装配其中一个 bean 时，您可以使用@Qualifier 注解和 @Autowired 通过指定应该装配哪个确切的 bean 来消除歧义。</li>
-</ul>
-</li>
-<li>
-<p><a href=""><em><strong>SpringBoot上下文切换</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#14.SpringBoot%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><em><strong>SpringBoot上下文切换</strong></em></a></p>
 </li>
 <li>
 <p><a href=""><strong>SpringBoot编译打包后包的结构?通过main()函数作为主入口的程序打包后如何启动？</strong></a></p>
 </li>
 <li>
-<h2 id="spring启动加载配置文件的流程"><a href=""><strong>Spring启动加载配置文件的流程</strong></a></h2>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#11.Spring%E5%90%AF%E5%8A%A8%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B5%81%E7%A8%8B"><strong>Spring启动加载配置文件的流程</strong></a></p>
 </li>
 <li>
-<p><a href="">自动装配</a></p>
-<p>在Spring框架中，在配置文件中设定bean的依赖关系是一个很好的机制，Spring 容器能够自动装配相互合作的bean，这意味着容器不需要和配置，能通过Bean工厂自动处理bean之间的协作。这意味着 Spring可以通过向Bean Factory中注入的方式自动搞定bean之间的依赖关系。自动装配可以设置在每个bean上，也可以设定在特定的bean上。</p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#10.%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D">自动装配</a></p>
 </li>
 </ul>
 <h2 id="五-分布式">五、 分布式</h2>
@@ -1487,11 +1184,11 @@
 <h2 id="六-开源框架">六、 开源框架</h2>
 <h3 id="1-netty">1. Netty</h3>
 <ul>
-<li><a href=""><em><strong>聊聊Netty</strong></em></a></li>
-<li><a href=""><em><strong>Netty中的拆包、粘包是为什么？如何解决？</strong></em></a></li>
-<li><a href=""><em><strong>Netty的线程模型</strong></em></a></li>
-<li><a href=""><em><strong>Netty的重要组件</strong></em></a></li>
-<li><a href=""><em><strong>Netty中EventLoopGroup与EventLoop什么区别</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#1.%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8Netty%EF%BC%9F"><em><strong>聊聊Netty</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#6.Netty%E4%B8%ADTCP%E7%B2%98%E5%8C%85%E3%80%81%E6%8B%86%E5%8C%85"><em><strong>Netty中的拆包、粘包是为什么？如何解决？</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#4.Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><em><strong>Netty的线程模型</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#3.Netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><em><strong>Netty的重要组件</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#5.EventLoopGroup%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%8EEventLoop%E5%85%B3%E7%B3%BB%E3%80%82"><em><strong>Netty中EventLoopGroup与EventLoop什么区别</strong></em></a></li>
 </ul>
 <h3 id="2-dubbo">2. Dubbo</h3>
 <ul>
@@ -1505,35 +1202,17 @@
 </ul>
 <h3 id="4-kafka">4. Kafka</h3>
 <ul>
-<li>
-<p><a href=""><strong>Zookeeper在Kafka中的作用</strong></a></p>
-<ul>
-<li>
-<p>Broker注册</p>
-<p>分布式下的Broker之间相互独立，需要一个注册中心将其Broker集群管理起来，Zookeeper将会对Broker集群列表进行记录。</p>
-</li>
-<li>
-<p>Topic注册</p>
-<p>同一个Topic的消息会被分成多个分区分散在不同的Broker，Zookeeper将会维护分区信息以及与broker之间对应关系。</p>
-</li>
-<li>
-<p>负责Producer、Consumer负载均衡</p>
-<p>Zookeeper通过负载均衡，协助Producer、Consumer将消息合理的发送或消费到指定的Broker。</p>
-</li>
-<li>
-<p>分区与Consumer的关系</p>
-<p>每一个消费者一旦确定一个消息分区的消费能力，需要将其对应信息写入至Zookeeper对应消息分区的临时节点上。</p>
-</li>
-<li>
-<p>记录Consumer消费进度Offset</p>
-<p>在Consumer对指定消息分区进行消费的过程中，会定时将分区消息的Offset记录到Zookeeper上。以便此消费者重启或变更其他消费者消费时再次继续进行消费。</p>
-</li>
-</ul>
-</li>
+<li><a href=""><strong>Zookeeper在Kafka中的作用</strong></a></li>
 </ul>
 <h2 id="七-设计模式">七、 设计模式</h2>
 <h3 id="1观察者模式">1.观察者模式</h3>
 <h3 id="2单例模式">2.单例模式</h3>
+<h2 id="八-操作系统">八、 操作系统</h2>
+<h3 id="1-tcpip">1. TCP/IP</h3>
+<ul>
+<li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#4.TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><em><strong>TCP三次握手/四次挥手</strong></em></a></li>
+<li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#2.TCP%E4%B8%8EUDP%E7%9A%84%E5%8C%BA%E5%88%AB"><em><strong>TCP与UDP的区别</strong></em></a></li>
+</ul>
 
     </div>
 

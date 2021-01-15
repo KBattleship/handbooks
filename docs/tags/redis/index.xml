@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>redis on Quinn</title>
+    <link>https://touch-star.com/tags/redis/</link>
+    <description>Recent content in redis on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 06 Jan 2020 01:13:47 +0800</lastBuildDate>
+    
+	<atom:link href="https://touch-star.com/tags/redis/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>[ Redis ] 1. Redis</title>
+      <link>https://touch-star.com/post/middleware/database/nosql/redis/1_redis_interview/</link>
+      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/database/nosql/redis/1_redis_interview/</guid>
+      <description>Redis 1. 什么是跳表  跳跃表是一种有序的数据结构，它通过在每个节点中维持多个指向其他的几点指针，从而达到快速访问队尾目的。跳跃表的效率可以和平衡树想媲美了，最关键是它的实现相对于平衡树来说，代码的实现上简单很多 跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。 一是实现有序集合键，二是集群节点中用作内部数据结构。 相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。  </description>
+    </item>
+    
+  </channel>
+</rss>

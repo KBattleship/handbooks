@@ -541,7 +541,7 @@
           <a href="https://touch-star.com/categories/middleware/"> MiddleWare </a>
           
         </div>
-      <span class="more-meta"> 约 18 字 </span>
+      <span class="more-meta"> 约 56 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
@@ -566,10 +566,51 @@
 目前MyISAM和InnoDB引擎已支持。
   R- Tree索引
 用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. 
+   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   
     </div>
     <div class="read-more">
       <a href="/post/middleware/database/sql/mysql/2_2_sql_index/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/middleware/database/nosql/redis/1_redis_interview/">[ Redis ] 1. Redis</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-01-06" class="post-time">
+        2020-01-06
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/middleware/"> MiddleWare </a>
+          
+        </div>
+      <span class="more-meta"> 约 9 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/database/nosql/redis/1_redis_interview/" class="leancloud_visitors" data-flag-title="[ Redis ] 1. Redis">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Redis 1. 什么是跳表  跳跃表是一种有序的数据结构，它通过在每个节点中维持多个指向其他的几点指针，从而达到快速访问队尾目的。跳跃表的效率可以和平衡树想媲美了，最关键是它的实现相对于平衡树来说，代码的实现上简单很多 跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。 一是实现有序集合键，二是集群节点中用作内部数据结构。 相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。  
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/database/nosql/redis/1_redis_interview/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>
@@ -734,47 +775,6 @@
     </div>
     <div class="read-more">
       <a href="/post/middleware/database/sql/mysql/1-mysql-install/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/operation/linux/centos/command/3_vim/">1.Linux-Vim</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2019-11-12" class="post-time">
-        2019-11-12
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/linux/"> linux </a>
-          
-        </div>
-      <span class="more-meta"> 约 57 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/operation/linux/centos/command/3_vim/" class="leancloud_visitors" data-flag-title="1.Linux-Vim">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      vim 1.基本操作命令 普通模式(Normal)  a: append current location i: insert current location o: open a line below A: append after line I: insert before line O: open a line above y: copy p: parse ^: 光标移至行首 $: 光标移至行末 G: 光标移至末行 1G: 光标移至首行 H: 光标移至当前窗口首行 M: 光标移至当前窗口中间位置  命令行模式(Command)  % s/string1/string2/g  可视化模式(Visual)  v:  插入编辑模式(Insert) 2.快速纠错 编辑模式下：  ctrl+w: 删除上一个单词 ctrl+u: 删除当前行  
-    </div>
-    <div class="read-more">
-      <a href="/post/operation/linux/centos/command/3_vim/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

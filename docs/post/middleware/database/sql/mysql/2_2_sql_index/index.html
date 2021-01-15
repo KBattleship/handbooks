@@ -32,7 +32,7 @@
 目前MyISAM和InnoDB引擎已支持。
   R- Tree索引
 用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. " />
+   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   " />
 <meta name="keywords" content="mysql" />
 
 
@@ -78,7 +78,7 @@
 目前MyISAM和InnoDB引擎已支持。
   R- Tree索引
 用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. " />
+   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/middleware/database/sql/mysql/2_2_sql_index/" />
 <meta property="article:published_time" content="2020-01-06T01:13:47+08:00" />
@@ -93,10 +93,10 @@
 目前MyISAM和InnoDB引擎已支持。
   R- Tree索引
 用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. ">
+   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   ">
 <meta itemprop="datePublished" content="2020-01-06T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-06T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="18">
+<meta itemprop="wordCount" content="56">
 
 
 
@@ -111,7 +111,7 @@
 目前MyISAM和InnoDB引擎已支持。
   R- Tree索引
 用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. "/>
+   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   "/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -396,7 +396,7 @@
             <a href="https://touch-star.com/categories/middleware/"> MiddleWare </a>
             
           </div>
-        <span class="more-meta"> 约 18 字 </span>
+        <span class="more-meta"> 约 56 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -485,8 +485,32 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#2">
-                            2.
+                            <a class="nav-link text-left" href="#2-mysql%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88%e7%9a%84%e5%87%a0%e7%a7%8d%e6%83%85%e5%86%b5">
+                            2. MySQL索引失效的几种情况
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3-%e5%bc%ba%e5%88%b6%e7%b4%a2%e5%bc%95">
+                            3. 强制索引
                             </a>
                         </li>
                     
@@ -538,8 +562,34 @@
 <li>物理存储角度：</li>
 <li>逻辑角度：</li>
 </ul>
-<h2 id="2">2.</h2>
+<h2 id="2-mysql索引失效的几种情况">2. MySQL索引失效的几种情况</h2>
+<ul>
+<li>如果条件中有or，即使其中有条件带索引也不会使用</li>
+<li>对于多列索引，不是使用的第一部分(第一个)，则不会使用索引</li>
+<li>like查询是以%开头</li>
+<li>如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引</li>
+<li>如果mysql估计使用全表扫描要比使用索引快,则不使用索引</li>
+<li>not in ,not exist.</li>
+<li>范围查询</li>
+</ul>
+<h2 id="3-强制索引">3. 强制索引</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sql" data-lang="sql"><span class="o">#</span> <span class="err">强制索引</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="k">table</span> <span class="k">force</span> <span class="k">index</span><span class="p">(</span><span class="n">PRI</span><span class="p">)</span> <span class="k">limit</span> <span class="mi">2</span><span class="p">;</span>
 
+<span class="o">#</span> <span class="err">禁止索引</span>
+<span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="k">table</span> <span class="k">ignore</span> <span class="k">index</span><span class="p">(</span><span class="n">PRI</span><span class="p">)</span> <span class="k">limit</span> <span class="mi">2</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>
     </div>
 
     
@@ -575,8 +625,8 @@
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/middleware/database/nosql/elasticsearch/1.elasticsearch-cluster-deploy/">
-            <span class="next-text nav-default">1.ElasticSearch集群搭建</span>
+          <a class="next" href="/post/middleware/database/nosql/redis/1_redis_interview/">
+            <span class="next-text nav-default">[ Redis ] 1. Redis</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">

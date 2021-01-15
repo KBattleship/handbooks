@@ -676,7 +676,7 @@
           <a href="https://touch-star.com/categories/java/"> Java </a>
           
         </div>
-      <span class="more-meta"> 约 66 字 </span>
+      <span class="more-meta"> 约 115 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
@@ -692,12 +692,7 @@
   <div class="post-content">
     
     <div class="post-summary">
-      JVM内存 1. 简述Java内存分配与回收策略 2. Minor GC 与 Major GC   Minor GC： 又称 新生代GC
-Java对象大多数是朝生夕灭，所以 Minor GC 非常频繁，一般回收速度也比较快
-  Major GC： 又称 老年代GC
-指发生在 老年代 的GC。出现 FGC 经常会伴有 至少一次的 Minor GC(不是绝对，Parallel Scavenge收集器可以选择Major GC策略)。Major GC 一般比 Minor GC 慢上 10倍以上
-  3. Java中 堆 和 栈 的区别 JVM中 堆 和 栈 是不同的内存区域，使用目的也不同。
- 栈  用于 保存方法帧 和 局部变量 不会在多个线程之间进行共享，即 线程私有 栈不足，产生异常错误是、：java.lang.StackOverFlowError   堆：  Java 对象 始终在堆上分配 堆将会被整个JVM的所有线程进行共享，即 所有线程共有 堆不足，产生异常错误：java.
+      JVM内存 1. JVM 内存结构  栈（JVM Stacks）  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常   堆  所有线程共享的，它在虚拟机启动时就会被创建 内存空间占据的最大一块区域 用来存放对象实例及数组，通过 new 关键字 new 出来的对象都存放在这里 垃圾回收器的主要回收对象 老年代 + 新生代 = 老年代 + Eden + S0 + S1   方法区 （Metaspace元空间）  都是各个线程共享的 类信息、常量、静态变量、即时编译器编译后的代码   本地方法区  只不过它服务于Native方法，线程私有 HotSpot虚拟机直接就把本地方法栈和虚拟机栈合二为一   程序计数器  当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节指令地址，线程私有 程序计数器是唯一一个在Java虚拟机规范中没有规定任何 OutOfMemoryError 情况的区域。    2. 简述Java堆内存分配策略  大对象：需要大量连续内存空间的Java对象，比如很长的字符串和大型数组， 对象优先在Eden分配，如果Eden内存空间不足，就会发生Minor GC 长期存活的对象将进入老年代，默认15岁，-XX:MaxTenuringThreshold 动态对象年龄判定 空间分配担保  3.
     </div>
     <div class="read-more">
       <a href="/post/coding/java/base/3_jvm/3_jvm_memory_monitor/" class="read-more-link">阅读全文</a>

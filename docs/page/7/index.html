@@ -350,6 +350,49 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_5_singleton/">[ 设计模式 ] 5.单例模式</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2019-07-11" class="post-time">
+        2019-07-11
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> java </a>
+          
+        </div>
+      <span class="more-meta"> 约 194 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/1_design_pattern/2_5_singleton/" class="leancloud_visitors" data-flag-title="[ 设计模式 ] 5.单例模式">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      单例模式 **单例模式：**保证任何情况下都绝对的只生成一个实例的模式。
+①.单例角色  Singleton: 有且仅有的一个角色(实例)。  **Tips:**当存在多个实例时，实例间互相影响，会出现意想不到异常。当且仅当，第一次调用类中静态方法的时候，Singleton类会被初始化，生成唯一的静态实例，重复调用时直接返回已经初始化完成的实例。
+②.实现单例  **方式一：**简化实现的单例模式  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 1.简化实现的单例模式，但遇到多线程肯定有问题 */ public static Singleton getInstance(){ if (singleton==null){ singleton=new Singleton(); } return singleton; } }    **方式二：**加锁控制多线程  1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 2.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/1_design_pattern/2_5_singleton/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/coding/java/base/1_design_pattern/2_4_factory/">[ 设计模式 ] 4.工厂模式</a>
     </h1>
     
@@ -723,44 +766,6 @@
     </div>
     <div class="read-more">
       <a href="/post/cloudnative/kubernetes/4_k8s_deploy_file/1_mysql_k8s/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/kubernetes/5_k8s_crd/cunstom_resource_defination/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/kubernetes/5_k8s_crd/cunstom_resource_defination/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/kubernetes/5_k8s_crd/cunstom_resource_defination/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

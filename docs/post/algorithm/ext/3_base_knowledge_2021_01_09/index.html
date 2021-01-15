@@ -90,7 +90,7 @@
  假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：">
 <meta itemprop="datePublished" content="2021-01-08T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-08T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="160">
+<meta itemprop="wordCount" content="166">
 
 
 
@@ -388,7 +388,7 @@
             <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
             
           </div>
-        <span class="more-meta"> 约 160 字 </span>
+        <span class="more-meta"> 约 166 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -755,6 +755,34 @@
                     
                     
                         <li class="nav-item">
+                            <a class="nav-link text-left" href="#5-tcp%e5%9b%9b%e6%ac%a1%e6%8c%a5%e6%89%8b">
+                            5. TCP四次挥手
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
                             <a class="nav-link text-left" href="#5-kubernetes%e4%b8%adpod%e9%97%b4%e5%a6%82%e4%bd%95%e9%80%9a%e8%ae%af%e7%9a%84">
                             5. Kubernetes中Pod间如何通讯的
                             </a>
@@ -1079,6 +1107,13 @@ JVM中存在一个 <strong><code>优先级较低</code></strong> 的线程，只
 <li>当 客户端 收到连接同意的应答后，需向服务端发送一个确认报文。发送完成后，客户端进入 <code>ESTABLISHED</code> 状态， 服务端 收到这个确认应答后也将进入 <code>ESTABLISHED</code></li>
 </ul>
 </li>
+</ul>
+<h3 id="5-tcp四次挥手">5. TCP四次挥手</h3>
+<ul>
+<li>第一次挥手</li>
+<li>第二次挥手</li>
+<li>第三次挥手</li>
+<li>第四次挥手</li>
 </ul>
 <h3 id="5-kubernetes中pod间如何通讯的">5. Kubernetes中Pod间如何通讯的</h3>
 <blockquote>

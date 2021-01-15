@@ -48,7 +48,16 @@
 目前MyISAM和InnoDB引擎已支持。
   R- Tree索引
 用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. </description>
+   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   </description>
+    </item>
+    
+    <item>
+      <title>[ Redis ] 1. Redis</title>
+      <link>https://touch-star.com/post/middleware/database/nosql/redis/1_redis_interview/</link>
+      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/database/nosql/redis/1_redis_interview/</guid>
+      <description>Redis 1. 什么是跳表  跳跃表是一种有序的数据结构，它通过在每个节点中维持多个指向其他的几点指针，从而达到快速访问队尾目的。跳跃表的效率可以和平衡树想媲美了，最关键是它的实现相对于平衡树来说，代码的实现上简单很多 跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。 一是实现有序集合键，二是集群节点中用作内部数据结构。 相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。  </description>
     </item>
     
   </channel>
