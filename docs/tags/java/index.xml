@@ -34,6 +34,24 @@
     </item>
     
     <item>
+      <title>[ Mybatis ] 1. Mybatis</title>
+      <link>https://touch-star.com/post/coding/java/spring/mybatis/1-mybatis-interview/</link>
+      <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/spring/mybatis/1-mybatis-interview/</guid>
+      <description>MyBatis 1. MyBatis二级缓存   一级缓存：
+ 基于PrepetualCache的HashMap本地缓存，其作用域是Session。 当Session在flush()或者close()之后，此Session中所有Cache都将被清除。 默认情况下，一级缓存处于打开状态。    二级缓存：
+ 二级缓存与一级缓存机制相同，一样基于PrepetualCache HashMap进行存储。 但其作用于是Mapper(Namespace)，而且可以采用自定义存储源， 例如Ehcache、Redis等。 默认情况下，二级缓存处于关闭状态。 二级缓存在使用中，其属性类型需要实现serialize序列化接口。 可在其映射配置文件中进行    对于缓存更新机制，当某一作用域(一级Session/二级Namespace)执行C/U/D后 默认情况下，此作用域下所有select中的缓存将被clear。
+  2. Mybatis工作原理   加载Mybatis全局配置文件mybatis-config.xml：
+ 此配置文件用于配置数据库连接信息。    加载Mybatis映射配置文件xxx-mapper.xml:
+ 此配置文件包含有操作数据库的SQL语句，需在mybatis-config.xml文件中进行配置。 mybatis-config.xml中可以配置多个xxx-mapper.xml文件 一个xxx-mapper.xml文件对应数据库中一张表。    构建会话工厂：
+ 通过配置信心初始化构建SQLSessionFactory对象。    创建会话对象：
+ 基于会话工厂创建SQLSession对象。 此Sqlsession对象中包含有执行SQL语句的所有方法。    Executor执行器
+ Mybatis底层封装了一个Executor的接口用于操作数据库。 将根据SqlSession对象传递的参数动态生成所需要执行的SQL语句，同时负责缓存查询。    MappedStatement对象：
+ 在Executor接口的执行方法中存在一个MappedStatement类型的参数， 该参数是对映射地址信息进行封装，用于存储要映射的SQL语句的id，参数等信息。    输入参数映射：</description>
+    </item>
+    
+    <item>
       <title>[ Netty ] 1.Netty基础</title>
       <link>https://touch-star.com/post/middleware/netty/6_1_netty/</link>
       <pubDate>Tue, 05 Jan 2021 10:36:27 +0800</pubDate>
@@ -61,7 +79,7 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
       <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
       
       <guid>https://touch-star.com/post/coding/java/interview/1-one/</guid>
-      <description>面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  SPI(Service Provider Interface)，主要用于框架，框架定义接口。 不同使用者将存在不同需求，也必然出现不同实现方式。而SPI就是通过定义 一个特定的位置，Java SPI约定在Classpath下的META-INF/services/ 路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的 具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可 以在运行时动态为接口替换实现类。 Dubbo SPI 1.</description>
+      <description>面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1     Zookeeper选举协议 1     大数据量的排序如何处理 1     如何判断链表是回文链表、快排序、归并排序 1     MySQL调优：B+ Tree索引、Hash索引 1     Mybatis的一、二级缓存 1     Mybatis工作原理 1 2     Redis Bitmap  </description>
     </item>
     
     <item>
@@ -106,21 +124,6 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
   观察者模式：spring的事件驱动模型使用的是 观察者模式 ，Spring中Observer模式常用的地方是listener的实现。如：ApplicationContextEvent、ApplicationListener
   策略模式：Spring框架的资源访问Resource接口。该接口提供了更强的资源访问能力，Spring 框架本身大量使用了 Resource 接口来访问底层资源。
  UrlResource：访问网络资源的实现类。 ClassPathResource：访问类加载路径里资源的实现类。 FileSystemResource：访问文件系统里资源的实现类。 ServletContextResource：访问相对于 ServletContext 路径里的资源的实现类. InputStreamResource：访问输入流资源的实现类。 ByteArrayResource：访问字节数组资源的实现类。    </description>
-    </item>
-    
-    <item>
-      <title>[ Java ] 4-1.关于锁</title>
-      <link>https://touch-star.com/post/coding/java/base/4_thread/4_1_locks/</link>
-      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/base/4_thread/4_1_locks/</guid>
-      <description>关于锁 1.自旋锁（SpinLock）  当一个线程在获取锁的时候，如果锁已经被其他线程获取，那么该线程将循环等待，然后不断的判断锁是否已经被其他线程释放，可以成功获取到锁，直到可以获取到锁才退出循环。
- 无论 自旋锁 ，还是 互斥锁 ， 在任何时刻，都最多只有一个执行单元获得锁。
-2.可重复锁/不可重复锁  可重复锁： 广义上定义为，可重复可递归调用的锁，在外层使用之后，在内层依旧可以使用，并且不会发生死锁(前提保证是同一个Obj或Class)。例如：ReentrantLock 和 synchronized 是可重复锁。
- Coding Demo One：
-1 2 3 4 5 6 7 8 9  synchronized void setA() throw Exception{ Thread.sleep(1000); // 如果不是可重入锁，setB()将可能不会被当前线程执行，造成死锁。  setB(); } synchronized void setB() throw Exception{ Thread.sleep(1000); }    不可重复锁： 与 可重入锁刚好相反，不可重复进行递归调用，递归调用将造成死锁。
- Coding Demo One：
-1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  // 通过 自旋锁 实现一个不可重入锁  public class UnreentrantLock{ private AtomicReference&amp;lt;Thread&amp;gt; owner = new AtomicReference&amp;lt;&amp;gt;(); public void lock(){ Thread curr = Thread.</description>
     </item>
     
   </channel>

@@ -25,14 +25,10 @@
 <meta name="author" content="Quinn" />
   <meta name="description" content="MySQL索引  Index(索引)，在存储引擎中用于快速找到记录的一种数据结构。索引用来快速寻找特定值的记录。
  如果没有索引，执行查询时，MySQL必须从第一个记录开始扫描整个表的所有记录，知道找到符合要求的记录。如果存在索引，MySQL无需扫描全表即可迅速查找到目标记录所在的位置。
-1. 索引类型  数据结构角度：   B&#43; Tree索引
-  Hash索引
-只有Memory存储引擎显示支持hash索引
-  FullText索引
-目前MyISAM和InnoDB引擎已支持。
-  R- Tree索引
-用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   " />
+1. 索引类型   Hash索引：
+ 底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。 多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的， 只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。    B&#43; Tree索引：(MySQL引擎Innodb实现方式)
+ B&#43; Tree索引是一种多路平衡查询树。 其节点是天然有序的(左节点 &amp;lt; 父节点 &amp;lt; 右节点)。 对于范围查询时候不需要做全表扫描。    相比Hash索引，B&#43; Tree的优点：
+ Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   " />
 <meta name="keywords" content="mysql" />
 
 
@@ -71,14 +67,10 @@
 <meta property="og:title" content="[ MySQL ] 2.MySQL索引" />
 <meta property="og:description" content="MySQL索引  Index(索引)，在存储引擎中用于快速找到记录的一种数据结构。索引用来快速寻找特定值的记录。
  如果没有索引，执行查询时，MySQL必须从第一个记录开始扫描整个表的所有记录，知道找到符合要求的记录。如果存在索引，MySQL无需扫描全表即可迅速查找到目标记录所在的位置。
-1. 索引类型  数据结构角度：   B&#43; Tree索引
-  Hash索引
-只有Memory存储引擎显示支持hash索引
-  FullText索引
-目前MyISAM和InnoDB引擎已支持。
-  R- Tree索引
-用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   " />
+1. 索引类型   Hash索引：
+ 底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。 多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的， 只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。    B&#43; Tree索引：(MySQL引擎Innodb实现方式)
+ B&#43; Tree索引是一种多路平衡查询树。 其节点是天然有序的(左节点 &lt; 父节点 &lt; 右节点)。 对于范围查询时候不需要做全表扫描。    相比Hash索引，B&#43; Tree的优点：
+ Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   " />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/middleware/database/sql/mysql/2_2_sql_index/" />
 <meta property="article:published_time" content="2020-01-06T01:13:47+08:00" />
@@ -86,17 +78,13 @@
 <meta itemprop="name" content="[ MySQL ] 2.MySQL索引">
 <meta itemprop="description" content="MySQL索引  Index(索引)，在存储引擎中用于快速找到记录的一种数据结构。索引用来快速寻找特定值的记录。
  如果没有索引，执行查询时，MySQL必须从第一个记录开始扫描整个表的所有记录，知道找到符合要求的记录。如果存在索引，MySQL无需扫描全表即可迅速查找到目标记录所在的位置。
-1. 索引类型  数据结构角度：   B&#43; Tree索引
-  Hash索引
-只有Memory存储引擎显示支持hash索引
-  FullText索引
-目前MyISAM和InnoDB引擎已支持。
-  R- Tree索引
-用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   ">
+1. 索引类型   Hash索引：
+ 底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。 多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的， 只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。    B&#43; Tree索引：(MySQL引擎Innodb实现方式)
+ B&#43; Tree索引是一种多路平衡查询树。 其节点是天然有序的(左节点 &lt; 父节点 &lt; 右节点)。 对于范围查询时候不需要做全表扫描。    相比Hash索引，B&#43; Tree的优点：
+ Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   ">
 <meta itemprop="datePublished" content="2020-01-06T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-06T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="56">
+<meta itemprop="wordCount" content="64">
 
 
 
@@ -104,14 +92,10 @@
 <meta name="twitter:title" content="[ MySQL ] 2.MySQL索引"/>
 <meta name="twitter:description" content="MySQL索引  Index(索引)，在存储引擎中用于快速找到记录的一种数据结构。索引用来快速寻找特定值的记录。
  如果没有索引，执行查询时，MySQL必须从第一个记录开始扫描整个表的所有记录，知道找到符合要求的记录。如果存在索引，MySQL无需扫描全表即可迅速查找到目标记录所在的位置。
-1. 索引类型  数据结构角度：   B&#43; Tree索引
-  Hash索引
-只有Memory存储引擎显示支持hash索引
-  FullText索引
-目前MyISAM和InnoDB引擎已支持。
-  R- Tree索引
-用于对GIS数据类型进行创建Spatial索引。
-   物理存储角度： 逻辑角度：  2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   "/>
+1. 索引类型   Hash索引：
+ 底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。 多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的， 只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。    B&#43; Tree索引：(MySQL引擎Innodb实现方式)
+ B&#43; Tree索引是一种多路平衡查询树。 其节点是天然有序的(左节点 &lt; 父节点 &lt; 右节点)。 对于范围查询时候不需要做全表扫描。    相比Hash索引，B&#43; Tree的优点：
+ Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   "/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -396,7 +380,7 @@
             <a href="https://touch-star.com/categories/middleware/"> MiddleWare </a>
             
           </div>
-        <span class="more-meta"> 约 56 字 </span>
+        <span class="more-meta"> 约 64 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -540,27 +524,31 @@
 如果存在索引，MySQL无需扫描全表即可迅速查找到目标记录所在的位置。</p>
 <h2 id="1-索引类型">1. 索引类型</h2>
 <ul>
-<li>数据结构角度：
+<li>
+<p>Hash索引：</p>
 <ul>
-<li>
-<p>B+ Tree索引</p>
-</li>
-<li>
-<p>Hash索引</p>
-<p>只有Memory存储引擎显示支持hash索引</p>
-</li>
-<li>
-<p>FullText索引</p>
-<p>目前MyISAM和InnoDB引擎已支持。</p>
-</li>
-<li>
-<p>R- Tree索引</p>
-<p>用于对GIS数据类型进行创建Spatial索引。</p>
-</li>
+<li>底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。</li>
+<li>多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的，</li>
+<li>只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。</li>
 </ul>
 </li>
-<li>物理存储角度：</li>
-<li>逻辑角度：</li>
+<li>
+<p>B+ Tree索引：(MySQL引擎Innodb实现方式)</p>
+<ul>
+<li>B+ Tree索引是一种多路平衡查询树。</li>
+<li>其节点是天然有序的(左节点 &lt; 父节点 &lt; 右节点)。</li>
+<li>对于范围查询时候不需要做全表扫描。</li>
+</ul>
+</li>
+<li>
+<p>相比Hash索引，B+ Tree的优点：</p>
+<ol>
+<li>Hash索引适合等值查询，但是无法进行范围查询</li>
+<li>Hash索引没办法利用索引完成排序</li>
+<li>Hash索引不支持多列联合索引的最左匹配规则</li>
+<li>如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题</li>
+</ol>
+</li>
 </ul>
 <h2 id="2-mysql索引失效的几种情况">2. MySQL索引失效的几种情况</h2>
 <ul>

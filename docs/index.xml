@@ -112,6 +112,26 @@
     </item>
     
     <item>
+      <title>[ Mybatis ] 1. Mybatis</title>
+      <link>https://touch-star.com/post/coding/java/spring/mybatis/1-mybatis-interview/</link>
+      <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/coding/java/spring/mybatis/1-mybatis-interview/</guid>
+      
+        <description>MyBatis 1. MyBatis二级缓存   一级缓存：
+ 基于PrepetualCache的HashMap本地缓存，其作用域是Session。 当Session在flush()或者close()之后，此Session中所有Cache都将被清除。 默认情况下，一级缓存处于打开状态。    二级缓存：
+ 二级缓存与一级缓存机制相同，一样基于PrepetualCache HashMap进行存储。 但其作用于是Mapper(Namespace)，而且可以采用自定义存储源， 例如Ehcache、Redis等。 默认情况下，二级缓存处于关闭状态。 二级缓存在使用中，其属性类型需要实现serialize序列化接口。 可在其映射配置文件中进行    对于缓存更新机制，当某一作用域(一级Session/二级Namespace)执行C/U/D后 默认情况下，此作用域下所有select中的缓存将被clear。
+  2. Mybatis工作原理   加载Mybatis全局配置文件mybatis-config.xml：
+ 此配置文件用于配置数据库连接信息。    加载Mybatis映射配置文件xxx-mapper.xml:
+ 此配置文件包含有操作数据库的SQL语句，需在mybatis-config.xml文件中进行配置。 mybatis-config.xml中可以配置多个xxx-mapper.xml文件 一个xxx-mapper.xml文件对应数据库中一张表。    构建会话工厂：
+ 通过配置信心初始化构建SQLSessionFactory对象。    创建会话对象：
+ 基于会话工厂创建SQLSession对象。 此Sqlsession对象中包含有执行SQL语句的所有方法。    Executor执行器
+ Mybatis底层封装了一个Executor的接口用于操作数据库。 将根据SqlSession对象传递的参数动态生成所需要执行的SQL语句，同时负责缓存查询。    MappedStatement对象：
+ 在Executor接口的执行方法中存在一个MappedStatement类型的参数， 该参数是对映射地址信息进行封装，用于存储要映射的SQL语句的id，参数等信息。    输入参数映射：</description>
+      
+    </item>
+    
+    <item>
       <title>[ Netty ] 1.Netty基础</title>
       <link>https://touch-star.com/post/middleware/netty/6_1_netty/</link>
       <pubDate>Tue, 05 Jan 2021 10:36:27 +0800</pubDate>
@@ -134,17 +154,6 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
       <guid>https://touch-star.com/post/coding/java/interview/2-processor/</guid>
       
         <description>面试准备 一、学习路线 1.Java基础  面向对象特性：封装、继承、多态(动态绑定、向上转型) 泛型、类型擦除 反射、其原理及其优缺点 static,final关键字 String,StringBuffer,StringBuilder底层区别 BIO、NIO、AIO Object类的方法 自动拆箱与自动装箱  2.集合框架  List  ArrayList LinkedList Vector CopyOnWriteArrayList   Set  HashSet TreeSet LinkedHashSet   Queue  PriorityQueue   Map  HashMap TreeMap LinkedMap   fast-fail，fast-safe机制 源码分析(底层数据结构，插入、扩容过程)、线程安全分析  3.Java虚拟机  类加载机制、双亲委派模式、3种加载器(BootstrapClassLoader，ExtensionClassLoader，ApplicationClassLoader) 运行时内存分区(PC，Java虚拟机栈，本地方法栈，堆，方法区[永久代、元空间]) JMM: Java内存模型分析 引用计数、可达性分析 垃圾回收算法：标记-清除、标记-整理、复制 垃圾回收器：比较区别(Serial，ParNew，ParallelScavenge，CMS，G1) 强、软、弱、虚引用 内存溢出、内存泄漏排查 JVM调优、常用命令  4.Java并发  三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池(ThreadPoolExecutor，7大参数、原理、四种拒绝策略、四个类型[Fixed、Single、Cached、Scheduled]) Synchronized 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  5.</description>
-      
-    </item>
-    
-    <item>
-      <title>[ Interview ] 1.面试准备</title>
-      <link>https://touch-star.com/post/coding/java/interview/1-one/</link>
-      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
-      
-      <guid>https://touch-star.com/post/coding/java/interview/1-one/</guid>
-      
-        <description>面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  SPI(Service Provider Interface)，主要用于框架，框架定义接口。 不同使用者将存在不同需求，也必然出现不同实现方式。而SPI就是通过定义 一个特定的位置，Java SPI约定在Classpath下的META-INF/services/ 路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的 具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可 以在运行时动态为接口替换实现类。 Dubbo SPI 1.</description>
       
     </item>
     

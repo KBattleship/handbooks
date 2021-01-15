@@ -350,6 +350,134 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/middleware/dubbo/2_dubbo_spi/">[ Dubbo ] 2. Dubbo中的SPI</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-12-25" class="post-time">
+        2020-12-25
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> Java </a>
+          
+        </div>
+      <span class="more-meta"> 约 35 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/dubbo/2_dubbo_spi/" class="leancloud_visitors" data-flag-title="[ Dubbo ] 2. Dubbo中的SPI">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Dubbo中的SPI 1. Dubbo SPI与Java SPI  SPI(Service Provider Interface)，主要用于框架，框架定义接口。   不同使用者将存在不同需求，也必然出现不同实现方式。
+  而SPI就是通过定义一个特定的位置，Java SPI约定在Classpath下的META-INF/services/路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可以在运行时动态为接口替换实现类。
+  Dubbo SPI
+ 并非是Java原生的SPI，而是重新实现的SPI。   Java SPI通过ServiceLoader进行加载； Dubbo SPI通过ExtensionLoader进行拓展加载。  支持的注解：  @SPI(标记为拓展接口) @Adaptive(自适应拓展实现类标志) @Activate(自动激活条件标记)   配置文件放在classpath下的META-INF/dubbo/以及 META-INF/dubbo/internal下 Dubbo SPI增加了对拓展点IOC和AOP的支持，一个拓展点可以直接 通过Setter注入其他拓展点。 Java SPI会一次性实例化拓展点所有实现，如果有拓展实现初始化 过程很耗时，并且用不上，将会造成资源浪费。    Dubbo中SPI应用
+ 协议扩展 集群扩展 路由扩展 序列化扩展      
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/dubbo/2_dubbo_spi/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/middleware/dubbo/3_dubbo_communication/">[ Dubbo ] 3. Dubbo通信原理</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-12-25" class="post-time">
+        2020-12-25
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> Java </a>
+          
+        </div>
+      <span class="more-meta"> 约 13 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/dubbo/3_dubbo_communication/" class="leancloud_visitors" data-flag-title="[ Dubbo ] 3. Dubbo通信原理">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Dubbo通信原理 1. Dubbo多线程通信原理  获取DubboInvoker对象； 将请求体信息封装在一个Request对象中，Request中会包括一个自增的id； 然后将Request存到一个ConcurrentHashMap中（key=id，value= DefaultFuture）,将request数据写入Channel Consumer Thread执行Defaultfuture#get()方法等待返回结果 服务提供方创建多线程处理用户请求，并将放回结果封装在Response中（包括Request#id）将response写入Channel 消费方从Channel中收到数据以后，解析出id，从Map中解析出DefaultFuture唤醒Consumer Thread，返回结果 DefaultFuture也会启动一个定时程序，检查在timeout内，结果是否返回，如果未返回，将DefaultFuture从map中移除，并抛出超时异常  
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/dubbo/3_dubbo_communication/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/middleware/dubbo/1_dubbobase/">[ Dubbo ] 1.Dubbo基础概念</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2020-12-22" class="post-time">
+        2020-12-22
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> Java </a>
+          
+        </div>
+      <span class="more-meta"> 约 326 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
+      
+      
+      
+        <span id="/post/middleware/dubbo/1_dubbobase/" class="leancloud_visitors" data-flag-title="[ Dubbo ] 1.Dubbo基础概念">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Dubbo基础概念 1.Dubbo核心组件  Provider： 暴露服务的服务提供方 Consumer： 调用远程服务的消费方 Register： 服务注册与发现注册中心 Monitor： 监控中心和访问调用统计 Container：服务运行时容器   Dubbo分层主要为业务层、RPC层和Remote层，如果把每层进行详细划分的话，整体划分为：
+  业务层：  service: 包含各业务代码的接口与实现；   RPC层：  config: 配置层，主要围绕ServiceConfig(暴露的服务配置)和ReferenceConfig(引用的服务配置)两个类展开，初始化配置信息； proxy: 服务代理层，不论生产者还是消费者，Dubbo都会生成一个代理类，在调用远程接口时，就可以像本地接口一样，代理层自动做远程调用并返回结果； registry: 注册层，负责Dubbo框架的服务注册与发现； cluster: 集群容错层，主要负责远程调用失败时的集群容错策略(如快速失败、快速重试等)； monitor: 监控层，负责监控统计调用次数和调用时间等； protocol: 远程调用层，封装RPC调用具体过程，是Invoker暴露和引用的主要功能入口，负责管理Invoker的整个生命周期；   Remote层：  exchange: 信息交换层，封装请求相应模式，如同步请求转换为异步请求； transport: 网络传输层，把网络传输抽象为统一接口； serialize: 序列化层，将需要网络传输的数据极性序列化，转为二进制流。    2.Dubbo服务注册与发现流程  Container负责启动，加载，运行服务提供者 Provider启动时，向注册中心注册自己并提供服务 Consumer启动时，向注册中心订阅自已需调用服务 Register返回服务提供者地址列表给服务消费者，如运行期间，服务提供者发生变动，将通过长连接推送至服务消费者 Consumer通过负载均衡算法(软方式)，选取注册中心所返回的服务提供者列表中的一个节点进行调用，如果调用失败将尝试其他节点进行调用 Consumer、Provider将调用次数、时间记录于内存中，并定时每分钟发送至Monitor监控中心  3-1. Dubbo服务暴露过程  Dubbo 会在 Spring 实例化完 bean 之后， 在刷新容器最后一步发布 ContextRefreshEvent 事件的时候，通知实现了 ApplicationListener 的 ServiceBean 类进行回调 onApplicationEvent 事件方法。 Dubbo 会在这个方法中调用 ServiceBean 父类 ServiceConfig 的 export 方法，而该方法真正实现了服务的发布。  3-2.
+    </div>
+    <div class="read-more">
+      <a href="/post/middleware/dubbo/1_dubbobase/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/cloudnative/kubernetes/3_k8s_service/1_k8s_service/">[ Kubernetes ] 3-1.深入Service</a>
     </h1>
     
@@ -650,171 +778,6 @@
 </article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/kubernetes/index-readme/">[ Kubernetes ] 0.Kubernetes</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-09-11" class="post-time">
-        2020-09-11
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 19 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/kubernetes/index-readme/" class="leancloud_visitors" data-flag-title="[ Kubernetes ] 0.Kubernetes">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      Kubernetes Kubernetes(K8s)，译文成为【舵手】。从官网的Logo可以看出是轮船上的舵。结合container(集装箱，容器)的概念，Kubernetes看起来则是管理这些容器的。是一个自动化的容器编排平台，负责应用的部署、应用的弹性以及应用的管理，前提则是这些应用都是基于容器的。
-核心功能   服务的发现与负载均衡
-附属组件KubeDNS为系统内置了服务发现功能，可以将每一个Service增加DNS名称，使得集群内节点直接通过此名称访问到；同时Service通过iptables、ipvs支持了负载均衡。
-  自动装箱
-构建于容器之上，基于资源依赖及其他约束在不影响其可用性的情况下自动完成容器的部署工作。
-  自我修复
-容器故障后自动重启、节点故障后自动重新进行容器调度、节点健康状态检查异常后会关闭容器进行重新创建。
-  水平扩展
-通过命令、UI手动水平扩展、基于CPU等资源负载率进行自动水平扩展。
-  自动发布与回滚
-使用灰度方式更新应用或其配置，过程中的应用健康状态将得到监控，以保证不在同一时刻kill掉所有实例；同时，过程中健康状态出现异常情况，将会立即自动执行回滚。
-  存储编排
-Pod对象自动挂载不同类型的存储系统。
-  批量处理
-支持批处理作业、CI持续集成。
-  秘钥与配置管理
-K8s的configMap将配置与Docker镜像解耦，更新配置时，无需重新构建Docker镜像。同时，敏感数据将通过Secret对象进行解耦，以保障一定程度上的最大安全。
-  
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/kubernetes/index-readme/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/cloudnative/kubernetes/1_k8s_base/1_concept/">[ Kubernetes ] 1-1.初识K8s</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-09-11" class="post-time">
-        2020-09-11
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 78 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/cloudnative/kubernetes/1_k8s_base/1_concept/" class="leancloud_visitors" data-flag-title="[ Kubernetes ] 1-1.初识K8s">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
-  ApiServer
-集群的网关。
- 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
-   Controller Manager
-负责生命周期功能及API业务逻辑。
- **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
-   Scheduler
-在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
-  Etcd
-基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
- a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
-     Node(从节点:worker node)
-工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
-  Pod
-Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
-  Pod Controller(Pod 控制器)
-虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
-  Replication Controller(复制控制器)
-K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
-  Replica Set
-保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
- 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。
-    </div>
-    <div class="read-more">
-      <a href="/post/cloudnative/kubernetes/1_k8s_base/1_concept/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/middleware/register_center/etcd/etcd_interview/">[ Etcd ] 1.基础入门(1)</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-08-30" class="post-time">
-        2020-08-30
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/k8s/"> K8s </a>
-          
-        </div>
-      <span class="more-meta"> 约 105 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/middleware/register_center/etcd/etcd_interview/" class="leancloud_visitors" data-flag-title="[ Etcd ] 1.基础入门(1)">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      ETCD  其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
- raft协议  每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
- 节点选举  使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel
- 竞选流程 如果集群中的某一个 Follower 节点长时间内没有收到来自 Leader 的心跳请求，当前节点就会通过 MsgHup 消息进入预选举或者选举的流程。 如果收到 MsgHup 消息的节点不是 Leader 状态，就会根据当前集群的配置选择进入 PreElection 或者 Election 阶段，PreElection 阶段并不会真正增加当前节点的 Term，它的主要作用是得到当前集群能否成功选举出一个 Leader 的答案，如果当前集群中只有两个节点而且没有预选举阶段，那么这两个节点的 Term 会无休止的增加，预选举阶段就是为了解决这一问题而出现的。 当前节点会立刻调用 becomeCandidate 将当前节点的 Raft 状态变成候选人；在这之后，它会将票投给自己，如果当前集群只有一个节点，该节点就会直接成为集群中的 Leader 节点。
-    </div>
-    <div class="read-more">
-      <a href="/post/middleware/register_center/etcd/etcd_interview/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
 </section>
 
 
@@ -886,6 +849,10 @@ K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制�
       
       <li >
         <a href="/page/12/">12</a>
+      </li>
+      
+      <li >
+        <a href="/page/13/">13</a>
       </li>
       
     </ul>

@@ -6,10 +6,32 @@
     <description>Recent content in dubbo on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 22 Dec 2020 15:36:27 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 25 Dec 2020 15:36:27 +0800</lastBuildDate>
     
 	<atom:link href="https://touch-star.com/tags/dubbo/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>[ Dubbo ] 2. Dubbo中的SPI</title>
+      <link>https://touch-star.com/post/middleware/dubbo/2_dubbo_spi/</link>
+      <pubDate>Fri, 25 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/dubbo/2_dubbo_spi/</guid>
+      <description>Dubbo中的SPI 1. Dubbo SPI与Java SPI  SPI(Service Provider Interface)，主要用于框架，框架定义接口。   不同使用者将存在不同需求，也必然出现不同实现方式。
+  而SPI就是通过定义一个特定的位置，Java SPI约定在Classpath下的META-INF/services/路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可以在运行时动态为接口替换实现类。
+  Dubbo SPI
+ 并非是Java原生的SPI，而是重新实现的SPI。   Java SPI通过ServiceLoader进行加载； Dubbo SPI通过ExtensionLoader进行拓展加载。  支持的注解：  @SPI(标记为拓展接口) @Adaptive(自适应拓展实现类标志) @Activate(自动激活条件标记)   配置文件放在classpath下的META-INF/dubbo/以及 META-INF/dubbo/internal下 Dubbo SPI增加了对拓展点IOC和AOP的支持，一个拓展点可以直接 通过Setter注入其他拓展点。 Java SPI会一次性实例化拓展点所有实现，如果有拓展实现初始化 过程很耗时，并且用不上，将会造成资源浪费。    Dubbo中SPI应用
+ 协议扩展 集群扩展 路由扩展 序列化扩展      </description>
+    </item>
+    
+    <item>
+      <title>[ Dubbo ] 3. Dubbo通信原理</title>
+      <link>https://touch-star.com/post/middleware/dubbo/3_dubbo_communication/</link>
+      <pubDate>Fri, 25 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://touch-star.com/post/middleware/dubbo/3_dubbo_communication/</guid>
+      <description>Dubbo通信原理 1. Dubbo多线程通信原理  获取DubboInvoker对象； 将请求体信息封装在一个Request对象中，Request中会包括一个自增的id； 然后将Request存到一个ConcurrentHashMap中（key=id，value= DefaultFuture）,将request数据写入Channel Consumer Thread执行Defaultfuture#get()方法等待返回结果 服务提供方创建多线程处理用户请求，并将放回结果封装在Response中（包括Request#id）将response写入Channel 消费方从Channel中收到数据以后，解析出id，从Map中解析出DefaultFuture唤醒Consumer Thread，返回结果 DefaultFuture也会启动一个定时程序，检查在timeout内，结果是否返回，如果未返回，将DefaultFuture从map中移除，并抛出超时异常  </description>
+    </item>
     
     <item>
       <title>[ Dubbo ] 1.Dubbo基础概念</title>
@@ -18,7 +40,7 @@
       
       <guid>https://touch-star.com/post/middleware/dubbo/1_dubbobase/</guid>
       <description>Dubbo基础概念 1.Dubbo核心组件  Provider： 暴露服务的服务提供方 Consumer： 调用远程服务的消费方 Register： 服务注册与发现注册中心 Monitor： 监控中心和访问调用统计 Container：服务运行时容器   Dubbo分层主要为业务层、RPC层和Remote层，如果把每层进行详细划分的话，整体划分为：
-  业务层：  service: 包含各业务代码的接口与实现；   RPC层：  config: 配置层，主要围绕ServiceConfig(暴露的服务配置)和ReferenceConfig(引用的服务配置)两个类展开，初始化配置信息； proxy: 服务代理层，不论生产者还是消费者，Dubbo都会生成一个代理类，在调用远程接口时，就可以像本地接口一样，代理层自动做远程调用并返回结果； registry: 注册层，负责Dubbo框架的服务注册与发现； cluster: 集群容错层，主要负责远程调用失败时的集群容错策略(如快速失败、快速重试等)； monitor: 监控层，负责监控统计调用次数和调用时间等； protocol: 远程调用层，封装RPC调用具体过程，是Invoker暴露和引用的主要功能入口，负责管理Invoker的整个生命周期；   Remote层：  exchange: 信息交换层，封装请求相应模式，如同步请求转换为异步请求； transport: 网络传输层，把网络传输抽象为统一接口； serialize: 序列化层，将需要网络传输的数据极性序列化，转为二进制流。    2.Dubbo服务器注册与发现流程  Container负责启动，加载，运行服务提供者 Provider启动时，向注册中心注册自己并提供服务 Consumer启动时，向注册中心订阅自已需调用服务 Register返回服务提供者地址列表给服务消费者，如运行期间，服务提供者发生变动，将通过长连接推送至服务消费者 Consumer通过负载均衡算法(软方式)，选取注册中心所返回的服务提供者列表中的一个节点进行调用，如果调用失败将尝试其他节点进行调用 Consumer、Provider将调用次数、时间记录于内存中，并定时每分钟发送至Monitor监控中心  3.Dubbo项目结构 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23  $ tree -L 1 .</description>
+  业务层：  service: 包含各业务代码的接口与实现；   RPC层：  config: 配置层，主要围绕ServiceConfig(暴露的服务配置)和ReferenceConfig(引用的服务配置)两个类展开，初始化配置信息； proxy: 服务代理层，不论生产者还是消费者，Dubbo都会生成一个代理类，在调用远程接口时，就可以像本地接口一样，代理层自动做远程调用并返回结果； registry: 注册层，负责Dubbo框架的服务注册与发现； cluster: 集群容错层，主要负责远程调用失败时的集群容错策略(如快速失败、快速重试等)； monitor: 监控层，负责监控统计调用次数和调用时间等； protocol: 远程调用层，封装RPC调用具体过程，是Invoker暴露和引用的主要功能入口，负责管理Invoker的整个生命周期；   Remote层：  exchange: 信息交换层，封装请求相应模式，如同步请求转换为异步请求； transport: 网络传输层，把网络传输抽象为统一接口； serialize: 序列化层，将需要网络传输的数据极性序列化，转为二进制流。    2.Dubbo服务注册与发现流程  Container负责启动，加载，运行服务提供者 Provider启动时，向注册中心注册自己并提供服务 Consumer启动时，向注册中心订阅自已需调用服务 Register返回服务提供者地址列表给服务消费者，如运行期间，服务提供者发生变动，将通过长连接推送至服务消费者 Consumer通过负载均衡算法(软方式)，选取注册中心所返回的服务提供者列表中的一个节点进行调用，如果调用失败将尝试其他节点进行调用 Consumer、Provider将调用次数、时间记录于内存中，并定时每分钟发送至Monitor监控中心  3-1. Dubbo服务暴露过程  Dubbo 会在 Spring 实例化完 bean 之后， 在刷新容器最后一步发布 ContextRefreshEvent 事件的时候，通知实现了 ApplicationListener 的 ServiceBean 类进行回调 onApplicationEvent 事件方法。 Dubbo 会在这个方法中调用 ServiceBean 父类 ServiceConfig 的 export 方法，而该方法真正实现了服务的发布。  3-2.</description>
     </item>
     
   </channel>

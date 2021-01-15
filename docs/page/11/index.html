@@ -350,6 +350,176 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/coding/java/spring/readme/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 1 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/spring/readme/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      Introduction 
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/spring/readme/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/spring/spring/spring-features/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 141 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/spring/spring/spring-features/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      背景：不是为了推荐大家去使用Spring5 文档很少、资料难找 没有实战实践，包括老师自己没有用过 目的：1、带大家来看看眼界 2、了解一下未来的一个发展趋势
+鸡肋
+推荐：SpringBoot，Spring生态链（框架的框架）
+Spring5新特性：
+ 依赖JDK 8+和Java EE7+以上版本 支持使用注解进行编程 新增函数式编程 支持使用REST断点执行反应式编程 支持HTTP 2.0 新增Kotlin和Spring WebFlux 可使用Lambda表达式注册Bean Spring WebMVC支持最新的API 使用JUnit5执行条件和并发测试 使用Spring WebFlux执行集成测试 核心容器优化  Spring5对WebFlux的支持
+Sevlet2.x 单实例多线程的阻塞式IO （BIO） Sevlet3.x 单实例多线程异步非阻塞式IO （AIO异步非阻塞、NIO 同步非阻塞）
+WebFlux 是在Servlet3.x 的基础之上应运而生
+特点： 1、基于Servlet3.x 实现异步非阻塞的HTTP响应 2、API完美支持Rest风格 3、支持函数式编程 4、Mono是表示返回单个对象、Flux表示返回集合
+结论： 1、为了让大家开一下眼界，了解未来的发展趋势 2、如果要应用在项目之中，建议大家直接用Spring Boot
+Spring5集成测试 JUnit集成 1、 * @BeforeEach 相当于 JUnit 4 @Before * @BeforeAll 相当于 JUnit 4 @BeforeClass * @AfterEach 相当于 JUnit 4 @After * @AfterAll 相当于 JUnit 4 @AfterClass * @Test 不在org.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/spring/spring/spring-features/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/spring/spring/spring-orm-framework/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 58 字 </span>
+      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/spring/spring/spring-orm-framework/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      基于Spring5实现ORM 初衷： 单表查询不写一句SQL，自动生成 查询的结果自动映射为Java对象
+*1、我要传一个复杂的查询条件，怎么传？
+想到了用对象来传，但是有问题 a)、跨表联查的条件 b)、无法携带判断逻辑的运算符 c)、or 或者 and 无法区分
+ 2、自动映射类型判断麻烦 ，用rs.getObject()方法  3、跨多种数据库如何统一API
+*4、数据源的动态切换如何来做？ AbstractRoutingDataSource数据源自动路由，执行数据连接以前，根据业务规则来动态获取到一个连接 从而达到动态切换数据库连接的效果 为了操作方便，每次执换完，执行成以后，会将数据源恢复到默认的设置
+*5、SQL注入 1、首先将QueryRule构建好，把所有的查询条件保存到一个ruleList中 2、再写一个工具类QueryRuleSqlBuilder，循环ruleList对每一个条件分别处理processAnything，主要是构建where后面语句 3、process以后propertisList 保存诸如 and name = ? ， values tom,利用索引位置相同，来进行一一对应
+问：selectbysql就相当于没有使用框架，不符合之前统一参数，统一查询方法拉？ 答：不推荐使用，如果一定要多表查询，只有两种方案 a) 写SQL语句 b) 查多次，在内存中处理数据关系，一般会在Service中进行处理 在Java代码中处理，会让程序员更加容易理解 如果给大串SQL，这后来接手的人直接想死 我见过一条SQL语句有10行之长的，我直接看晕了 &mdash;&mdash;&mdash;&ndash; 在我的团队中，极少数使用多表关联查询 &mdash;&mdash;&mdash;&mdash;-
+问：······这个PK主键传过来怎么用？有什么好处 答：&lt;T extends Serializable,PK extends Serializable&gt; 传于不传不影响功能 目的：返回结果不需要再手动的强制类型转换
+问：如用老师这个框架来组装sql，复杂查询的话，会不会难以组装， 比如说查某个表的字段是另外一个表的条件，以此类推多个表的话？ 答：这就是属于多表查询
+问：连接操作，还有如果表没有主键PK 还需要传？ 答：只要用的我框架，每个表必须有主键，哪怕是自增 为了降低程序设计的复杂度
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/spring/spring/spring-orm-framework/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
+      <a class="post-link" href="/post/coding/java/spring/spring/uml/0_spring/"></a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="0001-01-01" class="post-time">
+        0001-01-01
+      </time>
+      
+      <span class="more-meta"> 约 0 字 </span>
+      <span class="more-meta"> 预计阅读 0 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/spring/spring/uml/0_spring/" class="leancloud_visitors" data-flag-title="">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/spring/spring/uml/0_spring/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/coding/java/spring/springcloud/1.springcloudfinchley%E7%89%88%E6%9C%AC-%E6%9E%84%E5%BB%BA%E5%9F%BA%E7%A1%80/"></a>
     </h1>
     
@@ -581,170 +751,6 @@
 </article>
 
   
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 9 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      一、OpenCV-Java的入门  OpenCV的Java官方文档地址
- 1.OpenCV的Java环境构建 首先，声明一下在本文中选用的环境配置如下：
-  MacOS操作系统
-  IntelliJ IDEA开发编译器
-   MacOS的安装有两种方式：一种是靠强大的BrewHome安装器自动安装；另外一种就是相对麻烦的手动安装了。
-在这里我选择的是BrewHome进行安装。（前提是MacOS已经安装了BrewHome）
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/python/opencv/1.%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E5%8F%8Ademo%E6%BC%94%E7%A4%BA/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%80-%E8%81%8A%E8%81%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 42 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%80-%E8%81%8A%E8%81%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      一、相关概念的简介  在了解深度学习前应该还有两个专业名词大家也想必是耳熟能详，那么就是人工智能、机器学习。
-  人工智能(Artificial Intelligence)：也就是我们经常听到的AI。它是研究、开发用于模拟、延伸和扩展人的智能的理论、方法、技术及应用系统的一门新的技术科学。但是在早期的时候，人工智能充满了局限性，只是在特定的环境范围下。 机器学习(Machine Learning)：简称ML。机器学习其实是人工智能的一个分支。如果一个程序可以在**任务*(T)上，随着经验(E)***的增加，*效果(P)***也可以随之增加，则就可以说这个程序可以从经验中得到学习。 深度学习(Deep Learning)：简称DL。深度学习也是机器学习的一个分支。主要是在机器学习的基础之上有所改进：它除了可以学习特征和任务之间的关联，还可以自动的将简单的特征组合成更加复杂的特征，并使用这些组合特征解决问题。   二、了解机器学习(ML)  1. 用例子认识机器学习的概念 其实，邮件系统中判断收到的邮件是否为垃圾邮件就可以看做是一个机器学习的过程。首先对垃圾邮件分类概念进行一个拆分、类比：
-  一个程序 &lt;======&gt; 需要用到的机器学习算法，比如逻辑回归算法 任务(T) &lt;======&gt; 区分此邮件是否是垃圾邮件这个任务 经验(E) &lt;======&gt; 已经区分过是否为垃圾邮件的历史事件 效果(P) &lt;======&gt; 机器学习算法在区分此邮件是否是垃圾邮件这个任务的精确率   在整个过程中，首先会从每一封邮件中抽取出对分类结果可能有影响的因素（比如：发件人的地址、邮件的标题、收件人的数量、邮件正题内容，so on）。这样的每一个因素其实可以成为是一个特征 (feature)。然而机器学习算法中的逻辑回归算法可以从训练数据中计算出每个特征和预测结果的相关度。例如，在垃圾邮件分类过程中，可能会发现如果一个邮件的收件人越多，那么这封邮件是垃圾邮件的可能性越大。 在对一封完全未知的邮件进行区分时，逻辑回归算法会根据这封邮件中抽取到的每一个特征以及这些特征和垃圾邮件的相关度进行判断是否为垃圾邮件。 所以，从例子中不难看出：一般情况下，在训练数据达到一定数量之前，越多的训练数据可以使得逻辑回归算法对未知邮件做出的判断越精确。
- 也就是说逻辑回归算法可以根据训练数据【经验(E)】提高垃圾邮件分类问题【任务(T)】上的准确率【效果(P)】
- 2.机器学习的分类  有监督学习(Supervised Learning)   有监督学习可分为回归和分类问题。例如上述示例垃圾邮件分类就属于有监督学习。 1.在回归问题中，我们会预测一个连续值；也就是我们试图将输入变量和输出用一个连续函数对应起来。 2.在分类问题中，我们会预测一个离散值，我们试图将输入变量与离散的类别对应起来。
-  无监督学习(Unsupervised Leanring)   这种学习方式，数据并不被特别标识，学习模型是为了推断出数据的一些内在结构。
-  增强式学习(Reinforcement Learning)   输入数据作为对模型的反馈，不像监督模型那样，输入数据仅仅是作为一个检查模型对错的方式，在强化学习下，输入数据直接反馈到模型，模型必须对此立刻作出调整。
- 
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%80-%E8%81%8A%E8%81%8A%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89-%E5%85%B3%E4%BA%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 6 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89-%E5%85%B3%E4%BA%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      一、关于神经网络  训练神经网络主要包含以下四部分：  层，多个层组合成网络(模型) 输入数据和相应的目标 损失函数，即用于学习的反馈信号 优化器，决定学习过程如何进行    
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/python/%E5%A4%A7%E8%AF%9Dai-%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E4%B8%89-%E5%85%B3%E4%BA%8E%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/middleware/netty/readme/"></a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="0001-01-01" class="post-time">
-        0001-01-01
-      </time>
-      
-      <span class="more-meta"> 约 0 字 </span>
-      <span class="more-meta"> 预计阅读 0 分钟 </span>
-      
-      
-      
-        <span id="/post/middleware/netty/readme/" class="leancloud_visitors" data-flag-title="">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-       
-    </div>
-    <div class="read-more">
-      <a href="/post/middleware/netty/readme/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
 </section>
 
 
@@ -816,6 +822,10 @@
       
       <li >
         <a href="/page/12/">12</a>
+      </li>
+      
+      <li >
+        <a href="/page/13/">13</a>
       </li>
       
     </ul>

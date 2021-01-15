@@ -18,3 +18,38 @@ author: ""
   + 跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。
   + 一是实现有序集合键，二是集群节点中用作内部数据结构。
   + 相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。
+
+## 2. Redis中BitMap
+
++ Bitmap并不是一种独立的数据结构，而是基于String数据结构进行的位图操作。
+    + 最大空间即为String数据结构所支持的512MB，
+    + 所以bitmap所支持的最大offset为2^32-1.
+
++ 一般使用场景用于大数据签到、日活统计、在线统计等等。
+  + 其主要优点可以节省大量空间。
+  + 例如：
+    进行日活统计：
+    + 使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃
+```shell
+  ### 基本操作演示(以下为Redis-cli命令)
+  
+  # 设置一个字符串 1Aa 
+  # 存储在redis中的二进制为 0b001100010100000101100001
+  set testkey 1Aa
+
+  # 进行bitmap操作
+  setbit testkey 10 1
+  setbit testkey 18 0
+
+  # testkey对象index为10的bit值为1
+  getbit testkey 10 
+  # testkey对象index为18的bit值为1
+  getbit testkey 18
+
+  # 进行位统计 ,结果为bit上为1的和，
+  # testkey输出结果为 8
+  bitcount testkey
+
+  # testkey输出结果为 3
+  bitcount testkey 0 0
+  ```
