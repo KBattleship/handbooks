@@ -71,8 +71,8 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
       
       <guid>https://touch-star.com/post/coding/java/base/2_basic/2_4_hashmap/</guid>
       <description>HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
- 1. HashMap工作原理  Put操作  当调用put操作时，HashMap计算键值K的哈希值，然后将其对应到HashMap的某一个桶(bucket)上； 此时找到以这个桶为头结点的一个单链表，然后顺序遍历该单链表找到某个节点的Entry中的Key是等于给定的参数K； 若找到，则将其的old V替换为参数指定的V； 否则直接在链表尾部插入一个新的Entry节点。   Get操作  对于get(K)操作类似于put操作，HashMap通过计算键的哈希值，先找到对应的桶 然后遍历桶存放的单链表通过比照Entry的键来找到对应的值    2. HashMap的put()流程 先根据key确定其在Hash表中的下标，找到对应的bucket，遍历链表(或者红黑树)进行插入操作。
- 先判断Hash表是否为null或者长度是否为0，是则进行一次扩容； 根据 key 确定 Hash表 中的 index，在找到对应的 bucket，如果 bucket 上没有节点，直接新增一个节点； 如果当前 bucket 上存在链表，且头节点可以匹配上，直接进行替换； 如果当前 bucket 上是红黑树，则按照红黑树操作进行插入或替换； 如果以上情况都不满足，将开始遍历链表，如果匹配到就进行替换；如果未匹配到将在链表尾部添加一个节点，同时会判断链表长度是否大于 8 、Hash表数组是否大于 64，同时满足这两个条件，将链表会转化为红黑树；如果链表长度仅大于 8，将会进行扩容； 执行完成后，会判断 Map中 K-V对 数量是否大于 threshold ，是则进行扩容。  3. ConcurrentHashMap.get()是否线程安全，是否有加锁？  安全，读操作不受影响。 不加锁。  4. ConcurrentHashMap如何保证线程安全  在JDK8以前，ConcurrentHashMap都是基于Segment分段锁来实现的， 在JDK8以后，就换成synchronized和CAS这套实现机制了。  使用 volatile 保证当Node中的值变化时对于其他线程是 可见的 使用 table数组的头结点 作为synchronized的锁来 保证写操作 的安全 当头结点为 null 时，使用 CAS操作 来保证数据能正确的 写入   和JDK1.</description>
+ 1. HashMap的resize()流程 源码解析
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84  // 扩容 hashTable 大小的方法  final Node&amp;lt;K,V&amp;gt;[] resize() { // 扩容前 hashTable  Node&amp;lt;K,V&amp;gt;[] oldTab = table; // 扩容前 HashTable 的容量  int oldCap = (oldTab == null) ?</description>
     </item>
     
     <item>
