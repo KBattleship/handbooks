@@ -23,12 +23,16 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
+  <meta name="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
   final修饰的常量处于JVM中哪部分内存
   JVM垃圾回收机制
   引用类型
   JVM垃圾回收器，各有什么特点
-  垃圾回收算法" />
+  垃圾回收算法
+  对象什么时间可以被回收
+  新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？
+  CMS垃圾回收器
+  JVM中Survivor空间是做什么的" />
 <meta name="keywords" content="interview" />
 
 
@@ -65,37 +69,49 @@
 
 
 <meta property="og:title" content="[ Interview ] 1. 面试之清单" />
-<meta property="og:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
+<meta property="og:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
   final修饰的常量处于JVM中哪部分内存
   JVM垃圾回收机制
   引用类型
   JVM垃圾回收器，各有什么特点
-  垃圾回收算法" />
+  垃圾回收算法
+  对象什么时间可以被回收
+  新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？
+  CMS垃圾回收器
+  JVM中Survivor空间是做什么的" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/algorithm/ext/1_exam_2021_01_07/" />
 <meta property="article:published_time" content="2021-01-07T01:13:47+08:00" />
 <meta property="article:modified_time" content="2021-01-07T01:13:47+08:00" />
 <meta itemprop="name" content="[ Interview ] 1. 面试之清单">
-<meta itemprop="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
+<meta itemprop="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
   final修饰的常量处于JVM中哪部分内存
   JVM垃圾回收机制
   引用类型
   JVM垃圾回收器，各有什么特点
-  垃圾回收算法">
+  垃圾回收算法
+  对象什么时间可以被回收
+  新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？
+  CMS垃圾回收器
+  JVM中Survivor空间是做什么的">
 <meta itemprop="datePublished" content="2021-01-07T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-07T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="131">
+<meta itemprop="wordCount" content="124">
 
 
 
 <meta itemprop="keywords" content="interview,笔试,algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[ Interview ] 1. 面试之清单"/>
-<meta name="twitter:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  HashMap实现原理 HashMap put()流程 HashMap gut()流程 HashMap扩容流程 ConcurrentHashMap如何保证线程安全    2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
+<meta name="twitter:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
   final修饰的常量处于JVM中哪部分内存
   JVM垃圾回收机制
   引用类型
   JVM垃圾回收器，各有什么特点
-  垃圾回收算法"/>
+  垃圾回收算法
+  对象什么时间可以被回收
+  新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？
+  CMS垃圾回收器
+  JVM中Survivor空间是做什么的"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -380,7 +396,7 @@
             <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
             
           </div>
-        <span class="more-meta"> 约 131 字 </span>
+        <span class="more-meta"> 约 124 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -1009,15 +1025,7 @@
 <h2 id="一-java">一、 Java</h2>
 <h3 id="1-集合">1. 集合</h3>
 <ul>
-<li><a href="/post/coding/java/base/2_basic/2_4_hashmap">HashMap</a>
-<ul>
-<li><em><strong>HashMap实现原理</strong></em></li>
-<li><em><strong>HashMap put()流程</strong></em></li>
-<li><em><strong>HashMap gut()流程</strong></em></li>
-<li><em><strong>HashMap扩容流程</strong></em></li>
-<li><strong>ConcurrentHashMap如何保证线程安全</strong></li>
-</ul>
-</li>
+<li><a href="/post/coding/java/base/2_basic/2_4_hashmap">HashMap</a></li>
 </ul>
 <h3 id="2-多线程">2. 多线程</h3>
 <ul>
@@ -1042,31 +1050,31 @@
 <h3 id="3-jvm">3. JVM</h3>
 <ul>
 <li>
-<p><a href="/post/coding/java/base/3_jvm/3_jvm_memory_monitor"><strong>JVM内存结构</strong></a></p>
+<p><a href="/post/coding/java/base/3_jvm/3_jvm_memory_monitor#1-jvm-%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><strong>JVM内存结构</strong></a></p>
 </li>
 <li>
 <p><a href=""><strong>final修饰的常量处于JVM中哪部分内存</strong></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#1.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><strong>JVM垃圾回收机制</strong></a></p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#1-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><strong>JVM垃圾回收机制</strong></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#2.%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><strong>引用类型</strong></a></p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#2-%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B"><strong>引用类型</strong></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#7.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><strong>JVM垃圾回收器，各有什么特点</strong></a></p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#7-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><strong>JVM垃圾回收器，各有什么特点</strong></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#6.%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><strong>垃圾回收算法</strong></a></p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#6-%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><strong>垃圾回收算法</strong></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#4.%E5%9C%A8Java%E4%B8%AD%EF%BC%8C%E5%AF%B9%E8%B1%A1%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E8%A2%AB%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%EF%BC%9F"><strong>对象什么时间可以被回收</strong></a></p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#4-%E5%9C%A8java%E4%B8%AD%E5%AF%B9%E8%B1%A1%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E8%A2%AB%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><strong>对象什么时间可以被回收</strong></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#9.%E6%96%B0%E7%94%9F%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E4%B8%8E%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B%EF%BC%9F%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F"><strong>新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？</strong></a></p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#9-%E6%96%B0%E7%94%9F%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E4%B8%8E%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88"><strong>新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？</strong></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#8.%E5%85%B3%E4%BA%8ECMS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><strong>CMS垃圾回收器</strong></a></p>
+<p><a href="/post/coding/java/base/3_jvm/2_jvm_gc#8-%E5%85%B3%E4%BA%8ECMS%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><strong>CMS垃圾回收器</strong></a></p>
 </li>
 <li>
 <p><a href=""><strong>JVM中Survivor空间是做什么的</strong></a></p>
@@ -1096,10 +1104,10 @@
 <p><a href=""><em><strong>讲讲Mysql索引</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#2.MySQL%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5"><em><strong>Mysql索引失效的几种情况</strong></em></a></p>
+<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#2-MySQL%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5"><em><strong>Mysql索引失效的几种情况</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#3.%E5%BC%BA%E5%88%B6%E7%B4%A2%E5%BC%95"><em><strong>Mysql强制索引</strong></em></a></p>
+<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#3-%E5%BC%BA%E5%88%B6%E7%B4%A2%E5%BC%95"><em><strong>Mysql强制索引</strong></em></a></p>
 </li>
 <li>
 <p><a href=""><em><strong>分库分表如何实现的</strong></em></a></p>
@@ -1117,58 +1125,58 @@
 <p><a href=""><em><strong>Redis支持的几种数据结构</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/middleware/database/nosql/redis/1_redis_interview#1.%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%B3%E8%A1%A8"><em><strong>Redis跳表</strong></em></a></p>
+<p><a href="/post/middleware/database/nosql/redis/1_redis_interview#1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%B3%E8%A1%A8"><em><strong>Redis跳表</strong></em></a></p>
 </li>
 </ul>
 <h2 id="四-spring">四、 Spring</h2>
 <ul>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#4.SpringIOC"><em><strong>SpringIOC原理</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#4-SpringIOC"><em><strong>SpringIOC原理</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#5.Spring%E5%AE%B9%E5%99%A8%E5%8A%A0%E8%BD%BDBean"><em><strong>容器加载Bean流程</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#5-Spring%E5%AE%B9%E5%99%A8%E5%8A%A0%E8%BD%BDBean"><em><strong>容器加载Bean流程</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#8.SpringAOP"><em><strong>SpringAOP原理</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#8-SpringAOP"><em><strong>SpringAOP原理</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#1.SpringBeanFactory%E4%B8%8EFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB">FactoryBean 与 BeanFactory区别</a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#1-SpringBeanFactory%E4%B8%8EFactoryBean%E7%9A%84%E5%8C%BA%E5%88%AB">FactoryBean 与 BeanFactory区别</a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#6.Spring%E4%B8%89%E7%BA%A7%E7%BC%93%E5%AD%98"><em><strong>Spring三级缓存</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#6-Spring%E4%B8%89%E7%BA%A7%E7%BC%93%E5%AD%98"><em><strong>Spring三级缓存</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#7.Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><em><strong>SpringBoot循环依赖</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#7-Spring%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96"><em><strong>SpringBoot循环依赖</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#17.SpringBoot%E8%AE%A2%E9%98%85%E5%8F%91%E5%B8%83%E6%A8%A1%E5%BC%8F%E3%80%82ApplicationEvent%E5%A4%84%E4%BA%8E%E4%BB%80%E4%B9%88%E8%A7%92%E8%89%B2%EF%BC%8C%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84%EF%BC%9F"><em><strong>SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#17-SpringBoot%E8%AE%A2%E9%98%85%E5%8F%91%E5%B8%83%E6%A8%A1%E5%BC%8FApplicationEvent%E5%A4%84%E4%BA%8E%E4%BB%80%E4%B9%88%E8%A7%92%E8%89%B2%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E7%9A%84"><em><strong>SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#9.JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB"><em><strong>JDK动态代理和CGLIB动态代理的区别</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#9-JDK%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E5%92%8CCGLIB%E5%8A%A8%E6%80%81%E4%BB%A3%E7%90%86%E7%9A%84%E5%8C%BA%E5%88%AB"><em><strong>JDK动态代理和CGLIB动态代理的区别</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#15.SpringAOP%E5%B8%B8%E7%94%A8%E7%9A%84%E5%88%87%E5%85%A5%E7%82%B9"><em><strong>SpringAOP常用的切入点</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#15-SpringAOP%E5%B8%B8%E7%94%A8%E7%9A%84%E5%88%87%E5%85%A5%E7%82%B9"><em><strong>SpringAOP常用的切入点</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#16.SpringIOC%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><em><strong>SpringIOC常用注解</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#16-SpringIOC%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3"><em><strong>SpringIOC常用注解</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#12.@Autowired%E4%B8%8E@Resource%E5%8C%BA%E5%88%AB"><em><strong>@Autowired与@Resource区别</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#12-@Autowired%E4%B8%8E@Resource%E5%8C%BA%E5%88%AB"><em><strong>@Autowired与@Resource区别</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#13.@Qualifier%E4%B8%8E@Autowired"><em><strong>@Qualifier与@Autowired</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#13-@Qualifier%E4%B8%8E@Autowired"><em><strong>@Qualifier与@Autowired</strong></em></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#14.SpringBoot%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><em><strong>SpringBoot上下文切换</strong></em></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#14-SpringBoot%E4%B8%8A%E4%B8%8B%E6%96%87%E5%88%87%E6%8D%A2"><em><strong>SpringBoot上下文切换</strong></em></a></p>
 </li>
 <li>
 <p><a href=""><strong>SpringBoot编译打包后包的结构?通过main()函数作为主入口的程序打包后如何启动？</strong></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#11.Spring%E5%90%AF%E5%8A%A8%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B5%81%E7%A8%8B"><strong>Spring启动加载配置文件的流程</strong></a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#11-Spring%E5%90%AF%E5%8A%A8%E5%8A%A0%E8%BD%BD%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B5%81%E7%A8%8B"><strong>Spring启动加载配置文件的流程</strong></a></p>
 </li>
 <li>
-<p><a href="/post/coding/java/spring/spring/1_spring_ioc#10.%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D">自动装配</a></p>
+<p><a href="/post/coding/java/spring/spring/1_spring_ioc#10-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D">自动装配</a></p>
 </li>
 </ul>
 <h2 id="五-分布式">五、 分布式</h2>
@@ -1184,11 +1192,11 @@
 <h2 id="六-开源框架">六、 开源框架</h2>
 <h3 id="1-netty">1. Netty</h3>
 <ul>
-<li><a href="/post/middleware/netty/6_1_netty#1.%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8Netty%EF%BC%9F"><em><strong>聊聊Netty</strong></em></a></li>
-<li><a href="/post/middleware/netty/6_1_netty#6.Netty%E4%B8%ADTCP%E7%B2%98%E5%8C%85%E3%80%81%E6%8B%86%E5%8C%85"><em><strong>Netty中的拆包、粘包是为什么？如何解决？</strong></em></a></li>
-<li><a href="/post/middleware/netty/6_1_netty#4.Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><em><strong>Netty的线程模型</strong></em></a></li>
-<li><a href="/post/middleware/netty/6_1_netty#3.Netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><em><strong>Netty的重要组件</strong></em></a></li>
-<li><a href="/post/middleware/netty/6_1_netty#5.EventLoopGroup%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%8EEventLoop%E5%85%B3%E7%B3%BB%E3%80%82"><em><strong>Netty中EventLoopGroup与EventLoop什么区别</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8Netty"><em><strong>聊聊Netty</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#6-Netty%E4%B8%ADTCP%E7%B2%98%E5%8C%85%E6%8B%86%E5%8C%85"><em><strong>Netty中的拆包、粘包是为什么？如何解决？</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#4-Netty%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><em><strong>Netty的线程模型</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#3-Netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><em><strong>Netty的重要组件</strong></em></a></li>
+<li><a href="/post/middleware/netty/6_1_netty#5-EventLoopGroup%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%8EEventLoop%E5%85%B3%E7%B3%BB"><em><strong>Netty中EventLoopGroup与EventLoop什么区别</strong></em></a></li>
 </ul>
 <h3 id="2-dubbo">2. Dubbo</h3>
 <ul>
@@ -1210,8 +1218,8 @@
 <h2 id="八-操作系统">八、 操作系统</h2>
 <h3 id="1-tcpip">1. TCP/IP</h3>
 <ul>
-<li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#4.TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><em><strong>TCP三次握手/四次挥手</strong></em></a></li>
-<li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#2.TCP%E4%B8%8EUDP%E7%9A%84%E5%8C%BA%E5%88%AB"><em><strong>TCP与UDP的区别</strong></em></a></li>
+<li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#4-TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><em><strong>TCP三次握手/四次挥手</strong></em></a></li>
+<li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#2-TCP%E4%B8%8EUDP%E7%9A%84%E5%8C%BA%E5%88%AB"><em><strong>TCP与UDP的区别</strong></em></a></li>
 </ul>
 
     </div>
