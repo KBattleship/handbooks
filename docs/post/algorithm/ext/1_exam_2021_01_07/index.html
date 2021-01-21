@@ -23,16 +23,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 
 <meta name="author" content="Quinn" />
-  <meta name="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
-  final修饰的常量处于JVM中哪部分内存
-  JVM垃圾回收机制
-  引用类型
-  JVM垃圾回收器，各有什么特点
-  垃圾回收算法
-  对象什么时间可以被回收
-  新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？
-  CMS垃圾回收器
-  JVM中Survivor空间是做什么的" />
+  <meta name="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  Algorithm Sort  手撸插入排序 手撸二分查找 堆排序(Top K) 快素排序思想 反转单链表 合并二叉树(递归与非递归两种办法)  Java Basic  Object是所有对象的父类，那Object类中有哪些方法 hashCode()与equals()有什么关系 String、StringBuilder、StringBuffer区别 反射机制 方法(静态、一般方法)；代码块(this，ClassName.class)  Collections  List之ArrayList List之LinkedList List之Vector Map之HashMap Map之LinkedHashMap Map之ConcurrentHashMap Map之TreeMap HashTable Set之HashSet Set之TreeSet Queue之ArrayBlockingQueue Queue之ConcurrentLinkedQueue Queue之LinkedBlockingQueue  Thread  线程的几种状态以及如何转化的 三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 关于锁 synchronized锁以及锁升级 ReentrantLock与synchronized区别 有界、无界任务队列，手写BlockingQueue ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  JVM   JVM内存结构
+  final修饰的常量处于JVM中哪部分内存" />
 <meta name="keywords" content="interview" />
 
 
@@ -69,49 +61,25 @@
 
 
 <meta property="og:title" content="[ Interview ] 1. 面试之清单" />
-<meta property="og:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
-  final修饰的常量处于JVM中哪部分内存
-  JVM垃圾回收机制
-  引用类型
-  JVM垃圾回收器，各有什么特点
-  垃圾回收算法
-  对象什么时间可以被回收
-  新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？
-  CMS垃圾回收器
-  JVM中Survivor空间是做什么的" />
+<meta property="og:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  Algorithm Sort  手撸插入排序 手撸二分查找 堆排序(Top K) 快素排序思想 反转单链表 合并二叉树(递归与非递归两种办法)  Java Basic  Object是所有对象的父类，那Object类中有哪些方法 hashCode()与equals()有什么关系 String、StringBuilder、StringBuffer区别 反射机制 方法(静态、一般方法)；代码块(this，ClassName.class)  Collections  List之ArrayList List之LinkedList List之Vector Map之HashMap Map之LinkedHashMap Map之ConcurrentHashMap Map之TreeMap HashTable Set之HashSet Set之TreeSet Queue之ArrayBlockingQueue Queue之ConcurrentLinkedQueue Queue之LinkedBlockingQueue  Thread  线程的几种状态以及如何转化的 三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 关于锁 synchronized锁以及锁升级 ReentrantLock与synchronized区别 有界、无界任务队列，手写BlockingQueue ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  JVM   JVM内存结构
+  final修饰的常量处于JVM中哪部分内存" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/algorithm/ext/1_exam_2021_01_07/" />
 <meta property="article:published_time" content="2021-01-07T01:13:47+08:00" />
 <meta property="article:modified_time" content="2021-01-07T01:13:47+08:00" />
 <meta itemprop="name" content="[ Interview ] 1. 面试之清单">
-<meta itemprop="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
-  final修饰的常量处于JVM中哪部分内存
-  JVM垃圾回收机制
-  引用类型
-  JVM垃圾回收器，各有什么特点
-  垃圾回收算法
-  对象什么时间可以被回收
-  新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？
-  CMS垃圾回收器
-  JVM中Survivor空间是做什么的">
+<meta itemprop="description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  Algorithm Sort  手撸插入排序 手撸二分查找 堆排序(Top K) 快素排序思想 反转单链表 合并二叉树(递归与非递归两种办法)  Java Basic  Object是所有对象的父类，那Object类中有哪些方法 hashCode()与equals()有什么关系 String、StringBuilder、StringBuffer区别 反射机制 方法(静态、一般方法)；代码块(this，ClassName.class)  Collections  List之ArrayList List之LinkedList List之Vector Map之HashMap Map之LinkedHashMap Map之ConcurrentHashMap Map之TreeMap HashTable Set之HashSet Set之TreeSet Queue之ArrayBlockingQueue Queue之ConcurrentLinkedQueue Queue之LinkedBlockingQueue  Thread  线程的几种状态以及如何转化的 三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 关于锁 synchronized锁以及锁升级 ReentrantLock与synchronized区别 有界、无界任务队列，手写BlockingQueue ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  JVM   JVM内存结构
+  final修饰的常量处于JVM中哪部分内存">
 <meta itemprop="datePublished" content="2021-01-07T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-07T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="143">
+<meta itemprop="wordCount" content="152">
 
 
 
 <meta itemprop="keywords" content="interview,笔试,algorithm," /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="[ Interview ] 1. 面试之清单"/>
-<meta name="twitter:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  一、 Java 1. 集合  HashMap  2. 多线程  synchronized锁以及锁升级 线程的几种状态以及如何转化的 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 三种线程初始化方法的区别(Thread,Callable,Runnable) 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  3. JVM   JVM内存结构
-  final修饰的常量处于JVM中哪部分内存
-  JVM垃圾回收机制
-  引用类型
-  JVM垃圾回收器，各有什么特点
-  垃圾回收算法
-  对象什么时间可以被回收
-  新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？
-  CMS垃圾回收器
-  JVM中Survivor空间是做什么的"/>
+<meta name="twitter:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  Algorithm Sort  手撸插入排序 手撸二分查找 堆排序(Top K) 快素排序思想 反转单链表 合并二叉树(递归与非递归两种办法)  Java Basic  Object是所有对象的父类，那Object类中有哪些方法 hashCode()与equals()有什么关系 String、StringBuilder、StringBuffer区别 反射机制 方法(静态、一般方法)；代码块(this，ClassName.class)  Collections  List之ArrayList List之LinkedList List之Vector Map之HashMap Map之LinkedHashMap Map之ConcurrentHashMap Map之TreeMap HashTable Set之HashSet Set之TreeSet Queue之ArrayBlockingQueue Queue之ConcurrentLinkedQueue Queue之LinkedBlockingQueue  Thread  线程的几种状态以及如何转化的 三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 关于锁 synchronized锁以及锁升级 ReentrantLock与synchronized区别 有界、无界任务队列，手写BlockingQueue ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  JVM   JVM内存结构
+  final修饰的常量处于JVM中哪部分内存"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -396,7 +364,7 @@
             <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
             
           </div>
-        <span class="more-meta"> 约 143 字 </span>
+        <span class="more-meta"> 约 152 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -461,8 +429,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%b8%80-java">
-                            一、 Java
+                            <a class="nav-link text-left" href="#algorithm">
+                            Algorithm
                             </a>
                         </li>
                     
@@ -487,8 +455,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#1-%e9%9b%86%e5%90%88">
-                            1. 集合
+                            <a class="nav-link text-left" href="#sort">
+                            Sort
                             </a>
                         </li>
                     
@@ -511,12 +479,10 @@
                     
                     <ul class="nav">
                     
-                    <ul class="nav">
-                    
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#2-%e5%a4%9a%e7%ba%bf%e7%a8%8b">
-                            2. 多线程
+                            <a class="nav-link text-left" href="#java">
+                            Java
                             </a>
                         </li>
                     
@@ -525,8 +491,6 @@
                     
                     </ul>
                     
-                    </ul>
-                    
                 
             
         
@@ -543,8 +507,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#3-jvm">
-                            3. JVM
+                            <a class="nav-link text-left" href="#basic">
+                            Basic
                             </a>
                         </li>
                     
@@ -571,160 +535,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#4-algothrim">
-                            4. Algothrim
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%ba%8c-mysql">
-                            二、 Mysql
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%b8%89-redis">
-                            三、 Redis
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e5%9b%9b-spring">
-                            四、 Spring
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%ba%94-mybatis">
-                            五、 MyBatis
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%ba%94-%e5%88%86%e5%b8%83%e5%bc%8f">
-                            五、 分布式
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#1-base">
-                            1. Base
+                            <a class="nav-link text-left" href="#collections">
+                            Collections
                             </a>
                         </li>
                     
@@ -751,60 +563,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#2-kubernetes">
-                            2. Kubernetes
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e5%85%ad-%e5%bc%80%e6%ba%90%e6%a1%86%e6%9e%b6">
-                            六、 开源框架
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#1-netty">
-                            1. Netty
+                            <a class="nav-link text-left" href="#thread">
+                            Thread
                             </a>
                         </li>
                     
@@ -831,8 +591,60 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#2-dubbo">
-                            2. Dubbo
+                            <a class="nav-link text-left" href="#jvm">
+                            JVM
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#java-framework">
+                            Java Framework
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#spring">
+                            Spring
                             </a>
                         </li>
                     
@@ -859,8 +671,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#3-zookeeper">
-                            3. Zookeeper
+                            <a class="nav-link text-left" href="#mybatis">
+                            MyBatis
                             </a>
                         </li>
                     
@@ -887,60 +699,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#4-kafka">
-                            4. Kafka
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e4%b8%83-%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f">
-                            七、 设计模式
-                            </a>
-                        </li>
-                    
-                    
-                    </ul>
-                    
-                    </ul>
-                    
-                
-            
-        
-        
-            
-                
-                
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    <ul class="nav">
-                    
-                    
-                        <li class="nav-item">
-                            <a class="nav-link text-left" href="#1%e8%a7%82%e5%af%9f%e8%80%85%e6%a8%a1%e5%bc%8f">
-                            1.观察者模式
+                            <a class="nav-link text-left" href="#netty">
+                            Netty
                             </a>
                         </li>
                     
@@ -967,8 +727,120 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#2%e5%8d%95%e4%be%8b%e6%a8%a1%e5%bc%8f">
-                            2.单例模式
+                            <a class="nav-link text-left" href="#dubbo">
+                            Dubbo
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#zookeeper">
+                            Zookeeper
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#kafka">
+                            Kafka
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#rocketmq">
+                            RocketMQ
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#elasticsearch">
+                            ElasticSearch
                             </a>
                         </li>
                     
@@ -993,8 +865,8 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#%e5%85%ab-%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f">
-                            八、 操作系统
+                            <a class="nav-link text-left" href="#middleware">
+                            Middleware
                             </a>
                         </li>
                     
@@ -1019,13 +891,225 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#1-tcpip">
-                            1. TCP/IP
+                            <a class="nav-link text-left" href="#redis">
+                            Redis
                             </a>
                         </li>
                     
                     
                     </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#mysql">
+                            MySQL
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#distribution">
+                            Distribution
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#base">
+                            Base
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#kubernetes">
+                            Kubernetes
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f">
+                            操作系统
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#tcpip">
+                            TCP/IP
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e5%a4%9a%e7%ba%bf%e7%a8%8b%e4%b8%8e%e5%b9%b6%e5%8f%91">
+                            多线程与并发
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f">
+                            设计模式
+                            </a>
+                        </li>
+                    
                     
                     </ul>
                     
@@ -1050,32 +1134,58 @@
 <li><strong>加粗</strong> : <code>为本人面试所遇到的点儿</code></li>
 <li>正常 : <code>为本人面试刷的面经</code></li>
 </ul>
-<h2 id="一-java">一、 Java</h2>
-<h3 id="1-集合">1. 集合</h3>
+<h2 id="algorithm"><strong>Algorithm</strong></h2>
+<h3 id="sort"><strong>Sort</strong></h3>
 <ul>
-<li><a href="/post/coding/java/base/2_basic/2_4_hashmap">HashMap</a></li>
+<li><a href=""><strong>手撸插入排序</strong></a></li>
+<li><a href=""><strong>手撸二分查找</strong></a></li>
+<li><a href=""><em><strong>堆排序(Top K)</strong></em></a></li>
+<li><a href=""><strong>快素排序思想</strong></a></li>
+<li><a href=""><strong>反转单链表</strong></a></li>
+<li><a href=""><strong>合并二叉树(递归与非递归两种办法)</strong></a></li>
 </ul>
-<h3 id="2-多线程">2. 多线程</h3>
+<h2 id="java"><strong>Java</strong></h2>
+<h3 id="basic"><strong>Basic</strong></h3>
 <ul>
-<li><a href=""><em><strong>synchronized锁以及锁升级</strong></em></a></li>
+<li><a href=""><strong>Object是所有对象的父类，那Object类中有哪些方法</strong></a></li>
+<li><a href=""><strong>hashCode()与equals()有什么关系</strong></a></li>
+<li><a href="">String、StringBuilder、StringBuffer区别</a></li>
+<li><a href="">反射机制</a></li>
+<li><a href="">方法(静态、一般方法)；代码块(this，ClassName.class)</a></li>
+</ul>
+<h3 id="collections"><strong>Collections</strong></h3>
+<ul>
+<li><a href="">List之ArrayList</a></li>
+<li><a href="">List之LinkedList</a></li>
+<li><a href="">List之Vector</a></li>
+<li><a href="/post/coding/java/base/2_basic/2_4_hashmap"><em><strong>Map之HashMap</strong></em></a></li>
+<li><a href="">Map之LinkedHashMap</a></li>
+<li><a href="">Map之ConcurrentHashMap</a></li>
+<li><a href="">Map之TreeMap</a></li>
+<li><a href="">HashTable</a></li>
+<li><a href="">Set之HashSet</a></li>
+<li><a href="">Set之TreeSet</a></li>
+<li><a href="">Queue之ArrayBlockingQueue</a></li>
+<li><a href="">Queue之ConcurrentLinkedQueue</a></li>
+<li><a href="">Queue之LinkedBlockingQueue</a></li>
+</ul>
+<h3 id="thread"><strong>Thread</strong></h3>
+<ul>
 <li><a href=""><em><strong>线程的几种状态以及如何转化的</strong></em></a></li>
+<li><a href="">三种线程初始化方法的区别(<code>Thread</code>,<code>Callable</code>,<code>Runnable</code>)</a></li>
 <li><a href=""><em><strong>线程池几个重要参数</strong></em></a></li>
 <li><a href=""><em><strong>线程池四种拒绝策略</strong></em></a></li>
 <li><a href=""><em><strong>线程池四个类型</strong></em></a></li>
-<li><a href="">线程池(ThreadPoolExecutor)原理</a></li>
-<li>三种线程初始化方法的区别(<code>Thread</code>,<code>Callable</code>,<code>Runnable</code>)</li>
-<li>使用：方法(静态、一般方法)；代码块(this，ClassName.class)</li>
-<li>jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁</li>
-<li>锁升级的过程与细节：无锁-&gt;偏向锁-&gt;轻量级锁-&gt;重量级锁(不可逆)</li>
-<li>ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法</li>
-<li>有界、无界任务队列，手写BlockingQueue</li>
-<li>乐观锁：CAS(优缺点，ABA问题，DCAS)</li>
-<li>悲观锁</li>
-<li>ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景</li>
-<li>Atomic类：原理、应用场景</li>
-<li>Volatile：原理、有序性、可见性</li>
+<li><a href="">线程池(<code>ThreadPoolExecutor</code>)原理</a></li>
+<li><a href="">关于锁</a></li>
+<li><a href=""><em><strong><code>synchronized</code>锁以及锁升级</strong></em></a></li>
+<li><a href=""><code>ReentrantLock</code>与<code>synchronized</code>区别</a></li>
+<li><a href="">有界、无界任务队列，手写BlockingQueue</a></li>
+<li><a href=""><code>ThreadLocal</code>：底层数据结构、ThreadLocalMap、原理、应用场景</a></li>
+<li><a href=""><code>Atomic类</code>：原理、应用场景</a></li>
+<li><a href=""><code>Volatile</code>：原理、有序性、可见性</a></li>
 </ul>
-<h3 id="3-jvm">3. JVM</h3>
+<h3 id="jvm"><strong>JVM</strong></h3>
 <ul>
 <li>
 <p><a href="/post/coding/java/base/3_jvm/3_jvm_memory_monitor#1-jvm-%E5%86%85%E5%AD%98%E7%BB%93%E6%9E%84"><strong>JVM内存结构</strong></a></p>
@@ -1107,59 +1217,21 @@
 <li>
 <p><a href=""><strong>JVM中Survivor空间是做什么的</strong></a></p>
 </li>
-</ul>
-<h3 id="4-algothrim">4. Algothrim</h3>
-<ul>
 <li>
-<p><a href=""><strong>手撸插入排序</strong></a></p>
+<p><a href=""><strong>类加载器</strong></a></p>
 </li>
 <li>
-<p><a href=""><strong>手撸二分查找</strong></a></p>
+<p><a href=""><strong>双亲委派模型</strong></a></p>
 </li>
 <li>
-<p><a href=""><em><strong>堆排序(Top K)</strong></em></a></p>
+<p><a href=""><strong>类加载机制</strong></a></p>
 </li>
 <li>
-<p><a href=""><strong>快素排序思想</strong></a></p>
-</li>
-<li>
-<p><a href=""><strong>反转单链表</strong></a></p>
+<p><a href=""><strong>类加载</strong></a></p>
 </li>
 </ul>
-<h2 id="二-mysql">二、 Mysql</h2>
-<ul>
-<li>
-<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#1-%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B"><em><strong>讲讲Mysql索引</strong></em></a></p>
-</li>
-<li>
-<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#2-mysql%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5"><em><strong>Mysql索引失效的几种情况</strong></em></a></p>
-</li>
-<li>
-<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#3-%E5%BC%BA%E5%88%B6%E7%B4%A2%E5%BC%95"><em><strong>Mysql强制索引</strong></em></a></p>
-</li>
-<li>
-<p><a href=""><em><strong>分库分表如何实现的</strong></em></a></p>
-</li>
-<li>
-<p><a href=""><em><strong>分库分表中间件</strong></em></a></p>
-</li>
-</ul>
-<h2 id="三-redis">三、 Redis</h2>
-<ul>
-<li>
-<p><a href=""><em><strong>什么是击穿？什么是雪崩？</strong></em></a></p>
-</li>
-<li>
-<p><a href=""><em><strong>Redis支持的几种数据结构</strong></em></a></p>
-</li>
-<li>
-<p><a href="/post/middleware/database/nosql/redis/1_redis_interview#1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%B3%E8%A1%A8"><em><strong>Redis跳表</strong></em></a></p>
-</li>
-<li>
-<p><a href="/post/middleware/database/nosql/redis/1_redis_interview#2-redis%E4%B8%ADbitmap"><strong>Redis中的BitMap</strong></a></p>
-</li>
-</ul>
-<h2 id="四-spring">四、 Spring</h2>
+<h2 id="java-framework"><strong>Java Framework</strong></h2>
+<h3 id="spring"><strong>Spring</strong></h3>
 <ul>
 <li>
 <p><a href="/post/coding/java/spring/spring/1_spring_ioc#4-springioc"><em><strong>SpringIOC原理</strong></em></a></p>
@@ -1210,7 +1282,7 @@
 <p><a href="/post/coding/java/spring/spring/1_spring_ioc#10-%E8%87%AA%E5%8A%A8%E8%A3%85%E9%85%8D">自动装配</a></p>
 </li>
 </ul>
-<h3 id="五-mybatis">五、 MyBatis</h3>
+<h3 id="mybatis"><strong>MyBatis</strong></h3>
 <ul>
 <li>
 <p><a href="/post/coding/java/spring/mybatis/1-mybatis-interview#1-mybatis%E4%BA%8C%E7%BA%A7%E7%BC%93%E5%AD%98">MyBatis二级缓存</a></p>
@@ -1219,18 +1291,7 @@
 <p><a href="/post/coding/java/spring/mybatis/1-mybatis-interview#2-mybatis%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">Mybatis原理</a></p>
 </li>
 </ul>
-<h2 id="五-分布式">五、 分布式</h2>
-<h3 id="1-base">1. Base</h3>
-<ul>
-<li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#1-hash%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95"><strong>一致性Hash算法</strong></a></li>
-</ul>
-<h3 id="2-kubernetes">2. Kubernetes</h3>
-<ul>
-<li><a href=""><strong>Kubernetes中Pod间是如何通信的</strong></a></li>
-<li><a href=""><strong>Kubernetes中IngressController</strong></a></li>
-</ul>
-<h2 id="六-开源框架">六、 开源框架</h2>
-<h3 id="1-netty">1. Netty</h3>
+<h3 id="netty"><strong>Netty</strong></h3>
 <ul>
 <li><a href="/post/middleware/netty/6_1_netty#1-%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%A8netty"><em><strong>聊聊Netty</strong></em></a></li>
 <li><a href="/post/middleware/netty/6_1_netty#6-netty%E4%B8%ADtcp%E7%B2%98%E5%8C%85%E6%8B%86%E5%8C%85"><em><strong>Netty中的拆包、粘包是为什么？如何解决？</strong></em></a></li>
@@ -1238,7 +1299,7 @@
 <li><a href="/post/middleware/netty/6_1_netty#3-netty%E6%A0%B8%E5%BF%83%E7%BB%84%E4%BB%B6"><em><strong>Netty的重要组件</strong></em></a></li>
 <li><a href="/post/middleware/netty/6_1_netty#5-eventloopgroup%E6%98%AF%E4%BB%80%E4%B9%88%E4%B8%8Eeventloop%E5%85%B3%E7%B3%BB"><em><strong>Netty中EventLoopGroup与EventLoop什么区别</strong></em></a></li>
 </ul>
-<h3 id="2-dubbo">2. Dubbo</h3>
+<h3 id="dubbo"><strong>Dubbo</strong></h3>
 <ul>
 <li><a href="/post/middleware/dubbo/2_dubbo_spi#1-dubbo-spi%E4%B8%8Ejava-spi"><em><strong>Dubbo中的SPI，为什么不适用JDK的SPI？</strong></em></a></li>
 <li><a href="/post/middleware/dubbo/1_dubbobase#2-dubbo%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0%E6%B5%81%E7%A8%8B"><strong>Dubbo服务注册与发现流程</strong></a></li>
@@ -1255,24 +1316,80 @@
 <li><a href="/post/middleware/dubbo/1_dubbobase#10-zookeeper%E5%92%8Cdubbo%E7%9A%84%E5%85%B3%E7%B3%BB">Zookeeper和Dubbo的关系</a></li>
 <li><a href="/post/middleware/dubbo/1_dubbobase#11-dubbo%E5%88%86%E5%B1%82">Dubbo分层</a></li>
 </ul>
-<h3 id="3-zookeeper">3. Zookeeper</h3>
+<h3 id="zookeeper"><strong>Zookeeper</strong></h3>
 <ul>
 <li><a href=""><em>一致性算法原理</em></a></li>
 <li><a href="">选举流程</a></li>
 <li><a href="/post/middleware/register_center/zookeeper/2-zookeeper-base#1-zan%E5%8D%8F%E8%AE%AE">ZAB协议</a></li>
 </ul>
-<h3 id="4-kafka">4. Kafka</h3>
+<h3 id="kafka"><strong>Kafka</strong></h3>
 <ul>
 <li><a href=""><strong>Zookeeper在Kafka中的作用</strong></a></li>
 </ul>
-<h2 id="七-设计模式">七、 设计模式</h2>
-<h3 id="1观察者模式">1.观察者模式</h3>
-<h3 id="2单例模式">2.单例模式</h3>
-<h2 id="八-操作系统">八、 操作系统</h2>
-<h3 id="1-tcpip">1. TCP/IP</h3>
+<h3 id="rocketmq"><strong>RocketMQ</strong></h3>
+<h3 id="elasticsearch"><strong>ElasticSearch</strong></h3>
+<h2 id="middleware"><strong>Middleware</strong></h2>
+<h3 id="redis"><strong>Redis</strong></h3>
+<ul>
+<li>
+<p><a href=""><em><strong>什么是击穿？什么是雪崩？</strong></em></a></p>
+</li>
+<li>
+<p><a href=""><em><strong>Redis支持的几种数据结构</strong></em></a></p>
+</li>
+<li>
+<p><a href="/post/middleware/database/nosql/redis/1_redis_interview#1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%B7%B3%E8%A1%A8"><em><strong>Redis跳表</strong></em></a></p>
+</li>
+<li>
+<p><a href="/post/middleware/database/nosql/redis/1_redis_interview#2-redis%E4%B8%ADbitmap"><strong>Redis中的BitMap</strong></a></p>
+</li>
+</ul>
+<h3 id="mysql"><strong>MySQL</strong></h3>
+<ul>
+<li>
+<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#1-%E7%B4%A2%E5%BC%95%E7%B1%BB%E5%9E%8B"><em><strong>讲讲Mysql索引</strong></em></a></p>
+</li>
+<li>
+<p><a href=""><strong>Mysql中<code>B+ Tree</code>索引原理</strong></a></p>
+</li>
+<li>
+<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#2-mysql%E7%B4%A2%E5%BC%95%E5%A4%B1%E6%95%88%E7%9A%84%E5%87%A0%E7%A7%8D%E6%83%85%E5%86%B5"><em><strong>Mysql索引失效的几种情况</strong></em></a></p>
+</li>
+<li>
+<p><a href="/post/middleware/database/sql/mysql/2_2_sql_index#3-%E5%BC%BA%E5%88%B6%E7%B4%A2%E5%BC%95"><em><strong>Mysql强制索引</strong></em></a></p>
+</li>
+<li>
+<p><a href=""><em><strong>分库分表如何实现的</strong></em></a></p>
+</li>
+<li>
+<p><a href=""><em><strong>分库分表中间件</strong></em></a></p>
+</li>
+</ul>
+<h2 id="distribution"><strong>Distribution</strong></h2>
+<h3 id="base"><strong>Base</strong></h3>
+<ul>
+<li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#1-hash%E6%9C%80%E7%BB%88%E4%B8%80%E8%87%B4%E6%80%A7%E7%AE%97%E6%B3%95"><strong>一致性Hash算法</strong></a></li>
+</ul>
+<h3 id="kubernetes"><strong>Kubernetes</strong></h3>
+<ul>
+<li><a href=""><strong>Kubernetes中Pod间是如何通信的</strong></a></li>
+<li><a href=""><strong>Kubernetes中IngressController</strong></a></li>
+</ul>
+<h2 id="操作系统"><strong>操作系统</strong></h2>
+<h3 id="tcpip"><strong>TCP/IP</strong></h3>
 <ul>
 <li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#4-tcp%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><em><strong>TCP三次握手/四次挥手</strong></em></a></li>
 <li><a href="/post/algorithm/ext/3_base_knowledge_2021_01_09#2-tcp%E4%B8%8Eudp%E7%9A%84%E5%8C%BA%E5%88%AB"><em><strong>TCP与UDP的区别</strong></em></a></li>
+</ul>
+<h3 id="多线程与并发"><strong>多线程与并发</strong></h3>
+<ul>
+<li><a href=""><strong>说说进程、线程、协程</strong></a></li>
+<li><a href=""><strong>操作系统的互斥锁原理，阻塞过程中(抢锁失败)线程会做什么</strong></a></li>
+</ul>
+<h2 id="设计模式"><strong>设计模式</strong></h2>
+<ul>
+<li><a href="">观察者模式</a></li>
+<li><a href="">单例模式</a></li>
 </ul>
 
     </div>
