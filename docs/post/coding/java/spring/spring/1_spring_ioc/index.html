@@ -78,7 +78,7 @@
 5. Spring容器加载Bean  BeanDefinitionReader读取Resource所执行的配置文件资源，解析配置文件，并将生成的BeanDefinition对象保存到BeanDefinitionRegistry中。 容器扫描Bean定义注册表中的BeanDefinition对象，调用InstantiationStrategy进行Bean实例化的工作；采用BeanWrapper完成Bean属性的设置工作。 若是单例的Bean，则将Bean缓存在Bean缓存器中。  6. Spring三级缓存  一级缓存：Map&lt;String, Object&gt; singletonObjects  作用  用于存储单例模式下创建的Bean实例（已经创建完毕）。 该缓存是对外使用的，指的就是使用Spring框架的程序员。   对象  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，已经创建完毕）     第二级缓存：Map&lt;String, Object&gt; earlySingletonObjects  作用：  用于存储单例模式下创建的Bean实例（该Bean被提前暴露的引用,该Bean还在创建中）。 该缓存是对内使用的，指的就是Spring框架内部逻辑使用该缓存。   对象：  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，该Bean还在创建中）     第三级缓存：Map&lt;String, ObjectFactory&lt;?">
 <meta itemprop="datePublished" content="2021-01-08T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-08T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="210">
+<meta itemprop="wordCount" content="211">
 
 
 
@@ -372,7 +372,7 @@
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 210 字 </span>
+        <span class="more-meta"> 约 211 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -962,6 +962,7 @@
 <h2 id="10-自动装配">10. 自动装配</h2>
 <p>在Spring框架中，在配置文件中设定bean的依赖关系是一个很好的机制，Spring 容器能够自动装配相互合作的bean，这意味着容器不需要和配置，能通过Bean工厂自动处理bean之间的协作。这意味着 Spring可以通过向Bean Factory中注入的方式自动搞定bean之间的依赖关系。自动装配可以设置在每个bean上，也可以设定在特定的bean上。</p>
 <h2 id="11-spring启动加载配置文件的流程">11. Spring启动加载配置文件的流程</h2>
+<p>在Spring中的，如果一个Bean实现了ApplicationListener接口，并且已经发布到容器中去，每次ApplicationContext发布一个ApplicationEvent事件，这个Bean就会接到通知。Spring事件机制是观察者模式的实现。</p>
 <h2 id="12-autowired与resource区别">12. @Autowired与@Resource区别</h2>
 <ul>
 <li>@Autowired默认是按照类型装配注入的，默认情况下它要求依赖对象必须存在（可以设置它required属性为false）。@Autowired 注解提供了更细粒度的控制，包括在何处以及如何完成自动装配。它的用法和@Required一样，修饰setter方法、构造器、属性或者具有任意名称和/或多个参数的PN方法。</li>
