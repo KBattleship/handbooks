@@ -81,7 +81,7 @@
 5. Spring容器加载Bean  BeanDefinitionReader读取Resource所执行的配置文件资源，解析配置文件，并将生成的BeanDefinition对象保存到BeanDefinitionRegistry中。 容器扫描Bean定义注册表中的BeanDefinition对象，调用InstantiationStrategy进行Bean实例化的工作；采用BeanWrapper完成Bean属性的设置工作。 若是单例的Bean，则将Bean缓存在Bean缓存器中。  6. Spring三级缓存  一级缓存：Map&lt;String, Object&gt; singletonObjects  作用  用于存储单例模式下创建的Bean实例（已经创建完毕）。 该缓存是对外使用的，指的就是使用Spring框架的程序员。   对象  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，已经创建完毕）     第二级缓存：Map&lt;String, Object&gt; earlySingletonObjects  作用：  用于存储单例模式下创建的Bean实例（该Bean被提前暴露的引用,该Bean还在创建中）。 该缓存是对内使用的，指的就是Spring框架内部逻辑使用该缓存。   对象：  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，该Bean还在创建中）     第三级缓存：Map&lt;String, ObjectFactory&lt;?">
 <meta itemprop="datePublished" content="2021-01-08T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-08T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="223">
+<meta itemprop="wordCount" content="235">
 
 
 
@@ -376,7 +376,7 @@
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 223 字 </span>
+        <span class="more-meta"> 约 235 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -729,8 +729,32 @@
                     
                     
                         <li class="nav-item">
-                            <a class="nav-link text-left" href="#14-springboot%e4%b8%8a%e4%b8%8b%e6%96%87%e5%88%87%e6%8d%a2">
-                            14. SpringBoot上下文切换
+                            <a class="nav-link text-left" href="#14-springboot%e5%90%af%e5%8a%a8%e6%b5%81%e7%a8%8b">
+                            14. SpringBoot启动流程
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#springboot%e8%87%aa%e5%8a%a8%e9%85%8d%e7%bd%ae%e7%9a%84%e5%8e%9f%e7%90%86">
+                            SpringBoot自动配置的原理
                             </a>
                         </li>
                     
@@ -988,7 +1012,17 @@
 <ul>
 <li>当您创建多个相同类型的 bean 并希望仅使用属性装配其中一个 bean 时，您可以使用@Qualifier 注解和 @Autowired 通过指定应该装配哪个确切的 bean 来消除歧义。</li>
 </ul>
-<h2 id="14-springboot上下文切换">14. SpringBoot上下文切换</h2>
+<h2 id="14-springboot启动流程">14. SpringBoot启动流程</h2>
+<ul>
+<li>new springApplication对象，利用spi机制加载applicationContextInitializer， applicationLister接口实例（META-INF/spring.factories）；</li>
+<li>调run方法准备Environment，加载应用上下文（applicationContext），发布事件 很多通过lister实现</li>
+<li>创建spring容器， refreshContext（） ，实现starter自动化配置，spring.factories文件加载， bean实例化</li>
+</ul>
+<h2 id="springboot自动配置的原理">SpringBoot自动配置的原理</h2>
+<ul>
+<li>@EnableAutoConfiguration找到META-INF/spring.factories（需要创建的bean在里面）配置文件</li>
+<li>读取每个starter中的spring.factories文件</li>
+</ul>
 <h2 id="15-springaop常用的切入点">15. SpringAOP常用的切入点</h2>
 <h2 id="16-springioc常用注解">16. SpringIOC常用注解</h2>
 <h2 id="17-springboot订阅发布模式applicationevent处于什么角色如何实现的">17. SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？</h2>

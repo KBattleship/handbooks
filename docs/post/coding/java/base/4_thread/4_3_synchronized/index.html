@@ -69,7 +69,7 @@
 <meta itemprop="description" content="4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo=&#39;synchronized&#39;;synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: 1 2 3 4 5 6 7 8 9 10 11  public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } }   将上述代码片段进行编译，使用javap -v SynchronizedTest.">
 <meta itemprop="datePublished" content="2021-01-10T11:10:47&#43;08:00" />
 <meta itemprop="dateModified" content="2021-01-10T11:10:47&#43;08:00" />
-<meta itemprop="wordCount" content="220">
+<meta itemprop="wordCount" content="230">
 
 
 
@@ -360,7 +360,7 @@
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 220 字 </span>
+        <span class="more-meta"> 约 230 字 </span>
           <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
@@ -590,6 +590,30 @@
                     
                     
                     </ul>
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e9%94%81%e5%8d%87%e7%ba%a7">
+                            锁升级
+                            </a>
+                        </li>
+                    
                     
                     </ul>
                     
@@ -850,6 +874,14 @@
 <p>但是在目前版本的JDK中，JVM进行了调整，提供有三种不同的Monitor实现(即常见的三类锁):<strong>偏斜锁</strong>(Biased Locking)、<strong>轻量级锁</strong>和<strong>重量级锁</strong>。</p>
 </li>
 </ul>
+<h2 id="锁升级">锁升级</h2>
+<p>1、当没有被当做锁的时候，这就是个普通对象，锁标志位为01，是否偏向锁为0</p>
+<p>2、当对象被当做同步锁时，一个线程A抢到锁时，锁标志位依然是01，是否偏向锁为1，前23位记录A线程的线程ID，此时锁升级为偏向锁</p>
+<p>3、当线程A再次试图来获得锁时，JVM发现同步锁对象的标志位是01，是否偏向锁是1，也就是偏向状态，Mark Word中记录的线程id就是线程A自己的id，表示线程A已经获得了这个偏向锁，可以执行同步锁的代码，这也是偏向锁的意义</p>
+<p>4、当一个线程B尝试获取锁，JVM发现当前的锁处于偏向状态，并且现场ID不是B线程的ID，那么线程B会先用CAS将线程id改为自己的，这里是有可能成功的，因为A线程一般不会释放偏向锁。如果失败，则执行5</p>
+<p>5、偏向锁抢锁失败，则说明当前锁存在一定的竞争，偏向锁就升级为轻量级锁。JVM会在当前线程的现场栈中开辟一块单独的空间，里面保存指向对象锁Mark Word的指针，同时在对象锁MarkWord中保存指向这片空间的指针。上面的保存都是CAS操作，如果竞争成功，代表线程B抢到了锁，可以执行同步代码。如果抢锁失败，则继续执行6</p>
+<p>6、轻量级锁抢锁失败，则JVM会使用自旋锁，自旋锁并非是一个锁，则是一个循环操作，不断的尝试获取锁。从JDK1.7开始，自旋锁默认开启，自旋次数由JVM决定。如果抢锁成功，则执行同步代码；如果抢锁失败，则执行7</p>
+<p>7、自旋锁重试之后仍然未抢到锁，同步锁会升级至重量级锁，锁标志位改为10，在这个状态下，未抢到锁的线程都会被阻塞，由Monitor来管理，并会有线程的park与unpark，因为这个存在用户态和内核态的转换，比较消耗资源，故名重量级锁</p>
 <h2 id="threadlocal的原理和应用">threadlocal的原理和应用</h2>
 <ul>
 <li>

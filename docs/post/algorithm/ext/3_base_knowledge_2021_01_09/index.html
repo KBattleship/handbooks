@@ -1109,12 +1109,10 @@ JVM中存在一个 <strong><code>优先级较低</code></strong> 的线程，只
 </li>
 </ul>
 <h3 id="5-tcp四次挥手">5. TCP四次挥手</h3>
-<ul>
-<li>第一次挥手</li>
-<li>第二次挥手</li>
-<li>第三次挥手</li>
-<li>第四次挥手</li>
-</ul>
+<p>（1）：客户端发送终止命令FIN</p>
+<p>（2）：服务端收到后回复ACK，处于close_wait状态</p>
+<p>（3）：服务器将关闭前需要发送信息发送给客户端后处于last_ack状态</p>
+<p>（4）：客户端收到FIN后发送ack后处于tim-wait而后进入close状态</p>
 <h3 id="5-kubernetes中pod间如何通讯的">5. Kubernetes中Pod间如何通讯的</h3>
 <blockquote>
 <p>通过 <code>CNI</code>(Container Network Interface) 进行网络通讯。</p>

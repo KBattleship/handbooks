@@ -28,7 +28,14 @@
 1. 索引类型   Hash索引：
  底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。 多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的， 只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。    B&#43; Tree索引：(MySQL引擎Innodb实现方式)
  B&#43; Tree索引是一种多路平衡查询树。 其节点是天然有序的(左节点 &amp;lt; 父节点 &amp;lt; 右节点)。 对于范围查询时候不需要做全表扫描。    相比Hash索引，B&#43; Tree的优点：
- Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   " />
+ Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  索引的底层实现是B&#43;树，为何不采用红黑树，B树? （1）：B&#43;Tree非叶子节点只存储键值信息，降低B&#43;Tree的高度，所有叶子节点之间都有一个链指针，数据记录都存放在叶子节点中
+（2）： 红黑树这种结构，h明显要深的多，效率明显比B-Tree差很多
+（3）：B&#43;树也存在劣势，由于键会重复出现，因此会占用更多的空间。但是与带来的性能优势相比，空间劣势往往可以接受，因此B&#43;树的在数据库中的使用比B树更加广泛
+七种事务传播行为 （1）Propagation.REQUIRED&amp;lt;默认&amp;gt; 如果当前存在事务，则加入该事务，如果当前不存在事务，则创建一个新的事务。
+（2）Propagation.SUPPORTS 如果当前存在事务，则加入该事务；如果当前不存在事务，则以非事务的方式继续运行。
+（3）Propagation.MANDATORY 如果当前存在事务，则加入该事务；如果当前不存在事务，则抛出异常。
+（4）Propagation.REQUIRES_NEW 重新创建一个新的事务，如果当前存在事务，延缓当前的事务。
+（5）Propagation.NOT_SUPPORTED 以非事务的方式运行，如果当前存在事务，暂停当前的事务。" />
 <meta name="keywords" content="mysql" />
 
 
@@ -70,7 +77,14 @@
 1. 索引类型   Hash索引：
  底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。 多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的， 只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。    B&#43; Tree索引：(MySQL引擎Innodb实现方式)
  B&#43; Tree索引是一种多路平衡查询树。 其节点是天然有序的(左节点 &lt; 父节点 &lt; 右节点)。 对于范围查询时候不需要做全表扫描。    相比Hash索引，B&#43; Tree的优点：
- Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   " />
+ Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  索引的底层实现是B&#43;树，为何不采用红黑树，B树? （1）：B&#43;Tree非叶子节点只存储键值信息，降低B&#43;Tree的高度，所有叶子节点之间都有一个链指针，数据记录都存放在叶子节点中
+（2）： 红黑树这种结构，h明显要深的多，效率明显比B-Tree差很多
+（3）：B&#43;树也存在劣势，由于键会重复出现，因此会占用更多的空间。但是与带来的性能优势相比，空间劣势往往可以接受，因此B&#43;树的在数据库中的使用比B树更加广泛
+七种事务传播行为 （1）Propagation.REQUIRED&lt;默认&gt; 如果当前存在事务，则加入该事务，如果当前不存在事务，则创建一个新的事务。
+（2）Propagation.SUPPORTS 如果当前存在事务，则加入该事务；如果当前不存在事务，则以非事务的方式继续运行。
+（3）Propagation.MANDATORY 如果当前存在事务，则加入该事务；如果当前不存在事务，则抛出异常。
+（4）Propagation.REQUIRES_NEW 重新创建一个新的事务，如果当前存在事务，延缓当前的事务。
+（5）Propagation.NOT_SUPPORTED 以非事务的方式运行，如果当前存在事务，暂停当前的事务。" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/middleware/database/sql/mysql/2_2_sql_index/" />
 <meta property="article:published_time" content="2020-01-06T01:13:47+08:00" />
@@ -81,10 +95,17 @@
 1. 索引类型   Hash索引：
  底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。 多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的， 只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。    B&#43; Tree索引：(MySQL引擎Innodb实现方式)
  B&#43; Tree索引是一种多路平衡查询树。 其节点是天然有序的(左节点 &lt; 父节点 &lt; 右节点)。 对于范围查询时候不需要做全表扫描。    相比Hash索引，B&#43; Tree的优点：
- Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   ">
+ Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  索引的底层实现是B&#43;树，为何不采用红黑树，B树? （1）：B&#43;Tree非叶子节点只存储键值信息，降低B&#43;Tree的高度，所有叶子节点之间都有一个链指针，数据记录都存放在叶子节点中
+（2）： 红黑树这种结构，h明显要深的多，效率明显比B-Tree差很多
+（3）：B&#43;树也存在劣势，由于键会重复出现，因此会占用更多的空间。但是与带来的性能优势相比，空间劣势往往可以接受，因此B&#43;树的在数据库中的使用比B树更加广泛
+七种事务传播行为 （1）Propagation.REQUIRED&lt;默认&gt; 如果当前存在事务，则加入该事务，如果当前不存在事务，则创建一个新的事务。
+（2）Propagation.SUPPORTS 如果当前存在事务，则加入该事务；如果当前不存在事务，则以非事务的方式继续运行。
+（3）Propagation.MANDATORY 如果当前存在事务，则加入该事务；如果当前不存在事务，则抛出异常。
+（4）Propagation.REQUIRES_NEW 重新创建一个新的事务，如果当前存在事务，延缓当前的事务。
+（5）Propagation.NOT_SUPPORTED 以非事务的方式运行，如果当前存在事务，暂停当前的事务。">
 <meta itemprop="datePublished" content="2020-01-06T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-06T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="64">
+<meta itemprop="wordCount" content="84">
 
 
 
@@ -95,7 +116,14 @@
 1. 索引类型   Hash索引：
  底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。 多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的， 只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。    B&#43; Tree索引：(MySQL引擎Innodb实现方式)
  B&#43; Tree索引是一种多路平衡查询树。 其节点是天然有序的(左节点 &lt; 父节点 &lt; 右节点)。 对于范围查询时候不需要做全表扫描。    相比Hash索引，B&#43; Tree的优点：
- Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  3. 强制索引 1 2 3 4 5  # 强制索引 select * from table force index(PRI) limit 2; # 禁止索引 select * from table ignore index(PRI) limit 2;   "/>
+ Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  索引的底层实现是B&#43;树，为何不采用红黑树，B树? （1）：B&#43;Tree非叶子节点只存储键值信息，降低B&#43;Tree的高度，所有叶子节点之间都有一个链指针，数据记录都存放在叶子节点中
+（2）： 红黑树这种结构，h明显要深的多，效率明显比B-Tree差很多
+（3）：B&#43;树也存在劣势，由于键会重复出现，因此会占用更多的空间。但是与带来的性能优势相比，空间劣势往往可以接受，因此B&#43;树的在数据库中的使用比B树更加广泛
+七种事务传播行为 （1）Propagation.REQUIRED&lt;默认&gt; 如果当前存在事务，则加入该事务，如果当前不存在事务，则创建一个新的事务。
+（2）Propagation.SUPPORTS 如果当前存在事务，则加入该事务；如果当前不存在事务，则以非事务的方式继续运行。
+（3）Propagation.MANDATORY 如果当前存在事务，则加入该事务；如果当前不存在事务，则抛出异常。
+（4）Propagation.REQUIRES_NEW 重新创建一个新的事务，如果当前存在事务，延缓当前的事务。
+（5）Propagation.NOT_SUPPORTED 以非事务的方式运行，如果当前存在事务，暂停当前的事务。"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -380,7 +408,7 @@
             <a href="https://touch-star.com/categories/middleware/"> MiddleWare </a>
             
           </div>
-        <span class="more-meta"> 约 64 字 </span>
+        <span class="more-meta"> 约 84 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -493,6 +521,54 @@
                     
                     
                         <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e7%b4%a2%e5%bc%95%e7%9a%84%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0%e6%98%afb%e6%a0%91%e4%b8%ba%e4%bd%95%e4%b8%8d%e9%87%87%e7%94%a8%e7%ba%a2%e9%bb%91%e6%a0%91b%e6%a0%91">
+                            索引的底层实现是B&#43;树，为何不采用红黑树，B树?
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#%e4%b8%83%e7%a7%8d%e4%ba%8b%e5%8a%a1%e4%bc%a0%e6%92%ad%e8%a1%8c%e4%b8%ba">
+                            七种事务传播行为
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
                             <a class="nav-link text-left" href="#3-%e5%bc%ba%e5%88%b6%e7%b4%a2%e5%bc%95">
                             3. 强制索引
                             </a>
@@ -560,6 +636,18 @@
 <li>not in ,not exist.</li>
 <li>范围查询</li>
 </ul>
+<h2 id="索引的底层实现是b树为何不采用红黑树b树">索引的底层实现是B+树，为何不采用红黑树，B树?</h2>
+<p>（1）：B+Tree非叶子节点只存储键值信息，降低B+Tree的高度，所有叶子节点之间都有一个链指针，数据记录都存放在叶子节点中</p>
+<p>（2）： 红黑树这种结构，h明显要深的多，效率明显比B-Tree差很多</p>
+<p>（3）：B+树也存在劣势，由于键会重复出现，因此会占用更多的空间。但是与带来的性能优势相比，空间劣势往往可以接受，因此B+树的在数据库中的使用比B树更加广泛</p>
+<h2 id="七种事务传播行为">七种事务传播行为</h2>
+<p>（1）Propagation.REQUIRED&lt;默认&gt; 如果当前存在事务，则加入该事务，如果当前不存在事务，则创建一个新的事务。</p>
+<p>（2）Propagation.SUPPORTS 如果当前存在事务，则加入该事务；如果当前不存在事务，则以非事务的方式继续运行。</p>
+<p>（3）Propagation.MANDATORY 如果当前存在事务，则加入该事务；如果当前不存在事务，则抛出异常。</p>
+<p>（4）Propagation.REQUIRES_NEW 重新创建一个新的事务，如果当前存在事务，延缓当前的事务。</p>
+<p>（5）Propagation.NOT_SUPPORTED 以非事务的方式运行，如果当前存在事务，暂停当前的事务。</p>
+<p>（6）Propagation.NEVER 以非事务的方式运行，如果当前存在事务，则抛出异常。</p>
+<p>（7）Propagation.NESTED 如果没有，就新建一个事务；如果有，就在当前事务中嵌套其他事务。</p>
 <h2 id="3-强制索引">3. 强制索引</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

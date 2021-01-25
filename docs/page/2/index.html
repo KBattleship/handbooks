@@ -402,8 +402,8 @@
           <a href="https://touch-star.com/categories/java/"> Java </a>
           
         </div>
-      <span class="more-meta"> 约 834 字 </span>
-      <span class="more-meta"> 预计阅读 4 分钟 </span>
+      <span class="more-meta"> 约 863 字 </span>
+      <span class="more-meta"> 预计阅读 5 分钟 </span>
       
       
       
@@ -704,7 +704,7 @@
           <a href="https://touch-star.com/categories/java/"> Java </a>
           
         </div>
-      <span class="more-meta"> 约 124 字 </span>
+      <span class="more-meta"> 约 129 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
@@ -735,7 +735,9 @@
 为每一个对象创建一个引用计数，有对象引用时计数器进行 ++ ，应用被释放时计数 &ndash; ，当 计数器==0 时可以被回收。(不足： 无法解决循环引用问题)
   可达性分析算法：
 从 GC Roots 开始向下搜索，搜索所走过的路径成为引用链。当一个对象到 GC Roots没有任何引用链是，则可以进行回收。
-  4. 在Java中，对象什么时候可以被进行垃圾回收？  当对象对当前使用这个对象的应用程序 变得不可触及 的时候，这个对象就可以进行垃圾回收。 垃圾回收不会发生在永久代，如果 永久代满了 或者 超出了临界值，会触发完全垃圾回收(FGC)。 查看垃圾收集器的输出信息，可以发现永久代也是会被回收的，这就是为什么正确的永久代大小对避免FGC是非常重要的原因。  5.
+  1：系统类加载器加载的对象
+  2：处于激活状态的线程
+  3：JNI栈中的对象
     </div>
     <div class="read-more">
       <a href="/post/coding/java/base/3_jvm/2_jvm_gc/" class="read-more-link">阅读全文</a>
