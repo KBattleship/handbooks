@@ -25,7 +25,7 @@
 <meta name="author" content="Quinn" />
   <meta name="description" content="Redis 1. 什么是跳表  跳跃表是一种有序的数据结构，它通过在每个节点中维持多个指向其他的几点指针，从而达到快速访问队尾目的。跳跃表的效率可以和平衡树想媲美了，最关键是它的实现相对于平衡树来说，代码的实现上简单很多 跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。 一是实现有序集合键，二是集群节点中用作内部数据结构。 相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。  2. Redis中BitMap   Bitmap并不是一种独立的数据结构，而是基于String数据结构进行的位图操作。
  最大空间即为String数据结构所支持的512MB， 所以bitmap所支持的最大offset为2^32-1.    一般使用场景用于大数据签到、日活统计、在线统计等等。
- 其主要优点可以节省大量空间。 例如： 进行日活统计：  使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  ### 基本操作演示(以下为Redis-cli命令) # 设置一个字符串 1Aa # 存储在redis中的二进制为 0b001100010100000101100001 set testkey 1Aa # 进行bitmap操作 setbit testkey 10 1 setbit testkey 18 0 # testkey对象index为10的bit值为1 getbit testkey 10 # testkey对象index为18的bit值为1 getbit testkey 18 # 进行位统计 ,结果为bit上为1的和， # testkey输出结果为 8 bitcount testkey # testkey输出结果为 3 bitcount testkey 0 0   " />
+ 其主要优点可以节省大量空间。 例如： 进行日活统计：  使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  ### 基本操作演示(以下为Redis-cli命令) # 设置一个字符串 1Aa # 存储在redis中的二进制为 0b001100010100000101100001 set testkey 1Aa # 进行bitmap操作 setbit testkey 10 1 setbit testkey 18 0 # testkey对象index为10的bit值为1 getbit testkey 10 # testkey对象index为18的bit值为1 getbit testkey 18 # 进行位统计 ,结果为bit上为1的和， # testkey输出结果为 8 bitcount testkey # testkey输出结果为 3 bitcount testkey 0 0   3." />
 <meta name="keywords" content="redis" />
 
 
@@ -64,7 +64,7 @@
 <meta property="og:title" content="[ Redis ] 1. Redis" />
 <meta property="og:description" content="Redis 1. 什么是跳表  跳跃表是一种有序的数据结构，它通过在每个节点中维持多个指向其他的几点指针，从而达到快速访问队尾目的。跳跃表的效率可以和平衡树想媲美了，最关键是它的实现相对于平衡树来说，代码的实现上简单很多 跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。 一是实现有序集合键，二是集群节点中用作内部数据结构。 相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。  2. Redis中BitMap   Bitmap并不是一种独立的数据结构，而是基于String数据结构进行的位图操作。
  最大空间即为String数据结构所支持的512MB， 所以bitmap所支持的最大offset为2^32-1.    一般使用场景用于大数据签到、日活统计、在线统计等等。
- 其主要优点可以节省大量空间。 例如： 进行日活统计：  使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  ### 基本操作演示(以下为Redis-cli命令) # 设置一个字符串 1Aa # 存储在redis中的二进制为 0b001100010100000101100001 set testkey 1Aa # 进行bitmap操作 setbit testkey 10 1 setbit testkey 18 0 # testkey对象index为10的bit值为1 getbit testkey 10 # testkey对象index为18的bit值为1 getbit testkey 18 # 进行位统计 ,结果为bit上为1的和， # testkey输出结果为 8 bitcount testkey # testkey输出结果为 3 bitcount testkey 0 0   " />
+ 其主要优点可以节省大量空间。 例如： 进行日活统计：  使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  ### 基本操作演示(以下为Redis-cli命令) # 设置一个字符串 1Aa # 存储在redis中的二进制为 0b001100010100000101100001 set testkey 1Aa # 进行bitmap操作 setbit testkey 10 1 setbit testkey 18 0 # testkey对象index为10的bit值为1 getbit testkey 10 # testkey对象index为18的bit值为1 getbit testkey 18 # 进行位统计 ,结果为bit上为1的和， # testkey输出结果为 8 bitcount testkey # testkey输出结果为 3 bitcount testkey 0 0   3." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/middleware/database/nosql/redis/1_redis_interview/" />
 <meta property="article:published_time" content="2020-01-06T01:13:47+08:00" />
@@ -72,10 +72,10 @@
 <meta itemprop="name" content="[ Redis ] 1. Redis">
 <meta itemprop="description" content="Redis 1. 什么是跳表  跳跃表是一种有序的数据结构，它通过在每个节点中维持多个指向其他的几点指针，从而达到快速访问队尾目的。跳跃表的效率可以和平衡树想媲美了，最关键是它的实现相对于平衡树来说，代码的实现上简单很多 跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。 一是实现有序集合键，二是集群节点中用作内部数据结构。 相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。  2. Redis中BitMap   Bitmap并不是一种独立的数据结构，而是基于String数据结构进行的位图操作。
  最大空间即为String数据结构所支持的512MB， 所以bitmap所支持的最大offset为2^32-1.    一般使用场景用于大数据签到、日活统计、在线统计等等。
- 其主要优点可以节省大量空间。 例如： 进行日活统计：  使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  ### 基本操作演示(以下为Redis-cli命令) # 设置一个字符串 1Aa # 存储在redis中的二进制为 0b001100010100000101100001 set testkey 1Aa # 进行bitmap操作 setbit testkey 10 1 setbit testkey 18 0 # testkey对象index为10的bit值为1 getbit testkey 10 # testkey对象index为18的bit值为1 getbit testkey 18 # 进行位统计 ,结果为bit上为1的和， # testkey输出结果为 8 bitcount testkey # testkey输出结果为 3 bitcount testkey 0 0   ">
+ 其主要优点可以节省大量空间。 例如： 进行日活统计：  使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  ### 基本操作演示(以下为Redis-cli命令) # 设置一个字符串 1Aa # 存储在redis中的二进制为 0b001100010100000101100001 set testkey 1Aa # 进行bitmap操作 setbit testkey 10 1 setbit testkey 18 0 # testkey对象index为10的bit值为1 getbit testkey 10 # testkey对象index为18的bit值为1 getbit testkey 18 # 进行位统计 ,结果为bit上为1的和， # testkey输出结果为 8 bitcount testkey # testkey输出结果为 3 bitcount testkey 0 0   3.">
 <meta itemprop="datePublished" content="2020-01-06T01:13:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-01-06T01:13:47&#43;08:00" />
-<meta itemprop="wordCount" content="86">
+<meta itemprop="wordCount" content="138">
 
 
 
@@ -83,7 +83,7 @@
 <meta name="twitter:title" content="[ Redis ] 1. Redis"/>
 <meta name="twitter:description" content="Redis 1. 什么是跳表  跳跃表是一种有序的数据结构，它通过在每个节点中维持多个指向其他的几点指针，从而达到快速访问队尾目的。跳跃表的效率可以和平衡树想媲美了，最关键是它的实现相对于平衡树来说，代码的实现上简单很多 跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。 一是实现有序集合键，二是集群节点中用作内部数据结构。 相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。  2. Redis中BitMap   Bitmap并不是一种独立的数据结构，而是基于String数据结构进行的位图操作。
  最大空间即为String数据结构所支持的512MB， 所以bitmap所支持的最大offset为2^32-1.    一般使用场景用于大数据签到、日活统计、在线统计等等。
- 其主要优点可以节省大量空间。 例如： 进行日活统计：  使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  ### 基本操作演示(以下为Redis-cli命令) # 设置一个字符串 1Aa # 存储在redis中的二进制为 0b001100010100000101100001 set testkey 1Aa # 进行bitmap操作 setbit testkey 10 1 setbit testkey 18 0 # testkey对象index为10的bit值为1 getbit testkey 10 # testkey对象index为18的bit值为1 getbit testkey 18 # 进行位统计 ,结果为bit上为1的和， # testkey输出结果为 8 bitcount testkey # testkey输出结果为 3 bitcount testkey 0 0   "/>
+ 其主要优点可以节省大量空间。 例如： 进行日活统计：  使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃      1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21  ### 基本操作演示(以下为Redis-cli命令) # 设置一个字符串 1Aa # 存储在redis中的二进制为 0b001100010100000101100001 set testkey 1Aa # 进行bitmap操作 setbit testkey 10 1 setbit testkey 18 0 # testkey对象index为10的bit值为1 getbit testkey 10 # testkey对象index为18的bit值为1 getbit testkey 18 # 进行位统计 ,结果为bit上为1的和， # testkey输出结果为 8 bitcount testkey # testkey输出结果为 3 bitcount testkey 0 0   3."/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -368,7 +368,7 @@
             <a href="https://touch-star.com/categories/middleware/"> MiddleWare </a>
             
           </div>
-        <span class="more-meta"> 约 86 字 </span>
+        <span class="more-meta"> 约 138 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -470,6 +470,150 @@
                 
             
         
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#3-redis%e4%ba%8b%e5%8a%a1">
+                            3. redis事务
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#4-redis%e7%9a%84%e5%90%8c%e6%ad%a5%e6%9c%ba%e5%88%b6">
+                            4. Redis的同步机制
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#5-%e7%bc%93%e5%ad%98%e6%b7%98%e6%b1%b0%e7%ad%96%e7%95%a5">
+                            5. 缓存淘汰策略
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#6redis%e8%bf%87%e6%9c%9fkey%e5%88%a0%e9%99%a4%e7%ad%96%e7%95%a5">
+                            6.redis过期key删除策略
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#7%e7%bc%93%e5%ad%98%e5%87%bb%e7%a9%bf%e5%8e%9f%e5%9b%a0%e4%bb%a5%e5%8f%8a%e5%a4%84%e7%90%86%e5%8a%9e%e6%b3%95">
+                            7.缓存击穿原因以及处理办法
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#8%e7%bc%93%e5%ad%98%e9%9b%aa%e5%b4%a9%e4%bb%a5%e5%8f%8a%e5%a4%84%e7%90%86%e5%8a%9e%e6%b3%95">
+                            8.缓存雪崩以及处理办法
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
 
     </div>
 
@@ -558,7 +702,70 @@
   bitcount testkey <span class="m">0</span> <span class="m">0</span>
 </code></pre></td></tr></table>
 </div>
-</div>
+</div><h2 id="3-redis事务">3. redis事务</h2>
+<ul>
+<li>
+<p>Multi开启事务</p>
+</li>
+<li>
+<p>Exec执行事务块内命令</p>
+</li>
+<li>
+<p>Discard 取消事务</p>
+</li>
+<li>
+<p>Watch 监视一个或多个key，如果事务执行前key被改动，事务将打断</p>
+</li>
+</ul>
+<h2 id="4-redis的同步机制">4. Redis的同步机制</h2>
+<ul>
+<li>全量拷贝，
+<ul>
+<li>1.slave第一次启动时，连接Master，发送PSYNC命令，</li>
+<li>2.master会执行bgsave命令来生成rdb文件，期间的所有写命令将被写入缓冲区。
+<ul>
+<li>master bgsave执行完毕，向slave发送rdb文件</li>
+<li>slave收到rdb文件，丢弃所有旧数据，开始载入rdb文件</li>
+<li>rdb文件同步结束之后，slave执行从master缓冲区发送过来的所以写命令。</li>
+</ul>
+</li>
+<li>此后 master 每执行一个写命令，就向slave发送相同的写命令。</li>
+</ul>
+</li>
+<li>增量拷贝
+<ul>
+<li>如果出现网络闪断或者命令丢失等异常情况，从节点之前保存了自身已复制的偏移量和主节点的运行ID</li>
+<li>主节点根据偏移量把复制积压缓冲区里的数据发送给从节点，保证主从复制进入正常状态。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-缓存淘汰策略">5. 缓存淘汰策略</h2>
+<p>（1）：先进先出算法（FIFO）</p>
+<p>（2）：最近使用最少Least Frequently Used（LFU）</p>
+<p>（3）：最长时间未被使用的Least Recently Used（LRU）</p>
+<p>当存在热点数据时，LRU的效率很好，但偶发性的、周期性的批量操作会导致LRU命中率急剧下降，缓存污染情况比较严重</p>
+<h2 id="6redis过期key删除策略">6.redis过期key删除策略</h2>
+<p>（1）：惰性删除，cpu友好，但是浪费cpu资源</p>
+<p>（2）：定时删除（不常用）</p>
+<p>（3）：定期删除，cpu友好，节省空间</p>
+<h2 id="7缓存击穿原因以及处理办法">7.缓存击穿原因以及处理办法</h2>
+<p>频繁请求查询系统中不存在的数据导致；</p>
+<ul>
+<li>处理方法：
+<ul>
+<li>cache null策略，查询反馈结果为null仍然缓存这个null结果，设置不超过5分钟过期时间</li>
+<li>布隆过滤器，所有可能存在的数据映射到足够大的bitmap中 google布隆过滤器：基于内存，重启失效不支持大数据量，无法在分布式场景 redis布隆过滤器：可扩展性，不存在重启失效问题，需要网络io，性能低于google</li>
+</ul>
+</li>
+</ul>
+<h2 id="8缓存雪崩以及处理办法">8.缓存雪崩以及处理办法</h2>
+<p>同一时刻大量缓存失效；</p>
+<p>处理方法：</p>
+<p>（1）：缓存数据增加过期标记</p>
+<p>（2）：设置不同的缓存失效时间</p>
+<p>（3）：双层缓存策略C1为短期，C2为长期</p>
+<p>（4）：定时更新策略</p>
+
     </div>
 
     

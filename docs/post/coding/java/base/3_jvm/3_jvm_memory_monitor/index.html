@@ -69,7 +69,7 @@
 <meta itemprop="description" content="JVM内存 1. JVM 内存结构  栈（JVM Stacks）  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常   堆  所有线程共享的，它在虚拟机启动时就会被创建 内存空间占据的最大一块区域 用来存放对象实例及数组，通过 new 关键字 new 出来的对象都存放在这里 垃圾回收器的主要回收对象 老年代 &#43; 新生代 = 老年代 &#43; Eden &#43; S0 &#43; S1   方法区 （Metaspace元空间）  都是各个线程共享的 类信息、常量、静态变量、即时编译器编译后的代码   本地方法区  只不过它服务于Native方法，线程私有 HotSpot虚拟机直接就把本地方法栈和虚拟机栈合二为一   程序计数器  当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节指令地址，线程私有 程序计数器是唯一一个在Java虚拟机规范中没有规定任何 OutOfMemoryError 情况的区域。    2. 简述Java堆内存分配策略  大对象：需要大量连续内存空间的Java对象，比如很长的字符串和大型数组， 对象优先在Eden分配，如果Eden内存空间不足，就会发生Minor GC 长期存活的对象将进入老年代，默认15岁，-XX:MaxTenuringThreshold 动态对象年龄判定 空间分配担保  3.">
 <meta itemprop="datePublished" content="2020-12-27T21:10:47&#43;08:00" />
 <meta itemprop="dateModified" content="2020-12-27T21:10:47&#43;08:00" />
-<meta itemprop="wordCount" content="115">
+<meta itemprop="wordCount" content="120">
 
 
 
@@ -360,7 +360,7 @@
             <a href="https://touch-star.com/categories/java/"> Java </a>
             
           </div>
-        <span class="more-meta"> 约 115 字 </span>
+        <span class="more-meta"> 约 120 字 </span>
           <span class="more-meta"> 预计阅读 1 分钟 </span>
 
         
@@ -595,6 +595,11 @@
 </ul>
 </li>
 </ul>
+<p>（1）：堆&lt;对象，静态变量，共享</p>
+<p>（2）：方法区&lt;存放类信息，常量池，共享&gt;（java8移除了永久代（PermGen），替换为元空间（Metaspace））</p>
+<p>（3）：虚拟机栈&lt;线程执行方法的时候内部存局部变量会存堆中对象的地址等等数据&gt;</p>
+<p>（4）：本地方法栈&lt;存放各种native方法的局部变量表之类的信息&gt;</p>
+<p>（5）：程序计数器&lt;记录当前线程执行到哪一条字节码指令位置&gt;</p>
 
     </div>
 

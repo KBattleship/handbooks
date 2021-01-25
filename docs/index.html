@@ -393,6 +393,47 @@
   <header class="post-header">
     <h1 class="post-title">
       
+      <a class="post-link" href="/post/coding/java/base/4_thread/4_3_synchronized/">[ Java ] 4-2.JUC之Synchronized</a>
+    </h1>
+    
+    <div class="post-meta">
+      <time datetime="2021-01-10" class="post-time">
+        2021-01-10
+      </time>
+      <div class="post-category">
+          <a href="https://touch-star.com/categories/java/"> Java </a>
+          
+        </div>
+      <span class="more-meta"> 约 220 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
+      
+      
+      
+        <span id="/post/coding/java/base/4_thread/4_3_synchronized/" class="leancloud_visitors" data-flag-title="[ Java ] 4-2.JUC之Synchronized">
+          <span class="post-meta-item-text"> | 阅读 </span>
+          <span class="leancloud-visitors-count"></span>
+        </span>
+      
+    </div>
+  </header>
+  
+  <div class="post-content">
+    
+    <div class="post-summary">
+      4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo='synchronized';synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: 1 2 3 4 5 6 7 8 9 10 11  public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } }   将上述代码片段进行编译，使用javap -v SynchronizedTest.
+    </div>
+    <div class="read-more">
+      <a href="/post/coding/java/base/4_thread/4_3_synchronized/" class="read-more-link">阅读全文</a>
+    </div>
+    
+  </div>
+</article>
+
+  
+    <article class="post bg-white">
+  <header class="post-header">
+    <h1 class="post-title">
+      
       <a class="post-link" href="/post/algorithm/ext/2_algorithm_2021_01_08/">[ Interview ] 2. 面试之算法</a>
     </h1>
     
@@ -536,8 +577,8 @@
           <a href="https://touch-star.com/categories/java/"> Java </a>
           
         </div>
-      <span class="more-meta"> 约 211 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
+      <span class="more-meta"> 约 223 字 </span>
+      <span class="more-meta"> 预计阅读 2 分钟 </span>
       
       
       
@@ -554,7 +595,8 @@
     <div class="post-summary">
       Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
  BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
- 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;符号。    2. Spring加载机制？何时加载？ 4. SpringIOC 控制反转，通过依赖注入方式实现，IOC利用java反射机制，AOP利用代理模式。所谓控制反转是指，本来被调用者的实例是由调用者来创建的，这样的缺点是耦合性太强，IOC则是统一交给spring来管理创建，将对象交给容器管理，你只需要在spring配置文件总配置相应的bean，以及设置相关的属性，让spring容器来生成类的实例对象以及管理对象。在spring容器启动的时候，spring会把你在配置文件中配置的bean都初始化好，然后在你需要调用的时候，就把它已经初始化好的那些bean分配给你需要调用这些bean的类
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;符号。    2. Bean的生命周期?  实例化Bean： Ioc容器通过获取BeanDefinition对象中的信息进行实例化，实例化对象被包装在BeanWrapper对象中 设置对象属性（DI）：通过BeanWrapper提供的设置属性的接口完成属性依赖注入； 注入Aware接口（BeanFactoryAware， 可以用这个方式来获取其它 Bean，ApplicationContextAware）：Spring会检测该对象是否实现了xxxAware接口，并将相关的xxxAware实例注入给bean BeanPostProcessor：自定义的处理（分前置处理和后置处理） InitializingBean和init-method：执行我们自己定义的初始化方法 使用 destroy：bean的销毁  IOC：控制反转：将对象的创建权，由Spring管理. DI（依赖注入）：在Spring创建对象的过程中，把对象依赖的属性注入到类中。
+4. SpringIOC 控制反转，通过依赖注入方式实现，IOC利用java反射机制，AOP利用代理模式。所谓控制反转是指，本来被调用者的实例是由调用者来创建的，这样的缺点是耦合性太强，IOC则是统一交给spring来管理创建，将对象交给容器管理，你只需要在spring配置文件总配置相应的bean，以及设置相关的属性，让spring容器来生成类的实例对象以及管理对象。在spring容器启动的时候，spring会把你在配置文件中配置的bean都初始化好，然后在你需要调用的时候，就把它已经初始化好的那些bean分配给你需要调用这些bean的类
 5. Spring容器加载Bean  BeanDefinitionReader读取Resource所执行的配置文件资源，解析配置文件，并将生成的BeanDefinition对象保存到BeanDefinitionRegistry中。 容器扫描Bean定义注册表中的BeanDefinition对象，调用InstantiationStrategy进行Bean实例化的工作；采用BeanWrapper完成Bean属性的设置工作。 若是单例的Bean，则将Bean缓存在Bean缓存器中。  6. Spring三级缓存  一级缓存：Map&lt;String, Object&gt; singletonObjects  作用  用于存储单例模式下创建的Bean实例（已经创建完毕）。 该缓存是对外使用的，指的就是使用Spring框架的程序员。   对象  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，已经创建完毕）     第二级缓存：Map&lt;String, Object&gt; earlySingletonObjects  作用：  用于存储单例模式下创建的Bean实例（该Bean被提前暴露的引用,该Bean还在创建中）。 该缓存是对内使用的，指的就是Spring框架内部逻辑使用该缓存。   对象：  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，该Bean还在创建中）     第三级缓存：Map&lt;String, ObjectFactory&lt;?
     </div>
     <div class="read-more">
@@ -580,7 +622,7 @@
           <a href="https://touch-star.com/categories/algorithm/"> Algorithm </a>
           
         </div>
-      <span class="more-meta"> 约 152 字 </span>
+      <span class="more-meta"> 约 154 字 </span>
       <span class="more-meta"> 预计阅读 1 分钟 </span>
       
       
@@ -737,47 +779,6 @@ EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合�
     </div>
     <div class="read-more">
       <a href="/post/coding/java/interview/2-processor/" class="read-more-link">阅读全文</a>
-    </div>
-    
-  </div>
-</article>
-
-  
-    <article class="post bg-white">
-  <header class="post-header">
-    <h1 class="post-title">
-      
-      <a class="post-link" href="/post/coding/java/interview/1-one/">[ Interview ] 1.面试准备</a>
-    </h1>
-    
-    <div class="post-meta">
-      <time datetime="2020-12-31" class="post-time">
-        2020-12-31
-      </time>
-      <div class="post-category">
-          <a href="https://touch-star.com/categories/java/"> Java </a>
-          
-        </div>
-      <span class="more-meta"> 约 55 字 </span>
-      <span class="more-meta"> 预计阅读 1 分钟 </span>
-      
-      
-      
-        <span id="/post/coding/java/interview/1-one/" class="leancloud_visitors" data-flag-title="[ Interview ] 1.面试准备">
-          <span class="post-meta-item-text"> | 阅读 </span>
-          <span class="leancloud-visitors-count"></span>
-        </span>
-      
-    </div>
-  </header>
-  
-  <div class="post-content">
-    
-    <div class="post-summary">
-      面试准备  Java线程池 1     JDK中JUC包 1     JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 1 2 3 4 5 6  遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）    垃圾回收器G1与GC算法CMS 1     Tomcat 如何实现类隔离 1     Spring IOC原理 1     Spring AOP原理 1     Spring事务 1     Dubbo服务发现、注册流程 1     Dubbo通信原理 1     Dubbo SPI与Java SPI 1     Zookeeper选举协议 1     大数据量的排序如何处理 1     如何判断链表是回文链表、快排序、归并排序 1     MySQL调优：B+ Tree索引、Hash索引 1     Mybatis的一、二级缓存 1     Mybatis工作原理 1 2     Redis Bitmap  
-    </div>
-    <div class="read-more">
-      <a href="/post/coding/java/interview/1-one/" class="read-more-link">阅读全文</a>
     </div>
     
   </div>

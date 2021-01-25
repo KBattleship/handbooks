@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title> - Quinn</title>
+  <title>[ Java ] 4-2.JUC之Synchronized - Quinn</title>
   
 
 <meta name="renderer" content="webkit" />
@@ -24,8 +24,8 @@
 
 <meta name="author" content="Quinn" />
   <meta name="description" content="4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo=&#39;synchronized&#39;;synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: 1 2 3 4 5 6 7 8 9 10 11  public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } }   将上述代码片段进行编译，使用javap -v SynchronizedTest." />
+<meta name="keywords" content="JUC" />
 
-  <meta name="keywords" content="Quinn, k8s, docker" />
 
 
 
@@ -59,20 +59,22 @@
 
 
 
-<meta property="og:title" content="" />
+<meta property="og:title" content="[ Java ] 4-2.JUC之Synchronized" />
 <meta property="og:description" content="4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo=&#39;synchronized&#39;;synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: 1 2 3 4 5 6 7 8 9 10 11  public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } }   将上述代码片段进行编译，使用javap -v SynchronizedTest." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://touch-star.com/post/coding/java/base/4_thread/4_3_synchronized/" />
-
-<meta itemprop="name" content="">
+<meta property="article:published_time" content="2021-01-10T11:10:47+08:00" />
+<meta property="article:modified_time" content="2021-01-10T11:10:47+08:00" />
+<meta itemprop="name" content="[ Java ] 4-2.JUC之Synchronized">
 <meta itemprop="description" content="4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo=&#39;synchronized&#39;;synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: 1 2 3 4 5 6 7 8 9 10 11  public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } }   将上述代码片段进行编译，使用javap -v SynchronizedTest.">
+<meta itemprop="datePublished" content="2021-01-10T11:10:47&#43;08:00" />
+<meta itemprop="dateModified" content="2021-01-10T11:10:47&#43;08:00" />
+<meta itemprop="wordCount" content="220">
 
-<meta itemprop="wordCount" content="209">
 
 
-
-<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content=""/>
+<meta itemprop="keywords" content="java,JUC,Lock," /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="[ Java ] 4-2.JUC之Synchronized"/>
 <meta name="twitter:description" content="4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo=&#39;synchronized&#39;;synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: 1 2 3 4 5 6 7 8 9 10 11  public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } }   将上述代码片段进行编译，使用javap -v SynchronizedTest."/>
 
 <!--[if lte IE 9]>
@@ -348,22 +350,25 @@
           <article class="post bg-white">
     
     <header class="post-header">
-      <h1 class="post-title"></h1>
+      <h1 class="post-title">[ Java ] 4-2.JUC之Synchronized</h1>
       
       <div class="post-meta">
-        <time datetime="0001-01-01" class="post-time">
-          0001-01-01
+        <time datetime="2021-01-10" class="post-time">
+          2021-01-10
         </time>
-        
-        <span class="more-meta"> 约 209 字 </span>
-          <span class="more-meta"> 预计阅读 1 分钟 </span>
+        <div class="post-category">
+            <a href="https://touch-star.com/categories/java/"> Java </a>
+            
+          </div>
+        <span class="more-meta"> 约 220 字 </span>
+          <span class="more-meta"> 预计阅读 2 分钟 </span>
 
         
         
 
         
         
-          <span id="/post/coding/java/base/4_thread/4_3_synchronized/" class="leancloud_visitors" data-flag-title="">
+          <span id="/post/coding/java/base/4_thread/4_3_synchronized/" class="leancloud_visitors" data-flag-title="[ Java ] 4-2.JUC之Synchronized">
             <span class="post-meta-item-text"> | 阅读 </span>
             <span class="leancloud-visitors-count"></span>
           </span>
@@ -593,6 +598,54 @@
                 
             
         
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#threadlocal%e7%9a%84%e5%8e%9f%e7%90%86%e5%92%8c%e5%ba%94%e7%94%a8">
+                            threadlocal的原理和应用
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
+        
+            
+                
+                
+                    
+                    <ul class="nav">
+                    
+                    <ul class="nav">
+                    
+                    
+                        <li class="nav-item">
+                            <a class="nav-link text-left" href="#threadlocal%e5%86%85%e5%ad%98%e6%b3%84%e6%bc%8f%e9%97%ae%e9%a2%98">
+                            threadlocal内存泄漏问题
+                            </a>
+                        </li>
+                    
+                    
+                    </ul>
+                    
+                    </ul>
+                    
+                
+            
+        
 
     </div>
 
@@ -797,6 +850,29 @@
 <p>但是在目前版本的JDK中，JVM进行了调整，提供有三种不同的Monitor实现(即常见的三类锁):<strong>偏斜锁</strong>(Biased Locking)、<strong>轻量级锁</strong>和<strong>重量级锁</strong>。</p>
 </li>
 </ul>
+<h2 id="threadlocal的原理和应用">threadlocal的原理和应用</h2>
+<ul>
+<li>
+<p>原理</p>
+<ul>
+<li>线程中创建副本，访问自己内部的副本变量，内部实现是其内部类名叫ThreadLocalMap的成员变量threadLocals，key为本身，value为实际存值的变量副本</li>
+</ul>
+</li>
+<li>
+<p>应用</p>
+<ul>
+<li>用来解决数据库连接，存放connection对象，不同线程存放各自session；</li>
+<li>解决simpleDateFormat线程安全问题；</li>
+<li>会出现内存泄漏，显式remove..不要与线程池配合，因为worker往往是不会退出的；</li>
+</ul>
+</li>
+</ul>
+<h2 id="threadlocal内存泄漏问题">threadlocal内存泄漏问题</h2>
+<ul>
+<li>如果是强引用，设置threadlocal=null，但是key的引用依然指向ThreadLocal对象，所以会有内存泄漏，而使用弱引用则不会；</li>
+<li>但是还是会有内存泄漏存在，ThreadLocal被回收，key的值变成null，导致整个value再也无法被访问到；</li>
+<li>解决办法：在使用结束时，调用ThreadLocal.remove来释放其value的引用；</li>
+</ul>
 
     </div>
 
@@ -808,12 +884,17 @@
     
 
     <footer class="post-footer">
-      
+      <div class="post-tags">
+          <a href="https://touch-star.com/tags/java/">java</a>
+          <a href="https://touch-star.com/tags/juc/">JUC</a>
+          <a href="https://touch-star.com/tags/lock/">Lock</a>
+          
+        </div>
 
       
       <nav class="post-nav">
         
-          <a class="prev" href="/post/coding/java/base/2_basic/readme/">
+          <a class="prev" href="/post/coding/java/base/4_thread/4_2_aqs/">
             
             <i class="iconfont">
               <svg  class="icon" viewBox="0 0 1024 1024" version="1.1"
@@ -823,12 +904,12 @@
 </svg>
 
             </i>
-            <span class="prev-text nav-default"></span>
+            <span class="prev-text nav-default">[ Java ] 4-2.JUC之AQS</span>
             <span class="prev-text nav-mobile">上一篇</span>
           </a>
         
-          <a class="next" href="/post/coding/java/base/4_thread/readme/">
-            <span class="next-text nav-default"></span>
+          <a class="next" href="/post/algorithm/ext/2_algorithm_2021_01_08/">
+            <span class="next-text nav-default">[ Interview ] 2. 面试之算法</span>
             <span class="prev-text nav-mobile">下一篇</span>
             
             <i class="iconfont">
