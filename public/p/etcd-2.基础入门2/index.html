@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Etcd源码阅读与分析①-raft demo Etcd 与 Zookeeper 对比  一致性协议:配置共享&amp;amp;服务发现组件的核心基础。  Zookeeper采用ZAB协议(一种类Paxos协议)实现一致性 Etcd采用Raft协议，相比Paxos协议更容易理解，工程化。   API接口: 包含有两个版本V2、V3  V2: 提供HTTP&#43;Json方式调用 V3: 提供grpc方式调用   性能  官方测试数据显示：10000&#43;/s写入(优于Zookeeper性能)   安全  Etcd支持TSL(权限控制优于Zookeeper)    Etcd是一个基于Raft协议的简单内存KV项目
+源码分析 本文档将以etcd作者在项目中所提供的demo程序进行源码试读。demo名称为raftexample。 路径在
+1.项目结构 (base) {11:45}~/etcd:master ✗ ➭ tree -d -L 1 . . ├── Documentation # 项目文档 ├── auth # 认证授权 ├── client # 客户端相关(v2) ├── clientv3 # 客户端相关(v3) ├── contrib # (待验证) ├── default.etcd # 已编译完成的etcd ├── embed # 封装的etcd函数 ├── etcdctl # etcd操作命令，命令行客户端 ├── etcdmain # main函数入口这里 ├── etcdserver # 服务端相关 ├── functional # 目测验证功能测试套件 ├── hack # 开发者相关 ├── integration # (待验证) ├── lease # 实现etcd租约 ├── logos # 日志相关 ├── mvcc # MVCC存储相关 ├── pkg # 通用依赖库 ├── proxy # 代理相关Http、Https、Socks ├── raft # raft一致性协议实现 ├── scripts # 各类脚本 ├── security # 安全相关 ├── tests # (待验证) ├── tools # 工具 ├── vendor # go vendor依赖环境 ├── version # 版本信息 └── wal # Write-Ahead-Log实现 '><title>[ Etcd ] 2.基础入门(2)</title>
+
+<link rel='canonical' href='https://example.com/p/etcd-2.%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A82/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Etcd ] 2.基础入门(2)'>
+<meta property='og:description' content='Etcd源码阅读与分析①-raft demo Etcd 与 Zookeeper 对比  一致性协议:配置共享&amp;amp;服务发现组件的核心基础。  Zookeeper采用ZAB协议(一种类Paxos协议)实现一致性 Etcd采用Raft协议，相比Paxos协议更容易理解，工程化。   API接口: 包含有两个版本V2、V3  V2: 提供HTTP&#43;Json方式调用 V3: 提供grpc方式调用   性能  官方测试数据显示：10000&#43;/s写入(优于Zookeeper性能)   安全  Etcd支持TSL(权限控制优于Zookeeper)    Etcd是一个基于Raft协议的简单内存KV项目
+源码分析 本文档将以etcd作者在项目中所提供的demo程序进行源码试读。demo名称为raftexample。 路径在
+1.项目结构 (base) {11:45}~/etcd:master ✗ ➭ tree -d -L 1 . . ├── Documentation # 项目文档 ├── auth # 认证授权 ├── client # 客户端相关(v2) ├── clientv3 # 客户端相关(v3) ├── contrib # (待验证) ├── default.etcd # 已编译完成的etcd ├── embed # 封装的etcd函数 ├── etcdctl # etcd操作命令，命令行客户端 ├── etcdmain # main函数入口这里 ├── etcdserver # 服务端相关 ├── functional # 目测验证功能测试套件 ├── hack # 开发者相关 ├── integration # (待验证) ├── lease # 实现etcd租约 ├── logos # 日志相关 ├── mvcc # MVCC存储相关 ├── pkg # 通用依赖库 ├── proxy # 代理相关Http、Https、Socks ├── raft # raft一致性协议实现 ├── scripts # 各类脚本 ├── security # 安全相关 ├── tests # (待验证) ├── tools # 工具 ├── vendor # go vendor依赖环境 ├── version # 版本信息 └── wal # Write-Ahead-Log实现 '>
+<meta property='og:url' content='https://example.com/p/etcd-2.%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A82/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='etcd' /><meta property='article:tag' content='k8s' /><meta property='article:tag' content='分布式' /><meta property='article:published_time' content='2020-08-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-08-30T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="[ Etcd ] 2.基础入门(2)">
+<meta name="twitter:description" content="Etcd源码阅读与分析①-raft demo Etcd 与 Zookeeper 对比  一致性协议:配置共享&amp;amp;服务发现组件的核心基础。  Zookeeper采用ZAB协议(一种类Paxos协议)实现一致性 Etcd采用Raft协议，相比Paxos协议更容易理解，工程化。   API接口: 包含有两个版本V2、V3  V2: 提供HTTP&#43;Json方式调用 V3: 提供grpc方式调用   性能  官方测试数据显示：10000&#43;/s写入(优于Zookeeper性能)   安全  Etcd支持TSL(权限控制优于Zookeeper)    Etcd是一个基于Raft协议的简单内存KV项目
+源码分析 本文档将以etcd作者在项目中所提供的demo程序进行源码试读。demo名称为raftexample。 路径在
+1.项目结构 (base) {11:45}~/etcd:master ✗ ➭ tree -d -L 1 . . ├── Documentation # 项目文档 ├── auth # 认证授权 ├── client # 客户端相关(v2) ├── clientv3 # 客户端相关(v3) ├── contrib # (待验证) ├── default.etcd # 已编译完成的etcd ├── embed # 封装的etcd函数 ├── etcdctl # etcd操作命令，命令行客户端 ├── etcdmain # main函数入口这里 ├── etcdserver # 服务端相关 ├── functional # 目测验证功能测试套件 ├── hack # 开发者相关 ├── integration # (待验证) ├── lease # 实现etcd租约 ├── logos # 日志相关 ├── mvcc # MVCC存储相关 ├── pkg # 通用依赖库 ├── proxy # 代理相关Http、Https、Socks ├── raft # raft一致性协议实现 ├── scripts # 各类脚本 ├── security # 安全相关 ├── tests # (待验证) ├── tools # 工具 ├── vendor # go vendor依赖环境 ├── version # 版本信息 └── wal # Write-Ahead-Log实现 ">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/k8s/" style="background-color: #2a9d8f; color: #fff;">
+                Kubernetes
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/etcd-2.%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A82/">[ Etcd ] 2.基础入门(2)</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Aug 30, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="etcd源码阅读与分析-raft-demo">Etcd源码阅读与分析①-raft demo</h1>
+<h2 id="etcd-与-zookeeper-对比">Etcd 与 Zookeeper 对比</h2>
+<ul>
+<li>一致性协议:配置共享&amp;服务发现组件的核心基础。
+<ul>
+<li>Zookeeper采用ZAB协议(一种类Paxos协议)实现一致性</li>
+<li>Etcd采用Raft协议，相比Paxos协议更容易理解，工程化。</li>
+</ul>
+</li>
+<li>API接口: 包含有两个版本V2、V3
+<ul>
+<li>V2: 提供HTTP+Json方式调用</li>
+<li>V3: 提供grpc方式调用</li>
+</ul>
+</li>
+<li>性能
+<ul>
+<li>官方测试数据显示：10000+/s写入(优于Zookeeper性能)</li>
+</ul>
+</li>
+<li>安全
+<ul>
+<li>Etcd支持TSL(权限控制优于Zookeeper)</li>
+</ul>
+</li>
+</ul>
+<p><code>Etcd是一个基于Raft协议的简单内存KV项目</code></p>
+<h2 id="源码分析">源码分析</h2>
+<p>本文档将以etcd作者在项目中所提供的demo程序进行源码试读。demo名称为raftexample。
+路径在</p>
+<h3 id="1项目结构">1.项目结构</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="o">(</span>base<span class="o">)</span> <span class="o">{</span>11:45<span class="o">}</span>~/etcd:master ✗ ➭ tree -d -L <span class="m">1</span> .
+.
+├── Documentation           <span class="c1"># 项目文档</span>
+├── auth                    <span class="c1"># 认证授权</span>
+├── client                  <span class="c1"># 客户端相关(v2)</span>
+├── clientv3                <span class="c1"># 客户端相关(v3)</span>
+├── contrib                 <span class="c1"># (待验证)</span>
+├── default.etcd            <span class="c1"># 已编译完成的etcd</span>
+├── embed                   <span class="c1"># 封装的etcd函数</span>
+├── etcdctl                 <span class="c1"># etcd操作命令，命令行客户端</span>
+├── etcdmain                <span class="c1"># main函数入口这里</span>
+├── etcdserver              <span class="c1"># 服务端相关</span>
+├── functional              <span class="c1"># 目测验证功能测试套件</span>
+├── hack                    <span class="c1"># 开发者相关</span>
+├── integration             <span class="c1"># (待验证)</span>
+├── lease                   <span class="c1"># 实现etcd租约</span>
+├── logos                   <span class="c1"># 日志相关</span>
+├── mvcc                    <span class="c1"># MVCC存储相关</span>
+├── pkg                     <span class="c1"># 通用依赖库</span>
+├── proxy                   <span class="c1"># 代理相关Http、Https、Socks</span>
+├── raft                    <span class="c1"># raft一致性协议实现</span>
+├── scripts                 <span class="c1"># 各类脚本</span>
+├── security                <span class="c1"># 安全相关</span>
+├── tests                   <span class="c1"># (待验证)</span>
+├── tools                   <span class="c1"># 工具</span>
+├── vendor                  <span class="c1"># go vendor依赖环境</span>
+├── version                 <span class="c1"># 版本信息</span>
+└── wal                     <span class="c1"># Write-Ahead-Log实现</span>
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/etcd/">etcd</a>
+        
+            <a href="/tags/k8s/">k8s</a>
+        
+            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/etcd-1.%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Etcd ] 1.基础入门(1)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-3-1.%E6%B7%B1%E5%85%A5service/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 3-1.深入Service</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-1.%E4%BA%86%E8%A7%A3pod%E5%AF%B9%E8%B1%A1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-1.了解Pod对象</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-2.springboot-pods%E9%A1%B9%E7%9B%AE%E5%88%9D%E4%BD%93%E9%AA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-4.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-4.kubeadm命令使用</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

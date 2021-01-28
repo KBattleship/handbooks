@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='面试之算法 1. 删除UserList中年龄大于20的User对象 // User实体类 public class User{ private Integer age; public Integet getAge(){ return this.age; } } 解题思路：
+此题按照最简单的lambda方式进行解答(JDK8才支持)
+public class Main{ public static void remove(List&amp;lt;User&amp;gt; userList){ // removeIf(Predicate&amp;lt;? super E&amp;gt; filter)  userList.removeIf(x -&amp;gt; x != null &amp;amp;&amp;amp; x.getAge() != null &amp;amp;&amp;amp; x.getAge() &amp;gt; 20); } } 2. 从1000W个数中取出最小的10个数，并按照顺序打印。 解题思路： 首先应该想到堆排序(Top K堆问题)，大根堆(前k小)或小根堆(后k大)。在Java中有已经实现的PriorityQueue，解决此问题将最为简单，复杂度为O(NlogK)。
+本题是求前K小，因此选用一个容量为K的大根堆，每次poll出最大的数，则堆中保留的则是前K项小。(谨记：需要不可用小根堆，小根堆需把全部元素入堆，时间复杂度为O(NlogN),将不再是O(NlogK))，Java中PriorityQueue默认为小根堆，需作出调整重写比较器。
+public class MaxHeap { public static void main(String[] args) { int[] arr = new int[]{10,1,0,9,22,77,12,883,99983,2772,848,3663,2626,737,2772,8388,266,83,72,7272,83883,27727,263,840,2740,884}; print(arr); } public static void print2(int[] arr) { int k = 10; int[] vec = new int[k]; // 重写PriorityQueue为大根堆  // PriorityQueue&amp;lt;Integer&amp;gt; queue = new PriorityQueue&amp;lt;&amp;gt;();默认为小根堆  PriorityQueue&amp;lt;Integer&amp;gt; queue = new PriorityQueue&amp;lt;&amp;gt;((num1, num2) -&amp;gt; num2 - num1); for (int i = 0; i &amp;lt; k; &#43;&#43;i) { queue.'><title>[ Interview ] 2. 面试之算法</title>
+
+<link rel='canonical' href='https://example.com/p/interview-2.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E7%AE%97%E6%B3%95/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Interview ] 2. 面试之算法'>
+<meta property='og:description' content='面试之算法 1. 删除UserList中年龄大于20的User对象 // User实体类 public class User{ private Integer age; public Integet getAge(){ return this.age; } } 解题思路：
+此题按照最简单的lambda方式进行解答(JDK8才支持)
+public class Main{ public static void remove(List&amp;lt;User&amp;gt; userList){ // removeIf(Predicate&amp;lt;? super E&amp;gt; filter)  userList.removeIf(x -&amp;gt; x != null &amp;amp;&amp;amp; x.getAge() != null &amp;amp;&amp;amp; x.getAge() &amp;gt; 20); } } 2. 从1000W个数中取出最小的10个数，并按照顺序打印。 解题思路： 首先应该想到堆排序(Top K堆问题)，大根堆(前k小)或小根堆(后k大)。在Java中有已经实现的PriorityQueue，解决此问题将最为简单，复杂度为O(NlogK)。
+本题是求前K小，因此选用一个容量为K的大根堆，每次poll出最大的数，则堆中保留的则是前K项小。(谨记：需要不可用小根堆，小根堆需把全部元素入堆，时间复杂度为O(NlogN),将不再是O(NlogK))，Java中PriorityQueue默认为小根堆，需作出调整重写比较器。
+public class MaxHeap { public static void main(String[] args) { int[] arr = new int[]{10,1,0,9,22,77,12,883,99983,2772,848,3663,2626,737,2772,8388,266,83,72,7272,83883,27727,263,840,2740,884}; print(arr); } public static void print2(int[] arr) { int k = 10; int[] vec = new int[k]; // 重写PriorityQueue为大根堆  // PriorityQueue&amp;lt;Integer&amp;gt; queue = new PriorityQueue&amp;lt;&amp;gt;();默认为小根堆  PriorityQueue&amp;lt;Integer&amp;gt; queue = new PriorityQueue&amp;lt;&amp;gt;((num1, num2) -&amp;gt; num2 - num1); for (int i = 0; i &amp;lt; k; &#43;&#43;i) { queue.'>
+<meta property='og:url' content='https://example.com/p/interview-2.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E7%AE%97%E6%B3%95/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='interview' /><meta property='article:tag' content='算法' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-01-08T01:13:47&#43;08:00'/><meta property='article:modified_time' content='2021-01-08T01:13:47&#43;08:00'/>
+<meta name="twitter:title" content="[ Interview ] 2. 面试之算法">
+<meta name="twitter:description" content="面试之算法 1. 删除UserList中年龄大于20的User对象 // User实体类 public class User{ private Integer age; public Integet getAge(){ return this.age; } } 解题思路：
+此题按照最简单的lambda方式进行解答(JDK8才支持)
+public class Main{ public static void remove(List&amp;lt;User&amp;gt; userList){ // removeIf(Predicate&amp;lt;? super E&amp;gt; filter)  userList.removeIf(x -&amp;gt; x != null &amp;amp;&amp;amp; x.getAge() != null &amp;amp;&amp;amp; x.getAge() &amp;gt; 20); } } 2. 从1000W个数中取出最小的10个数，并按照顺序打印。 解题思路： 首先应该想到堆排序(Top K堆问题)，大根堆(前k小)或小根堆(后k大)。在Java中有已经实现的PriorityQueue，解决此问题将最为简单，复杂度为O(NlogK)。
+本题是求前K小，因此选用一个容量为K的大根堆，每次poll出最大的数，则堆中保留的则是前K项小。(谨记：需要不可用小根堆，小根堆需把全部元素入堆，时间复杂度为O(NlogN),将不再是O(NlogK))，Java中PriorityQueue默认为小根堆，需作出调整重写比较器。
+public class MaxHeap { public static void main(String[] args) { int[] arr = new int[]{10,1,0,9,22,77,12,883,99983,2772,848,3663,2626,737,2772,8388,266,83,72,7272,83883,27727,263,840,2740,884}; print(arr); } public static void print2(int[] arr) { int k = 10; int[] vec = new int[k]; // 重写PriorityQueue为大根堆  // PriorityQueue&amp;lt;Integer&amp;gt; queue = new PriorityQueue&amp;lt;&amp;gt;();默认为小根堆  PriorityQueue&amp;lt;Integer&amp;gt; queue = new PriorityQueue&amp;lt;&amp;gt;((num1, num2) -&amp;gt; num2 - num1); for (int i = 0; i &amp;lt; k; &#43;&#43;i) { queue.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/algorithm/" style="background-color: #2a9d8f; color: #fff;">
+                Algorithm
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/interview-2.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E7%AE%97%E6%B3%95/">[ Interview ] 2. 面试之算法</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 08, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="面试之算法">面试之算法</h1>
+<h2 id="1-删除userlist中年龄大于20的user对象">1. 删除UserList中年龄大于20的User对象</h2>
+<div class="highlight"><pre class="chroma"><code class="language-Java" data-lang="Java"><span class="c1">// User实体类
+</span><span class="c1"></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">User</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Integer</span> <span class="n">age</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="n">Integet</span> <span class="nf">getAge</span><span class="o">(){</span>
+        <span class="k">return</span> <span class="k">this</span><span class="o">.</span><span class="na">age</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>解题思路：</strong></p>
+<p>此题按照最简单的lambda方式进行解答(JDK8才支持)</p>
+<div class="highlight"><pre class="chroma"><code class="language-Java" data-lang="Java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">remove</span><span class="o">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">userList</span><span class="o">){</span>
+        <span class="c1">// removeIf(Predicate&lt;? super E&gt; filter)
+</span><span class="c1"></span>        <span class="n">userList</span><span class="o">.</span><span class="na">removeIf</span><span class="o">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">x</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">x</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">20</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="2-从1000w个数中取出最小的10个数并按照顺序打印">2. 从1000W个数中取出最小的10个数，并按照顺序打印。</h2>
+<p><strong>解题思路：</strong>
+首先应该想到堆排序(<strong>Top K堆问题</strong>)，大根堆(前k小)或小根堆(后k大)。在Java中有已经实现的<em>PriorityQueue</em>，解决此问题将最为简单，复杂度为<em><strong>O(NlogK)</strong></em>。</p>
+<p>本题是求前<code>K</code>小，因此选用一个容量为<code>K</code>的大根堆，每次poll出最大的数，则堆中保留的则是前<code>K</code>项小。(谨记：需要不可用小根堆，小根堆需把全部元素入堆，时间复杂度为<em><strong>O(NlogN)</strong></em>,将不再是<em><strong>O(NlogK)</strong></em>)，Java中<em>PriorityQueue</em>默认为<strong>小根堆</strong>，需作出调整重写比较器。</p>
+<div class="highlight"><pre class="chroma"><code class="language-Java" data-lang="Java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">MaxHeap</span> <span class="o">{</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]{</span><span class="n">10</span><span class="o">,</span><span class="n">1</span><span class="o">,</span><span class="n">0</span><span class="o">,</span><span class="n">9</span><span class="o">,</span><span class="n">22</span><span class="o">,</span><span class="n">77</span><span class="o">,</span><span class="n">12</span><span class="o">,</span><span class="n">883</span><span class="o">,</span><span class="n">99983</span><span class="o">,</span><span class="n">2772</span><span class="o">,</span><span class="n">848</span><span class="o">,</span><span class="n">3663</span><span class="o">,</span><span class="n">2626</span><span class="o">,</span><span class="n">737</span><span class="o">,</span><span class="n">2772</span><span class="o">,</span><span class="n">8388</span><span class="o">,</span><span class="n">266</span><span class="o">,</span><span class="n">83</span><span class="o">,</span><span class="n">72</span><span class="o">,</span><span class="n">7272</span><span class="o">,</span><span class="n">83883</span><span class="o">,</span><span class="n">27727</span><span class="o">,</span><span class="n">263</span><span class="o">,</span><span class="n">840</span><span class="o">,</span><span class="n">2740</span><span class="o">,</span><span class="n">884</span><span class="o">};</span>
+        <span class="n">print</span><span class="o">(</span><span class="n">arr</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print2</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">arr</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">10</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">vec</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+        <span class="c1">// 重写PriorityQueue为大根堆
+</span><span class="c1"></span>        <span class="c1">// PriorityQueue&lt;Integer&gt; queue = new PriorityQueue&lt;&gt;();默认为小根堆
+</span><span class="c1"></span>        <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">queue</span> <span class="o">=</span> <span class="k">new</span> <span class="n">PriorityQueue</span><span class="o">&lt;&gt;((</span><span class="n">num1</span><span class="o">,</span> <span class="n">num2</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="n">num2</span> <span class="o">-</span> <span class="n">num1</span><span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+        <span class="o">}</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">k</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">arr</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">queue</span><span class="o">.</span><span class="na">peek</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">])</span> <span class="o">{</span>
+                <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+                <span class="n">queue</span><span class="o">.</span><span class="na">offer</span><span class="o">(</span><span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">k</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">vec</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="na">poll</span><span class="o">();</span>
+        <span class="o">}</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">Arrays</span><span class="o">.</span><span class="na">toString</span><span class="o">(</span><span class="n">vec</span><span class="o">));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="3-3个线程abc存在依赖关系b依赖a执行结束c依赖b执行结束请设计实现">3. 3个线程A、B、C存在依赖关系，B依赖A执行结束，C依赖B执行结束，请设计实现。</h2>
+<p><strong>解题思路：</strong>
+主要考察多线程Thread对象的wait()、notify()以及线程间共享的信号量。</p>
+<div class="highlight"><pre class="chroma"><code class="language-Java" data-lang="Java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">Lock</span> <span class="n">lockA</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lock</span><span class="o">();</span>
+        <span class="n">Lock</span> <span class="n">lockB</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Lock</span><span class="o">();</span>
+
+        <span class="k">new</span> <span class="n">A</span><span class="o">(</span><span class="n">lockA</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">B</span><span class="o">(</span><span class="n">lockA</span><span class="o">,</span> <span class="n">lockB</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+        <span class="k">new</span> <span class="n">C</span><span class="o">(</span><span class="n">lockB</span><span class="o">).</span><span class="na">start</span><span class="o">();</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Lock</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">flag</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getFlag</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">flag</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setFlag</span><span class="o">(</span><span class="kt">int</span> <span class="n">flag</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">flag</span> <span class="o">=</span> <span class="n">flag</span><span class="o">;</span>
+    <span class="o">}</span>
+
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">A</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Lock</span> <span class="n">lock</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">A</span><span class="o">(</span><span class="n">Lock</span> <span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">lock</span> <span class="o">=</span> <span class="n">lock</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;thread A starting &#34;</span><span class="o">);</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">lock</span><span class="o">.</span><span class="na">getFlag</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">lock</span><span class="o">.</span><span class="na">notify</span><span class="o">();</span>
+                <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                    <span class="n">lock</span><span class="o">.</span><span class="na">setFlag</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">B</span> <span class="kd">extends</span> <span class="n">Thread</span><span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Lock</span> <span class="n">lockA</span><span class="o">;</span>
+    <span class="kd">private</span> <span class="n">Lock</span> <span class="n">lockB</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">B</span><span class="o">(</span><span class="n">Lock</span> <span class="n">lockA</span><span class="o">,</span><span class="n">Lock</span> <span class="n">lockB</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">lockA</span> <span class="o">=</span> <span class="n">lockA</span><span class="o">;</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">lockB</span> <span class="o">=</span> <span class="n">lockB</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="n">lockA</span><span class="o">)</span> <span class="o">{</span>
+
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">lockA</span><span class="o">.</span><span class="na">getFlag</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">lockA</span><span class="o">.</span><span class="na">setFlag</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+                    <span class="n">lockA</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Thread B starting&#34;</span><span class="o">);</span>
+
+                <span class="kd">synchronized</span> <span class="o">(</span><span class="n">lockB</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">lockB</span><span class="o">.</span><span class="na">getFlag</span><span class="o">()</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">lockB</span><span class="o">.</span><span class="na">notify</span><span class="o">();</span>
+                    <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+                        <span class="n">lockB</span><span class="o">.</span><span class="na">setFlag</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">C</span> <span class="kd">extends</span> <span class="n">Thread</span> <span class="o">{</span>
+    <span class="kd">private</span> <span class="n">Lock</span> <span class="n">lock</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">C</span><span class="o">(</span><span class="n">Lock</span> <span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">lock</span> <span class="o">=</span> <span class="n">lock</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">run</span><span class="o">()</span> <span class="o">{</span>
+        <span class="kd">synchronized</span> <span class="o">(</span><span class="n">lock</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">try</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">lock</span><span class="o">.</span><span class="na">getFlag</span><span class="o">()</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">lock</span><span class="o">.</span><span class="na">setFlag</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+                    <span class="n">lock</span><span class="o">.</span><span class="na">wait</span><span class="o">();</span>
+                <span class="o">}</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Thread C starting&#34;</span><span class="o">);</span>
+            <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">){</span>
+                <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">  * 给定一个二叉树, 检查它是否是镜像对称的
+</span><span class="cm">  * 例如以下是镜像对称的
+</span><span class="cm">  *      1
+</span><span class="cm">  *     / \
+</span><span class="cm">  *    2   2
+</span><span class="cm">  *   / \ / \
+</span><span class="cm">  *  3  4 4  3
+</span><span class="cm">  *
+</span><span class="cm">  * 下面这个则不是镜像对称的
+</span><span class="cm">  *      1
+</span><span class="cm">  *     / \
+</span><span class="cm">  *    2   2
+</span><span class="cm">  *     \   \
+</span><span class="cm">  *      3   3
+</span><span class="cm">  *
+</span><span class="cm">  * TreeNode类的定义:
+</span><span class="cm">  *
+</span><span class="cm">  * @param TreeNode 一颗二叉树
+</span><span class="cm">  * @return boolean 是否是对称的
+</span><span class="cm">  */</span>
+
+<span class="c1">// 以下给出TreeNode类, 请勿修改
+</span><span class="c1"></span><span class="kd">static</span> <span class="kd">class</span> <span class="nc">TreeNode</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">val</span><span class="o">;</span>
+    <span class="n">TreeNode</span> <span class="n">left</span><span class="o">;</span>
+    <span class="n">TreeNode</span> <span class="n">right</span><span class="o">;</span>
+    <span class="n">TreeNode</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">)</span> <span class="o">{</span> <span class="n">val</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span> <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p><strong>解题思路</strong></p>
+<p><strong>解答代码</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">  * 对任意一个Map&lt;String, Object&gt;, 其 key 为 String,
+</span><span class="cm">  * 其 value 为 Map&lt;String, Object&gt; Object[] Number String 中的任意一种,
+</span><span class="cm">  * 显然叶子节点是 value 类型为 Number 或 String的节点,
+</span><span class="cm">  * 将 Map 转为多条字符串, 每条字符串表达其中一个叶子节点,
+</span><span class="cm">  * 比如:
+</span><span class="cm">  * {&#34;a&#34;:{&#34;b&#34;:[&#34;v&#34;,2,{&#34;c&#34;:0}]},&#34;d&#34;:[1,null,3]}
+</span><span class="cm">  * 将转化为以下这些字符串
+</span><span class="cm">  * a.b[0] = v
+</span><span class="cm">  * a.b[1] = 2
+</span><span class="cm">  * a.b[2].c = 0
+</span><span class="cm">  * d[0] = 1
+</span><span class="cm">  * d[1] = null
+</span><span class="cm">  * d[2] = 3
+</span><span class="cm">  *
+</span><span class="cm">  * @param map 上述的 map
+</span><span class="cm">  * @return 所有的字符串
+</span><span class="cm">  */</span>
+</code></pre></div><p><strong>解题思路</strong></p>
+<p><strong>解答代码</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm">  * 注意! 本题不要遍历二维数组. 要求时间复杂度严格低于n^2, 否则视为不得分
+</span><span class="cm">  *
+</span><span class="cm">  * 现有一个n\*n的二维正整数数组nums，每行元素保证递增，每列元素保证递增，
+</span><span class="cm">    求某正整数x是否存在于该二维数组中，需要尽量优化时间和空间复杂度；
+</span><span class="cm">  * @param int[][] nums
+</span><span class="cm">  * @param int x 目标数
+</span><span class="cm">  * @return boolean
+</span><span class="cm">  */</span>
+</code></pre></div><p><strong>解题思路</strong></p>
+<p><strong>解答代码</strong></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/interview/">interview</a>
+        
+            <a href="/tags/%E7%AE%97%E6%B3%95/">算法</a>
+        
+            <a href="/tags/algorithm/">algorithm</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/interview-3.-%E9%9D%A2%E8%AF%95%E4%B9%8Bjava/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Interview ] 3. 面试之Java</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/interview-1.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E6%B8%85%E5%8D%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Interview ] 1. 面试之清单</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

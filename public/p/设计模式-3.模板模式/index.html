@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+①.UML图 ②.代码清单  AbstractDisplay类  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }  CharDisplayTemplate类  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.aChar = a; } /* 具体实现父类模板类中抽象方法 */ @Override void open() { System.out.println(&amp;#34;Char Display open()&amp;#34;); } @Override void print() { System.'><title>[ 设计模式 ] 3.模板模式</title>
+
+<link rel='canonical' href='https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3.%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ 设计模式 ] 3.模板模式'>
+<meta property='og:description' content='模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+①.UML图 ②.代码清单  AbstractDisplay类  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }  CharDisplayTemplate类  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.aChar = a; } /* 具体实现父类模板类中抽象方法 */ @Override void open() { System.out.println(&amp;#34;Char Display open()&amp;#34;); } @Override void print() { System.'>
+<meta property='og:url' content='https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3.%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='design_pattern' /><meta property='article:tag' content='java' /><meta property='article:published_time' content='2019-07-08T15:36:27&#43;08:00'/><meta property='article:modified_time' content='2019-07-08T15:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ 设计模式 ] 3.模板模式">
+<meta name="twitter:description" content="模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+①.UML图 ②.代码清单  AbstractDisplay类  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }  CharDisplayTemplate类  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.aChar = a; } /* 具体实现父类模板类中抽象方法 */ @Override void open() { System.out.println(&amp;#34;Char Display open()&amp;#34;); } @Override void print() { System.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3.%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/">[ 设计模式 ] 3.模板模式</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jul 08, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="模板模式">模板模式</h1>
+<p><!-- raw HTML omitted --> <strong>模板模式：</strong> <!-- raw HTML omitted --><code>是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。</code></p>
+<h4 id="uml图">①.UML图</h4>
+<p><img src="/image/docs_img/coding/java/media/1_2_3_template_uml.jpg" alt="模板模式UML"  /></p>
+<h4 id="代码清单">②.代码清单</h4>
+<ul>
+<li>AbstractDisplay类</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">AbstractDisplay</span> <span class="o">{</span>
+    <span class="cm">/* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">display</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">open</span><span class="o">();</span>
+        <span class="n">print</span><span class="o">();</span>
+        <span class="n">close</span><span class="o">();</span>
+    <span class="o">}</span>
+    <span class="cm">/* 定义流程中指定的抽象方法，具体细节交给子类去实现 */</span>
+    <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">open</span><span class="o">();</span>
+    <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">();</span>
+    <span class="kd">abstract</span> <span class="kt">void</span> <span class="nf">close</span><span class="o">();</span>
+<span class="o">}</span>
+</code></pre></div><ul>
+<li>CharDisplayTemplate类</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">CharDisplayTemplate</span> <span class="kd">extends</span> <span class="n">AbstractDisplay</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kt">char</span> <span class="n">aChar</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">CharDisplayTemplate</span><span class="o">(</span><span class="kt">char</span> <span class="n">a</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">aChar</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="cm">/* 具体实现父类模板类中抽象方法 */</span>
+    <span class="nd">@Override</span>
+    <span class="kt">void</span> <span class="nf">open</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Char Display open()&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Char Display print():&#34;</span> <span class="o">+</span> <span class="k">this</span><span class="o">.</span><span class="na">aChar</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;Char Display close()&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><ul>
+<li>StringDisplayTemplate类</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">StringDisplayTemplate</span> <span class="kd">extends</span> <span class="n">AbstractDisplay</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">charString</span><span class="o">;</span>
+    <span class="kd">public</span> <span class="nf">StringDisplayTemplate</span><span class="o">(</span><span class="n">String</span> <span class="n">string</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">charString</span> <span class="o">=</span> <span class="n">string</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="cm">/* 具体实现父类模板类中抽象方法 */</span>
+    <span class="nd">@Override</span>
+    <span class="kt">void</span> <span class="nf">open</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;String Display open()&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kt">void</span> <span class="nf">print</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="k">this</span><span class="o">.</span><span class="na">charString</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="nd">@Override</span>
+    <span class="kt">void</span> <span class="nf">close</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">&#34;String Display close()&#34;</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+</code></pre></div><h4 id="思路分析">③.思路分析</h4>
+<ul>
+<li>逻辑处理通用化</li>
+</ul>
+<p><code>由于在父类模板方法中编写了算法，无需在子类中在编写算法。当发现模板方法中存在Bug，仅需要改动模板方法即可解决问题。并非像传统编码方式上的修改所有ConcreteClass角色类的相关逻辑代码。</code></p>
+<ul>
+<li>父、子类间的协作性</li>
+</ul>
+<p><code>子类实现父类抽象方法时，必须理解这些抽象方法被调用的时机、逻辑。如果看不到父类代码，不能了解到父类方法中所定义的相关逻辑，想要编写子类抽象方法实现代码是很困难的。</code></p>
+<ul>
+<li>父、子类间的一致性</li>
+</ul>
+<p><code>通过父类类型定义子类实例变量，即时不使用instanceof指定子类的类型，程序依然可以正常运行。</code> <em><strong>(里氏替换原则[LSP],通用的继承原则。)</strong></em></p>
+<h4 id="类的层次与抽象类">④.类的层次与抽象类</h4>
+<ul>
+<li>父类对子类的约束
+<ul>
+<li>在子类中可以使用父类中定义的方法</li>
+<li>可以通过在子类中增加方法的形式实现新功能</li>
+<li>在子类中重写父类方法可以改变程序的行为</li>
+<li>期待子类实现抽象方法</li>
+<li>要求子类实现抽象方法</li>
+</ul>
+</li>
+<li>抽象类</li>
+</ul>
+<p><code>在模板方法中：抽象方法并不会有具体的实现代码，仅仅是确立了抽象方法的名称，通过调用使用了抽象方法的模板方法去实现编写实现。抽象类确立了实现的流程，子类决定了流程中具体要处理的内容。</code></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/design_pattern/">design_pattern</a>
+        
+            <a href="/tags/java/">java</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-6.%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 设计模式 ] 6.原型模式</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-5.%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 设计模式 ] 5.单例模式</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4.%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 设计模式 ] 4.工厂模式</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2.%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 设计模式 ] 2.适配器模式</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-10.java-io/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 10.Java IO</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

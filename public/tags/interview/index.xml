@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>interview on Quinn</title>
+    <link>https://example.com/tags/interview/</link>
+    <description>Recent content in interview on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 08 Jan 2021 01:13:47 +0800</lastBuildDate><atom:link href="https://example.com/tags/interview/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ Interview ] 2. 面试之算法</title>
+      <link>https://example.com/p/interview-2.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E7%AE%97%E6%B3%95/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/interview-2.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E7%AE%97%E6%B3%95/</guid>
+      <description>面试之算法 1. 删除UserList中年龄大于20的User对象 // User实体类 public class User{ private Integer age; public Integet getAge(){ return this.age; } } 解题思路：
+此题按照最简单的lambda方式进行解答(JDK8才支持)
+public class Main{ public static void remove(List&amp;lt;User&amp;gt; userList){ // removeIf(Predicate&amp;lt;? super E&amp;gt; filter)  userList.removeIf(x -&amp;gt; x != null &amp;amp;&amp;amp; x.getAge() != null &amp;amp;&amp;amp; x.getAge() &amp;gt; 20); } } 2. 从1000W个数中取出最小的10个数，并按照顺序打印。 解题思路： 首先应该想到堆排序(Top K堆问题)，大根堆(前k小)或小根堆(后k大)。在Java中有已经实现的PriorityQueue，解决此问题将最为简单，复杂度为O(NlogK)。
+本题是求前K小，因此选用一个容量为K的大根堆，每次poll出最大的数，则堆中保留的则是前K项小。(谨记：需要不可用小根堆，小根堆需把全部元素入堆，时间复杂度为O(NlogN),将不再是O(NlogK))，Java中PriorityQueue默认为小根堆，需作出调整重写比较器。
+public class MaxHeap { public static void main(String[] args) { int[] arr = new int[]{10,1,0,9,22,77,12,883,99983,2772,848,3663,2626,737,2772,8388,266,83,72,7272,83883,27727,263,840,2740,884}; print(arr); } public static void print2(int[] arr) { int k = 10; int[] vec = new int[k]; // 重写PriorityQueue为大根堆  // PriorityQueue&amp;lt;Integer&amp;gt; queue = new PriorityQueue&amp;lt;&amp;gt;();默认为小根堆  PriorityQueue&amp;lt;Integer&amp;gt; queue = new PriorityQueue&amp;lt;&amp;gt;((num1, num2) -&amp;gt; num2 - num1); for (int i = 0; i &amp;lt; k; ++i) { queue.</description>
+    </item>
+    
+    <item>
+      <title>[ Interview ] 3. 面试之Java</title>
+      <link>https://example.com/p/interview-3.-%E9%9D%A2%E8%AF%95%E4%B9%8Bjava/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/interview-3.-%E9%9D%A2%E8%AF%95%E4%B9%8Bjava/</guid>
+      <description>面试 X_Q 1.JVM垃圾回收机制 Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。 JVM中存在一个 优先级较低 的线程，只有当 JVM处于空闲 或者 堆空间不足 的情况触发执行。此过程中，将扫描到 没有被引用的对象 防止垃圾回收集合中，进行垃圾回收。
+ 判断对象是否可以被回收   引用计数器：
+ 为每一个对象创建一个引用计数器，有引用此对象，计数器进行+1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(不能解决循环引用问题)    可达性分析算法
+ 从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 GC Roots不存在任何引用链式，说明此对象可以进行回收。      2.什么是Netty？  见 Netty
+ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 B_D 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：</description>
+    </item>
+    
+    <item>
+      <title>[ RocketMQ ] 1.面试</title>
+      <link>https://example.com/p/rocketmq-1.%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/rocketmq-1.%E9%9D%A2%E8%AF%95/</guid>
+      <description>面试准备 1. 什么是解耦 2. 什么是异步 3. 什么是消峰填谷 4. RocketMQ执行流程 5. 怎么理解Producer 6. 怎么理解Consumer 7. 消费者消费模式有哪些 8. 消费者获取消息有几种模式 9. 定时消息是什么样的？如何实现的？ 10. RocketMQ如何保证高可用的？ 11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？ 12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？ 13. 如何保证消息的顺序性？ 14. 如何解决消息队列的延时以及过期失效问题？ 15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？ 16. 如何解决高性能读写数据问题？ </description>
+    </item>
+    
+    <item>
+      <title>[ Spring ] 1. Spring</title>
+      <link>https://example.com/p/spring-1.-spring/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/spring-1.-spring/</guid>
+      <description>Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;amp;符号。    2. Bean的生命周期?  实例化Bean： Ioc容器通过获取BeanDefinition对象中的信息进行实例化，实例化对象被包装在BeanWrapper对象中 设置对象属性（DI）：通过BeanWrapper提供的设置属性的接口完成属性依赖注入； 注入Aware接口（BeanFactoryAware， 可以用这个方式来获取其它 Bean，ApplicationContextAware）：Spring会检测该对象是否实现了xxxAware接口，并将相关的xxxAware实例注入给bean BeanPostProcessor：自定义的处理（分前置处理和后置处理） InitializingBean和init-method：执行我们自己定义的初始化方法 使用 destroy：bean的销毁  IOC：控制反转：将对象的创建权，由Spring管理. DI（依赖注入）：在Spring创建对象的过程中，把对象依赖的属性注入到类中。
+4. SpringIOC 控制反转，通过依赖注入方式实现，IOC利用java反射机制，AOP利用代理模式。所谓控制反转是指，本来被调用者的实例是由调用者来创建的，这样的缺点是耦合性太强，IOC则是统一交给spring来管理创建，将对象交给容器管理，你只需要在spring配置文件总配置相应的bean，以及设置相关的属性，让spring容器来生成类的实例对象以及管理对象。在spring容器启动的时候，spring会把你在配置文件中配置的bean都初始化好，然后在你需要调用的时候，就把它已经初始化好的那些bean分配给你需要调用这些bean的类
+5. Spring容器加载Bean  BeanDefinitionReader读取Resource所执行的配置文件资源，解析配置文件，并将生成的BeanDefinition对象保存到BeanDefinitionRegistry中。 容器扫描Bean定义注册表中的BeanDefinition对象，调用InstantiationStrategy进行Bean实例化的工作；采用BeanWrapper完成Bean属性的设置工作。 若是单例的Bean，则将Bean缓存在Bean缓存器中。  6. Spring三级缓存  一级缓存：Map&amp;lt;String, Object&amp;gt; singletonObjects  作用  用于存储单例模式下创建的Bean实例（已经创建完毕）。 该缓存是对外使用的，指的就是使用Spring框架的程序员。   对象  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，已经创建完毕）     第二级缓存：Map&amp;lt;String, Object&amp;gt; earlySingletonObjects  作用：  用于存储单例模式下创建的Bean实例（该Bean被提前暴露的引用,该Bean还在创建中）。 该缓存是对内使用的，指的就是Spring框架内部逻辑使用该缓存。   对象：  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，该Bean还在创建中）     第三级缓存：Map&amp;lt;String, ObjectFactory&amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>[ Interview ] 1. 面试之清单</title>
+      <link>https://example.com/p/interview-1.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E6%B8%85%E5%8D%95/</link>
+      <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/interview-1.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E6%B8%85%E5%8D%95/</guid>
+      <description>面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  Algorithm Sort  手撸插入排序 手撸二分查找 堆排序(Top K) 快素排序思想 反转单链表 合并二叉树(递归与非递归两种办法)  Java Basic  Object是所有对象的父类，那Object类中有哪些方法 hashCode()与equals()有什么关系 String、StringBuilder、StringBuffer区别 反射机制 方法(静态、一般方法)；代码块(this，ClassName.class)  Collections  List之ArrayList List之LinkedList List之Vector Map之HashMap Map之LinkedHashMap Map之ConcurrentHashMap Map之TreeMap HashTable Set之HashSet Set之TreeSet Queue之ArrayBlockingQueue Queue之ConcurrentLinkedQueue Queue之LinkedBlockingQueue  Thread  线程的几种状态以及如何转化的 三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 关于锁 synchronized锁以及锁升级 ReentrantLock与synchronized区别 有界、无界任务队列，手写BlockingQueue ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  JVM   JVM内存结构
+  final修饰的常量处于JVM中哪部分内存</description>
+    </item>
+    
+    <item>
+      <title>[ Mybatis ] 1. Mybatis</title>
+      <link>https://example.com/p/mybatis-1.-mybatis/</link>
+      <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/mybatis-1.-mybatis/</guid>
+      <description>MyBatis 1. MyBatis二级缓存   一级缓存：
+ 基于PrepetualCache的HashMap本地缓存，其作用域是Session。 当Session在flush()或者close()之后，此Session中所有Cache都将被清除。 默认情况下，一级缓存处于打开状态。    二级缓存：
+ 二级缓存与一级缓存机制相同，一样基于PrepetualCache HashMap进行存储。 但其作用于是Mapper(Namespace)，而且可以采用自定义存储源， 例如Ehcache、Redis等。 默认情况下，二级缓存处于关闭状态。 二级缓存在使用中，其属性类型需要实现serialize序列化接口。 可在其映射配置文件中进行    对于缓存更新机制，当某一作用域(一级Session/二级Namespace)执行C/U/D后 默认情况下，此作用域下所有select中的缓存将被clear。
+  2. Mybatis工作原理   加载Mybatis全局配置文件mybatis-config.xml：
+ 此配置文件用于配置数据库连接信息。    加载Mybatis映射配置文件xxx-mapper.xml:
+ 此配置文件包含有操作数据库的SQL语句，需在mybatis-config.xml文件中进行配置。 mybatis-config.xml中可以配置多个xxx-mapper.xml文件 一个xxx-mapper.xml文件对应数据库中一张表。    构建会话工厂：
+ 通过配置信心初始化构建SQLSessionFactory对象。    创建会话对象：
+ 基于会话工厂创建SQLSession对象。 此Sqlsession对象中包含有执行SQL语句的所有方法。    Executor执行器
+ Mybatis底层封装了一个Executor的接口用于操作数据库。 将根据SqlSession对象传递的参数动态生成所需要执行的SQL语句，同时负责缓存查询。    MappedStatement对象：
+ 在Executor接口的执行方法中存在一个MappedStatement类型的参数， 该参数是对映射地址信息进行封装，用于存储要映射的SQL语句的id，参数等信息。    输入参数映射：</description>
+    </item>
+    
+    <item>
+      <title>[ Interview ] 2.面试准备</title>
+      <link>https://example.com/p/interview-2.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</link>
+      <pubDate>Tue, 05 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/interview-2.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</guid>
+      <description>面试准备 一、学习路线 1.Java基础  面向对象特性：封装、继承、多态(动态绑定、向上转型) 泛型、类型擦除 反射、其原理及其优缺点 static,final关键字 String,StringBuffer,StringBuilder底层区别 BIO、NIO、AIO Object类的方法 自动拆箱与自动装箱  2.集合框架  List  ArrayList LinkedList Vector CopyOnWriteArrayList   Set  HashSet TreeSet LinkedHashSet   Queue  PriorityQueue   Map  HashMap TreeMap LinkedMap   fast-fail，fast-safe机制 源码分析(底层数据结构，插入、扩容过程)、线程安全分析  3.Java虚拟机  类加载机制、双亲委派模式、3种加载器(BootstrapClassLoader，ExtensionClassLoader，ApplicationClassLoader) 运行时内存分区(PC，Java虚拟机栈，本地方法栈，堆，方法区[永久代、元空间]) JMM: Java内存模型分析 引用计数、可达性分析 垃圾回收算法：标记-清除、标记-整理、复制 垃圾回收器：比较区别(Serial，ParNew，ParallelScavenge，CMS，G1) 强、软、弱、虚引用 内存溢出、内存泄漏排查 JVM调优、常用命令  4.Java并发  三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池(ThreadPoolExecutor，7大参数、原理、四种拒绝策略、四个类型[Fixed、Single、Cached、Scheduled]) Synchronized 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  5.</description>
+    </item>
+    
+    <item>
+      <title>[ Interview ] 1.面试准备</title>
+      <link>https://example.com/p/interview-1.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/interview-1.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</guid>
+      <description>面试准备  Java线程池  JDK中JUC包  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）  垃圾回收器G1与GC算法CMS  Tomcat 如何实现类隔离  Spring IOC原理  Spring AOP原理  Spring事务  Dubbo服务发现、注册流程  Dubbo通信原理  Dubbo SPI与Java SPI  Zookeeper选举协议  大数据量的排序如何处理  如何判断链表是回文链表、快排序、归并排序  MySQL调优：B+ Tree索引、Hash索引  Mybatis的一、二级缓存  Mybatis工作原理  Redis Bitmap  </description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 2.5 手写LRU</title>
+      <link>https://example.com/p/java-2.5-%E6%89%8B%E5%86%99lru/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-2.5-%E6%89%8B%E5%86%99lru/</guid>
+      <description>手写LRU 1. 利用数组实现 2. 使用LinkedHashMap偷个懒 </description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 4.0 多线程问题</title>
+      <link>https://example.com/p/java-4.0-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-4.0-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</guid>
+      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 CountDownLatch</description>
+    </item>
+    
+  </channel>
+</rss>

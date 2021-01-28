@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on Quinn</title>
+    <link>https://example.com/categories/java/</link>
+    <description>Recent content in Java on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 10 Jan 2021 11:10:47 +0800</lastBuildDate><atom:link href="https://example.com/categories/java/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ Java ] 4-2.JUC之AQS</title>
+      <link>https://example.com/p/java-4-2.juc%E4%B9%8Baqs/</link>
+      <pubDate>Sun, 10 Jan 2021 11:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-4-2.juc%E4%B9%8Baqs/</guid>
+      <description>JUC之AQS 1.基础知识 1_1. AQS原理 AQS(AbstractQueuedSynchronizer),是java.util.concurrent.locks下的一个普通类。用作构建 锁 和 同步器 框架。例如基于AQS构建的有：ReentrantLock, Semaphore, ReentrantReadWriteLock, SynchronousQueue, FutureTask 等等。
+核心思想：
+ 如果被请求的共享资源处于 空闲状态 ，则将当前请求资源的线程设置为 有效的工作线程 ，并且将共享资源设置为 锁定状态。 如果被请求的共享资源处于 占用状态 ，则需要一套 线程阻塞等待 以及 被唤醒时锁分配 的流程机制。 AQS 通过 CLH (Craig, Landin, Hagersten) 队列锁实现：将暂时获取不到锁的线程加入至队列中。 AQS使用一个 int 成员变量来标识同步状态，通过内置的 FIFO 队列完成获取资源线程的排队工作，使用 CAS(compare and swap) 对改状态进行原子操作实现对其值的更改。  // 共享变量，使用volatile修饰符保证线程可见性 private volatile int state; /** 状态信息通过protected修饰符修饰 getState(), setState(), compareAndSetState()进行操作 */ // 返回同步状态的当前值 protected final int getState(){ return state; } // 设置同步状态当前值 protected final void setState(int newState){ this.</description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 4-2.JUC之Synchronized</title>
+      <link>https://example.com/p/java-4-2.juc%E4%B9%8Bsynchronized/</link>
+      <pubDate>Sun, 10 Jan 2021 11:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-4-2.juc%E4%B9%8Bsynchronized/</guid>
+      <description>4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo=&#39;synchronized&#39;;synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } } 将上述代码片段进行编译，使用javap -v SynchronizedTest.</description>
+    </item>
+    
+    <item>
+      <title>[ Spring ] 1. Spring</title>
+      <link>https://example.com/p/spring-1.-spring/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/spring-1.-spring/</guid>
+      <description>Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;amp;符号。    2. Bean的生命周期?  实例化Bean： Ioc容器通过获取BeanDefinition对象中的信息进行实例化，实例化对象被包装在BeanWrapper对象中 设置对象属性（DI）：通过BeanWrapper提供的设置属性的接口完成属性依赖注入； 注入Aware接口（BeanFactoryAware， 可以用这个方式来获取其它 Bean，ApplicationContextAware）：Spring会检测该对象是否实现了xxxAware接口，并将相关的xxxAware实例注入给bean BeanPostProcessor：自定义的处理（分前置处理和后置处理） InitializingBean和init-method：执行我们自己定义的初始化方法 使用 destroy：bean的销毁  IOC：控制反转：将对象的创建权，由Spring管理. DI（依赖注入）：在Spring创建对象的过程中，把对象依赖的属性注入到类中。
+4. SpringIOC 控制反转，通过依赖注入方式实现，IOC利用java反射机制，AOP利用代理模式。所谓控制反转是指，本来被调用者的实例是由调用者来创建的，这样的缺点是耦合性太强，IOC则是统一交给spring来管理创建，将对象交给容器管理，你只需要在spring配置文件总配置相应的bean，以及设置相关的属性，让spring容器来生成类的实例对象以及管理对象。在spring容器启动的时候，spring会把你在配置文件中配置的bean都初始化好，然后在你需要调用的时候，就把它已经初始化好的那些bean分配给你需要调用这些bean的类
+5. Spring容器加载Bean  BeanDefinitionReader读取Resource所执行的配置文件资源，解析配置文件，并将生成的BeanDefinition对象保存到BeanDefinitionRegistry中。 容器扫描Bean定义注册表中的BeanDefinition对象，调用InstantiationStrategy进行Bean实例化的工作；采用BeanWrapper完成Bean属性的设置工作。 若是单例的Bean，则将Bean缓存在Bean缓存器中。  6. Spring三级缓存  一级缓存：Map&amp;lt;String, Object&amp;gt; singletonObjects  作用  用于存储单例模式下创建的Bean实例（已经创建完毕）。 该缓存是对外使用的，指的就是使用Spring框架的程序员。   对象  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，已经创建完毕）     第二级缓存：Map&amp;lt;String, Object&amp;gt; earlySingletonObjects  作用：  用于存储单例模式下创建的Bean实例（该Bean被提前暴露的引用,该Bean还在创建中）。 该缓存是对内使用的，指的就是Spring框架内部逻辑使用该缓存。   对象：  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，该Bean还在创建中）     第三级缓存：Map&amp;lt;String, ObjectFactory&amp;lt;?</description>
+    </item>
+    
+    <item>
+      <title>[ Mybatis ] 1. Mybatis</title>
+      <link>https://example.com/p/mybatis-1.-mybatis/</link>
+      <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/mybatis-1.-mybatis/</guid>
+      <description>MyBatis 1. MyBatis二级缓存   一级缓存：
+ 基于PrepetualCache的HashMap本地缓存，其作用域是Session。 当Session在flush()或者close()之后，此Session中所有Cache都将被清除。 默认情况下，一级缓存处于打开状态。    二级缓存：
+ 二级缓存与一级缓存机制相同，一样基于PrepetualCache HashMap进行存储。 但其作用于是Mapper(Namespace)，而且可以采用自定义存储源， 例如Ehcache、Redis等。 默认情况下，二级缓存处于关闭状态。 二级缓存在使用中，其属性类型需要实现serialize序列化接口。 可在其映射配置文件中进行    对于缓存更新机制，当某一作用域(一级Session/二级Namespace)执行C/U/D后 默认情况下，此作用域下所有select中的缓存将被clear。
+  2. Mybatis工作原理   加载Mybatis全局配置文件mybatis-config.xml：
+ 此配置文件用于配置数据库连接信息。    加载Mybatis映射配置文件xxx-mapper.xml:
+ 此配置文件包含有操作数据库的SQL语句，需在mybatis-config.xml文件中进行配置。 mybatis-config.xml中可以配置多个xxx-mapper.xml文件 一个xxx-mapper.xml文件对应数据库中一张表。    构建会话工厂：
+ 通过配置信心初始化构建SQLSessionFactory对象。    创建会话对象：
+ 基于会话工厂创建SQLSession对象。 此Sqlsession对象中包含有执行SQL语句的所有方法。    Executor执行器
+ Mybatis底层封装了一个Executor的接口用于操作数据库。 将根据SqlSession对象传递的参数动态生成所需要执行的SQL语句，同时负责缓存查询。    MappedStatement对象：
+ 在Executor接口的执行方法中存在一个MappedStatement类型的参数， 该参数是对映射地址信息进行封装，用于存储要映射的SQL语句的id，参数等信息。    输入参数映射：</description>
+    </item>
+    
+    <item>
+      <title>[ Netty ] 1.Netty基础</title>
+      <link>https://example.com/p/netty-1.netty%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 05 Jan 2021 10:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/netty-1.netty%E5%9F%BA%E7%A1%80/</guid>
+      <description>Netty基础 从一答一问开始Netty 1. 为什么用Netty？ a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。 2. Netty应用场景 a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统 3. Netty核心组件   Channel
+对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
+  EventLoop
+EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。
+EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。
+  ChannelFuture
+Netty是异步非阻塞，所有的I/O操作都是异步。所以不可以立即得到操作结果。但是
+（1）通过 ChannelFuture 接口的 addListener() 注册一个 ChannelFutureListener 对象，操作执行成功或失败后，监听会自动触发返回结果；
+（2）也可以通过 ChannelFuture 的 channel() 获取关联的 Channel 对象；</description>
+    </item>
+    
+    <item>
+      <title>[ Interview ] 2.面试准备</title>
+      <link>https://example.com/p/interview-2.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</link>
+      <pubDate>Tue, 05 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/interview-2.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</guid>
+      <description>面试准备 一、学习路线 1.Java基础  面向对象特性：封装、继承、多态(动态绑定、向上转型) 泛型、类型擦除 反射、其原理及其优缺点 static,final关键字 String,StringBuffer,StringBuilder底层区别 BIO、NIO、AIO Object类的方法 自动拆箱与自动装箱  2.集合框架  List  ArrayList LinkedList Vector CopyOnWriteArrayList   Set  HashSet TreeSet LinkedHashSet   Queue  PriorityQueue   Map  HashMap TreeMap LinkedMap   fast-fail，fast-safe机制 源码分析(底层数据结构，插入、扩容过程)、线程安全分析  3.Java虚拟机  类加载机制、双亲委派模式、3种加载器(BootstrapClassLoader，ExtensionClassLoader，ApplicationClassLoader) 运行时内存分区(PC，Java虚拟机栈，本地方法栈，堆，方法区[永久代、元空间]) JMM: Java内存模型分析 引用计数、可达性分析 垃圾回收算法：标记-清除、标记-整理、复制 垃圾回收器：比较区别(Serial，ParNew，ParallelScavenge，CMS，G1) 强、软、弱、虚引用 内存溢出、内存泄漏排查 JVM调优、常用命令  4.Java并发  三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池(ThreadPoolExecutor，7大参数、原理、四种拒绝策略、四个类型[Fixed、Single、Cached、Scheduled]) Synchronized 使用：方法(静态、一般方法)；代码块(this，ClassName.class) jdk1.6优化：锁粗化、锁消除、自适应自旋锁、偏向锁、轻量级锁 锁升级的过程与细节：无锁-&amp;gt;偏向锁-&amp;gt;轻量级锁-&amp;gt;重量级锁(不可逆) ReentrantLock:与Synchronized区别、公平锁、非公平锁、可中断锁、原理、用法 有界、无界任务队列，手写BlockingQueue 乐观锁：CAS(优缺点，ABA问题，DCAS) 悲观锁 ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  5.</description>
+    </item>
+    
+    <item>
+      <title>[ Interview ] 1.面试准备</title>
+      <link>https://example.com/p/interview-1.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/interview-1.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</guid>
+      <description>面试准备  Java线程池  JDK中JUC包  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）  垃圾回收器G1与GC算法CMS  Tomcat 如何实现类隔离  Spring IOC原理  Spring AOP原理  Spring事务  Dubbo服务发现、注册流程  Dubbo通信原理  Dubbo SPI与Java SPI  Zookeeper选举协议  大数据量的排序如何处理  如何判断链表是回文链表、快排序、归并排序  MySQL调优：B+ Tree索引、Hash索引  Mybatis的一、二级缓存  Mybatis工作原理  Redis Bitmap  </description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 2.4 HashMap虐杀，完败</title>
+      <link>https://example.com/p/java-2.4-hashmap%E8%99%90%E6%9D%80%E5%AE%8C%E8%B4%A5/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-2.4-hashmap%E8%99%90%E6%9D%80%E5%AE%8C%E8%B4%A5/</guid>
+      <description>HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
+ 1. HashMap的resize()流程 源码解析
+// 扩容 hashTable 大小的方法  final Node&amp;lt;K,V&amp;gt;[] resize() { // 扩容前 hashTable  Node&amp;lt;K,V&amp;gt;[] oldTab = table; // 扩容前 HashTable 的容量  int oldCap = (oldTab == null) ? 0 : oldTab.length; // 扩容前 扩容阈值  int oldThr = threshold; int newCap, newThr = 0; // 扩容前HashTable不为null  if (oldCap &amp;gt; 0) { // 如果扩容前容量已经大于HashMap最大容量阈值，将不再扩容，直接返回hashMap  if (oldCap &amp;gt;= MAXIMUM_CAPACITY) { threshold = Integer.</description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 2.5 手写LRU</title>
+      <link>https://example.com/p/java-2.5-%E6%89%8B%E5%86%99lru/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-2.5-%E6%89%8B%E5%86%99lru/</guid>
+      <description>手写LRU 1. 利用数组实现 2. 使用LinkedHashMap偷个懒 </description>
+    </item>
+    
+    <item>
+      <title>[ Mybatis ] 1.Mybatis源码中设计模式</title>
+      <link>https://example.com/p/mybatis-1.mybatis%E6%BA%90%E7%A0%81%E4%B8%AD%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/mybatis-1.mybatis%E6%BA%90%E7%A0%81%E4%B8%AD%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>Mybatis源码中设计模式  Builder模式：例如SqlSessionFactoryBuilder、XMLConfigBuilder、XMLMapperBuilder、XMLStatementBuilder、CacheBuilder； 工厂模式：例如SqlSessionFactory、ObjectFactory、MapperProxyFactory； 单例模式：例如ErrorContext和LogFactory； 代理模式：Mybatis实现的核心，比如MapperProxy、ConnectionLogger，用的jdk的+ 动态代理；还有executor.loader包使用了cglib或者javassist达到延迟加载的效果； 组合模式：例如SqlNode和各个子类ChooseSqlNode等； 模板方法模式：例如BaseExecutor和SimpleExecutor，还有BaseTypeHandler和所有的子类例如IntegerTypeHandler； 适配器模式：例如Log的Mybatis接口和它对jdbc、log4j等各种日志框架的适配实现； 装饰者模式：例如Cache包中的cache.decorators子包中等各个装饰者的实现； +迭代器模式：例如迭代器模式PropertyTokenizer；  </description>
+    </item>
+    
+    <item>
+      <title>[ Spring ] 1.Spring源码中设计模式</title>
+      <link>https://example.com/p/spring-1.spring%E6%BA%90%E7%A0%81%E4%B8%AD%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/spring-1.spring%E6%BA%90%E7%A0%81%E4%B8%AD%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid>
+      <description>Spring源码中设计模式   工程模式：Spring中的BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得Bean对象
+  单例模式：Spring依赖注入Bean实例默认是单例的。Spring的依赖注入（包括lazy-init方式）都是发生在AbstractBeanFactory的getBean里。getBean的doGetBean方法调用getSingleton进行bean的创建。
+  装饰器模式：Spring中用到的包装器模式在类名上有两种表现：一种是类名中含有Wrapper，另一种是类名中含有Decorator。
+  代理模式：AOP底层，就是动态代理模式的实现
+  观察者模式：spring的事件驱动模型使用的是 观察者模式 ，Spring中Observer模式常用的地方是listener的实现。如：ApplicationContextEvent、ApplicationListener
+  策略模式：Spring框架的资源访问Resource接口。该接口提供了更强的资源访问能力，Spring 框架本身大量使用了 Resource 接口来访问底层资源。
+ UrlResource：访问网络资源的实现类。 ClassPathResource：访问类加载路径里资源的实现类。 FileSystemResource：访问文件系统里资源的实现类。 ServletContextResource：访问相对于 ServletContext 路径里的资源的实现类. InputStreamResource：访问输入流资源的实现类。 ByteArrayResource：访问字节数组资源的实现类。    </description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 4-1.关于锁</title>
+      <link>https://example.com/p/java-4-1.%E5%85%B3%E4%BA%8E%E9%94%81/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-4-1.%E5%85%B3%E4%BA%8E%E9%94%81/</guid>
+      <description>关于锁 1.自旋锁（SpinLock）  当一个线程在获取锁的时候，如果锁已经被其他线程获取，那么该线程将循环等待，然后不断的判断锁是否已经被其他线程释放，可以成功获取到锁，直到可以获取到锁才退出循环。
+ 无论 自旋锁 ，还是 互斥锁 ， 在任何时刻，都最多只有一个执行单元获得锁。
+2.可重复锁/不可重复锁  可重复锁： 广义上定义为，可重复可递归调用的锁，在外层使用之后，在内层依旧可以使用，并且不会发生死锁(前提保证是同一个Obj或Class)。例如：ReentrantLock 和 synchronized 是可重复锁。
+ Coding Demo One：
+synchronized void setA() throw Exception{ Thread.sleep(1000); // 如果不是可重入锁，setB()将可能不会被当前线程执行，造成死锁。  setB(); } synchronized void setB() throw Exception{ Thread.sleep(1000); }  不可重复锁： 与 可重入锁刚好相反，不可重复进行递归调用，递归调用将造成死锁。
+ Coding Demo One：
+// 通过 自旋锁 实现一个不可重入锁  public class UnreentrantLock{ private AtomicReference&amp;lt;Thread&amp;gt; owner = new AtomicReference&amp;lt;&amp;gt;(); public void lock(){ Thread curr = Thread.currentThread(); // 按照 自旋锁 原理进行实现  for(;;){ if(!</description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 4.0 多线程问题</title>
+      <link>https://example.com/p/java-4.0-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-4.0-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</guid>
+      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 CountDownLatch</description>
+    </item>
+    
+    <item>
+      <title>[ JVM ] 1.关于JVM命令</title>
+      <link>https://example.com/p/jvm-1.%E5%85%B3%E4%BA%8Ejvm%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/jvm-1.%E5%85%B3%E4%BA%8Ejvm%E5%91%BD%E4%BB%A4/</guid>
+      <description>关于JVM命令 一、命令列表  jps jmap jhat jstat jstack jcmd jinfo  二、命令使用 1. jps - JVM进程状态   用法
+$ jps -help usage: jps [-help] jps [-q] [-mlvV] [&amp;lt;hostid&amp;gt;] Definitions: &amp;lt;hostid&amp;gt;: &amp;lt;hostname&amp;gt;[:&amp;lt;port&amp;gt;] # 若不指定&amp;lt;hostid&amp;gt;,则表示当前默认主机或服务器 # -q 仅输出当前进程号 # -m 输出JVM启动时传递给main()的参数 # -l 输出主类名称；如果进程是jar，将输出jar路径 # -v 输出传递给JVM的参数 # -V 仅输出本地JVM标识符   实例讲解
+$ jps -ml 33270 org.jetbrains.idea.maven.server.RemoteMavenServer36 $ jps -v 33270 RemoteMavenServer36 -Djava.awt.headless=true -Dmaven.defaultProjectBuilder.disableGlobalModelCache=true -Didea.maven.embedder.version=3.6.3 -Xmx768m -Dmaven.ext.class.path=/Applications/IntelliJ IDEA.app/Contents/plugins/maven/lib/maven-event-listener.jar -Dfile.encoding=UTF-8   2.</description>
+    </item>
+    
+    <item>
+      <title>[ JVM ] 2.JVM垃圾回收</title>
+      <link>https://example.com/p/jvm-2.jvm%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/jvm-2.jvm%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/</guid>
+      <description>JVM垃圾回收 1. 垃圾回收机制 在Java中，编写代码时不需要通过显式方式去释放一个对象的内存，而是通过JVM自行进行垃圾回收。JVM中，存在一个垃圾回收线程，它属于一个 低优先级线程 ，正常情况下是不会执行的，只有在 JVM空闲 或者 当前堆内存不足 时，才会触发执行，扫描那些 没有被任何引用的对象 ，并将它们添加到回收集合中，进行内存释放。
+2. 引用类型   强引用
+发生GC时，对象不会被回收。
+  软引用
+有用但不是必须的对象，在发生内存溢出之前会被回收
+  弱引用
+有用但不是必须的对象，在下一次GC时会被回收
+  虚引用
+无法通过虚引用获取到对象(通过 PhantomReference 实现虚引用)，作用是在GC时返回一个通知。
+  3. 如何判断对象是否可以被回收？ 垃圾收集器在做垃圾回收的时候，首先需要判定的就是 哪些对象内存需要被释放 ， 哪些对象依旧存活，不可释放 。
+一般通过两种方式进行判断：
+  引用计数器法：
+为每一个对象创建一个引用计数，有对象引用时计数器进行 ++ ，应用被释放时计数 &amp;ndash; ，当 计数器==0 时可以被回收。(不足： 无法解决循环引用问题)
+  可达性分析算法：
+从 GC Roots 开始向下搜索，搜索所走过的路径成为引用链。当一个对象到 GC Roots没有任何引用链是，则可以进行回收。
+  1：系统类加载器加载的对象
+  2：处于激活状态的线程
+  3：JNI栈中的对象</description>
+    </item>
+    
+    <item>
+      <title>[ JVM ] 3.JVM内存模型</title>
+      <link>https://example.com/p/jvm-3.jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/jvm-3.jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</guid>
+      <description>JVM内存 1. JVM 内存结构  栈（JVM Stacks）  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常   堆  所有线程共享的，它在虚拟机启动时就会被创建 内存空间占据的最大一块区域 用来存放对象实例及数组，通过 new 关键字 new 出来的对象都存放在这里 垃圾回收器的主要回收对象 老年代 + 新生代 = 老年代 + Eden + S0 + S1   方法区 （Metaspace元空间）  都是各个线程共享的 类信息、常量、静态变量、即时编译器编译后的代码   本地方法区  只不过它服务于Native方法，线程私有 HotSpot虚拟机直接就把本地方法栈和虚拟机栈合二为一   程序计数器  当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节指令地址，线程私有 程序计数器是唯一一个在Java虚拟机规范中没有规定任何 OutOfMemoryError 情况的区域。    2. 简述Java堆内存分配策略  大对象：需要大量连续内存空间的Java对象，比如很长的字符串和大型数组， 对象优先在Eden分配，如果Eden内存空间不足，就会发生Minor GC 长期存活的对象将进入老年代，默认15岁，-XX:MaxTenuringThreshold 动态对象年龄判定 空间分配担保  3.</description>
+    </item>
+    
+    <item>
+      <title>[ JVM ] 4.JVM类加载机制</title>
+      <link>https://example.com/p/jvm-4.jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/jvm-4.jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/</guid>
+      <description>JVM类加载机制 1. Java类加载机制 JVM中类的装载是由
+2. 描述JVM加载Class文件的原理机制 3. 什么是类加载器？类加载器又有哪些？   启动类加载器(Bootstrap ClassLoader)：
+负责加载${JAVA_HOME}/lib目录下或通过-Xbootclasspath参数指定路径中被JVM认可的类
+  扩展类加载器(Extension ClassLoader)：
+负责加载${JAVA_HOME}/lib/ext目录中或通过java.ext.dirs系统变量指定路径中的类库
+  应用程序类加载器(Application ClassLoader)：
+负责加载用户路径classpath下的类库。JVM通过 双亲委派模型 进行类的加载，也可通过 继承 java.lang.ClassLoader 实现自定义的类加载器。
+  4. 类装载的执行过程。   加载 获取类的二进制字节流，将其静态存储结构转化为方法区的运行时数据结构
+  校验 文件格式验证，元数据验证，字节码验证，符号引用验证
+  准备 在方法区中对类的static变量分配内存并设置类变量数据类型默认的初始值，不包括实例变量，实例变量将会在对象实例化的时候随着对象一起分配在Java堆中
+  解析 将常量池内的符号引用替换为直接引用的过程
+  初始化 为类的静态变量赋予正确的初始值（Java代码中被显式地赋予的值）
+  5. 什么是双亲委派模型？  当一个类收到 类加载请求 ，首先不去尝试自己加载此类，而是把此请求 委派 父类去完成； 每一个层次类加载器都是如此，因此所有的加载请求都应该传送到 启动类加载器 中； 只有当 父类加载器 反馈无法完成此请求是，子类加载器 才会尝试自己加载。   采用双亲委派的一个好处： 加载位于rt.</description>
+    </item>
+    
+    <item>
+      <title>[ Dubbo ] 2. Dubbo中的SPI</title>
+      <link>https://example.com/p/dubbo-2.-dubbo%E4%B8%AD%E7%9A%84spi/</link>
+      <pubDate>Fri, 25 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/dubbo-2.-dubbo%E4%B8%AD%E7%9A%84spi/</guid>
+      <description>Dubbo中的SPI 1. Dubbo SPI与Java SPI  SPI(Service Provider Interface)，主要用于框架，框架定义接口。   不同使用者将存在不同需求，也必然出现不同实现方式。
+  而SPI就是通过定义一个特定的位置，Java SPI约定在Classpath下的META-INF/services/路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可以在运行时动态为接口替换实现类。
+  Dubbo SPI
+ 并非是Java原生的SPI，而是重新实现的SPI。   Java SPI通过ServiceLoader进行加载； Dubbo SPI通过ExtensionLoader进行拓展加载。  支持的注解：  @SPI(标记为拓展接口) @Adaptive(自适应拓展实现类标志) @Activate(自动激活条件标记)   配置文件放在classpath下的META-INF/dubbo/以及 META-INF/dubbo/internal下 Dubbo SPI增加了对拓展点IOC和AOP的支持，一个拓展点可以直接通过Setter注入其他拓展点。 Java SPI会一次性实例化拓展点所有实现，如果有拓展实现初始化过程很耗时，并且用不上，将会造成资源浪费。    Dubbo中SPI的具体实现
+ 协议扩展(Protocol)：RPC协议扩展，用于封装远程调用细节 调用拦截扩展(Filter)：服务提供方和服务消费方调用过程拦截，Dubbo本身大多数功能都是基于此扩展点实现，每次远程方法执行，该拦截都会被执行 引用监听扩展(InvokerListener)：当有服务被引用时触发此事件 暴露监听扩展(ExporterListener)：当有服务被暴露时触发此事件 集群扩展(Cluster)：当存在多个服务提供方时，将多个服务提供方组成一个集群，并伪装成一个服务提供方 路由扩展(RouterFactory)：从多个服务提供方中选择一个进行调用 负载均衡(LoadBalance)：从多个服务提供方中选择一个进行调用 合并扩展(Merger)：合并返回结果，用于分组聚合 注册中心扩展(Registry)：负责服务的注册与发现 监控扩展(Monitor) ：负责服务调用次数以及调用时间的监控 扩展点加载扩展(ExtensionFactory)：扩展本身的加载容器，可从不同容器加载扩展点 动态代理扩展(ProxyFactory)：将Invoker接口转换成业务接口 编译器扩展(Compiler)： Java代码编译器，用于动态生成字节码，加速调用 配置中心扩展(DynamicConfiguration)：作为Key-Value存储 消息派发扩展(Dispatcher)：通道信息派发器，用于指定线程池模型 线程池扩展(ThreadPool)：服务提供方线程池的实现策略 序列化扩展(Serialization)：将对象转化成字节流，用于网络传输，以及将字节流转为对象，用于接收到字节流数据时还原成对象 网络传输扩展(Transporter)：远程通信的服务器以及客户端传输实现 信息交换扩展(Exchange)：`` 组网扩展(Networker)：对等网络节点组网器 Telnet命令扩展(TelnetHandler)：所有服务器均支持telnet访问，用于人工干预 状态检查扩展(StatusChecker)：检查服务依赖各种资源的状态，此状态检查可同时用于telnet的status命令和hosting的status页面 容器扩展(Container)：服务容器扩展，用于自定义加载内容 缓存扩展(CacheFactory)：用于请求参数作为Key，缓存返回结果 验证扩展(Validation)：参数验证扩展点 日志适配扩展(LoggerAdapter)：日志输出适配扩展点      2.</description>
+    </item>
+    
+    <item>
+      <title>[ Dubbo ] 3-1. Dubbo SPI中的Protocol扩展点</title>
+      <link>https://example.com/p/dubbo-3-1.-dubbo-spi%E4%B8%AD%E7%9A%84protocol%E6%89%A9%E5%B1%95%E7%82%B9/</link>
+      <pubDate>Fri, 25 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/dubbo-3-1.-dubbo-spi%E4%B8%AD%E7%9A%84protocol%E6%89%A9%E5%B1%95%E7%82%B9/</guid>
+      <description>Dubbo SPI中的Protocol扩展点 </description>
+    </item>
+    
+    <item>
+      <title>[ Dubbo ] 3-2. Dubbo SPI中的Filter扩展点</title>
+      <link>https://example.com/p/dubbo-3-2.-dubbo-spi%E4%B8%AD%E7%9A%84filter%E6%89%A9%E5%B1%95%E7%82%B9/</link>
+      <pubDate>Fri, 25 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/dubbo-3-2.-dubbo-spi%E4%B8%AD%E7%9A%84filter%E6%89%A9%E5%B1%95%E7%82%B9/</guid>
+      <description>Dubbo SPI中的Filter扩展点 </description>
+    </item>
+    
+    <item>
+      <title>[ Dubbo ] 3. Dubbo通信原理</title>
+      <link>https://example.com/p/dubbo-3.-dubbo%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Fri, 25 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/dubbo-3.-dubbo%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/</guid>
+      <description>Dubbo通信原理 1. Dubbo多线程通信原理  获取DubboInvoker对象； 将请求体信息封装在一个Request对象中，Request中会包括一个自增的id； 然后将Request存到一个ConcurrentHashMap中（key=id，value= DefaultFuture）,将request数据写入Channel Consumer Thread执行Defaultfuture#get()方法等待返回结果 服务提供方创建多线程处理用户请求，并将放回结果封装在Response中（包括Request#id）将response写入Channel 消费方从Channel中收到数据以后，解析出id，从Map中解析出DefaultFuture唤醒Consumer Thread，返回结果 DefaultFuture也会启动一个定时程序，检查在timeout内，结果是否返回，如果未返回，将DefaultFuture从map中移除，并抛出超时异常  </description>
+    </item>
+    
+    <item>
+      <title>[ Dubbo ] 1.Dubbo基础概念</title>
+      <link>https://example.com/p/dubbo-1.dubbo%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</link>
+      <pubDate>Tue, 22 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/dubbo-1.dubbo%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/</guid>
+      <description>Dubbo基础概念 1.Dubbo核心组件  Provider： 暴露服务的服务提供方 Consumer： 调用远程服务的消费方 Register： 服务注册与发现注册中心 Monitor： 监控中心和访问调用统计 Container：服务运行时容器   Dubbo分层主要为业务层、RPC层和Remote层，如果把每层进行详细划分的话，整体划分为：
+  业务层：  service: 包含各业务代码的接口与实现；   RPC层：  config: 配置层，主要围绕ServiceConfig(暴露的服务配置)和ReferenceConfig(引用的服务配置)两个类展开，初始化配置信息； proxy: 服务代理层，不论生产者还是消费者，Dubbo都会生成一个代理类，在调用远程接口时，就可以像本地接口一样，代理层自动做远程调用并返回结果； registry: 注册层，负责Dubbo框架的服务注册与发现； cluster: 集群容错层，主要负责远程调用失败时的集群容错策略(如快速失败、快速重试等)； monitor: 监控层，负责监控统计调用次数和调用时间等； protocol: 远程调用层，封装RPC调用具体过程，是Invoker暴露和引用的主要功能入口，负责管理Invoker的整个生命周期；   Remote层：  exchange: 信息交换层，封装请求相应模式，如同步请求转换为异步请求； transport: 网络传输层，把网络传输抽象为统一接口； serialize: 序列化层，将需要网络传输的数据极性序列化，转为二进制流。    2.Dubbo服务注册与发现流程  Container负责启动，加载，运行服务提供者 Provider启动时，向注册中心注册自己并提供服务 Consumer启动时，向注册中心订阅自已需调用服务 Register返回服务提供者地址列表给服务消费者，如运行期间，服务提供者发生变动，将通过长连接推送至服务消费者 Consumer通过负载均衡算法(软方式)，选取注册中心所返回的服务提供者列表中的一个节点进行调用，如果调用失败将尝试其他节点进行调用 Consumer、Provider将调用次数、时间记录于内存中，并定时每分钟发送至Monitor监控中心  3-1. Dubbo服务暴露过程  Dubbo 会在 Spring 实例化完 bean 之后， 在刷新容器最后一步发布 ContextRefreshEvent 事件的时候，通知实现了 ApplicationListener 的 ServiceBean 类进行回调 onApplicationEvent 事件方法。 Dubbo 会在这个方法中调用 ServiceBean 父类 ServiceConfig 的 export 方法，而该方法真正实现了服务的发布。  3-2.</description>
+    </item>
+    
+    <item>
+      <title>[ Tools ] 1.关于Guava增强包异步回调</title>
+      <link>https://example.com/p/tools-1.%E5%85%B3%E4%BA%8Eguava%E5%A2%9E%E5%BC%BA%E5%8C%85%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/</link>
+      <pubDate>Tue, 30 Jun 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/tools-1.%E5%85%B3%E4%BA%8Eguava%E5%A2%9E%E5%BC%BA%E5%8C%85%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/</guid>
+      <description>关于Guava增强包异步回调 1.概述 Guava针对Java异步回调做出以下两点增强功能：
+ 1.引入新接口ListenableFuture。此接口继承于Java的Future接口，可监控、获取非阻塞异步执行结果。 2.引入新接口FutureCallback。此接口是新增独立接口，在异步任务完成后，根据异步结果，完成不同的回调事件，并处理异步结果。  </description>
+    </item>
+    
+    <item>
+      <title>[ 算法 ] 12.5 排序</title>
+      <link>https://example.com/p/%E7%AE%97%E6%B3%95-12.5-%E6%8E%92%E5%BA%8F/</link>
+      <pubDate>Tue, 30 Jun 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/%E7%AE%97%E6%B3%95-12.5-%E6%8E%92%E5%BA%8F/</guid>
+      <description>排序 1.排序算法说明 1.1排序算法指标  稳定性：如果a==b且a在b前，排序后a仍保持在b前，则稳定，否则不稳定 内排序：算法程序的所有排序完全是在内存中执行的 外排序：由于数据量问题，需要把数据放置磁盘中，排序需要通过磁盘与内存间传输才可以进行 时间复杂度：运行一个算法程序所需要消耗的时长 空间复杂度：运行一个算法程序所需要消耗的内存大小  1.2各排序算法总结表    排序算法 最优情况 最差情况 时间复杂度 空间复杂度 排序方式 稳定性     冒泡排序 O(n²) O(n) O(n²) O(1) 内排序 稳定   选择排序 O(n²) O(n²) O(n²) O(1) 内排序 不稳定   插入排序 O(n) O(n²) O(n²) O(1) 内排序 稳定   希尔排序 O(n log² n) O(n log² n) O(n log n) O(1) 内排序 不稳定   归并排序 O(n log n) O(n log n) O(n log n) O(n) 外排序 稳定   快速排序 O(n log n) O(n²) O(n log n) O(log n) 内排序 不稳定   堆排序 O(n log n) O(n log n) O(n log n) O(1) 内排序 不稳定   计数排序 O(n+k) O(n+k) O(n+k) O(k) 外排序 不稳定   桶排序 O(n+k) O(n²) O(n+k) O(n+k) 外排序 稳定   基数排序 O(n*k) O(n*k) O(n*k) O(n+k) 外排序 稳定     n:数据量 k:桶的数量</description>
+    </item>
+    
+    <item>
+      <title>[ 算法 ] 12.6 动态规划</title>
+      <link>https://example.com/p/%E7%AE%97%E6%B3%95-12.6-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</link>
+      <pubDate>Tue, 30 Jun 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/%E7%AE%97%E6%B3%95-12.6-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/</guid>
+      <description>动态规划  动态规划(Dynamic Programming),每次决策依赖于当前决策状态，随即又伴随着状态偏移。决策序列就是在变化的状态中生成的(适用于多阶段优化问题)。
+ 1 算法原理 1.1 基本思想   基本思想是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的最优解。
+  通过保存下子问题的解到表中，从而避免重叠子问题的重复计算，优化计算过程时间。
+  动态规划类似但不同于分治算法。
+ 一句话概述：动态规划&amp;ndash;&amp;gt;各子问题重叠。分治算法&amp;ndash;&amp;gt;各子问题独立。 算法导论： 动态规划要求其子问题既要独立又要重叠。如果同一个问题的两个子问题不共享资源，则它们就是独立的。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则是重叠的。
+   动态规划算法具有很多种，但是计算子问题值的填表形式是同一种。
+  1.2 算法策略 2 算法实现 2.1 适用场景  适用于求解具有某种最优性质的问题。
+ 2.2 动图演示 2.3 代码实现 </description>
+    </item>
+    
+    <item>
+      <title>[ 设计模式 ] 0.关于UML图</title>
+      <link>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-0.%E5%85%B3%E4%BA%8Euml%E5%9B%BE/</link>
+      <pubDate>Thu, 22 Aug 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-0.%E5%85%B3%E4%BA%8Euml%E5%9B%BE/</guid>
+      <description>关于UML图 学习设计模式前，UML还是需要学习了解一下。
+UML UML(Unified Modeling Language),即统一建模语言。是让系统可视化、让规格与设计文档化的变现方法。
+旨在目的：  为用户提供现成的、有表现力的可视化建模语言，以便开发与交换有意义的模型。 为核心概念提供可扩展性与特殊化机制。 独立特定的编程语言与开发过程。 鼓励面向对象工具市场的发展。 支持更高层次的开发概念。 为了解建模语言提供一个正式环境。 整合最佳的工作方法。  UML分类  机构性图表  类图 组件图 部署图 对象图 对象图 包图 复合机构图 轮廓图   行为性图表  用例图 活动图 状态机图 序列图 通讯图 交互概述图 时序图    UML词汇表及术语  抽象类 Actor 活动 活动图 聚合 工件 关联 关联类 属性 基类 分支 类 类图 分类器 协作 通信图 组件 组件图 概念 构建阶段 依赖关系 部署图 域 精化阶段 元素 封装 泛化 事件 最终状态 叉 泛化 GoF 高凝聚力 启动阶段 继承 初始状态 实例 接口 迭代 加入 成员 合并 消息 方法 模型 多重性 可导航型 符号 注意 对象 包 包图 模式 参数 多态性 私有 处理器 受保护 公开 读取方向箭头 实现 角色 顺序图 状态 状态图 静态 刻板印象 子类 互动区 时间拳击 过渡 过渡阶段 统一建模语言 用例 用例图 可见性： 工作流程：一组产生特定结果的活动。  </description>
+    </item>
+    
+    <item>
+      <title>[ 设计模式 ] 6.原型模式</title>
+      <link>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-6.%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Tue, 16 Jul 2019 23:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-6.%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>原型模式 原型模式：通过复制生成实例。
+①.角色分配   Prototype(原型)
+负责定义用于复制现有实例来生成新实例的方法。
+  ConcretePrototype(具体原型)
+负责实现现有实例并生成新实例的方法。
+  Client(使用者)
+负责使用复制实例的方法生成的新实例。
+  ②.UML图 ③.代码清单  简单形式  定义抽象接口
+public interface Prototype extends Cloneable { Object clone(); } 具体实现原型拷贝
+public class ConcretePrototype implements Prototype { public ConcretePrototype(){ System.out.println(&amp;#34;Prototype Design Patterns&amp;#34;); } @Override public Object clone() { ConcretePrototype concretePrototype=null; try { concretePrototype=(ConcretePrototype)super.clone(); } catch (CloneNotSupportedException e) { e.printStackTrace(); } return concretePrototype; } } 原型实例创建
+public static void main(String[] args) { ConcretePrototype concretePrototype1=new ConcretePrototype(); ConcretePrototype concretePrototype2=(ConcretePrototype) concretePrototype1.</description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 10.Java IO</title>
+      <link>https://example.com/p/java-10.java-io/</link>
+      <pubDate>Fri, 12 Jul 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-10.java-io/</guid>
+      <description>Java IO 1.关于BIO、NIO、AIO   BIO(Blocking I/O,阻塞IO)
+数据的读取、写入必须阻塞在一个线程内等待完成。
+经典BIO案例：烧开水 存在一排水壶烧开水，BIO的工作模式：叫一个线程停留在水壶出，知道水壶烧开， 才去处理下一个水壶。(实际上线程在等待水壶烧开的过程，什么事情都没有做。)   使用场景：
+适用于连接数量较小且模式固定的架构。JDK1.4前的唯一选择。
+    NIO(Non-Blocking I/O,非阻塞IO)
+是一种同时支持阻塞与非阻塞模式I/O模型。处于 java.nio包中。是面向缓冲区的。
+  使用场景：
+适用于连接数目多且连接较短(轻操作)，例如聊天室服务器，并发局限在应用中，编程较为复杂。
+   NIO重点概念：Channel(通道)、Buffer(缓冲区)、Selector(选择器)
+   Channel(通道)
+Channel是一个通道，可以通过Channel读取和写入数据。Channel与Stream不同之处：数据在Channel中是双向的，在Stream中是单向的。同时Channel可以用于写、读或者读写。
+Channel存在四种实现方式： - FileChannel：从文件中读取数据 - DatagramChannel: 从UDP网络中读取或写入数据 - SocketChannel：从TCP网络中读取或者写入数据 - ServerSocketChannel：允许监听来自TCP的连接。每产生一个连接将产生一个SocketChannel。   Buffer(缓冲区)
+Buffer是一个对象。包含着要写入、读取的数据，在面向流的I/O中，可以讲数据写入或者直接读取到stream中。实质上缓冲区是一个数组(通常使用ByteBuffer[])，但同时还提供有对数据的结构话访问、维护读写位置的信息。
+Java中每一种基本类型都将对应一种缓冲区 - ByteBuffer(字节缓冲区) # 最为常用 - CharBuffer(字符缓冲区) - ShortBuffer(短整型缓冲区) - IntBuffer(整型缓冲区) - LongBuffer(长整型缓冲区) - FloatBuffer(浮点型缓冲区) - DoubleBuffer(双精度浮点型缓存区)   Selector Selector选择器可以监听多个Channel。Selector只能管理非阻塞Channel：FileChannel是个例外，属于阻塞I/O，无法进行管理。</description>
+    </item>
+    
+    <item>
+      <title>[ 设计模式 ] 5.单例模式</title>
+      <link>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-5.%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Thu, 11 Jul 2019 23:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-5.%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</guid>
+      <description>单例模式 单例模式：保证任何情况下都绝对的只生成一个实例的模式。
+①.单例角色  Singleton: 有且仅有的一个角色(实例)。  Tips:当存在多个实例时，实例间互相影响，会出现意想不到异常。当且仅当，第一次调用类中静态方法的时候，Singleton类会被初始化，生成唯一的静态实例，重复调用时直接返回已经初始化完成的实例。
+②.实现单例  **方式一：**简化实现的单例模式  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 1.简化实现的单例模式，但遇到多线程肯定有问题 */ public static Singleton getInstance(){ if (singleton==null){ singleton=new Singleton(); } return singleton; } }  **方式二：**加锁控制多线程  public class Singleton { private static Singleton singleton=null; /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 2.通过加锁进行控制多线程临界资源冲突，不推荐，对线程资源消耗大 */ public static synchronized Singleton getInstance(){ if(singleton==null){ singleton=new Singleton(); } return singleton; } }  **方式三：**懒汉模式  public class Singleton { /* 私有化，不给外界直接new的机会 */ private Singleton() { } /* 3.</description>
+    </item>
+    
+    <item>
+      <title>[ 设计模式 ] 4.工厂模式</title>
+      <link>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4.%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Wed, 10 Jul 2019 23:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4.%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/</guid>
+      <description>工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
+ 一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
+ 多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
+# 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。 # 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。 ②.工厂角色职责   Product(产品) 一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类ConcreateProduct类所决定。
+  ConcreateProduct(具体产品) 属于具体加工职责：决定了具体生产出的产品。
+  Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
+  ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
+  ③.UML图 ④.代码清单 ⑤.注意事项 使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。 </description>
+    </item>
+    
+    <item>
+      <title>[ 设计模式 ] 3.模板模式</title>
+      <link>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3.%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Mon, 08 Jul 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3.%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/</guid>
+      <description>模板模式 模板模式： 是带有模板功能的模式，组成模板的方法被定义在父类中，由于这些方法是抽像的，所以在父类代码中无法知道具体实现，唯一能知道的是父类在如何调用这些方法，具体的实现全由子类方法处理。
+①.UML图 ②.代码清单  AbstractDisplay类  public abstract class AbstractDisplay { /* 模板类中的模板方法规定了实现的流程,但不做具体抽象方法的具体实现 */ public void display() { open(); print(); close(); } /* 定义流程中指定的抽象方法，具体细节交给子类去实现 */ abstract void open(); abstract void print(); abstract void close(); }  CharDisplayTemplate类  public class CharDisplayTemplate extends AbstractDisplay { private char aChar; public CharDisplayTemplate(char a) { this.aChar = a; } /* 具体实现父类模板类中抽象方法 */ @Override void open() { System.out.println(&amp;#34;Char Display open()&amp;#34;); } @Override void print() { System.</description>
+    </item>
+    
+    <item>
+      <title>[ 设计模式 ] 2.适配器模式</title>
+      <link>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2.%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sat, 06 Jul 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2.%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <description>适配器模式 适配器模式包含两种：  类适配器模式(使用继承的适配器) 对象适配器模式(使用委托的适配器)  适配器模式角色组成：  目标角色 源角色 适配器角色  ①.类适配器模式 继承于源类的同时实现目标接口
+表1-1 类与接口说明    类名 备注     Print 表示目标角色   Banner 表示源角色   PrintBanner 表示适配器角色    代码清单  Print(目标角色)  public interface Print { abstract void printWeak(); abstract void printStrong(); }  Banner(源角色)  public class Banner { private String nameString; public Banner(String nameString) { this.nameString=nameString; } public void showWithParen() { System.</description>
+    </item>
+    
+    <item>
+      <title>[ 设计模式 ] 1.迭代器模式 </title>
+      <link>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-1.%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</link>
+      <pubDate>Sat, 06 Jul 2019 05:16:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-1.%E8%BF%AD%E4%BB%A3%E5%99%A8%E6%A8%A1%E5%BC%8F/</guid>
+      <description>迭代器模式 表1-1 类与接口说明    类名 备注     Aggregate 表示集合的接口   Iterator 遍历集合接口   Book 表示书的类   BookShelf 表示书架的类   BookShelfIterator 遍历书架的类    代码清单  Aggregate接口  /** * 表示集合接口 */ public interface Aggregate { /* 用于生成一个遍历集合的迭代器 */ public abstract Iterator iterator(); }  Iterator接口  /** * 遍历集合接口 */ public interface Iterator { /* 判断是否存在下一个元素 */ public abstract boolean hasNext(); /* 获取下一个元素 */ public abstract Object next(); }  Book类  /** * 表示书的类 */ public class Book { /* 书名属性 */ private String name; /* Default constructor */ public Book(String name) { this.</description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 1.对象入门</title>
+      <link>https://example.com/p/java-1.%E5%AF%B9%E8%B1%A1%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sat, 22 Jun 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-1.%E5%AF%B9%E8%B1%A1%E5%85%A5%E9%97%A8/</guid>
+      <description>对象入门 ​	首先一个重要的概念：OOP (Object Oriented Programming),即面向对象编程。对于面向对象会有三大特征：封装、继承、多态。
+ 封装：就是把客观事物封装成具体抽象的类，并且类可以把自己的数据和方法只让可信的类或者对象进行操作，对不可信的进行隐藏。一个类就是封装了数据以及操作这些数据的代码的逻辑实体。在一个对象内部，某些代码或者某些数据可以是私有的，不能被外界所访问。通过这种方式，对象对内部数据提供了不同级别的保护，以防止程序中无关的部分意外的改变或者错误的使用了对象的私有部分。 继承：指可以让某个类型的对象获得另一个类型的对象的属性的方法。它支持按级分类的概念。继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展。 通过继承创建的新类称为“子类”或“派生类”，被继承的类称为“基类”、“父类”或“超类”。继承的过程，就是从一般到特殊的过程。要实现继承，可以通过 “继承”（Inheritance）和“组合”（Composition）来实现。继承概念的实现方式有二类：实现继承与接口继承。实现继承是指直接使用 基类的属性和方法而无需额外编码的能力；接口继承是指仅使用属性和方法的名称、但是子类必须提供实现的能力。 多态：是指一个类实例的相同方法在不同情形有不同表现形式。多态机制使具有不同内部结构的对象可以共享相同的外部接口。这意味着，虽然针对不同对象的具体操作不同，但通过一个公共的类，它们（那些操作）可以通过相同的方式予以调用。  一、抽象 ​	Java基础语言的面向对象程序设计方法具有的一下五大基本特征：
+ 所有东西都是对象。可将对象想象成一种新型变量；它保存着数据，但是可要求它对自身进行操作。理论来说，可以从要解决的问题身上提出所有概念性的组件，然后在程序中将其表达为一个对象。 程序是一大堆对象的组合。通过消息的传递，各对象知道自己该做什么。为了向面向对象发出请求，需向那个对象发送一条消息。更确切的来说，可以将消息想象成为一个请求，他调用的是从属于目标对象的一个子例程或者说是函数。 每个对象都有自己的存储空间，可以容纳其他对象。或者说是，通过封装现有的对象，可以制造出一个新型对象。所以，尽管对象的概念非常简单，但是在程序中却可以达到任意高的复杂程度。 每个对象都有一个类型。根据语法，每个对象都是某个类中的一个实例。其中，类**(Class)**是类型(type)的同义词。一个类最为重要的特征就是“能将什么消息发送给它”。 同一个类所有的对象都能接收相同的消息。这实际是别有含义的一种说法。由于类型为“圆”的一个对象也属于类型为“形状”的一个对象。所以一个圆完全可以接收形状消息。这意味着可以让程序代码统一指挥“形状”，使得其自动控制所有的形状对象。其中自然包括圆这一个对象。这一个特性成为对象的可替代性。是OOP的重要概念之一。  二、对象的接口 </description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 2.Java反射</title>
+      <link>https://example.com/p/java-2.java%E5%8F%8D%E5%B0%84/</link>
+      <pubDate>Sat, 22 Jun 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-2.java%E5%8F%8D%E5%B0%84/</guid>
+      <description>Java反射 一、反射： 1.概念： 反射，即：动态获取类的信息，以及动态调用对象的方法的功能。  2.作用：   在运行时判断任意一个对象所属的类
+  在运行时构造任意一个类的对象
+  在运行时判断任意一个类所具有的成员变量和方法
+  在运行时调用任意一个对象的方法
+可以生成动态代理
+  通过Java反射机制，可以在程序中访问已经装载到jvm中的Java对象的描述，以实现访问、检测和修改描述Java对象本身信息的功能。Java反射机制很强大。其中，java.lang.reflect包中提供了对该功能的支持。
+ 二、实现反射获取类的方法： 方式一 ： 通过Class.forName(&amp;ldquo;类名字符串&amp;rdquo;)获取（最为常用的方法） //类名字符串是“包名+类名”，返回Class的对象。 Class class = Class.forName(&amp;#34;cheneyHao.Student&amp;#34;); 方式二 ： 通过示例对象的getClass()方法获取 //先创建一个对象，在调用对象的getClass()方法。（任何一个Java对象都会有getClass()方法） Student student = new Student(); Class class = student.getClass(); 方法三 ： 通过 .class 获取 //通过类名.class,返回Class对象。(每个类都有Class属性) Class class = Student.class; </description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 3.Java注解</title>
+      <link>https://example.com/p/java-3.java%E6%B3%A8%E8%A7%A3/</link>
+      <pubDate>Sat, 22 Jun 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-3.java%E6%B3%A8%E8%A7%A3/</guid>
+      <description>Java注解 1.基本语法 首先是注解的声明方式如下
+// @Target注解传入ElementType指明Nullable的作用域 @Target({ElementType.METHOD, ElementType.PARAMETER, ElementType.FIELD}) // @Retention注解用来指定其声明周期为运行时 @Retention(RetentionPolicy.RUNTIME) // @Documented指定Javadoc进行记录此对象 @Documented // @Nonnull为了告诉编译器这个域不可能为空 @Nonnull(when = When.MAYBE) // @TypeQualifierNickname为类型限定符别称(备注部分具体解释此注解) @TypeQualifierNickname public @interface Nullable { // @interface 声明注解 } 2.JDK元注解    Annotation Type Action     @Override 普通注解 用来限定子类重写父类的方法   @Deprecated 普通注解 标记已经过时的方法   @SuppressWarnings 普通注解 抑制编译器的警告   @SafeVarargs 普通注解 Java7 抑制“堆污染”警告   @FunctionalInterface 普通注解 Java8 函数式接口   @Retention 元注解 指定本修饰的注解可以保留多长时间   @Target 元注解 指定被修饰的注解能用于哪些程序元素   @Documented 元注解 被该注解修饰的注解会被javadoc工具提取成文档   @Inherited 元注解 此注解修饰的注解具有继承性   @Repeatable 元注解 重复注解，Java8的新特性    3.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  Algorithm Sort  手撸插入排序 手撸二分查找 堆排序(Top K) 快素排序思想 反转单链表 合并二叉树(递归与非递归两种办法)  Java Basic  Object是所有对象的父类，那Object类中有哪些方法 hashCode()与equals()有什么关系 String、StringBuilder、StringBuffer区别 反射机制 方法(静态、一般方法)；代码块(this，ClassName.class)  Collections  List之ArrayList List之LinkedList List之Vector Map之HashMap Map之LinkedHashMap Map之ConcurrentHashMap Map之TreeMap HashTable Set之HashSet Set之TreeSet Queue之ArrayBlockingQueue Queue之ConcurrentLinkedQueue Queue之LinkedBlockingQueue  Thread  线程的几种状态以及如何转化的 三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 关于锁 synchronized锁以及锁升级 ReentrantLock与synchronized区别 有界、无界任务队列，手写BlockingQueue ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  JVM   JVM内存结构
+  final修饰的常量处于JVM中哪部分内存'><title>[ Interview ] 1. 面试之清单</title>
+
+<link rel='canonical' href='https://example.com/p/interview-1.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E6%B8%85%E5%8D%95/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Interview ] 1. 面试之清单'>
+<meta property='og:description' content='面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  Algorithm Sort  手撸插入排序 手撸二分查找 堆排序(Top K) 快素排序思想 反转单链表 合并二叉树(递归与非递归两种办法)  Java Basic  Object是所有对象的父类，那Object类中有哪些方法 hashCode()与equals()有什么关系 String、StringBuilder、StringBuffer区别 反射机制 方法(静态、一般方法)；代码块(this，ClassName.class)  Collections  List之ArrayList List之LinkedList List之Vector Map之HashMap Map之LinkedHashMap Map之ConcurrentHashMap Map之TreeMap HashTable Set之HashSet Set之TreeSet Queue之ArrayBlockingQueue Queue之ConcurrentLinkedQueue Queue之LinkedBlockingQueue  Thread  线程的几种状态以及如何转化的 三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 关于锁 synchronized锁以及锁升级 ReentrantLock与synchronized区别 有界、无界任务队列，手写BlockingQueue ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  JVM   JVM内存结构
+  final修饰的常量处于JVM中哪部分内存'>
+<meta property='og:url' content='https://example.com/p/interview-1.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E6%B8%85%E5%8D%95/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='interview' /><meta property='article:tag' content='笔试' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-01-07T01:13:47&#43;08:00'/><meta property='article:modified_time' content='2021-01-07T01:13:47&#43;08:00'/>
+<meta name="twitter:title" content="[ Interview ] 1. 面试之清单">
+<meta name="twitter:description" content="面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  Algorithm Sort  手撸插入排序 手撸二分查找 堆排序(Top K) 快素排序思想 反转单链表 合并二叉树(递归与非递归两种办法)  Java Basic  Object是所有对象的父类，那Object类中有哪些方法 hashCode()与equals()有什么关系 String、StringBuilder、StringBuffer区别 反射机制 方法(静态、一般方法)；代码块(this，ClassName.class)  Collections  List之ArrayList List之LinkedList List之Vector Map之HashMap Map之LinkedHashMap Map之ConcurrentHashMap Map之TreeMap HashTable Set之HashSet Set之TreeSet Queue之ArrayBlockingQueue Queue之ConcurrentLinkedQueue Queue之LinkedBlockingQueue  Thread  线程的几种状态以及如何转化的 三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 关于锁 synchronized锁以及锁升级 ReentrantLock与synchronized区别 有界、无界任务队列，手写BlockingQueue ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  JVM   JVM内存结构
+  final修饰的常量处于JVM中哪部分内存">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/algorithm/" style="background-color: #2a9d8f; color: #fff;">
+                Algorithm
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/interview-1.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E6%B8%85%E5%8D%95/">[ Interview ] 1. 面试之清单</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 07, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="面试之清单">面试之清单</h1>
+<ul>
+<li><em><strong>加粗加斜</strong></em> : <code>为本人面试所遇到重复出现的点儿</code></li>
+<li><strong>加粗</strong> : <code>为本人面试所遇到的点儿</code></li>
+<li>正常 : <code>为本人面试刷的面经</code></li>
+</ul>
+<h2 id="algorithm"><strong>Algorithm</strong></h2>
+<h3 id="sort"><strong>Sort</strong></h3>
+<ul>
+<li><a class="link" href="" ><strong>手撸插入排序</strong></a></li>
+<li><a class="link" href="" ><strong>手撸二分查找</strong></a></li>
+<li><a class="link" href="" ><em><strong>堆排序(Top K)</strong></em></a></li>
+<li><a class="link" href="" ><strong>快素排序思想</strong></a></li>
+<li><a class="link" href="" ><strong>反转单链表</strong></a></li>
+<li><a class="link" href="" ><strong>合并二叉树(递归与非递归两种办法)</strong></a></li>
+</ul>
+<h2 id="java"><strong>Java</strong></h2>
+<h3 id="basic"><strong>Basic</strong></h3>
+<ul>
+<li><a class="link" href="" ><strong>Object是所有对象的父类，那Object类中有哪些方法</strong></a></li>
+<li><a class="link" href="" ><strong>hashCode()与equals()有什么关系</strong></a></li>
+<li><a class="link" href="" >String、StringBuilder、StringBuffer区别</a></li>
+<li><a class="link" href="" >反射机制</a></li>
+<li><a class="link" href="" >方法(静态、一般方法)；代码块(this，ClassName.class)</a></li>
+</ul>
+<h3 id="collections"><strong>Collections</strong></h3>
+<ul>
+<li><a class="link" href="" >List之ArrayList</a></li>
+<li><a class="link" href="" >List之LinkedList</a></li>
+<li><a class="link" href="" >List之Vector</a></li>
+<li><a class="link" href="/post/coding/java/base/2_basic/2_4_hashmap" ><em><strong>Map之HashMap</strong></em></a></li>
+<li><a class="link" href="" >Map之LinkedHashMap</a></li>
+<li><a class="link" href="" >Map之ConcurrentHashMap</a></li>
+<li><a class="link" href="" >Map之TreeMap</a></li>
+<li><a class="link" href="" >HashTable</a></li>
+<li><a class="link" href="" >Set之HashSet</a></li>
+<li><a class="link" href="" >Set之TreeSet</a></li>
+<li><a class="link" href="" >Queue之ArrayBlockingQueue</a></li>
+<li><a class="link" href="" >Queue之ConcurrentLinkedQueue</a></li>
+<li><a class="link" href="" >Queue之LinkedBlockingQueue</a></li>
+</ul>
+<h3 id="thread"><strong>Thread</strong></h3>
+<ul>
+<li><a class="link" href="" ><em><strong>线程的几种状态以及如何转化的</strong></em></a></li>
+<li><a class="link" href="" >三种线程初始化方法的区别(<code>Thread</code>,<code>Callable</code>,<code>Runnable</code>)</a></li>
+<li><a class="link" href="" ><em><strong>线程池几个重要参数</strong></em></a></li>
+<li><a class="link" href="" ><em><strong>线程池四种拒绝策略</strong></em></a></li>
+<li><a class="link" href="" ><em><strong>线程池四个类型</strong></em></a></li>
+<li><a class="link" href="" >线程池(<code>ThreadPoolExecutor</code>)原理</a></li>
+<li><a class="link" href="" >关于锁</a></li>
+<li><a class="link" href="/post/coding/java/base/4_thread/4_3_synchronized#%e9%94%81%e5%8d%87%e7%ba%a7" ><em><strong><code>synchronized</code>锁以及锁升级</strong></em></a></li>
+<li><a class="link" href="" ><code>ReentrantLock</code>与<code>synchronized</code>区别</a></li>
+<li><a class="link" href="" >有界、无界任务队列，手写BlockingQueue</a></li>
+<li><a class="link" href="/post/coding/java/base/4_thread/4_3_synchronized#threadlocal%e7%9a%84%e5%8e%9f%e7%90%86%e5%92%8c%e5%ba%94%e7%94%a8" ><code>ThreadLocal</code>：底层数据结构、ThreadLocalMap、原理、应用场景</a></li>
+<li><a class="link" href="" ><code>Atomic类</code>：原理、应用场景</a></li>
+<li><a class="link" href="" ><code>Volatile</code>：原理、有序性、可见性</a></li>
+</ul>
+<h3 id="jvm"><strong>JVM</strong></h3>
+<ul>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/3_jvm_memory_monitor#1-jvm-%e5%86%85%e5%ad%98%e7%bb%93%e6%9e%84" ><strong>JVM内存结构</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="" ><strong>final修饰的常量处于JVM中哪部分内存</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/2_jvm_gc#1-%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e6%9c%ba%e5%88%b6" ><strong>JVM垃圾回收机制</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/2_jvm_gc#2-%e5%bc%95%e7%94%a8%e7%b1%bb%e5%9e%8b" ><strong>引用类型</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/2_jvm_gc#7-%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e5%99%a8" ><strong>JVM垃圾回收器，各有什么特点</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/2_jvm_gc#6-%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e7%ae%97%e6%b3%95" ><strong>垃圾回收算法</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/2_jvm_gc#4-%e5%9c%a8java%e4%b8%ad%e5%af%b9%e8%b1%a1%e4%bb%80%e4%b9%88%e6%97%b6%e5%80%99%e5%8f%af%e4%bb%a5%e8%a2%ab%e8%bf%9b%e8%a1%8c%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6" ><strong>对象什么时间可以被回收</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/2_jvm_gc#9-%e6%96%b0%e7%94%9f%e4%bb%a3%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e5%99%a8%e4%b8%8e%e8%80%81%e5%b9%b4%e4%bb%a3%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e5%99%a8%e6%9c%89%e5%93%aa%e4%ba%9b%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" ><strong>新生代垃圾回收器与老年代垃圾回收器有哪些？区别是什么？</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/2_jvm_gc#8-%e5%85%b3%e4%ba%8ecms%e5%9e%83%e5%9c%be%e5%9b%9e%e6%94%b6%e5%99%a8" ><strong>CMS垃圾回收器</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="" ><strong>JVM中Survivor空间是做什么的</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/4_jvm_class_loader#4-%e7%b1%bb%e8%a3%85%e8%bd%bd%e7%9a%84%e6%89%a7%e8%a1%8c%e8%bf%87%e7%a8%8b" ><strong>类加载器</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/4_jvm_class_loader#5-%e4%bb%80%e4%b9%88%e6%98%af%e5%8f%8c%e4%ba%b2%e5%a7%94%e6%b4%be%e6%a8%a1%e5%9e%8b" ><strong>双亲委派模型</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/base/3_jvm/4_jvm_class_loader#6-tomcat%e6%89%93%e7%a0%b4%e5%8f%8c%e4%ba%b2%e5%a7%94%e6%b4%be" >Tomcat打破双亲委派</a></p>
+</li>
+<li>
+<p><a class="link" href="" ><strong>类加载机制</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="" ><strong>类加载</strong></a></p>
+</li>
+</ul>
+<h2 id="java-framework"><strong>Java Framework</strong></h2>
+<h3 id="spring"><strong>Spring</strong></h3>
+<ul>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#4-springioc" ><em><strong>SpringIOC原理</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#5-spring%e5%ae%b9%e5%99%a8%e5%8a%a0%e8%bd%bdbean" ><em><strong>容器加载Bean流程</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#8-springaop" ><em><strong>SpringAOP原理</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#1-springbeanfactory%e4%b8%8efactorybean%e7%9a%84%e5%8c%ba%e5%88%ab" >FactoryBean 与 BeanFactory区别</a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#6-spring%e4%b8%89%e7%ba%a7%e7%bc%93%e5%ad%98" ><em><strong>Spring三级缓存</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#7-spring%e5%be%aa%e7%8e%af%e4%be%9d%e8%b5%96" ><em><strong>SpringBoot循环依赖</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#17-springboot%e8%ae%a2%e9%98%85%e5%8f%91%e5%b8%83%e6%a8%a1%e5%bc%8fapplicationevent%e5%a4%84%e4%ba%8e%e4%bb%80%e4%b9%88%e8%a7%92%e8%89%b2%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e7%9a%84" ><em><strong>SpringBoot订阅发布模式。ApplicationEvent处于什么角色，如何实现的？</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#9-jdk%e5%8a%a8%e6%80%81%e4%bb%a3%e7%90%86%e5%92%8ccglib%e5%8a%a8%e6%80%81%e4%bb%a3%e7%90%86%e7%9a%84%e5%8c%ba%e5%88%ab" ><em><strong>JDK动态代理和CGLIB动态代理的区别</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#15-springaop%e5%b8%b8%e7%94%a8%e7%9a%84%e5%88%87%e5%85%a5%e7%82%b9" ><em><strong>SpringAOP常用的切入点</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#16-springioc%e5%b8%b8%e7%94%a8%e6%b3%a8%e8%a7%a3" ><em><strong>SpringIOC常用注解</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#12-@autowired%e4%b8%8e@resource%e5%8c%ba%e5%88%ab" ><em><strong>@Autowired与@Resource区别</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#13-@qualifier%e4%b8%8e@autowired" ><em><strong>@Qualifier与@Autowired</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#14-springboot%e4%b8%8a%e4%b8%8b%e6%96%87%e5%88%87%e6%8d%a2" ><em><strong>SpringBoot上下文切换</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="" ><strong>SpringBoot编译打包后包的结构?通过main()函数作为主入口的程序打包后如何启动？</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#11-spring%e5%90%af%e5%8a%a8%e5%8a%a0%e8%bd%bd%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e7%9a%84%e6%b5%81%e7%a8%8b" ><strong>Spring启动加载配置文件的流程</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/spring/1_spring_ioc#10-%e8%87%aa%e5%8a%a8%e8%a3%85%e9%85%8d" >自动装配</a></p>
+</li>
+</ul>
+<h3 id="mybatis"><strong>MyBatis</strong></h3>
+<ul>
+<li>
+<p><a class="link" href="/post/coding/java/spring/mybatis/1-mybatis-interview#1-mybatis%e4%ba%8c%e7%ba%a7%e7%bc%93%e5%ad%98" >MyBatis二级缓存</a></p>
+</li>
+<li>
+<p><a class="link" href="/post/coding/java/spring/mybatis/1-mybatis-interview#2-mybatis%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" >Mybatis原理</a></p>
+</li>
+</ul>
+<h3 id="netty"><strong>Netty</strong></h3>
+<ul>
+<li><a class="link" href="/post/middleware/netty/6_1_netty#1-%e4%b8%ba%e4%bb%80%e4%b9%88%e7%94%a8netty" ><em><strong>聊聊Netty</strong></em></a></li>
+<li><a class="link" href="/post/middleware/netty/6_1_netty#6-netty%e4%b8%adtcp%e7%b2%98%e5%8c%85%e6%8b%86%e5%8c%85" ><em><strong>Netty中的拆包、粘包是为什么？如何解决？</strong></em></a></li>
+<li><a class="link" href="/post/middleware/netty/6_1_netty#4-netty%e7%ba%bf%e7%a8%8b%e6%a8%a1%e5%9e%8b" ><em><strong>Netty的线程模型</strong></em></a></li>
+<li><a class="link" href="/post/middleware/netty/6_1_netty#3-netty%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6" ><em><strong>Netty的重要组件</strong></em></a></li>
+<li><a class="link" href="/post/middleware/netty/6_1_netty#5-eventloopgroup%e6%98%af%e4%bb%80%e4%b9%88%e4%b8%8eeventloop%e5%85%b3%e7%b3%bb" ><em><strong>Netty中EventLoopGroup与EventLoop什么区别</strong></em></a></li>
+</ul>
+<h3 id="dubbo"><strong>Dubbo</strong></h3>
+<ul>
+<li><a class="link" href="/post/middleware/dubbo/1_2_dubbo_spi#1-dubbo-spi%e4%b8%8ejava-spi" ><em><strong>Dubbo中的SPI，为什么不适用JDK的SPI？</strong></em></a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_2_dubbo_spi" >Dubbo中的SPI</a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#2-dubbo%e6%9c%8d%e5%8a%a1%e6%b3%a8%e5%86%8c%e4%b8%8e%e5%8f%91%e7%8e%b0%e6%b5%81%e7%a8%8b" ><strong>Dubbo服务注册与发现流程</strong></a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_3_dubbo_communication#1-dubbo%e5%a4%9a%e7%ba%bf%e7%a8%8b%e9%80%9a%e4%bf%a1%e5%8e%9f%e7%90%86" ><strong>Dubbo通信原理</strong></a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_3_dubbo_communication#" >Dubbo分层</a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#3-1-dubbo%e6%9c%8d%e5%8a%a1%e6%9a%b4%e9%9c%b2%e8%bf%87%e7%a8%8b" ><strong>Dubbo服务暴露流程</strong></a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#3-2-dubbo%e6%9c%8d%e5%8a%a1%e5%bc%95%e7%94%a8%e8%bf%87%e7%a8%8b" ><strong>Dubbo服务引用流程</strong></a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#4-dubbo%e7%9a%84%e7%ae%a1%e7%90%86%e6%8e%a7%e5%88%b6%e5%8f%b0%e8%83%bd%e5%81%9a%e4%bb%80%e4%b9%88" ><strong>Dubbo的管理控制台能做什么</strong></a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#5-dubbo%e9%9b%86%e7%be%a4%e5%ae%b9%e9%94%99%e6%96%b9%e6%a1%88" >Dubbo集群容错方案</a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#6-dubbo%e6%94%af%e6%8c%81%e4%bb%80%e4%b9%88%e5%8d%8f%e8%ae%ae" >Dubbo支持什么协议</a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#7-dubbo%e5%a6%82%e4%bd%95%e5%81%9a%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1" >Dubbo如何做负载均衡</a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#8-dubbo%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0%e5%bc%82%e6%ad%a5%e8%b0%83%e7%94%a8" >Dubbo如何实现异步调用</a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#9-%e5%9c%a8provider%e4%b8%8a%e5%8f%af%e4%bb%a5%e9%85%8d%e7%bd%aeconsumer%e7%ab%af%e7%9a%84%e5%b1%9e%e6%80%a7%e6%9c%89%e5%93%aa%e4%ba%9b" >Dubbo在Provide上可以配置Consumer哪些属性</a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#10-zookeeper%e5%92%8cdubbo%e7%9a%84%e5%85%b3%e7%b3%bb" >Zookeeper和Dubbo的关系</a></li>
+<li><a class="link" href="/post/middleware/dubbo/1_1_dubbobase#11-dubbo%e5%88%86%e5%b1%82" >Dubbo分层</a></li>
+</ul>
+<h3 id="zookeeper"><strong>Zookeeper</strong></h3>
+<ul>
+<li><a class="link" href="" ><em>一致性算法原理</em></a></li>
+<li><a class="link" href="" >选举流程</a></li>
+<li><a class="link" href="/post/middleware/register_center/zookeeper/2-zookeeper-base#1-zan%e5%8d%8f%e8%ae%ae" >ZAB协议</a></li>
+</ul>
+<h3 id="kafka"><strong>Kafka</strong></h3>
+<ul>
+<li><a class="link" href="" ><strong>Zookeeper在Kafka中的作用</strong></a></li>
+</ul>
+<h3 id="rocketmq"><strong>RocketMQ</strong></h3>
+<h3 id="elasticsearch"><strong>ElasticSearch</strong></h3>
+<h2 id="middleware"><strong>Middleware</strong></h2>
+<h3 id="redis"><strong>Redis</strong></h3>
+<ul>
+<li>
+<p><a class="link" href="" ><em><strong>什么是击穿？什么是雪崩？</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="" ><em><strong>Redis支持的几种数据结构</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/middleware/database/nosql/redis/1_redis_interview#1-%e4%bb%80%e4%b9%88%e6%98%af%e8%b7%b3%e8%a1%a8" ><em><strong>Redis跳表</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/middleware/database/nosql/redis/1_redis_interview#2-redis%e4%b8%adbitmap" ><strong>Redis中的BitMap</strong></a></p>
+</li>
+</ul>
+<h3 id="mysql"><strong>MySQL</strong></h3>
+<ul>
+<li>
+<p><a class="link" href="/post/middleware/database/sql/mysql/2_2_sql_index#1-%e7%b4%a2%e5%bc%95%e7%b1%bb%e5%9e%8b" ><em><strong>讲讲Mysql索引</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="" ><strong>Mysql中<code>B+ Tree</code>索引原理</strong></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/middleware/database/sql/mysql/2_2_sql_index#2-mysql%e7%b4%a2%e5%bc%95%e5%a4%b1%e6%95%88%e7%9a%84%e5%87%a0%e7%a7%8d%e6%83%85%e5%86%b5" ><em><strong>Mysql索引失效的几种情况</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="/post/middleware/database/sql/mysql/2_2_sql_index#3-%e5%bc%ba%e5%88%b6%e7%b4%a2%e5%bc%95" ><em><strong>Mysql强制索引</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="" ><em><strong>分库分表如何实现的</strong></em></a></p>
+</li>
+<li>
+<p><a class="link" href="" ><em><strong>分库分表中间件</strong></em></a></p>
+</li>
+</ul>
+<h2 id="distribution"><strong>Distribution</strong></h2>
+<h3 id="base"><strong>Base</strong></h3>
+<ul>
+<li><a class="link" href="/post/algorithm/ext/3_base_knowledge_2021_01_09#1-hash%e6%9c%80%e7%bb%88%e4%b8%80%e8%87%b4%e6%80%a7%e7%ae%97%e6%b3%95" ><strong>一致性Hash算法</strong></a></li>
+</ul>
+<h3 id="kubernetes"><strong>Kubernetes</strong></h3>
+<ul>
+<li><a class="link" href="" ><strong>Kubernetes中Pod间是如何通信的</strong></a></li>
+<li><a class="link" href="" ><strong>Kubernetes中IngressController</strong></a></li>
+</ul>
+<h2 id="操作系统"><strong>操作系统</strong></h2>
+<h3 id="tcpip"><strong>TCP/IP</strong></h3>
+<ul>
+<li><a class="link" href="/post/algorithm/ext/3_base_knowledge_2021_01_09#4-tcp%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b" ><em><strong>TCP三次握手/四次挥手</strong></em></a></li>
+<li><a class="link" href="/post/algorithm/ext/3_base_knowledge_2021_01_09#2-tcp%e4%b8%8eudp%e7%9a%84%e5%8c%ba%e5%88%ab" ><em><strong>TCP与UDP的区别</strong></em></a></li>
+</ul>
+<h3 id="多线程与并发"><strong>多线程与并发</strong></h3>
+<ul>
+<li><a class="link" href="" ><strong>说说进程、线程、协程</strong></a></li>
+<li><a class="link" href="" ><strong>操作系统的互斥锁原理，阻塞过程中(抢锁失败)线程会做什么</strong></a></li>
+</ul>
+<h2 id="设计模式"><strong>设计模式</strong></h2>
+<ul>
+<li><a class="link" href="" >观察者模式</a></li>
+<li><a class="link" href="" >单例模式</a></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/interview/">interview</a>
+        
+            <a href="/tags/%E7%AC%94%E8%AF%95/">笔试</a>
+        
+            <a href="/tags/algorithm/">algorithm</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/interview-2.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E7%AE%97%E6%B3%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Interview ] 2. 面试之算法</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/interview-3.-%E9%9D%A2%E8%AF%95%E4%B9%8Bjava/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Interview ] 3. 面试之Java</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

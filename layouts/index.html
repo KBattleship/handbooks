@@ -1,16 +1,19 @@
-{{ define "content" }}
-<section id="posts" class="posts">
-  {{ $pages := .Pages }}
-  {{ if .IsHome }}
-    {{ $pages = where .Site.RegularPages "Type" "in" site.Params.mainSections }}
-  {{ end }}
-  {{ $paginator := .Paginate $pages }}
-  {{ range $paginator.Pages }}
-    {{ .Render "summary" }}
-  {{ end }}
-</section>
+{{ define "main" }}
+    {{ $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections }}
+    {{ $notHidden := where .Site.RegularPages "Params.hidden" "!=" true }}
+    {{ $filtered := ($pages | intersect $notHidden) }}
+    {{ $pag := .Paginate ($filtered) }}
 
-<!-- pagination -->
-{{ partial "pagination.html" . }}
+    <section class="article-list">
+        {{ range $index, $element := $pag.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
+    </section>
 
+    {{- partial "pagination.html" . -}}
+    {{- partial "footer/footer" . -}}
+{{ end }}
+
+{{ define "right-sidebar" }}
+    {{ partial "sidebar/right.html" . }}
 {{ end }}

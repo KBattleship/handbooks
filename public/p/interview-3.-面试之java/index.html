@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='面试 X_Q 1.JVM垃圾回收机制 Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。 JVM中存在一个 优先级较低 的线程，只有当 JVM处于空闲 或者 堆空间不足 的情况触发执行。此过程中，将扫描到 没有被引用的对象 防止垃圾回收集合中，进行垃圾回收。
+ 判断对象是否可以被回收   引用计数器：
+ 为每一个对象创建一个引用计数器，有引用此对象，计数器进行&#43;1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(不能解决循环引用问题)    可达性分析算法
+ 从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 GC Roots不存在任何引用链式，说明此对象可以进行回收。      2.什么是Netty？  见 Netty
+ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 B_D 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：'><title>[ Interview ] 3. 面试之Java</title>
+
+<link rel='canonical' href='https://example.com/p/interview-3.-%E9%9D%A2%E8%AF%95%E4%B9%8Bjava/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Interview ] 3. 面试之Java'>
+<meta property='og:description' content='面试 X_Q 1.JVM垃圾回收机制 Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。 JVM中存在一个 优先级较低 的线程，只有当 JVM处于空闲 或者 堆空间不足 的情况触发执行。此过程中，将扫描到 没有被引用的对象 防止垃圾回收集合中，进行垃圾回收。
+ 判断对象是否可以被回收   引用计数器：
+ 为每一个对象创建一个引用计数器，有引用此对象，计数器进行&#43;1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(不能解决循环引用问题)    可达性分析算法
+ 从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 GC Roots不存在任何引用链式，说明此对象可以进行回收。      2.什么是Netty？  见 Netty
+ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 B_D 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：'>
+<meta property='og:url' content='https://example.com/p/interview-3.-%E9%9D%A2%E8%AF%95%E4%B9%8Bjava/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='interview' /><meta property='article:tag' content='面试' /><meta property='article:tag' content='algorithm' /><meta property='article:published_time' content='2021-01-08T01:13:47&#43;08:00'/><meta property='article:modified_time' content='2021-01-08T01:13:47&#43;08:00'/>
+<meta name="twitter:title" content="[ Interview ] 3. 面试之Java">
+<meta name="twitter:description" content="面试 X_Q 1.JVM垃圾回收机制 Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。 JVM中存在一个 优先级较低 的线程，只有当 JVM处于空闲 或者 堆空间不足 的情况触发执行。此过程中，将扫描到 没有被引用的对象 防止垃圾回收集合中，进行垃圾回收。
+ 判断对象是否可以被回收   引用计数器：
+ 为每一个对象创建一个引用计数器，有引用此对象，计数器进行&#43;1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(不能解决循环引用问题)    可达性分析算法
+ 从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 GC Roots不存在任何引用链式，说明此对象可以进行回收。      2.什么是Netty？  见 Netty
+ 3.Netty粘包/拆包 3.Kubernetes工作原理 4.快排实现原理 B_D 1. Hash最终一致性算法   算法目标：
+当K个Key的请求时，后台增减节点，只会引起 K/N 的 Key发生重新映射。
+ 在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。 在后台节点增减时，此算法尽量将 K 个Key映射到之前相同的节点上。    Hash存在问题：
+ 假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 模运算(hash(key)%N) 来讲请求分发在不同的节点上。 对前台请求于后台无状态服务节点不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。 但在对于分布式缓存，或者分布式数据这样有状态服务的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：  针对分布式缓存而言，均发生cache miss； 针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。      判断标准：">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/algorithm/" style="background-color: #2a9d8f; color: #fff;">
+                Algorithm
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/interview-3.-%E9%9D%A2%E8%AF%95%E4%B9%8Bjava/">[ Interview ] 3. 面试之Java</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 08, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="面试">面试</h1>
+<h2 id="x_q">X_Q</h2>
+<h3 id="1jvm垃圾回收机制">1.JVM垃圾回收机制</h3>
+<p>Java编程中，程序员不需要刻意显式进行垃圾回收去释放一个对象内存，而是JVM会进行自动垃圾回收。
+JVM中存在一个 <strong><code>优先级较低</code></strong> 的线程，只有当 <strong><code>JVM处于空闲</code></strong> 或者 <strong><code>堆空间不足</code></strong> 的情况触发执行。此过程中，将扫描到 <strong>没有被引用的对象</strong> 防止垃圾回收集合中，进行垃圾回收。</p>
+<ul>
+<li><strong><code>判断对象是否可以被回收</code></strong>
+<ul>
+<li>
+<p>引用计数器：</p>
+<ul>
+<li>为每一个对象创建一个引用计数器，有引用此对象，计数器进行+1；引用释放后，计数器进行-1。当对象引用计数器 == 0时，说明此对象可以进行回收。(<strong>不能解决循环引用问题</strong>)</li>
+</ul>
+</li>
+<li>
+<p>可达性分析算法</p>
+<ul>
+<li>从GC Roots开始向下搜索，走过的搜索路径将形成引用链，当一个对象到 <strong>GC Roots</strong>不存在任何引用链式，说明此对象可以进行回收。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2什么是netty">2.什么是Netty？</h3>
+<blockquote>
+<p>见 <a class="link" href="/post/middleware/netty/6_1_netty" >Netty</a></p>
+</blockquote>
+<h3 id="3netty粘包拆包">3.Netty粘包/拆包</h3>
+<h3 id="3kubernetes工作原理">3.Kubernetes工作原理</h3>
+<h3 id="4快排实现原理">4.快排实现原理</h3>
+<h2 id="b_d">B_D</h2>
+<h3 id="1-hash最终一致性算法">1. Hash最终一致性算法</h3>
+<ul>
+<li>
+<p><strong>算法目标：</strong></p>
+<p>当<code>K</code>个Key的请求时，后台增减节点，只会引起 <strong>K/N</strong> 的 Key发生重新映射。</p>
+<ul>
+<li>在后台节点稳定时，同一个key的每次请求映射到的节点是一样的。</li>
+<li>在后台节点增减时，此算法尽量将 <strong>K</strong> 个Key映射到之前相同的节点上。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hash存在问题：</strong></p>
+<ul>
+<li>假定N为后台服务节点数，当前台携带关键字key发出请求时，我们通常将key进行Hash后采用 <strong><code>模运算(hash(key)%N)</code></strong> 来讲请求分发在不同的节点上。</li>
+<li>对前台请求于<code>后台无状态服务节点</code>不敏感的场景而言，只要请求key具有一定的随机性，哪怕节点动态增删，该算法对于后台而言一样可以起到很好的负载均衡效果。</li>
+<li>但在对于<code>分布式缓存</code>，或者<code>分布式数据</code>这样<code>有状态服务</code>的情况下，上述方式将存在问题。因为后台节点的增删会引起几乎所有的Key的重新映射：
+<ul>
+<li>针对分布式缓存而言，均发生cache miss；</li>
+<li>针对分布式数据库而言，发生数据错乱的情况，影响都是灾难性的。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>判断标准：</strong></p>
+<ul>
+<li>平衡性(Balance)：指哈希的结果能够尽可能分不到所有的缓冲中，这样可以使得所有缓冲空间都得到利用。</li>
+<li>单调性(Monotonicity)：单调性是指如果已经有一些内容通过Hash算法分配到了缓冲中，又有新的缓冲加入到系统中，Hash的结果应该能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去，而不会被映射到旧的缓冲集合中的其他缓冲区。</li>
+<li>分散性(Spread)：在分布式环境中，终端有可能看不到所有的缓冲。不同的终端可能通过Hash的过程将同样的缓冲内容应设在不同的缓冲中。<code>应尽量降低分散性</code>。</li>
+<li>负载(Load)：实际上是另一个角度看待分散性。对于一个特定的缓冲区而言，可能被不同的用户映射到不同的内容。<code>应尽量降低缓冲的负荷</code>。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hash一致性算法：</strong></p>
+<ul>
+<li>是一个2^32个点组成的Hash圆环</li>
+<li>按照 <strong>顺时针方向</strong> 进行组织</li>
+<li>将数据 <strong>Key</strong> 使用相同的 <code>hash()</code> 计算出Hash值，并确定在此 Hash环 上的位置，从此位置按照 <strong>顺时针方式</strong> 寻找，碰到的第一台节点将是定位到的节点。</li>
+</ul>
+</li>
+<li>
+<p><strong>Hash环发生数据倾斜</strong></p>
+<ul>
+<li>在服务节点太少的情况，数据容易发生倾斜</li>
+<li>解决办法：
+<ul>
+<li>增加虚拟节点，形成均匀的Hash环避免数据倾斜。</li>
+<li>通过 <strong>Hash(&quot;${Node1}#1&quot;)</strong> 的方式构造成虚拟节点。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-tcp与udp的区别">2. TCP与UDP的区别</h3>
+<ul>
+<li>TCP
+<ul>
+<li>面向有连接
+<ul>
+<li>发送数据前两端必须进行连接。因 <strong>三次握手</strong> 建立连接，使得数据传输更加可靠</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>仅支持单播方式</li>
+<li>面向字节流
+<ul>
+<li>不保留报文边界，通过字节流的方式进行传输</li>
+</ul>
+</li>
+<li>可靠传输
+<ul>
+<li>为保证可靠传输，每个包都拥有序号，同时保证包传输的顺序性也保证包的完整性。</li>
+<li>接收端接收到数据后需要返回确认帧，如果在规定时延内发送端未收到确认帧，将视为丢包进行重传。</li>
+</ul>
+</li>
+<li>拥塞机制
+<ul>
+<li>在网络出现拥塞的情况下，TCP可以减小向网络注入数据的速率和数量，缓解拥塞</li>
+</ul>
+</li>
+<li>提供全双工通信
+<ul>
+<li>通讯双方的应用程序在任何时候都能发送数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>UDP
+<ul>
+<li>面向无连接</li>
+<li>支持单播、多播、广播方式</li>
+<li>面向报文
+<ul>
+<li>UDP对应用成交付的报文不合并不拆分，而是保留报文的边界，应用程序必须要控制合适的报文大小。</li>
+</ul>
+</li>
+<li>不可靠性
+<ul>
+<li>通信不需要建立连接。想发就发，并且不关心对方接收到的数据是否正确无误</li>
+<li>没有拥塞控制，可能出现丢包情况。</li>
+</ul>
+</li>
+<li>头部数据小，数据传输高效。</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-tcp如何保证网络安全的">3. TCP如何保证网络安全的</h3>
+<blockquote>
+<p><code>  即TCP的特性</code></p>
+</blockquote>
+<h3 id="4-tcp三次握手">4. TCP三次握手</h3>
+<ul>
+<li>第一次握手
+<ul>
+<li>客户端 向 服务端 发出连接请求的报文，请求发送成功后，客户端进入 <code>SYN-SENT</code> 状态</li>
+</ul>
+</li>
+<li>第二次握手
+<ul>
+<li>服务端 收到 客户端 连接请求的报文后，如同意连接，发出一个应答，发送完成后进入 <code>SYN-RECEIVED</code> 状态</li>
+</ul>
+</li>
+<li>第三次握手
+<ul>
+<li>当 客户端 收到连接同意的应答后，需向服务端发送一个确认报文。发送完成后，客户端进入 <code>ESTABLISHED</code> 状态， 服务端 收到这个确认应答后也将进入 <code>ESTABLISHED</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="5-tcp四次挥手">5. TCP四次挥手</h3>
+<p>（1）：客户端发送终止命令FIN</p>
+<p>（2）：服务端收到后回复ACK，处于close_wait状态</p>
+<p>（3）：服务器将关闭前需要发送信息发送给客户端后处于last_ack状态</p>
+<p>（4）：客户端收到FIN后发送ack后处于tim-wait而后进入close状态</p>
+<h3 id="5-kubernetes中pod间如何通讯的">5. Kubernetes中Pod间如何通讯的</h3>
+<blockquote>
+<p>通过 <code>CNI</code>(Container Network Interface) 进行网络通讯。</p>
+</blockquote>
+<h3 id="6-mysql索引">6. Mysql索引</h3>
+<blockquote>
+<p><a class="link" href="/post/middleware/database/sql/mysql/2_2_sql_index" >Mysql索引</a></p>
+</blockquote>
+<h3 id="7-mysql-b-tree索引实现原理">7. Mysql B+ Tree索引实现原理</h3>
+<h3 id="8-zookeeper在kafka中的作用">8. Zookeeper在Kafka中的作用</h3>
+<ul>
+<li>
+<p>Broker注册</p>
+<p>分布式下的Broker之间相互独立，需要一个注册中心将其Broker集群管理起来，Zookeeper将会对Broker集群列表进行记录。</p>
+</li>
+<li>
+<p>Topic注册</p>
+<p>同一个Topic的消息会被分成多个分区分散在不同的Broker，Zookeeper将会维护分区信息以及与broker之间对应关系。</p>
+</li>
+<li>
+<p>负责Producer、Consumer负载均衡</p>
+<p>Zookeeper通过负载均衡，协助Producer、Consumer将消息合理的发送或消费到指定的Broker。</p>
+</li>
+<li>
+<p>分区与Consumer的关系</p>
+<p>每一个消费者一旦确定一个消息分区的消费能力，需要将其对应信息写入至Zookeeper对应消息分区的临时节点上。</p>
+</li>
+<li>
+<p>记录Consumer消费进度Offset</p>
+<p>在Consumer对指定消息分区进行消费的过程中，会定时将分区消息的Offset记录到Zookeeper上。以便此消费者重启或变更其他消费者消费时再次继续进行消费。</p>
+</li>
+</ul>
+<h3 id="9-有没有做过dockerimage精简">9. 有没有做过DockerImage精简</h3>
+<h3 id="10-服务是如何在服务器运行的如何实现发布dockerimage发布的">10. 服务是如何在服务器运行的，如何实现发布DockerImage发布的</h3>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/interview/">interview</a>
+        
+            <a href="/tags/%E9%9D%A2%E8%AF%95/">面试</a>
+        
+            <a href="/tags/algorithm/">algorithm</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/interview-2.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E7%AE%97%E6%B3%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Interview ] 2. 面试之算法</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/interview-1.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E6%B8%85%E5%8D%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Interview ] 1. 面试之清单</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/interview-2.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Interview ] 2.面试准备</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/interview-1.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Interview ] 1.面试准备</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

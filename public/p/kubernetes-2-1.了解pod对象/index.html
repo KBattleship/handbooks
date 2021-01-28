@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='了解Pod对象 1.Pod参数定义 # 必填,版本号apiVersion:stringkind:Pod# 必填,元数据metadata:# 必填,Pod对象的名称(命名规范需要符合RFC 1035规范)name:string# 必填,Pod对象所属的命名空间,默认值为defaultnamespace:string# 自定义标签列表(取值类型:List)labels:- name:string# 自定义标签注解(取值类型:List)annotations:- name:string# 必填,Pod对象中容器的详细定义 spec:# 必填,Pod对象容器列表(取值类型:List)containers:# 必填,容器的名称(需要符合RFC 1035规范)- name:string# 必填,容器镜像名称image:string# 获取镜像的策略，默认值为:Always# Always: 每次都尝试重新下载镜像# Never: 仅使用本地镜像# IfNotPresent: 如果本地不存在，就下载镜像imagePullPolicy:[Always | Never | IfNotPresent]# 容器启动命令列表，若不指定则使用镜像打包时使用的启动命令command:[string]# 容器的启动命令参数列表args:[string]# 容器的工作目录workingDir:string# 挂载到容器内部的存储卷配置(取值类型:List)volumeMounts:# 引用Pod定义的共享存储卷的名称，需使用镜像volumes[]部分定义的共享卷名称- name:string# 存储卷在容器内Mount的绝对路径(应少于512个字符)mountPath:string# 是否只读模式,默认false(读写模式)readOnly:boolean# 容器需要暴露的端口号(取值类型:List) ports:# 端口的名称- name:string# 容器需要监听的端口号containerPort:int# 容器所在主机需要监听的端口号，默认与containerPort相同# (设置hostPort时，同一台宿主机将无法启动该容器的第二副本，由于端口占用问题)hostPort:int# 端口协议[TCP/UDP],默认为TCPprotocol:string# 容器运行前需要设置的环境变量列表env:# 环境变量的名称- name:string# 环境变量的值value:string# 资源限制和资源请求的设置resource:# 资源限制设置limits:# CPU限制(单位为：core)将用于docker run --cpu-shares参数cpu:string# 内存限制(单位为：MiB/GiB)将用于docker run --memory参数memory:string# 资源限制设置(请求)requests:# CPU请求(单位为：core)将用于容器启动的初始化可用数量cpu:string# 内存请求(单位为：MiB/GiB)将用于容器启动的初始化可用数量memory:string# 对Pod对象内各个容器进行安全检查的设置，当探测无响应几次后，将自动重启该容器# 包含[exec | httpGet | TcpSocket]三种方式，任选其一即可livenessProbe:exec:# 需要执行的脚本command:[string]httpGet:# 请求路径path:string# 请求端口port:numberhost:stringscheme:stringhttpHeader:- name:stringvalue:stringtcpSocket:port:number# 完成容器启动后首次进行探测的时间(单位为：s)initialDelaySeconds:0# 对容器健康检查探测等待超时时间(单位为：s)，默认值为1timeoutSeconds:0# 对容器健康检查的探测时间周期(单位为：s)，默认值为10periodSeconds:0successThreshold:0failureThreshold:0securityContext:privileged:boolean## Pod对象的重启策略，可选值[Always | Never | OnFailure]## Always: Pod对象一旦终止，则不关心容器是如何停止的，kubelet都将重器容器## Never: Pod对象终止后，kubelet将退出码返回给Master，不再重启该容器## OnFailure: 只有当Pod对象以非零退出码终止时，kubelet才会重启该容器# (容器正常结束的退出码为零)#restartPolicy:[Always | Never | OnFailure]# 表示将Pod对象调度到包含这些label的Node上(以key:value形式指定)nodeSelector:object# Pull镜像时使用的secret名称(以name:secretValue形式指定)imagePullSecrets:- name:string# 是否使用主机模式(默认值为:false)## 如果设置为true，表示容器使用宿主机网络，不再使用Docker网桥# 该Pod对象将无法在同一台宿主机上启动第二个副本hostNetwork:boolean# 在该Pod对象上定义的共享储存卷列表volumes:# 共享储存卷名称，一个Pod对象中每个储存卷定义一个名称(命名应按照RFC 1035规范)- name:string# Pod对象同生命周期的一个临时目录，值为{}空对象emptyDir:{}# 挂载Pod对象所在宿主机的目录hostPath:# 将用于容器中mount的目录path:string# 挂载集群中预定义的secret对象到容器内部secret:secretName:stringitems:- key:stringpath:string# 挂载集群预定义的configMap对象到容器内部configMap:name:stringitems:- key:stringpath:string2.'><title>[ Kubernetes ] 2-1.了解Pod对象</title>
+
+<link rel='canonical' href='https://example.com/p/kubernetes-2-1.%E4%BA%86%E8%A7%A3pod%E5%AF%B9%E8%B1%A1/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Kubernetes ] 2-1.了解Pod对象'>
+<meta property='og:description' content='了解Pod对象 1.Pod参数定义 # 必填,版本号apiVersion:stringkind:Pod# 必填,元数据metadata:# 必填,Pod对象的名称(命名规范需要符合RFC 1035规范)name:string# 必填,Pod对象所属的命名空间,默认值为defaultnamespace:string# 自定义标签列表(取值类型:List)labels:- name:string# 自定义标签注解(取值类型:List)annotations:- name:string# 必填,Pod对象中容器的详细定义 spec:# 必填,Pod对象容器列表(取值类型:List)containers:# 必填,容器的名称(需要符合RFC 1035规范)- name:string# 必填,容器镜像名称image:string# 获取镜像的策略，默认值为:Always# Always: 每次都尝试重新下载镜像# Never: 仅使用本地镜像# IfNotPresent: 如果本地不存在，就下载镜像imagePullPolicy:[Always | Never | IfNotPresent]# 容器启动命令列表，若不指定则使用镜像打包时使用的启动命令command:[string]# 容器的启动命令参数列表args:[string]# 容器的工作目录workingDir:string# 挂载到容器内部的存储卷配置(取值类型:List)volumeMounts:# 引用Pod定义的共享存储卷的名称，需使用镜像volumes[]部分定义的共享卷名称- name:string# 存储卷在容器内Mount的绝对路径(应少于512个字符)mountPath:string# 是否只读模式,默认false(读写模式)readOnly:boolean# 容器需要暴露的端口号(取值类型:List) ports:# 端口的名称- name:string# 容器需要监听的端口号containerPort:int# 容器所在主机需要监听的端口号，默认与containerPort相同# (设置hostPort时，同一台宿主机将无法启动该容器的第二副本，由于端口占用问题)hostPort:int# 端口协议[TCP/UDP],默认为TCPprotocol:string# 容器运行前需要设置的环境变量列表env:# 环境变量的名称- name:string# 环境变量的值value:string# 资源限制和资源请求的设置resource:# 资源限制设置limits:# CPU限制(单位为：core)将用于docker run --cpu-shares参数cpu:string# 内存限制(单位为：MiB/GiB)将用于docker run --memory参数memory:string# 资源限制设置(请求)requests:# CPU请求(单位为：core)将用于容器启动的初始化可用数量cpu:string# 内存请求(单位为：MiB/GiB)将用于容器启动的初始化可用数量memory:string# 对Pod对象内各个容器进行安全检查的设置，当探测无响应几次后，将自动重启该容器# 包含[exec | httpGet | TcpSocket]三种方式，任选其一即可livenessProbe:exec:# 需要执行的脚本command:[string]httpGet:# 请求路径path:string# 请求端口port:numberhost:stringscheme:stringhttpHeader:- name:stringvalue:stringtcpSocket:port:number# 完成容器启动后首次进行探测的时间(单位为：s)initialDelaySeconds:0# 对容器健康检查探测等待超时时间(单位为：s)，默认值为1timeoutSeconds:0# 对容器健康检查的探测时间周期(单位为：s)，默认值为10periodSeconds:0successThreshold:0failureThreshold:0securityContext:privileged:boolean## Pod对象的重启策略，可选值[Always | Never | OnFailure]## Always: Pod对象一旦终止，则不关心容器是如何停止的，kubelet都将重器容器## Never: Pod对象终止后，kubelet将退出码返回给Master，不再重启该容器## OnFailure: 只有当Pod对象以非零退出码终止时，kubelet才会重启该容器# (容器正常结束的退出码为零)#restartPolicy:[Always | Never | OnFailure]# 表示将Pod对象调度到包含这些label的Node上(以key:value形式指定)nodeSelector:object# Pull镜像时使用的secret名称(以name:secretValue形式指定)imagePullSecrets:- name:string# 是否使用主机模式(默认值为:false)## 如果设置为true，表示容器使用宿主机网络，不再使用Docker网桥# 该Pod对象将无法在同一台宿主机上启动第二个副本hostNetwork:boolean# 在该Pod对象上定义的共享储存卷列表volumes:# 共享储存卷名称，一个Pod对象中每个储存卷定义一个名称(命名应按照RFC 1035规范)- name:string# Pod对象同生命周期的一个临时目录，值为{}空对象emptyDir:{}# 挂载Pod对象所在宿主机的目录hostPath:# 将用于容器中mount的目录path:string# 挂载集群中预定义的secret对象到容器内部secret:secretName:stringitems:- key:stringpath:string# 挂载集群预定义的configMap对象到容器内部configMap:name:stringitems:- key:stringpath:string2.'>
+<meta property='og:url' content='https://example.com/p/kubernetes-2-1.%E4%BA%86%E8%A7%A3pod%E5%AF%B9%E8%B1%A1/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='k8s' /><meta property='article:tag' content='容器' /><meta property='article:published_time' content='2020-09-17T15:36:27&#43;08:00'/><meta property='article:modified_time' content='2020-09-12T15:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ Kubernetes ] 2-1.了解Pod对象">
+<meta name="twitter:description" content="了解Pod对象 1.Pod参数定义 # 必填,版本号apiVersion:stringkind:Pod# 必填,元数据metadata:# 必填,Pod对象的名称(命名规范需要符合RFC 1035规范)name:string# 必填,Pod对象所属的命名空间,默认值为defaultnamespace:string# 自定义标签列表(取值类型:List)labels:- name:string# 自定义标签注解(取值类型:List)annotations:- name:string# 必填,Pod对象中容器的详细定义 spec:# 必填,Pod对象容器列表(取值类型:List)containers:# 必填,容器的名称(需要符合RFC 1035规范)- name:string# 必填,容器镜像名称image:string# 获取镜像的策略，默认值为:Always# Always: 每次都尝试重新下载镜像# Never: 仅使用本地镜像# IfNotPresent: 如果本地不存在，就下载镜像imagePullPolicy:[Always | Never | IfNotPresent]# 容器启动命令列表，若不指定则使用镜像打包时使用的启动命令command:[string]# 容器的启动命令参数列表args:[string]# 容器的工作目录workingDir:string# 挂载到容器内部的存储卷配置(取值类型:List)volumeMounts:# 引用Pod定义的共享存储卷的名称，需使用镜像volumes[]部分定义的共享卷名称- name:string# 存储卷在容器内Mount的绝对路径(应少于512个字符)mountPath:string# 是否只读模式,默认false(读写模式)readOnly:boolean# 容器需要暴露的端口号(取值类型:List) ports:# 端口的名称- name:string# 容器需要监听的端口号containerPort:int# 容器所在主机需要监听的端口号，默认与containerPort相同# (设置hostPort时，同一台宿主机将无法启动该容器的第二副本，由于端口占用问题)hostPort:int# 端口协议[TCP/UDP],默认为TCPprotocol:string# 容器运行前需要设置的环境变量列表env:# 环境变量的名称- name:string# 环境变量的值value:string# 资源限制和资源请求的设置resource:# 资源限制设置limits:# CPU限制(单位为：core)将用于docker run --cpu-shares参数cpu:string# 内存限制(单位为：MiB/GiB)将用于docker run --memory参数memory:string# 资源限制设置(请求)requests:# CPU请求(单位为：core)将用于容器启动的初始化可用数量cpu:string# 内存请求(单位为：MiB/GiB)将用于容器启动的初始化可用数量memory:string# 对Pod对象内各个容器进行安全检查的设置，当探测无响应几次后，将自动重启该容器# 包含[exec | httpGet | TcpSocket]三种方式，任选其一即可livenessProbe:exec:# 需要执行的脚本command:[string]httpGet:# 请求路径path:string# 请求端口port:numberhost:stringscheme:stringhttpHeader:- name:stringvalue:stringtcpSocket:port:number# 完成容器启动后首次进行探测的时间(单位为：s)initialDelaySeconds:0# 对容器健康检查探测等待超时时间(单位为：s)，默认值为1timeoutSeconds:0# 对容器健康检查的探测时间周期(单位为：s)，默认值为10periodSeconds:0successThreshold:0failureThreshold:0securityContext:privileged:boolean## Pod对象的重启策略，可选值[Always | Never | OnFailure]## Always: Pod对象一旦终止，则不关心容器是如何停止的，kubelet都将重器容器## Never: Pod对象终止后，kubelet将退出码返回给Master，不再重启该容器## OnFailure: 只有当Pod对象以非零退出码终止时，kubelet才会重启该容器# (容器正常结束的退出码为零)#restartPolicy:[Always | Never | OnFailure]# 表示将Pod对象调度到包含这些label的Node上(以key:value形式指定)nodeSelector:object# Pull镜像时使用的secret名称(以name:secretValue形式指定)imagePullSecrets:- name:string# 是否使用主机模式(默认值为:false)## 如果设置为true，表示容器使用宿主机网络，不再使用Docker网桥# 该Pod对象将无法在同一台宿主机上启动第二个副本hostNetwork:boolean# 在该Pod对象上定义的共享储存卷列表volumes:# 共享储存卷名称，一个Pod对象中每个储存卷定义一个名称(命名应按照RFC 1035规范)- name:string# Pod对象同生命周期的一个临时目录，值为{}空对象emptyDir:{}# 挂载Pod对象所在宿主机的目录hostPath:# 将用于容器中mount的目录path:string# 挂载集群中预定义的secret对象到容器内部secret:secretName:stringitems:- key:stringpath:string# 挂载集群预定义的configMap对象到容器内部configMap:name:stringitems:- key:stringpath:string2.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/k8s/" style="background-color: #2a9d8f; color: #fff;">
+                Kubernetes
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/kubernetes-2-1.%E4%BA%86%E8%A7%A3pod%E5%AF%B9%E8%B1%A1/">[ Kubernetes ] 2-1.了解Pod对象</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Sep 17, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="了解pod对象">了解Pod对象</h1>
+<h4 id="1pod参数定义">1.Pod参数定义</h4>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># 必填,版本号</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="c"># 必填,元数据</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="c"># 必填,Pod对象的名称(命名规范需要符合RFC 1035规范)</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">    </span><span class="c"># 必填,Pod对象所属的命名空间,默认值为default</span><span class="w">
+</span><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">    </span><span class="c"># 自定义标签列表(取值类型:List)</span><span class="w">
+</span><span class="w">    </span><span class="nt">labels</span><span class="p">:</span><span class="w"> 
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">    </span><span class="c"># 自定义标签注解(取值类型:List)</span><span class="w">
+</span><span class="w">    </span><span class="nt">annotations</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w"></span><span class="c"># 必填,Pod对象中容器的详细定义  </span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="c"># 必填,Pod对象容器列表(取值类型:List)</span><span class="w">
+</span><span class="w">    </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="c"># 必填,容器的名称(需要符合RFC 1035规范)</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="c"># 必填,容器镜像名称</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="c"># 获取镜像的策略，默认值为:Always</span><span class="w">
+</span><span class="w">        </span><span class="c"># Always: 每次都尝试重新下载镜像</span><span class="w">
+</span><span class="w">        </span><span class="c"># Never: 仅使用本地镜像</span><span class="w">
+</span><span class="w">        </span><span class="c"># IfNotPresent: 如果本地不存在，就下载镜像</span><span class="w">
+</span><span class="w">        </span><span class="nt">imagePullPolicy</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">Always | Never | IfNotPresent]</span><span class="w">
+</span><span class="w">        </span><span class="c"># 容器启动命令列表，若不指定则使用镜像打包时使用的启动命令</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">string]</span><span class="w">
+</span><span class="w">        </span><span class="c"># 容器的启动命令参数列表</span><span class="w">
+</span><span class="w">        </span><span class="nt">args</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">string]</span><span class="w">
+</span><span class="w">        </span><span class="c"># 容器的工作目录</span><span class="w">
+</span><span class="w">        </span><span class="nt">workingDir</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="c"># 挂载到容器内部的存储卷配置(取值类型:List)</span><span class="w">
+</span><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="c"># 引用Pod定义的共享存储卷的名称，需使用镜像volumes[]部分定义的共享卷名称</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="c"># 存储卷在容器内Mount的绝对路径(应少于512个字符)</span><span class="w">
+</span><span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="c"># 是否只读模式,默认false(读写模式)</span><span class="w">
+</span><span class="w">            </span><span class="nt">readOnly</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">        </span><span class="c"># 容器需要暴露的端口号(取值类型:List)    </span><span class="w">
+</span><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="c"># 端口的名称</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="c"># 容器需要监听的端口号</span><span class="w">
+</span><span class="w">            </span><span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="l">int</span><span class="w">
+</span><span class="w">            </span><span class="c"># 容器所在主机需要监听的端口号，默认与containerPort相同</span><span class="w">
+</span><span class="w">            </span><span class="c"># (设置hostPort时，同一台宿主机将无法启动该容器的第二副本，由于端口占用问题)</span><span class="w">
+</span><span class="w">            </span><span class="nt">hostPort</span><span class="p">:</span><span class="w"> </span><span class="l">int</span><span class="w">
+</span><span class="w">            </span><span class="c"># 端口协议[TCP/UDP],默认为TCP</span><span class="w">
+</span><span class="w">            </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="c"># 容器运行前需要设置的环境变量列表</span><span class="w">
+</span><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="c"># 环境变量的名称</span><span class="w">
+</span><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="c"># 环境变量的值</span><span class="w">
+</span><span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="c"># 资源限制和资源请求的设置</span><span class="w">
+</span><span class="w">        </span><span class="nt">resource</span><span class="p">:</span><span class="w"> 
+</span><span class="w">            </span><span class="c"># 资源限制设置</span><span class="w">
+</span><span class="w">            </span><span class="nt">limits</span><span class="p">:</span><span class="w">
+</span><span class="w">                </span><span class="c"># CPU限制(单位为：core)将用于docker run --cpu-shares参数</span><span class="w">
+</span><span class="w">                </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="c"># 内存限制(单位为：MiB/GiB)将用于docker run --memory参数</span><span class="w">
+</span><span class="w">                </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="c"># 资源限制设置(请求)</span><span class="w">
+</span><span class="w">            </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span><span class="w">                </span><span class="c"># CPU请求(单位为：core)将用于容器启动的初始化可用数量</span><span class="w">
+</span><span class="w">                </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="c"># 内存请求(单位为：MiB/GiB)将用于容器启动的初始化可用数量</span><span class="w">
+</span><span class="w">                </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="c"># 对Pod对象内各个容器进行安全检查的设置，当探测无响应几次后，将自动重启该容器</span><span class="w">
+</span><span class="w">        </span><span class="c"># 包含[exec | httpGet | TcpSocket]三种方式，任选其一即可</span><span class="w">
+</span><span class="w">        </span><span class="nt">livenessProbe</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">exec</span><span class="p">:</span><span class="w">
+</span><span class="w">                </span><span class="c"># 需要执行的脚本</span><span class="w">
+</span><span class="w">                </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">string]</span><span class="w">
+</span><span class="w">            </span><span class="nt">httpGet</span><span class="p">:</span><span class="w">
+</span><span class="w">                </span><span class="c"># 请求路径</span><span class="w">
+</span><span class="w">                </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="c"># 请求端口</span><span class="w">
+</span><span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l">number</span><span class="w">
+</span><span class="w">                </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">scheme</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">httpHeader</span><span class="p">:</span><span class="w">
+</span><span class="w">                  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                    </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">tcpSocket</span><span class="p">:</span><span class="w">
+</span><span class="w">                </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l">number</span><span class="w">
+</span><span class="w">            </span><span class="c"># 完成容器启动后首次进行探测的时间(单位为：s)</span><span class="w">
+</span><span class="w">            </span><span class="nt">initialDelaySeconds</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">            </span><span class="c"># 对容器健康检查探测等待超时时间(单位为：s)，默认值为1</span><span class="w">
+</span><span class="w">            </span><span class="nt">timeoutSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">            </span><span class="c"># 对容器健康检查的探测时间周期(单位为：s)，默认值为10</span><span class="w">
+</span><span class="w">            </span><span class="nt">periodSeconds</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">            </span><span class="nt">successThreshold</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">            </span><span class="nt">failureThreshold</span><span class="p">:</span><span class="w"> </span><span class="m">0</span><span class="w">
+</span><span class="w">        </span><span class="nt">securityContext</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">privileged</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">    </span><span class="c">#</span><span class="w">
+</span><span class="w">    </span><span class="c"># Pod对象的重启策略，可选值[Always | Never | OnFailure]</span><span class="w">
+</span><span class="w">    </span><span class="c">#</span><span class="w">
+</span><span class="w">    </span><span class="c"># Always: Pod对象一旦终止，则不关心容器是如何停止的，kubelet都将重器容器</span><span class="w">
+</span><span class="w">    </span><span class="c">#</span><span class="w">
+</span><span class="w">    </span><span class="c"># Never: Pod对象终止后，kubelet将退出码返回给Master，不再重启该容器</span><span class="w">
+</span><span class="w">    </span><span class="c">#</span><span class="w">
+</span><span class="w">    </span><span class="c"># OnFailure: 只有当Pod对象以非零退出码终止时，kubelet才会重启该容器</span><span class="w">
+</span><span class="w">    </span><span class="c"># (容器正常结束的退出码为零)</span><span class="w">
+</span><span class="w">    </span><span class="c">#</span><span class="w">
+</span><span class="w">    </span><span class="nt">restartPolicy</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">Always | Never | OnFailure]</span><span class="w">
+</span><span class="w">    </span><span class="c"># 表示将Pod对象调度到包含这些label的Node上(以key:value形式指定)</span><span class="w">
+</span><span class="w">    </span><span class="nt">nodeSelector</span><span class="p">:</span><span class="w"> </span><span class="l">object</span><span class="w">
+</span><span class="w">    </span><span class="c"># Pull镜像时使用的secret名称(以name:secretValue形式指定)</span><span class="w">
+</span><span class="w">    </span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">    </span><span class="c"># 是否使用主机模式(默认值为:false)</span><span class="w">
+</span><span class="w">    </span><span class="c">#</span><span class="w">
+</span><span class="w">    </span><span class="c"># 如果设置为true，表示容器使用宿主机网络，不再使用Docker网桥</span><span class="w">
+</span><span class="w">    </span><span class="c"># 该Pod对象将无法在同一台宿主机上启动第二个副本</span><span class="w">
+</span><span class="w">    </span><span class="nt">hostNetwork</span><span class="p">:</span><span class="w"> </span><span class="l">boolean</span><span class="w">
+</span><span class="w">    </span><span class="c"># 在该Pod对象上定义的共享储存卷列表</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span><span class="c"># 共享储存卷名称，一个Pod对象中每个储存卷定义一个名称(命名应按照RFC 1035规范)</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="c"># Pod对象同生命周期的一个临时目录，值为{}空对象</span><span class="w">
+</span><span class="w">        </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span><span class="w">        </span><span class="c"># 挂载Pod对象所在宿主机的目录</span><span class="w">
+</span><span class="w">        </span><span class="nt">hostPath</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="c"># 将用于容器中mount的目录</span><span class="w">
+</span><span class="w">            </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="c"># 挂载集群中预定义的secret对象到容器内部</span><span class="w">
+</span><span class="w">        </span><span class="nt">secret</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">items</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">        </span><span class="c"># 挂载集群预定义的configMap对象到容器内部</span><span class="w">
+</span><span class="w">        </span><span class="nt">configMap</span><span class="p">:</span><span class="w">
+</span><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">            </span><span class="nt">items</span><span class="p">:</span><span class="w">
+</span><span class="w">              </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span><span class="w">                </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span></code></pre></div><h4 id="2pod的基本用法">2.Pod的基本用法</h4>
+<p>Pod对象可以由1个或者多个容器组合而成。当两个或者多个容器应用为紧耦合关系，应该组合成一个整体对外提供服务，即将这两个容器打包为一个Pod对象。</p>
+<h5 id="21-静态pod对象">2.1 静态Pod对象</h5>
+<blockquote>
+<p>静态Pod对象是由Kubelet进行管理的仅存在于特定Node上的Pod对象。他们不可以通过API Server进行管理，无法与ReplicationController、Deployment或者DaemonSet进行关联，并且kubelet也无法对他们进行健康检查。静态Pod对象总是由kubelet进行创建，并且总是运行在kubelet所在的Node上运行。</p>
+</blockquote>
+<p>创建静态Pod对象的两种方式：</p>
+<ul>
+<li>
+<p>配置文件</p>
+<p>a.设置kubelet的启动参数**[&ndash;config]**: 指定kubelet需要监控的配置文件所在的目录，kubelet将会定期扫描该目录，并根据该目录下的*.yaml或者*.json进行创建.
+b.重启kubelet服务</p>
+</li>
+<li>
+<p>HTTP方式</p>
+<p>设置kubelet启动参数**[&ndash;manifest-url]**: kubelet将会定期请求此URL下载Pod对象的定义文件，并以*.yaml或*.json文件格式解析，创建Pod对象。</p>
+</li>
+</ul>
+<h5 id="22-pod对象容器共享卷">2.2 Pod对象容器共享卷</h5>
+<blockquote>
+<p>在同一个Pod对象中的多个容器能够共享Pod对象级别的存储卷。Volume可以被定义为各种类型，容器各自进行挂载操作，将一个Volume挂载为容器内容存储卷。</p>
+</blockquote>
+<p><code>配置文件示例：</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">volume-pod</span><span class="w">
+</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">containers</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">tomcat</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">tomcat</span><span class="w">
+</span><span class="w">        </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
+</span><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">app-logs</span><span class="w">
+</span><span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/usr/local/tomcat/log</span><span class="w">
+</span><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">logreader</span><span class="w">
+</span><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">busybox</span><span class="w">
+</span><span class="w">        </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;sh&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;-c&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;tail -f /logs/catalina*.log&#34;</span><span class="p">]</span><span class="w">
+</span><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">app-logs</span><span class="w">
+</span><span class="w">            </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/logs</span><span class="w">
+</span><span class="w">    </span><span class="nt">volumes</span><span class="p">:</span><span class="w"> </span><span class="l">app-logs </span><span class="w">
+</span><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">app-logs</span><span class="w">
+</span><span class="w">        </span><span class="nt">emptyDir</span><span class="p">:</span><span class="w"> </span>{}<span class="w">
+</span></code></pre></div><h5 id="23-pod对象的配置管理">2.3 Pod对象的配置管理</h5>
+<blockquote>
+<p>为了提高应用部署的复用能力以及灵活性，可以将应用所需要的配置文件与程序进行分离。将应用打包为容器镜像后，可以通过环境变量配置、挂载外部文件的方式在创建容器时进行配置注入，但唯一的缺点<strong>维护性</strong>与<strong>复杂性</strong>将会在大规模容器集群中所体现。但在Kubernetes中可以通过<strong>ConfigMap</strong>进行管理。</p>
+</blockquote>
+<p>1）ConfigMap的概念</p>
+<ul>
+<li>生成为容器内的环境变量</li>
+<li>设置容器的启动命令参数</li>
+<li>通过Volume的形式挂载到容器内部</li>
+</ul>
+<p>ConfigMap以一个或者多个<code>[Key:Value]</code>的形式保存在Kubernetes系统中。可以通过<code>*.yaml</code>配置文件或者<code>kubelet create [-f configmap.yaml]</code>命令进行创建配置管理内容。</p>
+<p>2）创建ConfigMap资源对象</p>
+<p><code>a) *.yaml实例</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ConfigMap</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">cm-appvars</span><span class="w">
+</span><span class="w"></span><span class="nt">data</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">apploglevel</span><span class="p">:</span><span class="w"> </span><span class="l">info</span><span class="w">
+</span><span class="w">    </span><span class="nt">appdatadir</span><span class="p">:</span><span class="w"> </span><span class="l">/var/data    </span><span class="w">
+</span></code></pre></div><p><code>b) kubelet命令</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 1.创建configmap.yaml配置文件</span>
+kubelet create -f cm-appvars.yaml
+&gt; configmap <span class="s2">&#34;cm-appvars&#34;</span> created
+
+<span class="c1"># 2.查看创建完成的配置文件</span>
+kubelet get configmap
+<span class="c1">#   NAME        DATA    AGE</span>
+<span class="c1">#   cm-appvars   2       3s</span>
+
+<span class="c1"># 3.查看指定配置的详细内容</span>
+kubelet get configmap cm-appvars -o yaml
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/k8s/">k8s</a>
+        
+            <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
+        
+    </section>
+
+
+    <section class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span class="article-time--modified">
+            最后更新于 Sep 12, 2020 15:36 CST
+        </span>
+    </section></footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-3-1.%E6%B7%B1%E5%85%A5service/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 3-1.深入Service</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-2.springboot-pods%E9%A1%B9%E7%9B%AE%E5%88%9D%E4%BD%93%E9%AA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-4.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-4.kubeadm命令使用</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-2.kubectl%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-2.Kubectl命令行工具</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-3.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-3.kubeadm命令使用</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

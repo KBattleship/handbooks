@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Middleware on Quinn</title>
+    <link>https://example.com/categories/middleware/</link>
+    <description>Recent content in Middleware on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 08 Jan 2021 01:13:47 +0800</lastBuildDate><atom:link href="https://example.com/categories/middleware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ RocketMQ ] 1.面试</title>
+      <link>https://example.com/p/rocketmq-1.%E9%9D%A2%E8%AF%95/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/rocketmq-1.%E9%9D%A2%E8%AF%95/</guid>
+      <description>面试准备 1. 什么是解耦 2. 什么是异步 3. 什么是消峰填谷 4. RocketMQ执行流程 5. 怎么理解Producer 6. 怎么理解Consumer 7. 消费者消费模式有哪些 8. 消费者获取消息有几种模式 9. 定时消息是什么样的？如何实现的？ 10. RocketMQ如何保证高可用的？ 11. 如何保证消息不被重复消费？或者说如何保证消息消费是的幂等性？ 12. 如何保证消息的可靠性传输？若消息出现丢失如何处理？ 13. 如何保证消息的顺序性？ 14. 如何解决消息队列的延时以及过期失效问题？ 15. 消息队列满了以后如何处理？有几百万消息持续挤压几小时，如何解决？ 16. 如何解决高性能读写数据问题？ </description>
+    </item>
+    
+    <item>
+      <title>[ MySQL ] 2-1.MySQL基础</title>
+      <link>https://example.com/p/mysql-2-1.mysql%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/mysql-2-1.mysql%E5%9F%BA%E7%A1%80/</guid>
+      <description>Mysql基础 Mysql引擎   MyISAM
+  InnoDB
+  Memory
+  Archive
+     功能点 MyISAM InnoDB Memory Archive      存储限制 256TB RAM 64TB -    事务 N N Y N    全文检索 Y N N N    B+ Tree索引        哈希索引        数据缓存        外键         </description>
+    </item>
+    
+    <item>
+      <title>[ MySQL ] 2.MySQL索引</title>
+      <link>https://example.com/p/mysql-2.mysql%E7%B4%A2%E5%BC%95/</link>
+      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/mysql-2.mysql%E7%B4%A2%E5%BC%95/</guid>
+      <description>MySQL索引  Index(索引)，在存储引擎中用于快速找到记录的一种数据结构。索引用来快速寻找特定值的记录。
+ 如果没有索引，执行查询时，MySQL必须从第一个记录开始扫描整个表的所有记录，知道找到符合要求的记录。如果存在索引，MySQL无需扫描全表即可迅速查找到目标记录所在的位置。
+1. 索引类型   Hash索引：
+ 底层实现是基于哈希表，是一种以Key-Value形式存储数据的结构。 多个数据在存储关系上是没有任何顺序关系的。对于区间查询是无法通过索引查询的， 只能通过全表扫描的方式进行。Hash索引适用于等值查询场景。    B+ Tree索引：(MySQL引擎Innodb实现方式)
+ B+ Tree索引是一种多路平衡查询树。 其节点是天然有序的(左节点 &amp;lt; 父节点 &amp;lt; 右节点)。 对于范围查询时候不需要做全表扫描。    相比Hash索引，B+ Tree的优点：
+ Hash索引适合等值查询，但是无法进行范围查询 Hash索引没办法利用索引完成排序 Hash索引不支持多列联合索引的最左匹配规则 如果有大量重复键值的情况下，Hash索引的效率会很低，因为存在Hash碰撞问题    2. MySQL索引失效的几种情况  如果条件中有or，即使其中有条件带索引也不会使用 对于多列索引，不是使用的第一部分(第一个)，则不会使用索引 like查询是以%开头 如果列类型是字符串，那一定要在条件中将数据使用引号引用起来,否则不使用索引 如果mysql估计使用全表扫描要比使用索引快,则不使用索引 not in ,not exist. 范围查询  索引的底层实现是B+树，为何不采用红黑树，B树? （1）：B+Tree非叶子节点只存储键值信息，降低B+Tree的高度，所有叶子节点之间都有一个链指针，数据记录都存放在叶子节点中
+（2）： 红黑树这种结构，h明显要深的多，效率明显比B-Tree差很多
+（3）：B+树也存在劣势，由于键会重复出现，因此会占用更多的空间。但是与带来的性能优势相比，空间劣势往往可以接受，因此B+树的在数据库中的使用比B树更加广泛
+七种事务传播行为 （1）Propagation.REQUIRED&amp;lt;默认&amp;gt; 如果当前存在事务，则加入该事务，如果当前不存在事务，则创建一个新的事务。
+（2）Propagation.SUPPORTS 如果当前存在事务，则加入该事务；如果当前不存在事务，则以非事务的方式继续运行。
+（3）Propagation.MANDATORY 如果当前存在事务，则加入该事务；如果当前不存在事务，则抛出异常。
+（4）Propagation.REQUIRES_NEW 重新创建一个新的事务，如果当前存在事务，延缓当前的事务。
+（5）Propagation.NOT_SUPPORTED 以非事务的方式运行，如果当前存在事务，暂停当前的事务。</description>
+    </item>
+    
+    <item>
+      <title>[ Redis ] 1. Redis</title>
+      <link>https://example.com/p/redis-1.-redis/</link>
+      <pubDate>Mon, 06 Jan 2020 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/redis-1.-redis/</guid>
+      <description>Redis 1. 什么是跳表  跳跃表是一种有序的数据结构，它通过在每个节点中维持多个指向其他的几点指针，从而达到快速访问队尾目的。跳跃表的效率可以和平衡树想媲美了，最关键是它的实现相对于平衡树来说，代码的实现上简单很多 跳跃表 level 层级完全是随机的。一般来说，层级越多，访问节点的速度越快。 一是实现有序集合键，二是集群节点中用作内部数据结构。 相比于红黑树、平衡二叉树，跳表不仅查找、插入、删除时间复杂度都是O(logN)，并且实现简单很多。  2. Redis中BitMap   Bitmap并不是一种独立的数据结构，而是基于String数据结构进行的位图操作。
+ 最大空间即为String数据结构所支持的512MB， 所以bitmap所支持的最大offset为2^32-1.    一般使用场景用于大数据签到、日活统计、在线统计等等。
+ 其主要优点可以节省大量空间。 例如： 进行日活统计：  使用日期作为key，用户ID作为偏移量，1为当日活跃，0为不活跃      ### 基本操作演示(以下为Redis-cli命令) # 设置一个字符串 1Aa  # 存储在redis中的二进制为 0b001100010100000101100001 set testkey 1Aa # 进行bitmap操作 setbit testkey 10 1 setbit testkey 18 0 # testkey对象index为10的bit值为1 getbit testkey 10 # testkey对象index为18的bit值为1 getbit testkey 18 # 进行位统计 ,结果为bit上为1的和， # testkey输出结果为 8 bitcount testkey # testkey输出结果为 3 bitcount testkey 0 0 3.</description>
+    </item>
+    
+    <item>
+      <title>1.ElasticSearch集群搭建</title>
+      <link>https://example.com/p/1.elasticsearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</link>
+      <pubDate>Sun, 22 Dec 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/1.elasticsearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/</guid>
+      <description>ElasticSearch集群搭建 注： #A:修改/etc/security/limits.conf #&amp;lt;domain&amp;gt; &amp;lt;type&amp;gt; &amp;lt;item&amp;gt; &amp;lt;value&amp;gt; * soft nofile 65536 * hard nofile 131072 * soft nproc 2048 * hard nproc 4096 #B:修改/etc/sysctl.conf vm.max_map_count=262144 # 保存执行： sysctl -p # 或者 sysctl -w vm.max_map_count=262144 </description>
+    </item>
+    
+    <item>
+      <title>2.ElasticSearch集群原理</title>
+      <link>https://example.com/p/2.elasticsearch%E9%9B%86%E7%BE%A4%E5%8E%9F%E7%90%86/</link>
+      <pubDate>Sun, 22 Dec 2019 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/2.elasticsearch%E9%9B%86%E7%BE%A4%E5%8E%9F%E7%90%86/</guid>
+      <description>ElasticSearch集群原理 一、关于ES集群需要思考几个问题  需要多大规模的集群？  # 首先从两个方面考虑 ①.数据量有多大？数据增长情况如何？ ②.服务器硬件设施配置：CPU、Memory、Disk # 推算依据 ES Jvm heap 最大设置为32G。 30G heap大约可以存储数据量10T；服务器memory若为128G，可运行多个实例节点。 # 应用场景 A:用于构建业务搜索模块，且多是垂直领域搜索。（数据量级几千万至十亿级,一般需要2-4台机器） B:用于大规模数据的实时联机处理分析(OLAP),例如ELK，数据规模可达上千亿乃至更多，需要几十甚至上百实例节点。  集群中节点角色如何分配？  # 一个节点可以充当一个或多个角色，默认三个角色都有 # 节点角色 ①.Master node.master: true # 实例节点为主节点 ②.DataNode node.data: true # 默认是数据节点。 ③.CoordinateNode # 以上两项置为false，则此节点为协调节点； # 协调节点：一个节点只作为接收请求、转发请求到其他节点、汇总各个节点返回数据等功能的节点。 # 具体分配 A:小规模集群不需要具体区分； B:中、大规模集群(十个节点以上)，并发查询量大，查询的合并量大，可以增加独立的协调节点。角色分开的好处是分工分开，不互影响。如不会因协调角色负载过高而影响数据节点的能力。  如何避免脑裂问题发生？   索引应该设置多少个分片？ 分片应该设置多少个副本？  </description>
+    </item>
+    
+    <item>
+      <title>1.MySQL之热备份工具(xtrabackup)</title>
+      <link>https://example.com/p/1.mysql%E4%B9%8B%E7%83%AD%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7xtrabackup/</link>
+      <pubDate>Fri, 22 Nov 2019 19:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/1.mysql%E4%B9%8B%E7%83%AD%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7xtrabackup/</guid>
+      <description>MySQL之热备份工具(xtrabackup) 1.原理 2.安装  进入xtrabackup官网选择Percona XtraBackup   3.实战 </description>
+    </item>
+    
+    <item>
+      <title>1.MySQL编译安装过程</title>
+      <link>https://example.com/p/1.mysql%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/</link>
+      <pubDate>Fri, 22 Nov 2019 19:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/1.mysql%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/</guid>
+      <description>编译安装过程 1.预编译 cmake . -DCMAKE_INSTALL_PREFIX=/data/ops/mysql/ \ -DMYSQL_DATADIR=/data/ops/mysql/data \ -DWITH_BOOST=../boost_1_59_0 \ -DSYSCONFDIR=/etc \ -DWITH_INNOBASE_STORAGE_ENGINE=1 \ -DWITH_PARTITION_STORAGE_ENGINE=1 \ -DWITH_FEDERATED_STORAGE_ENGINE=1 \ -DWITH_BLACKHOLE_STORAGE_ENGINE=1 \ -DWITH_MYISAM_STORAGE_ENGINE=1 \ -DENABLED_LOCAL_INFILE=1 \ -DENABLE_DTRACE=0 \ -DDEFAULT_CHARSET=utf8mb4 \ -DDEFAULT_COLLATION=utf8mb4_general_ci \ -DWITH_EMBEDDED_SERVER=1 2.编译安装 make -j `grep processor /proc/cpuinfo | wc -l` #编译很消耗系统资源，小内存可能编译通不过make install make install 3.启动配置 ls -lrt /usr/local/mysql # 创建启动脚本，并增加可执行权限 cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld chmod +x /etc/init.d/mysqld # 开机自启动 systemctl enable mysqld 4.修改Mysql配置文件 5.添加环境变量 6.初始化数据库 7.启动数据库 </description>
+    </item>
+    
+    <item>
+      <title> [ Zookeeper ] 2. Zookeeper基础</title>
+      <link>https://example.com/p/zookeeper-2.-zookeeper%E5%9F%BA%E7%A1%80/</link>
+      <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/zookeeper-2.-zookeeper%E5%9F%BA%E7%A1%80/</guid>
+      <description>Zookeeper基础 1. ZAB协议  ZAB协议是为分布式协调服务Zookeeper专有的一种协议，此协议是为了应对崩溃恢复的原子广播 崩溃恢复  整个zk集群刚启动或者Leader节点宕机、重启或者不可以正常提供服务时超出一半的情况下，所有节点将会进入崩溃恢复模式 首先通过选举产生Leader 然后集群中的Follwer节点与新产生的Leader节点进行数据同步 一旦集群中一半数量的节点与Leader节点完成了数据同步，集群就会退出崩溃恢复模式，进入到消息广播模式   消息广播  Leader节点开始接受客户端的事务请求，生成事务的提案进行事务请求处理。    </description>
+    </item>
+    
+    <item>
+      <title>1.zookeeper分布式部署</title>
+      <link>https://example.com/p/1.zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/1.zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2/</guid>
+      <description>zookeeper分布式部署 一.配置服务器IP地址映射 [root@localhost zk]~#: vim /etc/hosts
+192.168.1.111 zoo1 192.168.1.112 zoo2 192.168.1.113 zoo3 192.168.1.114 zoo4 192.168.1.115 zoo5 二.修改配置ZK文件 1.下载Zookeeper
+# 进入ZK路径 wget https://mirrors.tuna.tsinghua.edu.cn/apache/zookeeper/zookeeper-3.5.6/apache-zookeeper-3.5.6-bin.tar.gz 2.修改配置文件 进入conf目录，在配置文件前，先cp zoo_sample.cfg zoo.cfg,然后vim zoo.cfg。配置如下：
+tickTime=2000 initLimit=10 syncLimit=5 dataDir=/data/ops/zk/zookeeper-3.5.6-master/conf clientPort=2181 server.1=zoo1:2888:3888 server.2=zoo2:2888:3888 server.3=zoo3:2888:3888 3.启动ZK ①.在每个节点的服务器依次启动服务： [root@localhost zk]~#: ./bin/zkServer.sh start 在启动过程中日志会出现异常，由于其他节点还未启动，所以属于正常情况（正常情况下，仅有最后一个节点启动不会出现异常）。待所有节点全部启动，集群会逐渐稳定下来。 ②.查询每一个节点角色 [root@localhost zk]~#: ./bin/zkServer.sh status
+# LeaderNode ZooKeeper JMX enabled by default Using config: /data/ops/zk/zookeeper-3.5.6-follower/bin/../conf/zoo.cfg Client port found: 2181. Client address: localhost. Mode: leader # FollowerNode ZooKeeper JMX enabled by default Using config: /data/ops/zk/zookeeper-3.</description>
+    </item>
+    
+    <item>
+      <title>[Nginx] 1.Nginx入门</title>
+      <link>https://example.com/p/nginx-1.nginx%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/nginx-1.nginx%E5%85%A5%E9%97%A8/</guid>
+      <description>1.Nginx入门 一、Nginx为什么受青睐 ​	在介绍Nginx具体的安装、配置以及原理之前先聊聊概念常识问题。那就是目前为什么Nginx深受青睐？那我们先从Nginx是什么开始聊起。
+1.Nginx是什么   简单介绍
+ ***Nginx***来自于俄罗斯，是在**RamblerMedia**工作的**Igor Sysoev**使用***C***语言编写而成的跨平台轻量级高性能的*Web*服务器。***Nginx***可以运行在**Linux**、**FreeBSD**、**Solaris**(*Sun*公司的类*Unix OS*)、**MacOS**、以及**Windows**等操作系统。操作系统的不同，也给***Nginx***带来了一些好处，***Nginx***会使用当前操作系统中特有的一些高效**API**来提高自身的性能。    Nginx和它的对手们
+Nginx的对手们有Apache、Lighttpd、Tomcat、Jetty、IIS，它们同为Web服务器：具备Web服务器的基本功能；基于Rest架构风格，以**统一资源描述符（URI）或统一资源定位符（URL）作为沟通依据，通过HTTP为浏览器等Client程序提供各种网络服务。
+但是，这些Web服务器呢，都多多少少因为各自的定位与发展方向都不尽相同，使得每一款Web服务器都各有特色：
+​	1.Tomcat、Jetty：都是面向Java语言设计的。但是它们在性能方面与Nginx没有什么可比性，因为这两款服务器都是重量级选手。可能有伙伴会很疑惑，我已经用Tomcat跑起服务，同样配置后可以直接访问为什么还要在加层外套Nginx，对于这个问题，在后边对这一点进行详细的分析。【】
+​	2.IIS：这位选手呢，来自于微软家族。然后特点大家可能就很清楚了，它只能在Windows OS运行（不过网上也有工具可以把它运行在LinuxOS中，但是并不是很完美哦）。可能拉低它颜值的就是稳定性与性能了，Windows OS作为服务器的话，稳定性和部分性能都不能和类Unix OS进行媲美，所以呢，在高性能Web服务器的场合中，IIS可能就要被“淘汰”了。
+​	3.Apache：这是一位压轴级选手，是发展周期最长的，毫无疑问是世界第一大Web服务器，在2012年遥遥领先其他选手。它毕竟有很多优秀的地方：稳定、开源、跨平台等。但是美中不足的是，它被设计成为了重量级、不支持高并发的Web服务器。如果有数以万计的HTTP请求同时访问，服务器就会面临大量内存消耗的问题，操作系统也会跟着收到牵连，毕竟Apache的进程做进程间切换时会给服务器的CPU带来重大压力，同时会伴随着响应效率降低，这致命的一击，导致这位来自“贵族世家”的选手在高性能Web服务器的舞台上没有了地位。
+​	4.Lighttpd：与Nginx同样是轻量级、高性能的Web服务器。但是它并没有得到国内开发者的钟爱，而是被欧美的开发者们所追捧。
+  恩宠&amp;ndash;Nginx
+Nginx的代码也是开源的而且是最自由的2-clause BSD-like license许可证。Nginx使用的架构是基于事件驱动的，能够并发处理百万级别的TCP连接。由于Nginx的高度模块化和具有最自由的许可证，让Nginx的第三方模块扩展功能更加充实。优秀的设计还带来了极佳的稳定性体验。所以，Nginx大量应用于大流量的网站来高效处理大规模高并发连接。种种迹象表明，Nginx在性能方面很出色。
+  2.Nginx的特点   更快
+快主要体现在两方面：①在正常的情况下，单次请求会得到更快的响应；②在数以万计的并发请求中，Nginx可以比其他Web服务器更快的响应请求。
+  高扩展性
+Nginx的高度模块化决定了其具有高扩展性。它完全是由多个不同功能、不同层次、不同类型以及耦合度极低的模块组合而成。它的模块都是嵌入到二进制文件中执行，使得第三方开发的模块也一样完美支持性能。所以高并发的网站完全可以根据自身项目业务特性定制属于自己的模块。
+  高可靠性
+这个特点应该是选择Web服务器最基本的条件。Nginx的稳定性，大家有目共睹。国内多家高流量并发的网站在核心的服务器上大规模使用Nginx。官方提供的常用模块是非常稳定的，每一个Worker进程都相对独立，把耦合性降至最低。master进程在其中一个Worker进程出错时可以快速“拉起”新的Worker子进程提供相应的服务。
+  低内存消耗
+据数据测试，一般情况下，1W个不活跃的HTTP Keep-Alive连接在Nginx中消耗只有2.5MB的内存。（这也是Nginx能够支持高并发连接的基础）
+  单机支持10W+的并发连接
+由于现在是海量数据时代，高并发无疑成为大家青睐的对象。理论上，Nginx支持的并发连接数量取决于内存，10W+的并发连接并没有到极限。但是，能否及时处理更多的并发连接应该取决于项目业务的需求。
+  热部署
+master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显热部署的能力。通俗点来说，就是完全可以在7*24h不停止服务正常工作的情况下，可以升级Nginx的可执行文件、更新配置选项、更新日志文件等功能操作。
+  最自由的BSD许可协议
+俗话说**“众人拾柴火焰高”**。也正是BSD许可协议带来的极大优势，为**Nginx**提供更强劲的发展动力。
+  综上所述，选择Nginx的核心理由还是由于它能在支持高并发请求的同时保持高效的服务。  二、Nginx的安装 1.</description>
+    </item>
+    
+    <item>
+      <title>1.KVM入门</title>
+      <link>https://example.com/p/1.kvm%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/1.kvm%E5%85%A5%E9%97%A8/</guid>
+      <description>KVM入门  1.基础操作 ①.创建虚拟机 virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart ②.虚拟机相关操作 # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 停止指定虚拟机 virsh shutdown &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 销毁指定虚拟机(强制断电) virsh destory &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 登入指定虚拟机 virsh console &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*) ③.</description>
+    </item>
+    
+    <item>
+      <title>1.TCP/IP入门</title>
+      <link>https://example.com/p/1.tcp/ip%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/1.tcp/ip%E5%85%A5%E9%97%A8/</guid>
+      <description>TCP/IP入门 1.1 协议分层 ✌🏼😂😅😅</description>
+    </item>
+    
+    <item>
+      <title>2.KVM-双网卡网关配置</title>
+      <link>https://example.com/p/2.kvm-%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/</link>
+      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/2.kvm-%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/</guid>
+      <description>双网卡网关配置 1.在系统路由表文件/etc/iproute2/rt_tables增加配置
+252 e1 251 e0 2.执行以下命令，并在/etc/rc.d/network追加此内容
+# 此内容防止服务器重启路由失效 ip route flush table e0 ip route add default via 10.3.3.1 dev eth0 src 10.3.3.25 table e0 ip route add 127.0.0.0/8 dev lo table e0 ip rule add from 10.3.3.25 table e0 ip route flush table e1 ip route add default via 10.2.2.1 dev eth1 src 10.2.2.10 table e1 ip route add 127.0.0.0/8 dev lo table e1 ip rule add from 10.</description>
+    </item>
+    
+  </channel>
+</rss>

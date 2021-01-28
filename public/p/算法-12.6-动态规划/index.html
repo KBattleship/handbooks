@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='动态规划  动态规划(Dynamic Programming),每次决策依赖于当前决策状态，随即又伴随着状态偏移。决策序列就是在变化的状态中生成的(适用于多阶段优化问题)。
+ 1 算法原理 1.1 基本思想   基本思想是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的最优解。
+  通过保存下子问题的解到表中，从而避免重叠子问题的重复计算，优化计算过程时间。
+  动态规划类似但不同于分治算法。
+ 一句话概述：动态规划&amp;ndash;&amp;gt;各子问题重叠。分治算法&amp;ndash;&amp;gt;各子问题独立。 算法导论： 动态规划要求其子问题既要独立又要重叠。如果同一个问题的两个子问题不共享资源，则它们就是独立的。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则是重叠的。
+   动态规划算法具有很多种，但是计算子问题值的填表形式是同一种。
+  1.2 算法策略 2 算法实现 2.1 适用场景  适用于求解具有某种最优性质的问题。
+ 2.2 动图演示 2.3 代码实现 '><title>[ 算法 ] 12.6 动态规划</title>
+
+<link rel='canonical' href='https://example.com/p/%E7%AE%97%E6%B3%95-12.6-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ 算法 ] 12.6 动态规划'>
+<meta property='og:description' content='动态规划  动态规划(Dynamic Programming),每次决策依赖于当前决策状态，随即又伴随着状态偏移。决策序列就是在变化的状态中生成的(适用于多阶段优化问题)。
+ 1 算法原理 1.1 基本思想   基本思想是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的最优解。
+  通过保存下子问题的解到表中，从而避免重叠子问题的重复计算，优化计算过程时间。
+  动态规划类似但不同于分治算法。
+ 一句话概述：动态规划&amp;ndash;&amp;gt;各子问题重叠。分治算法&amp;ndash;&amp;gt;各子问题独立。 算法导论： 动态规划要求其子问题既要独立又要重叠。如果同一个问题的两个子问题不共享资源，则它们就是独立的。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则是重叠的。
+   动态规划算法具有很多种，但是计算子问题值的填表形式是同一种。
+  1.2 算法策略 2 算法实现 2.1 适用场景  适用于求解具有某种最优性质的问题。
+ 2.2 动图演示 2.3 代码实现 '>
+<meta property='og:url' content='https://example.com/p/%E7%AE%97%E6%B3%95-12.6-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java' /><meta property='article:tag' content='guava' /><meta property='article:tag' content='java tools' /><meta property='article:published_time' content='2020-06-30T21:10:47&#43;08:00'/><meta property='article:modified_time' content='2020-06-30T21:10:47&#43;08:00'/>
+<meta name="twitter:title" content="[ 算法 ] 12.6 动态规划">
+<meta name="twitter:description" content="动态规划  动态规划(Dynamic Programming),每次决策依赖于当前决策状态，随即又伴随着状态偏移。决策序列就是在变化的状态中生成的(适用于多阶段优化问题)。
+ 1 算法原理 1.1 基本思想   基本思想是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的最优解。
+  通过保存下子问题的解到表中，从而避免重叠子问题的重复计算，优化计算过程时间。
+  动态规划类似但不同于分治算法。
+ 一句话概述：动态规划&amp;ndash;&amp;gt;各子问题重叠。分治算法&amp;ndash;&amp;gt;各子问题独立。 算法导论： 动态规划要求其子问题既要独立又要重叠。如果同一个问题的两个子问题不共享资源，则它们就是独立的。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则是重叠的。
+   动态规划算法具有很多种，但是计算子问题值的填表形式是同一种。
+  1.2 算法策略 2 算法实现 2.1 适用场景  适用于求解具有某种最优性质的问题。
+ 2.2 动图演示 2.3 代码实现 ">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/%E7%AE%97%E6%B3%95-12.6-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">[ 算法 ] 12.6 动态规划</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jun 30, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="动态规划">动态规划</h1>
+<blockquote>
+<p><strong>动态规划(Dynamic Programming)</strong>,每次决策依赖于当前决策状态，随即又伴随着状态偏移。决策序列就是在变化的状态中生成的(适用于多阶段优化问题)。</p>
+</blockquote>
+<h2 id="1-算法原理">1 算法原理</h2>
+<h3 id="11-基本思想">1.1 基本思想</h3>
+<ul>
+<li>
+<p>基本思想是将待求解问题分解成若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的最优解。</p>
+</li>
+<li>
+<p>通过保存下子问题的解到表中，从而避免重叠子问题的重复计算，优化计算过程时间。</p>
+</li>
+<li>
+<p>动态规划类似但不同于<a class="link" href="12_7_divide_and_conquer.md" >分治算法</a>。</p>
+<blockquote>
+<p>一句话概述：动态规划&ndash;&gt;各子问题重叠。分治算法&ndash;&gt;各子问题独立。
+算法导论： 动态规划要求其子问题既要独立又要重叠。如果同一个问题的两个子问题不共享资源，则它们就是独立的。对两个子问题来说，如果它们确实是相同的子问题，只是作为不同问题的子问题出现的话，则是重叠的。</p>
+</blockquote>
+</li>
+<li>
+<p>动态规划算法具有很多种，但是计算子问题值的填表形式是同一种。</p>
+</li>
+</ul>
+<h3 id="12-算法策略">1.2 算法策略</h3>
+<h2 id="2-算法实现">2 算法实现</h2>
+<h3 id="21-适用场景">2.1 适用场景</h3>
+<blockquote>
+<p>适用于求解具有某种最优性质的问题。</p>
+</blockquote>
+<h3 id="22-动图演示">2.2 动图演示</h3>
+<h3 id="23-代码实现">2.3 代码实现</h3>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">java</a>
+        
+            <a href="/tags/guava/">guava</a>
+        
+            <a href="/tags/java-tools/">java tools</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/tools-1.%E5%85%B3%E4%BA%8Eguava%E5%A2%9E%E5%BC%BA%E5%8C%85%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Tools ] 1.关于Guava增强包异步回调</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E7%AE%97%E6%B3%95-12.5-%E6%8E%92%E5%BA%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 算法 ] 12.5 排序</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Baqs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之AQS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Bsynchronized/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之Synchronized</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/spring-1.-spring/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Spring ] 1. Spring</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

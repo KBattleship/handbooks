@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SPI on Quinn</title>
+    <link>https://example.com/tags/spi/</link>
+    <description>Recent content in SPI on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 25 Dec 2020 15:36:27 +0800</lastBuildDate><atom:link href="https://example.com/tags/spi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ Dubbo ] 2. Dubbo中的SPI</title>
+      <link>https://example.com/p/dubbo-2.-dubbo%E4%B8%AD%E7%9A%84spi/</link>
+      <pubDate>Fri, 25 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/dubbo-2.-dubbo%E4%B8%AD%E7%9A%84spi/</guid>
+      <description>Dubbo中的SPI 1. Dubbo SPI与Java SPI  SPI(Service Provider Interface)，主要用于框架，框架定义接口。   不同使用者将存在不同需求，也必然出现不同实现方式。
+  而SPI就是通过定义一个特定的位置，Java SPI约定在Classpath下的META-INF/services/路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可以在运行时动态为接口替换实现类。
+  Dubbo SPI
+ 并非是Java原生的SPI，而是重新实现的SPI。   Java SPI通过ServiceLoader进行加载； Dubbo SPI通过ExtensionLoader进行拓展加载。  支持的注解：  @SPI(标记为拓展接口) @Adaptive(自适应拓展实现类标志) @Activate(自动激活条件标记)   配置文件放在classpath下的META-INF/dubbo/以及 META-INF/dubbo/internal下 Dubbo SPI增加了对拓展点IOC和AOP的支持，一个拓展点可以直接通过Setter注入其他拓展点。 Java SPI会一次性实例化拓展点所有实现，如果有拓展实现初始化过程很耗时，并且用不上，将会造成资源浪费。    Dubbo中SPI的具体实现
+ 协议扩展(Protocol)：RPC协议扩展，用于封装远程调用细节 调用拦截扩展(Filter)：服务提供方和服务消费方调用过程拦截，Dubbo本身大多数功能都是基于此扩展点实现，每次远程方法执行，该拦截都会被执行 引用监听扩展(InvokerListener)：当有服务被引用时触发此事件 暴露监听扩展(ExporterListener)：当有服务被暴露时触发此事件 集群扩展(Cluster)：当存在多个服务提供方时，将多个服务提供方组成一个集群，并伪装成一个服务提供方 路由扩展(RouterFactory)：从多个服务提供方中选择一个进行调用 负载均衡(LoadBalance)：从多个服务提供方中选择一个进行调用 合并扩展(Merger)：合并返回结果，用于分组聚合 注册中心扩展(Registry)：负责服务的注册与发现 监控扩展(Monitor) ：负责服务调用次数以及调用时间的监控 扩展点加载扩展(ExtensionFactory)：扩展本身的加载容器，可从不同容器加载扩展点 动态代理扩展(ProxyFactory)：将Invoker接口转换成业务接口 编译器扩展(Compiler)： Java代码编译器，用于动态生成字节码，加速调用 配置中心扩展(DynamicConfiguration)：作为Key-Value存储 消息派发扩展(Dispatcher)：通道信息派发器，用于指定线程池模型 线程池扩展(ThreadPool)：服务提供方线程池的实现策略 序列化扩展(Serialization)：将对象转化成字节流，用于网络传输，以及将字节流转为对象，用于接收到字节流数据时还原成对象 网络传输扩展(Transporter)：远程通信的服务器以及客户端传输实现 信息交换扩展(Exchange)：`` 组网扩展(Networker)：对等网络节点组网器 Telnet命令扩展(TelnetHandler)：所有服务器均支持telnet访问，用于人工干预 状态检查扩展(StatusChecker)：检查服务依赖各种资源的状态，此状态检查可同时用于telnet的status命令和hosting的status页面 容器扩展(Container)：服务容器扩展，用于自定义加载内容 缓存扩展(CacheFactory)：用于请求参数作为Key，缓存返回结果 验证扩展(Validation)：参数验证扩展点 日志适配扩展(LoggerAdapter)：日志输出适配扩展点      2.</description>
+    </item>
+    
+    <item>
+      <title>[ Dubbo ] 3-1. Dubbo SPI中的Protocol扩展点</title>
+      <link>https://example.com/p/dubbo-3-1.-dubbo-spi%E4%B8%AD%E7%9A%84protocol%E6%89%A9%E5%B1%95%E7%82%B9/</link>
+      <pubDate>Fri, 25 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/dubbo-3-1.-dubbo-spi%E4%B8%AD%E7%9A%84protocol%E6%89%A9%E5%B1%95%E7%82%B9/</guid>
+      <description>Dubbo SPI中的Protocol扩展点 </description>
+    </item>
+    
+    <item>
+      <title>[ Dubbo ] 3-2. Dubbo SPI中的Filter扩展点</title>
+      <link>https://example.com/p/dubbo-3-2.-dubbo-spi%E4%B8%AD%E7%9A%84filter%E6%89%A9%E5%B1%95%E7%82%B9/</link>
+      <pubDate>Fri, 25 Dec 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/dubbo-3-2.-dubbo-spi%E4%B8%AD%E7%9A%84filter%E6%89%A9%E5%B1%95%E7%82%B9/</guid>
+      <description>Dubbo SPI中的Filter扩展点 </description>
+    </item>
+    
+  </channel>
+</rss>

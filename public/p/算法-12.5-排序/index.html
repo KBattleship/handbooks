@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='排序 1.排序算法说明 1.1排序算法指标  稳定性：如果a==b且a在b前，排序后a仍保持在b前，则稳定，否则不稳定 内排序：算法程序的所有排序完全是在内存中执行的 外排序：由于数据量问题，需要把数据放置磁盘中，排序需要通过磁盘与内存间传输才可以进行 时间复杂度：运行一个算法程序所需要消耗的时长 空间复杂度：运行一个算法程序所需要消耗的内存大小  1.2各排序算法总结表    排序算法 最优情况 最差情况 时间复杂度 空间复杂度 排序方式 稳定性     冒泡排序 O(n²) O(n) O(n²) O(1) 内排序 稳定   选择排序 O(n²) O(n²) O(n²) O(1) 内排序 不稳定   插入排序 O(n) O(n²) O(n²) O(1) 内排序 稳定   希尔排序 O(n log² n) O(n log² n) O(n log n) O(1) 内排序 不稳定   归并排序 O(n log n) O(n log n) O(n log n) O(n) 外排序 稳定   快速排序 O(n log n) O(n²) O(n log n) O(log n) 内排序 不稳定   堆排序 O(n log n) O(n log n) O(n log n) O(1) 内排序 不稳定   计数排序 O(n&#43;k) O(n&#43;k) O(n&#43;k) O(k) 外排序 不稳定   桶排序 O(n&#43;k) O(n²) O(n&#43;k) O(n&#43;k) 外排序 稳定   基数排序 O(n*k) O(n*k) O(n*k) O(n&#43;k) 外排序 稳定     n:数据量 k:桶的数量'><title>[ 算法 ] 12.5 排序</title>
+
+<link rel='canonical' href='https://example.com/p/%E7%AE%97%E6%B3%95-12.5-%E6%8E%92%E5%BA%8F/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ 算法 ] 12.5 排序'>
+<meta property='og:description' content='排序 1.排序算法说明 1.1排序算法指标  稳定性：如果a==b且a在b前，排序后a仍保持在b前，则稳定，否则不稳定 内排序：算法程序的所有排序完全是在内存中执行的 外排序：由于数据量问题，需要把数据放置磁盘中，排序需要通过磁盘与内存间传输才可以进行 时间复杂度：运行一个算法程序所需要消耗的时长 空间复杂度：运行一个算法程序所需要消耗的内存大小  1.2各排序算法总结表    排序算法 最优情况 最差情况 时间复杂度 空间复杂度 排序方式 稳定性     冒泡排序 O(n²) O(n) O(n²) O(1) 内排序 稳定   选择排序 O(n²) O(n²) O(n²) O(1) 内排序 不稳定   插入排序 O(n) O(n²) O(n²) O(1) 内排序 稳定   希尔排序 O(n log² n) O(n log² n) O(n log n) O(1) 内排序 不稳定   归并排序 O(n log n) O(n log n) O(n log n) O(n) 外排序 稳定   快速排序 O(n log n) O(n²) O(n log n) O(log n) 内排序 不稳定   堆排序 O(n log n) O(n log n) O(n log n) O(1) 内排序 不稳定   计数排序 O(n&#43;k) O(n&#43;k) O(n&#43;k) O(k) 外排序 不稳定   桶排序 O(n&#43;k) O(n²) O(n&#43;k) O(n&#43;k) 外排序 稳定   基数排序 O(n*k) O(n*k) O(n*k) O(n&#43;k) 外排序 稳定     n:数据量 k:桶的数量'>
+<meta property='og:url' content='https://example.com/p/%E7%AE%97%E6%B3%95-12.5-%E6%8E%92%E5%BA%8F/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java' /><meta property='article:tag' content='guava' /><meta property='article:tag' content='java tools' /><meta property='article:published_time' content='2020-06-30T21:10:47&#43;08:00'/><meta property='article:modified_time' content='2020-06-30T21:10:47&#43;08:00'/>
+<meta name="twitter:title" content="[ 算法 ] 12.5 排序">
+<meta name="twitter:description" content="排序 1.排序算法说明 1.1排序算法指标  稳定性：如果a==b且a在b前，排序后a仍保持在b前，则稳定，否则不稳定 内排序：算法程序的所有排序完全是在内存中执行的 外排序：由于数据量问题，需要把数据放置磁盘中，排序需要通过磁盘与内存间传输才可以进行 时间复杂度：运行一个算法程序所需要消耗的时长 空间复杂度：运行一个算法程序所需要消耗的内存大小  1.2各排序算法总结表    排序算法 最优情况 最差情况 时间复杂度 空间复杂度 排序方式 稳定性     冒泡排序 O(n²) O(n) O(n²) O(1) 内排序 稳定   选择排序 O(n²) O(n²) O(n²) O(1) 内排序 不稳定   插入排序 O(n) O(n²) O(n²) O(1) 内排序 稳定   希尔排序 O(n log² n) O(n log² n) O(n log n) O(1) 内排序 不稳定   归并排序 O(n log n) O(n log n) O(n log n) O(n) 外排序 稳定   快速排序 O(n log n) O(n²) O(n log n) O(log n) 内排序 不稳定   堆排序 O(n log n) O(n log n) O(n log n) O(1) 内排序 不稳定   计数排序 O(n&#43;k) O(n&#43;k) O(n&#43;k) O(k) 外排序 不稳定   桶排序 O(n&#43;k) O(n²) O(n&#43;k) O(n&#43;k) 外排序 稳定   基数排序 O(n*k) O(n*k) O(n*k) O(n&#43;k) 外排序 稳定     n:数据量 k:桶的数量">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/%E7%AE%97%E6%B3%95-12.5-%E6%8E%92%E5%BA%8F/">[ 算法 ] 12.5 排序</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jun 30, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="排序">排序</h1>
+<h2 id="1排序算法说明">1.排序算法说明</h2>
+<h3 id="11排序算法指标">1.1排序算法指标</h3>
+<ul>
+<li><strong>稳定性</strong>：如果a==b且a在b前，排序后a仍保持在b前，则<strong>稳定</strong>，否则<strong>不稳定</strong></li>
+<li><strong>内排序</strong>：算法程序的所有排序完全是在<strong>内存</strong>中执行的</li>
+<li><strong>外排序</strong>：由于数据量问题，需要把数据放置磁盘中，排序需要通过磁盘与内存间传输才可以进行</li>
+<li><strong>时间复杂度</strong>：运行一个算法程序<em><strong>所需要消耗的时长</strong></em></li>
+<li><strong>空间复杂度</strong>：运行一个算法程序<em><strong>所需要消耗的内存大小</strong></em></li>
+</ul>
+<h3 id="12各排序算法总结表">1.2各排序算法总结表</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">排序算法</th>
+<th style="text-align:center">最优情况</th>
+<th style="text-align:center">最差情况</th>
+<th style="text-align:center">时间复杂度</th>
+<th style="text-align:center">空间复杂度</th>
+<th style="text-align:center">排序方式</th>
+<th style="text-align:center">稳定性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">冒泡排序</td>
+<td style="text-align:center">O(n²)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n²)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">选择排序</td>
+<td style="text-align:center">O(n²)</td>
+<td style="text-align:center">O(n²)</td>
+<td style="text-align:center">O(n²)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内排序</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">插入排序</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">O(n²)</td>
+<td style="text-align:center">O(n²)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">希尔排序</td>
+<td style="text-align:center">O(n log² n)</td>
+<td style="text-align:center">O(n log² n)</td>
+<td style="text-align:center">O(n log n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内排序</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">归并排序</td>
+<td style="text-align:center">O(n log n)</td>
+<td style="text-align:center">O(n log n)</td>
+<td style="text-align:center">O(n log n)</td>
+<td style="text-align:center">O(n)</td>
+<td style="text-align:center">外排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">快速排序</td>
+<td style="text-align:center">O(n log n)</td>
+<td style="text-align:center">O(n²)</td>
+<td style="text-align:center">O(n log n)</td>
+<td style="text-align:center">O(log n)</td>
+<td style="text-align:center">内排序</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">堆排序</td>
+<td style="text-align:center">O(n log n)</td>
+<td style="text-align:center">O(n log n)</td>
+<td style="text-align:center">O(n log n)</td>
+<td style="text-align:center">O(1)</td>
+<td style="text-align:center">内排序</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">计数排序</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(k)</td>
+<td style="text-align:center">外排序</td>
+<td style="text-align:center">不稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">桶排序</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(n²)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">外排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+<tr>
+<td style="text-align:center">基数排序</td>
+<td style="text-align:center">O(n*k)</td>
+<td style="text-align:center">O(n*k)</td>
+<td style="text-align:center">O(n*k)</td>
+<td style="text-align:center">O(n+k)</td>
+<td style="text-align:center">外排序</td>
+<td style="text-align:center">稳定</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>n:数据量
+k:桶的数量</p>
+</blockquote>
+<h2 id="2算法具体实现">2.算法具体实现</h2>
+<ul>
+<li>
+<p><strong>比较排序</strong> (适用于一切需要排序的情况)</p>
+<blockquote>
+<p><code>在排序的最终结果里，元素之间的次序依赖于它们之间的比较。每个数都必须和其他数进行比较，才能确定自己的位置。</code></p>
+</blockquote>
+<ul>
+<li>冒泡排序</li>
+</ul>
+<ul>
+<li>快速排序</li>
+<li>归并排序</li>
+<li>堆排序</li>
+</ul>
+</li>
+<li>
+<p><strong>非比较排序</strong> (对数据规模和数据分布有一定的要求)</p>
+<blockquote>
+<p><code>通过确定每个元素之前，应该有多少个元素来排序。针对数组arr，计算arr[i]之前有多少个元素，则唯一确定了arr[i]在排序后数组中的位置。</code></p>
+</blockquote>
+<ul>
+<li>计数排序</li>
+<li>基数排序</li>
+<li>桶排序</li>
+</ul>
+</li>
+</ul>
+<h3 id="21冒泡排序bubble-sort">2.1冒泡排序(Bubble Sort)</h3>
+<h4 id="211定义">2.1.1定义</h4>
+<blockquote>
+<p>比较相邻两个数的大小，按照要求进行位置交换。</p>
+</blockquote>
+<h4 id="212图示">2.1.2图示</h4>
+<p><img src="/image/docs_img/coding/java/media/12_5_bubble_sort-1.gif" alt="冒泡排序"  /></p>
+<h4 id="213代码实现">2.1.3代码实现</h4>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="cm">/**
+</span><span class="cm"> * 冒泡排序
+</span><span class="cm"> *
+</span><span class="cm"> * @param array
+</span><span class="cm"> * @return
+</span><span class="cm"> */</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">bubbleSort</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">array</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">if</span> <span class="o">(</span><span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+        <span class="k">return</span> <span class="n">array</span><span class="o">;</span>
+    <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">1</span> <span class="o">-</span> <span class="n">i</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span>
+            <span class="k">if</span> <span class="o">(</span><span class="n">array</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">array</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
+                <span class="kt">int</span> <span class="n">tem</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">1</span><span class="o">];</span>
+                <span class="n">array</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">1</span><span class="o">]</span> <span class="o">=</span> <span class="n">array</span><span class="o">[</span><span class="n">j</span><span class="o">];</span>
+                <span class="n">array</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">tem</span><span class="o">;</span>
+            <span class="o">}</span>
+    <span class="k">return</span> <span class="n">array</span><span class="o">;</span>
+<span class="o">}</span>
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">java</a>
+        
+            <a href="/tags/guava/">guava</a>
+        
+            <a href="/tags/java-tools/">java tools</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/tools-1.%E5%85%B3%E4%BA%8Eguava%E5%A2%9E%E5%BC%BA%E5%8C%85%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Tools ] 1.关于Guava增强包异步回调</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E7%AE%97%E6%B3%95-12.6-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 算法 ] 12.6 动态规划</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Baqs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之AQS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Bsynchronized/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之Synchronized</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/spring-1.-spring/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Spring ] 1. Spring</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

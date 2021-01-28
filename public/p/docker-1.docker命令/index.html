@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Docker命令  docker [option] command
+   option
+ &amp;ndash;config string: 客户端配置文件的位置 &amp;ndash;context string[-c]: 用于连接到守护程序的上下文的名称 &amp;ndash;debug[-D]: 调试模式 &amp;ndash;host list[-H]: 要连接的守护程序套接字 &amp;ndash;log-level string[-l]: 日志等级[ debug | info | warn | error | fatal ]默认为info &amp;ndash;tls: 使用加密模式 &amp;ndash;tlscacert string: 签名证书文件路径 &amp;ndash;tlscert string: 密钥文件路径 &amp;ndash;tlskey string: key文件路径 &amp;ndash;tlsverify: 使用加密并验证远程连接 &amp;ndash;version[-v]: 版本信息    Management Commands(管理命令)
+ builder: 管理构建 config: 管理Docker配置 container: 管理容器 context: 管理镜像构建上下文 image: 管理镜像 network: 管理网络 node: 管理Swarm节点 plugin: 管理插件 secret: 管理Docker secrets service: 管理服务 stack: 管理Docker stacks swarm: 管理Swarm集群 system: 查看系统信息 trust: 管理对Docker映像的信任 volume: 管理卷    Commands(命令)'><title>[ Docker ] 1.Docker命令</title>
+
+<link rel='canonical' href='https://example.com/p/docker-1.docker%E5%91%BD%E4%BB%A4/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Docker ] 1.Docker命令'>
+<meta property='og:description' content='Docker命令  docker [option] command
+   option
+ &amp;ndash;config string: 客户端配置文件的位置 &amp;ndash;context string[-c]: 用于连接到守护程序的上下文的名称 &amp;ndash;debug[-D]: 调试模式 &amp;ndash;host list[-H]: 要连接的守护程序套接字 &amp;ndash;log-level string[-l]: 日志等级[ debug | info | warn | error | fatal ]默认为info &amp;ndash;tls: 使用加密模式 &amp;ndash;tlscacert string: 签名证书文件路径 &amp;ndash;tlscert string: 密钥文件路径 &amp;ndash;tlskey string: key文件路径 &amp;ndash;tlsverify: 使用加密并验证远程连接 &amp;ndash;version[-v]: 版本信息    Management Commands(管理命令)
+ builder: 管理构建 config: 管理Docker配置 container: 管理容器 context: 管理镜像构建上下文 image: 管理镜像 network: 管理网络 node: 管理Swarm节点 plugin: 管理插件 secret: 管理Docker secrets service: 管理服务 stack: 管理Docker stacks swarm: 管理Swarm集群 system: 查看系统信息 trust: 管理对Docker映像的信任 volume: 管理卷    Commands(命令)'>
+<meta property='og:url' content='https://example.com/p/docker-1.docker%E5%91%BD%E4%BB%A4/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='k8s' /><meta property='article:tag' content='容器' /><meta property='article:published_time' content='2020-08-16T15:36:27&#43;08:00'/><meta property='article:modified_time' content='2020-08-22T15:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ Docker ] 1.Docker命令">
+<meta name="twitter:description" content="Docker命令  docker [option] command
+   option
+ &amp;ndash;config string: 客户端配置文件的位置 &amp;ndash;context string[-c]: 用于连接到守护程序的上下文的名称 &amp;ndash;debug[-D]: 调试模式 &amp;ndash;host list[-H]: 要连接的守护程序套接字 &amp;ndash;log-level string[-l]: 日志等级[ debug | info | warn | error | fatal ]默认为info &amp;ndash;tls: 使用加密模式 &amp;ndash;tlscacert string: 签名证书文件路径 &amp;ndash;tlscert string: 密钥文件路径 &amp;ndash;tlskey string: key文件路径 &amp;ndash;tlsverify: 使用加密并验证远程连接 &amp;ndash;version[-v]: 版本信息    Management Commands(管理命令)
+ builder: 管理构建 config: 管理Docker配置 container: 管理容器 context: 管理镜像构建上下文 image: 管理镜像 network: 管理网络 node: 管理Swarm节点 plugin: 管理插件 secret: 管理Docker secrets service: 管理服务 stack: 管理Docker stacks swarm: 管理Swarm集群 system: 查看系统信息 trust: 管理对Docker映像的信任 volume: 管理卷    Commands(命令)">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/k8s/" style="background-color: #2a9d8f; color: #fff;">
+                Kubernetes
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/docker-1.docker%E5%91%BD%E4%BB%A4/">[ Docker ] 1.Docker命令</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Aug 16, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="docker命令">Docker命令</h1>
+<blockquote>
+<p>docker [option] command</p>
+</blockquote>
+<ul>
+<li>
+<p><strong>option</strong></p>
+<ul>
+<li><strong>&ndash;config string:</strong> 客户端配置文件的位置</li>
+<li><strong>&ndash;context string[-c]:</strong> 用于连接到守护程序的上下文的名称</li>
+<li><strong>&ndash;debug[-D]:</strong> 调试模式</li>
+<li><strong>&ndash;host list[-H]:</strong> 要连接的守护程序套接字</li>
+<li><strong>&ndash;log-level string[-l]:</strong> 日志等级[ debug | info | warn | error | fatal ]默认为<em>info</em></li>
+<li><strong>&ndash;tls:</strong> 使用加密模式</li>
+<li><strong>&ndash;tlscacert string:</strong> 签名证书文件路径</li>
+<li><strong>&ndash;tlscert string:</strong> 密钥文件路径</li>
+<li><strong>&ndash;tlskey string:</strong> key文件路径</li>
+<li><strong>&ndash;tlsverify:</strong> 使用加密并验证远程连接</li>
+<li><strong>&ndash;version[-v]:</strong> 版本信息</li>
+</ul>
+</li>
+<li>
+<p><strong>Management Commands</strong>(管理命令)</p>
+<ul>
+<li><strong>builder:</strong> 管理构建</li>
+<li><strong>config:</strong> 管理Docker配置</li>
+<li><strong>container:</strong> 管理容器</li>
+<li><strong>context:</strong> 管理镜像构建上下文</li>
+<li><strong>image:</strong> 管理镜像</li>
+<li><strong>network:</strong> 管理网络</li>
+<li><strong>node:</strong> 管理Swarm节点</li>
+<li><strong>plugin:</strong> 管理插件</li>
+<li><strong>secret:</strong> 管理Docker secrets</li>
+<li><strong>service:</strong> 管理服务</li>
+<li><strong>stack:</strong> 管理Docker stacks</li>
+<li><strong>swarm:</strong> 管理Swarm集群</li>
+<li><strong>system:</strong> 查看系统信息</li>
+<li><strong>trust:</strong> 管理对Docker映像的信任</li>
+<li><strong>volume:</strong> 管理卷</li>
+</ul>
+</li>
+<li>
+<p><strong>Commands</strong>(命令)</p>
+<ul>
+<li><strong>attach:</strong>  将本地标准输入，输出和错误流附加到正在运行的容器</li>
+<li><strong>build:</strong>  从Dockerfile构建镜像</li>
+<li><strong>commit:</strong>  根据容器的更改创建新镜像</li>
+<li><strong>cp:</strong>  在容器和本地文件系统之间复制文件/文件夹</li>
+<li><strong>create:</strong>  创建一个新的容器</li>
+<li><strong>deploy:</strong>  部署新堆栈或更新现有堆栈</li>
+<li><strong>diff:</strong>  检查容器文件系统上文件或目录的更改</li>
+<li><strong>events:</strong>  从服务器获取实时事件</li>
+<li><strong>exec:</strong>  在正在运行的容器中运行命令</li>
+<li><strong>export:</strong>  将容器的文件系统导出为tar存档</li>
+<li><strong>history:</strong>  显示镜像的历史记录</li>
+<li><strong>images:</strong>  显示镜像列表</li>
+<li><strong>import:</strong>  从tarball导入内容以创建文件系统映像</li>
+<li><strong>info:</strong>  显示系统范围的信息</li>
+<li><strong>inspect:</strong>  返回有关Docker对象的低级信息</li>
+<li><strong>kill:</strong>  杀死一个或多个正在运行的容器</li>
+<li><strong>load:</strong>  从tar存档或STDIN加载镜像</li>
+<li><strong>login:</strong>  登录Docker镜像仓库</li>
+<li><strong>logout:</strong>  退出Docker镜像仓库</li>
+<li><strong>logs:</strong>  提取容器的日志</li>
+<li><strong>pause:</strong>  暂停一个或多个容器中的所有进程</li>
+<li><strong>port:</strong>  列出端口映射或容器的特定映射</li>
+<li><strong>ps:</strong>  显示所有容器</li>
+<li><strong>pull:</strong>  从镜像仓库中提取镜像或存储库</li>
+<li><strong>push:</strong>  提交镜像或存储库到镜像仓库</li>
+<li><strong>rename:</strong>  为容器重新命名</li>
+<li><strong>restart:</strong>  重启一个或多个容器</li>
+<li><strong>rm:</strong>  移除一个或者多个容器</li>
+<li><strong>rmi:</strong>  移除一个或者多个镜像</li>
+<li><strong>run:</strong>  在新容器中执行命令</li>
+<li><strong>save:</strong>  保存一个或多个镜像到tar存档（默认情况下流式传输到STDOUT）</li>
+<li><strong>search:</strong>  从Docker Hub中搜索镜像</li>
+<li><strong>start:</strong>  运行一个或者多个停止状态的容器</li>
+<li><strong>stats:</strong>   显示实时的容器资源使用情况统计流</li>
+<li><strong>stop:</strong>  停止一个或者多个运行状态的容器</li>
+<li><strong>tag:</strong>  创建一个引用了SOURCE_IMAGE的标签TARGET_IMAGE</li>
+<li><strong>top:</strong>  显示某个容器的运行进程</li>
+<li><strong>unpause:</strong>  取消暂停一个或多个容器中的所有进程</li>
+<li><strong>update:</strong>  更新一个或多个容器的配置</li>
+<li><strong>version:</strong>  显示docker的版本信息</li>
+<li><strong>wait:</strong>  阻塞一个或多个容器直到停止，然后打印其退出代码</li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/docker/">docker</a>
+        
+            <a href="/tags/k8s/">k8s</a>
+        
+            <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
+        
+    </section>
+
+
+    <section class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span class="article-time--modified">
+            最后更新于 Aug 22, 2020 15:36 CST
+        </span>
+    </section></footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/docker-8.%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E4%B9%8Bufs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Docker ] 8.文件系统之UFS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/docker-7.%E5%85%B3%E4%BA%8Elinux%E7%9A%84cgroups/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Docker ] 7.关于Linux的Cgroups</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/docker-5.docker-%E6%9C%AC%E5%9C%B0%E6%9E%84%E5%BB%BAnone%E5%8C%85%E5%A4%84%E7%90%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Docker ] 5.Docker-本地构建none包处理</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/docker-6.%E5%85%B3%E4%BA%8E%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4linux-namespace/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Docker ] 6.关于命名空间(Linux Namespace)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/docker-2.docker%E5%AE%89%E8%A3%85/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Docker ] 2.Docker安装</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

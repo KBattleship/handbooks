@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Dubbo基础概念 1.Dubbo核心组件  Provider： 暴露服务的服务提供方 Consumer： 调用远程服务的消费方 Register： 服务注册与发现注册中心 Monitor： 监控中心和访问调用统计 Container：服务运行时容器   Dubbo分层主要为业务层、RPC层和Remote层，如果把每层进行详细划分的话，整体划分为：
+  业务层：  service: 包含各业务代码的接口与实现；   RPC层：  config: 配置层，主要围绕ServiceConfig(暴露的服务配置)和ReferenceConfig(引用的服务配置)两个类展开，初始化配置信息； proxy: 服务代理层，不论生产者还是消费者，Dubbo都会生成一个代理类，在调用远程接口时，就可以像本地接口一样，代理层自动做远程调用并返回结果； registry: 注册层，负责Dubbo框架的服务注册与发现； cluster: 集群容错层，主要负责远程调用失败时的集群容错策略(如快速失败、快速重试等)； monitor: 监控层，负责监控统计调用次数和调用时间等； protocol: 远程调用层，封装RPC调用具体过程，是Invoker暴露和引用的主要功能入口，负责管理Invoker的整个生命周期；   Remote层：  exchange: 信息交换层，封装请求相应模式，如同步请求转换为异步请求； transport: 网络传输层，把网络传输抽象为统一接口； serialize: 序列化层，将需要网络传输的数据极性序列化，转为二进制流。    2.Dubbo服务注册与发现流程  Container负责启动，加载，运行服务提供者 Provider启动时，向注册中心注册自己并提供服务 Consumer启动时，向注册中心订阅自已需调用服务 Register返回服务提供者地址列表给服务消费者，如运行期间，服务提供者发生变动，将通过长连接推送至服务消费者 Consumer通过负载均衡算法(软方式)，选取注册中心所返回的服务提供者列表中的一个节点进行调用，如果调用失败将尝试其他节点进行调用 Consumer、Provider将调用次数、时间记录于内存中，并定时每分钟发送至Monitor监控中心  3-1. Dubbo服务暴露过程  Dubbo 会在 Spring 实例化完 bean 之后， 在刷新容器最后一步发布 ContextRefreshEvent 事件的时候，通知实现了 ApplicationListener 的 ServiceBean 类进行回调 onApplicationEvent 事件方法。 Dubbo 会在这个方法中调用 ServiceBean 父类 ServiceConfig 的 export 方法，而该方法真正实现了服务的发布。  3-2.'><title>[ Dubbo ] 1.Dubbo基础概念</title>
+
+<link rel='canonical' href='https://example.com/p/dubbo-1.dubbo%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Dubbo ] 1.Dubbo基础概念'>
+<meta property='og:description' content='Dubbo基础概念 1.Dubbo核心组件  Provider： 暴露服务的服务提供方 Consumer： 调用远程服务的消费方 Register： 服务注册与发现注册中心 Monitor： 监控中心和访问调用统计 Container：服务运行时容器   Dubbo分层主要为业务层、RPC层和Remote层，如果把每层进行详细划分的话，整体划分为：
+  业务层：  service: 包含各业务代码的接口与实现；   RPC层：  config: 配置层，主要围绕ServiceConfig(暴露的服务配置)和ReferenceConfig(引用的服务配置)两个类展开，初始化配置信息； proxy: 服务代理层，不论生产者还是消费者，Dubbo都会生成一个代理类，在调用远程接口时，就可以像本地接口一样，代理层自动做远程调用并返回结果； registry: 注册层，负责Dubbo框架的服务注册与发现； cluster: 集群容错层，主要负责远程调用失败时的集群容错策略(如快速失败、快速重试等)； monitor: 监控层，负责监控统计调用次数和调用时间等； protocol: 远程调用层，封装RPC调用具体过程，是Invoker暴露和引用的主要功能入口，负责管理Invoker的整个生命周期；   Remote层：  exchange: 信息交换层，封装请求相应模式，如同步请求转换为异步请求； transport: 网络传输层，把网络传输抽象为统一接口； serialize: 序列化层，将需要网络传输的数据极性序列化，转为二进制流。    2.Dubbo服务注册与发现流程  Container负责启动，加载，运行服务提供者 Provider启动时，向注册中心注册自己并提供服务 Consumer启动时，向注册中心订阅自已需调用服务 Register返回服务提供者地址列表给服务消费者，如运行期间，服务提供者发生变动，将通过长连接推送至服务消费者 Consumer通过负载均衡算法(软方式)，选取注册中心所返回的服务提供者列表中的一个节点进行调用，如果调用失败将尝试其他节点进行调用 Consumer、Provider将调用次数、时间记录于内存中，并定时每分钟发送至Monitor监控中心  3-1. Dubbo服务暴露过程  Dubbo 会在 Spring 实例化完 bean 之后， 在刷新容器最后一步发布 ContextRefreshEvent 事件的时候，通知实现了 ApplicationListener 的 ServiceBean 类进行回调 onApplicationEvent 事件方法。 Dubbo 会在这个方法中调用 ServiceBean 父类 ServiceConfig 的 export 方法，而该方法真正实现了服务的发布。  3-2.'>
+<meta property='og:url' content='https://example.com/p/dubbo-1.dubbo%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java' /><meta property='article:tag' content='dubbo' /><meta property='article:tag' content='分布式' /><meta property='article:published_time' content='2020-12-22T15:36:27&#43;08:00'/><meta property='article:modified_time' content='2020-12-22T15:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ Dubbo ] 1.Dubbo基础概念">
+<meta name="twitter:description" content="Dubbo基础概念 1.Dubbo核心组件  Provider： 暴露服务的服务提供方 Consumer： 调用远程服务的消费方 Register： 服务注册与发现注册中心 Monitor： 监控中心和访问调用统计 Container：服务运行时容器   Dubbo分层主要为业务层、RPC层和Remote层，如果把每层进行详细划分的话，整体划分为：
+  业务层：  service: 包含各业务代码的接口与实现；   RPC层：  config: 配置层，主要围绕ServiceConfig(暴露的服务配置)和ReferenceConfig(引用的服务配置)两个类展开，初始化配置信息； proxy: 服务代理层，不论生产者还是消费者，Dubbo都会生成一个代理类，在调用远程接口时，就可以像本地接口一样，代理层自动做远程调用并返回结果； registry: 注册层，负责Dubbo框架的服务注册与发现； cluster: 集群容错层，主要负责远程调用失败时的集群容错策略(如快速失败、快速重试等)； monitor: 监控层，负责监控统计调用次数和调用时间等； protocol: 远程调用层，封装RPC调用具体过程，是Invoker暴露和引用的主要功能入口，负责管理Invoker的整个生命周期；   Remote层：  exchange: 信息交换层，封装请求相应模式，如同步请求转换为异步请求； transport: 网络传输层，把网络传输抽象为统一接口； serialize: 序列化层，将需要网络传输的数据极性序列化，转为二进制流。    2.Dubbo服务注册与发现流程  Container负责启动，加载，运行服务提供者 Provider启动时，向注册中心注册自己并提供服务 Consumer启动时，向注册中心订阅自已需调用服务 Register返回服务提供者地址列表给服务消费者，如运行期间，服务提供者发生变动，将通过长连接推送至服务消费者 Consumer通过负载均衡算法(软方式)，选取注册中心所返回的服务提供者列表中的一个节点进行调用，如果调用失败将尝试其他节点进行调用 Consumer、Provider将调用次数、时间记录于内存中，并定时每分钟发送至Monitor监控中心  3-1. Dubbo服务暴露过程  Dubbo 会在 Spring 实例化完 bean 之后， 在刷新容器最后一步发布 ContextRefreshEvent 事件的时候，通知实现了 ApplicationListener 的 ServiceBean 类进行回调 onApplicationEvent 事件方法。 Dubbo 会在这个方法中调用 ServiceBean 父类 ServiceConfig 的 export 方法，而该方法真正实现了服务的发布。  3-2.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/dubbo-1.dubbo%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">[ Dubbo ] 1.Dubbo基础概念</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Dec 22, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="dubbo基础概念">Dubbo基础概念</h1>
+<h2 id="1dubbo核心组件">1.Dubbo核心组件</h2>
+<ul>
+<li>Provider： 暴露服务的服务提供方</li>
+<li>Consumer： 调用远程服务的消费方</li>
+<li>Register： 服务注册与发现注册中心</li>
+<li>Monitor：  监控中心和访问调用统计</li>
+<li>Container：服务运行时容器</li>
+</ul>
+<blockquote>
+<p>Dubbo分层主要为业务层、RPC层和Remote层，如果把每层进行详细划分的话，整体划分为：</p>
+</blockquote>
+<ul>
+<li>业务层：
+<ul>
+<li><strong>service:</strong> 包含各业务代码的接口与实现；</li>
+</ul>
+</li>
+<li>RPC层：
+<ul>
+<li><strong>config:</strong> 配置层，主要围绕ServiceConfig(暴露的服务配置)和ReferenceConfig(引用的服务配置)两个类展开，初始化配置信息；</li>
+<li><strong>proxy:</strong>    服务代理层，不论生产者还是消费者，Dubbo都会生成一个代理类，在调用远程接口时，就可以像本地接口一样，代理层自动做远程调用并返回结果；</li>
+<li><strong>registry:</strong>    注册层，负责Dubbo框架的服务注册与发现；</li>
+<li><strong>cluster:</strong>     集群容错层，主要负责远程调用失败时的集群容错策略(如快速失败、快速重试等)；</li>
+<li><strong>monitor:</strong>    监控层，负责监控统计调用次数和调用时间等；</li>
+<li><strong>protocol:</strong>    远程调用层，封装RPC调用具体过程，是Invoker暴露和引用的主要功能入口，负责管理Invoker的整个生命周期；</li>
+</ul>
+</li>
+<li>Remote层：
+<ul>
+<li><strong>exchange:</strong>  信息交换层，封装请求相应模式，如同步请求转换为异步请求；</li>
+<li><strong>transport:</strong>  网络传输层，把网络传输抽象为统一接口；</li>
+<li><strong>serialize:</strong>  序列化层，将需要网络传输的数据极性序列化，转为二进制流。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2dubbo服务注册与发现流程">2.Dubbo服务注册与发现流程</h2>
+<ol>
+<li>Container负责启动，加载，运行服务提供者</li>
+<li>Provider启动时，向注册中心注册自己并提供服务</li>
+<li>Consumer启动时，向注册中心订阅自已需调用服务</li>
+<li>Register返回服务提供者地址列表给服务消费者，如运行期间，服务提供者发生变动，将通过长连接推送至服务消费者</li>
+<li>Consumer通过负载均衡算法(软方式)，选取注册中心所返回的服务提供者列表中的一个节点进行调用，如果调用失败将尝试其他节点进行调用</li>
+<li>Consumer、Provider将调用次数、时间记录于内存中，并定时每分钟发送至Monitor监控中心</li>
+</ol>
+<h2 id="3-1-dubbo服务暴露过程">3-1. Dubbo服务暴露过程</h2>
+<ul>
+<li>Dubbo 会在 Spring 实例化完 bean 之后，</li>
+<li>在刷新容器最后一步发布 ContextRefreshEvent 事件的时候，通知实现了 ApplicationListener 的 ServiceBean 类进行回调 onApplicationEvent 事件方法。</li>
+<li>Dubbo 会在这个方法中调用 ServiceBean 父类 ServiceConfig 的 export 方法，而该方法真正实现了服务的发布。</li>
+</ul>
+<h2 id="3-2-dubbo服务引用过程">3-2. Dubbo服务引用过程</h2>
+<ol>
+<li>服务暴露之后，客户端就要引用服务，然后才是调用的过程。</li>
+<li>首先客户端根据配置文件信息从注册中心订阅服务</li>
+<li>之后DubboProtocol根据订阅的得到provider地址和接口信息连接到服务端server，开启客户端client，然后创建invoker</li>
+<li>invoker创建完成之后，通过invoker为服务接口生成代理对象，这个代理对象用于远程调用provider，服务的引用就完成了</li>
+</ol>
+<h2 id="4-dubbo的管理控制台能做什么">4. Dubbo的管理控制台能做什么</h2>
+<ul>
+<li>路由规则</li>
+<li>动态配置</li>
+<li>服务降级</li>
+<li>访问控制</li>
+<li>权重调整</li>
+<li>负载均衡等管理功能</li>
+</ul>
+<h2 id="5-dubbo集群容错方案">5. Dubbo集群容错方案</h2>
+<ul>
+<li>Failover Cluster(默认方案)
+<ul>
+<li>失败后自动切换，出现失败将会重试其他服务节点(retries重试次数)</li>
+<li>通常用于读操作，但重试会带来很重的延迟</li>
+</ul>
+</li>
+<li>Failfast Cluster
+<ul>
+<li>快速失败</li>
+<li>只发起一次调用，失败后立即抛出异常</li>
+<li>用于写操作</li>
+</ul>
+</li>
+<li>Failsafe Cluster
+<ul>
+<li>失败安全机制</li>
+<li>出现异常时，将进行忽略</li>
+<li>通常用于写入审计日志</li>
+</ul>
+</li>
+<li>Failback Cluster
+<ul>
+<li>失败自动恢复</li>
+<li>后台记录下失败请求，通过定时回调进行重试</li>
+<li>常用于消息通知</li>
+</ul>
+</li>
+<li>Forking Cluster
+<ul>
+<li>并行调用</li>
+<li>只要存在一个成功就返回</li>
+<li>通常用于实时性较高的读操作，但浪费资源</li>
+<li>可通过设定<code>forks</code>的值为2，限制最大并行数</li>
+</ul>
+</li>
+<li>Broadcast Cluster
+<ul>
+<li>广播调用</li>
+<li>任意一台报错则报错，通常用于通知所有提供者更新缓存或者日志等资源。</li>
+</ul>
+</li>
+</ul>
+<h2 id="6-dubbo支持什么协议">6. Dubbo支持什么协议</h2>
+<ul>
+<li>dubbo：单一长连接、NIO异步通讯，适用于小数据量大并发的服务调用，以及服务消费者机器数远大于服务提供者机器数的情况</li>
+<li>hessian：短连接，http，适合页面传输、文件传输。与原生hessian服务互操作</li>
+<li>http：适用于同时给应用程序和浏览器使用时</li>
+<li>webservice：适用于系统集成，跨语言使用</li>
+<li>rmi：适用于常规的远程服务方法调用，与原生RMI服务互操作</li>
+</ul>
+<h2 id="7-dubbo如何做负载均衡">7. Dubbo如何做负载均衡</h2>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dubbo:service</span> <span class="na">interface=</span><span class="s">&#34;...&#34;</span><span class="na">loadbalance=</span><span class="s">&#34;random&#34;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;dubbo:reference</span> <span class="na">interface=</span><span class="s">&#34;...&#34;</span><span class="na">loadbalance=</span><span class="s">&#34; random &#34;</span><span class="nt">/&gt;</span>
+</code></pre></div><ul>
+<li><strong>RandomLoadBalance</strong>: 随机负载均衡(默认方式)</li>
+<li><strong>RoundRobinLoadBalance</strong>: 轮询负载均衡</li>
+<li><strong>LeastActiveLoadBalance</strong>: 最少活跃调用数(相同活跃数的随机)
+<ul>
+<li>活跃数指调用前后计数差</li>
+<li>使响应慢的Provider收到更少的请求，因为越慢的provider的调用前后计数差越大</li>
+</ul>
+</li>
+<li><strong>ConsistentHashLoadBalance</strong>: 一致性Hash负载均衡，相同参数的请求总是落在同一台机器上</li>
+</ul>
+<h2 id="8-dubbo如何实现异步调用">8. Dubbo如何实现异步调用</h2>
+<ul>
+<li>API注入时添加异步调用标识
+<ul>
+<li>@Reference(interfaceClass=xxx.class,async-true)</li>
+</ul>
+</li>
+<li>启动类开启异步调用
+<ul>
+<li>@EnableAsync</li>
+</ul>
+</li>
+<li>异步调用接口添加异步调用代码
+<ul>
+<li>RpcContext.getContext.future()</li>
+</ul>
+</li>
+</ul>
+<h2 id="9-在provider上可以配置consumer端的属性有哪些">9. 在Provider上可以配置Consumer端的属性有哪些</h2>
+<ul>
+<li>timeout：调用超时</li>
+<li>retries：重试次数(默认是2次)</li>
+<li>LoadBalance：负载均衡算法</li>
+<li>actives：消费者端最大并发调用限制</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dubbo:service</span> <span class="na">interface=</span><span class="s">&#34;com.alibaba.hello.api.HelloService&#34;</span> <span class="na">version=</span><span class="s">&#34;1.0.0&#34;</span> <span class="na">ref=</span><span class="s">&#34;helloService&#34;</span>
+   <span class="na">timeout=</span><span class="s">&#34;300&#34;</span> <span class="na">retry=</span><span class="s">&#34;2&#34;</span> <span class="na">loadbalance=</span><span class="s">&#34;random&#34;</span> <span class="na">actives=</span><span class="s">&#34;0&#34;</span> <span class="nt">/&gt;</span>
+ 
+<span class="nt">&lt;dubbo:service</span> <span class="na">interface=</span><span class="s">&#34;com.alibaba.hello.api.WorldService&#34;</span> <span class="na">version=</span><span class="s">&#34;1.0.0&#34;</span> <span class="na">ref=</span><span class="s">&#34;helloService&#34;</span>
+    <span class="na">timeout=</span><span class="s">&#34;300&#34;</span> <span class="na">retry=</span><span class="s">&#34;2&#34;</span> <span class="na">loadbalance=</span><span class="s">&#34;random&#34;</span> <span class="na">actives=</span><span class="s">&#34;0&#34;</span> <span class="nt">&gt;</span>
+    <span class="nt">&lt;dubbo:method</span> <span class="na">name=</span><span class="s">&#34;findAllPerson&#34;</span> <span class="na">timeout=</span><span class="s">&#34;10000&#34;</span> <span class="na">retries=</span><span class="s">&#34;9&#34;</span> <span class="na">loadbalance=</span><span class="s">&#34;leastactive&#34;</span> <span class="na">actives=</span><span class="s">&#34;5&#34;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;dubbo:service/&gt;</span>
+</code></pre></div><h2 id="10-zookeeper和dubbo的关系">10. Zookeeper和Dubbo的关系</h2>
+<ul>
+<li>Dubbo将注册中心进行抽象，使得它可以外接不同的存储媒介给注册中心提供服务</li>
+<li>使用Zookeeper作为存储媒介
+<ul>
+<li>
+<p>负载均衡：</p>
+<ul>
+<li>单注册中心的承载能力是有限的，在流量达到一定程度的时候就需要分流，负载均衡就是为了分流而存在的，一个 ZooKeeper 群配合相应的 Web 应用就可以很容易达到负载均衡</li>
+</ul>
+</li>
+<li>
+<p>资源同步：</p>
+<ul>
+<li>节点之间的数据和资源需要同步，ZooKeeper集群就天然具备有这样的功能</li>
+</ul>
+</li>
+<li>
+<p>命名服务：</p>
+<ul>
+<li>通过树状结构用于维护全局的服务地址列表</li>
+<li>服务提供者在启动的时候，向 ZooKeeper上的指定节点/dubbo/${serviceName}/providers目录下写入自己的URL地址，这样就可以完成服务发布</li>
+</ul>
+</li>
+<li>
+<p>Master选举：</p>
+</li>
+<li>
+<p>分布式锁：</p>
+<ul>
+<li>独占锁
+<ul>
+<li>即一次只能有一个线程使用资源</li>
+</ul>
+</li>
+<li>共享锁
+<ul>
+<li>读锁共享，读写互斥，即可以有多线线程同时读同一个资源，如果要使用写锁也只能有一个线程使用</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="11-dubbo分层">11. Dubbo分层</h2>
+<ul>
+<li>
+<p>分为三层：</p>
+<ul>
+<li>business层：(业务逻辑层)自己提供接口进行实现、以及一些配置</li>
+<li>RPC层：(RPC调用核心层)封装了调用过程、负载均衡、集群容错、代理功能</li>
+<li>remoting层：对网络传输协议和数据转换的封装</li>
+</ul>
+</li>
+<li>
+<p>分为十层：</p>
+<ul>
+<li>service：业务逻辑层</li>
+<li>config：配置层，初始化配置信息</li>
+<li>proxy：代理层，为Provider和Consumer提供代理</li>
+<li>register：服务注册层，封装服务注册与发现</li>
+<li>cluster：路由层，封装provider路由与负载均衡</li>
+<li>monitor：监控统计层，提供rpc调用时间、次数监控与统计</li>
+<li>protocol：远程调用层，封装rpc调用</li>
+<li>exchange：信息交换层，封装请求响应模式，同步转异步</li>
+<li>transport：网络传输层，对Netty的封装</li>
+<li>serialize：序列化层，对数据进行序列化、反序列化</li>
+</ul>
+</li>
+</ul>
+<h2 id="x-dubbo项目结构">x. Dubbo项目结构</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ tree -L <span class="m">1</span>
+.
+├── dubbo-all
+├── dubbo-bom
+├── dubbo-build-tools
+├── dubbo-cluster               <span class="c1"># 集群容错模块，涵盖负载均衡策略、集群容错策略及路由</span>
+├── dubbo-common                <span class="c1"># 通用逻辑模块，提供工具类和通用类型</span>
+├── dubbo-compatible            <span class="c1"># 兼容性模块</span>
+├── dubbo-config                <span class="c1"># 配置模块，主要实现API配置、属性配置、XML配置等</span>
+├── dubbo-configcenter          <span class="c1"># 动态配置中心模块</span>
+├── dubbo-container             <span class="c1"># 容器运行时，采用Main方法加载Spring容器</span>
+├── dubbo-demo                  <span class="c1"># 三种远程调用方式实例</span>
+├── dubbo-dependencies          <span class="c1"># </span>
+├── dubbo-dependencies-bom
+├── dubbo-distribution
+├── dubbo-filter                <span class="c1"># 过滤器</span>
+├── dubbo-metadata              <span class="c1"># 元数据信息</span>
+├── dubbo-monitor               <span class="c1"># 监控模块，主要监控接口调用次数及时间等信息</span>
+├── dubbo-plugin                <span class="c1"># 插件拓展模块</span>
+├── dubbo-registry              <span class="c1"># 服务发现与注册中心模块</span>
+├── dubbo-remoting              <span class="c1"># 远程通信模块，为消费者、生产者间提供远程调用能力</span>
+├── dubbo-rpc                   <span class="c1"># 抽象各种通信协议以及动态代理(易混淆remoting)</span>
+├── dubbo-serialization
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">java</a>
+        
+            <a href="/tags/dubbo/">dubbo</a>
+        
+            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/dubbo-2.-dubbo%E4%B8%AD%E7%9A%84spi/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Dubbo ] 2. Dubbo中的SPI</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/dubbo-3-1.-dubbo-spi%E4%B8%AD%E7%9A%84protocol%E6%89%A9%E5%B1%95%E7%82%B9/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Dubbo ] 3-1. Dubbo SPI中的Protocol扩展点</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/dubbo-3-2.-dubbo-spi%E4%B8%AD%E7%9A%84filter%E6%89%A9%E5%B1%95%E7%82%B9/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Dubbo ] 3-2. Dubbo SPI中的Filter扩展点</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/dubbo-3.-dubbo%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Dubbo ] 3. Dubbo通信原理</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Baqs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之AQS</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

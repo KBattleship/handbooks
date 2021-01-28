@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Quinn</title>
+    <link>https://example.com/categories/</link>
+    <description>Recent content in Categories on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 10 Jan 2021 11:10:47 +0800</lastBuildDate><atom:link href="https://example.com/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java</title>
+      <link>https://example.com/categories/java/</link>
+      <pubDate>Sun, 10 Jan 2021 11:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/categories/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Algorithm</title>
+      <link>https://example.com/categories/algorithm/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/categories/algorithm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Middleware</title>
+      <link>https://example.com/categories/middleware/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/categories/middleware/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Kubernetes</title>
+      <link>https://example.com/categories/k8s/</link>
+      <pubDate>Fri, 18 Sep 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/categories/k8s/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://example.com/categories/go/</link>
+      <pubDate>Wed, 22 Apr 2020 21:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/categories/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://example.com/categories/linux/</link>
+      <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='JVM内存 1. JVM 内存结构  栈（JVM Stacks）  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常   堆  所有线程共享的，它在虚拟机启动时就会被创建 内存空间占据的最大一块区域 用来存放对象实例及数组，通过 new 关键字 new 出来的对象都存放在这里 垃圾回收器的主要回收对象 老年代 &#43; 新生代 = 老年代 &#43; Eden &#43; S0 &#43; S1   方法区 （Metaspace元空间）  都是各个线程共享的 类信息、常量、静态变量、即时编译器编译后的代码   本地方法区  只不过它服务于Native方法，线程私有 HotSpot虚拟机直接就把本地方法栈和虚拟机栈合二为一   程序计数器  当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节指令地址，线程私有 程序计数器是唯一一个在Java虚拟机规范中没有规定任何 OutOfMemoryError 情况的区域。    2. 简述Java堆内存分配策略  大对象：需要大量连续内存空间的Java对象，比如很长的字符串和大型数组， 对象优先在Eden分配，如果Eden内存空间不足，就会发生Minor GC 长期存活的对象将进入老年代，默认15岁，-XX:MaxTenuringThreshold 动态对象年龄判定 空间分配担保  3.'><title>[ JVM ] 3.JVM内存模型</title>
+
+<link rel='canonical' href='https://example.com/p/jvm-3.jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ JVM ] 3.JVM内存模型'>
+<meta property='og:description' content='JVM内存 1. JVM 内存结构  栈（JVM Stacks）  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常   堆  所有线程共享的，它在虚拟机启动时就会被创建 内存空间占据的最大一块区域 用来存放对象实例及数组，通过 new 关键字 new 出来的对象都存放在这里 垃圾回收器的主要回收对象 老年代 &#43; 新生代 = 老年代 &#43; Eden &#43; S0 &#43; S1   方法区 （Metaspace元空间）  都是各个线程共享的 类信息、常量、静态变量、即时编译器编译后的代码   本地方法区  只不过它服务于Native方法，线程私有 HotSpot虚拟机直接就把本地方法栈和虚拟机栈合二为一   程序计数器  当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节指令地址，线程私有 程序计数器是唯一一个在Java虚拟机规范中没有规定任何 OutOfMemoryError 情况的区域。    2. 简述Java堆内存分配策略  大对象：需要大量连续内存空间的Java对象，比如很长的字符串和大型数组， 对象优先在Eden分配，如果Eden内存空间不足，就会发生Minor GC 长期存活的对象将进入老年代，默认15岁，-XX:MaxTenuringThreshold 动态对象年龄判定 空间分配担保  3.'>
+<meta property='og:url' content='https://example.com/p/jvm-3.jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java' /><meta property='article:tag' content='jvm' /><meta property='article:tag' content='command' /><meta property='article:published_time' content='2020-12-27T21:10:47&#43;08:00'/><meta property='article:modified_time' content='2020-12-27T21:10:47&#43;08:00'/>
+<meta name="twitter:title" content="[ JVM ] 3.JVM内存模型">
+<meta name="twitter:description" content="JVM内存 1. JVM 内存结构  栈（JVM Stacks）  存放基本数据类型、对象的引用、方法出口等，线程私有 栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常   堆  所有线程共享的，它在虚拟机启动时就会被创建 内存空间占据的最大一块区域 用来存放对象实例及数组，通过 new 关键字 new 出来的对象都存放在这里 垃圾回收器的主要回收对象 老年代 &#43; 新生代 = 老年代 &#43; Eden &#43; S0 &#43; S1   方法区 （Metaspace元空间）  都是各个线程共享的 类信息、常量、静态变量、即时编译器编译后的代码   本地方法区  只不过它服务于Native方法，线程私有 HotSpot虚拟机直接就把本地方法栈和虚拟机栈合二为一   程序计数器  当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节指令地址，线程私有 程序计数器是唯一一个在Java虚拟机规范中没有规定任何 OutOfMemoryError 情况的区域。    2. 简述Java堆内存分配策略  大对象：需要大量连续内存空间的Java对象，比如很长的字符串和大型数组， 对象优先在Eden分配，如果Eden内存空间不足，就会发生Minor GC 长期存活的对象将进入老年代，默认15岁，-XX:MaxTenuringThreshold 动态对象年龄判定 空间分配担保  3.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/jvm-3.jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">[ JVM ] 3.JVM内存模型</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Dec 27, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="jvm内存">JVM内存</h1>
+<h2 id="1-jvm-内存结构">1. JVM 内存结构</h2>
+<ul>
+<li>栈（JVM Stacks）
+<ul>
+<li>存放基本数据类型、对象的引用、方法出口等，线程私有</li>
+<li>栈容量超过 Java 虚拟机栈的最大容量，会抛出 StackOverflowError 异常</li>
+</ul>
+</li>
+<li>堆
+<ul>
+<li>所有线程共享的，它在虚拟机启动时就会被创建</li>
+<li>内存空间占据的最大一块区域</li>
+<li>用来存放对象实例及数组，通过 new 关键字 new 出来的对象都存放在这里</li>
+<li>垃圾回收器的主要回收对象</li>
+<li>老年代 + 新生代 = 老年代 + Eden + S0 + S1</li>
+</ul>
+</li>
+<li>方法区  （Metaspace元空间）
+<ul>
+<li>都是各个线程共享的</li>
+<li>类信息、常量、静态变量、即时编译器编译后的代码</li>
+</ul>
+</li>
+<li>本地方法区
+<ul>
+<li>只不过它服务于Native方法，线程私有</li>
+<li>HotSpot虚拟机直接就把本地方法栈和虚拟机栈合二为一</li>
+</ul>
+</li>
+<li>程序计数器
+<ul>
+<li>当前线程所执行的字节码的行号指示器，用于记录正在执行的虚拟机字节指令地址，线程私有</li>
+<li>程序计数器是唯一一个在Java虚拟机规范中没有规定任何 OutOfMemoryError 情况的区域。</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-简述java堆内存分配策略">2. 简述Java堆内存分配策略</h2>
+<ul>
+<li>大对象：需要大量连续内存空间的Java对象，比如很长的字符串和大型数组，</li>
+<li>对象优先在Eden分配，如果Eden内存空间不足，就会发生Minor GC</li>
+<li>长期存活的对象将进入老年代，默认15岁，<code>-XX:MaxTenuringThreshold</code></li>
+<li>动态对象年龄判定</li>
+<li>空间分配担保</li>
+</ul>
+<h2 id="3-minor-gc-与-major-gc">3. Minor GC 与 Major GC</h2>
+<ul>
+<li>
+<p><strong>Minor GC：</strong> 又称 <strong>新生代GC</strong></p>
+<p>Java对象大多数是朝生夕灭，所以 Minor GC 非常频繁，一般回收速度也比较快</p>
+</li>
+<li>
+<p><strong>Major GC：</strong> 又称 <strong>老年代GC</strong></p>
+<p>指发生在 老年代 的GC。出现 FGC 经常会伴有 至少一次的 Minor GC(不是绝对，Parallel Scavenge收集器可以选择Major GC策略)。<code>Major GC 一般比 Minor GC 慢上 10倍以上</code></p>
+</li>
+</ul>
+<h2 id="4-java中-堆-和-栈-的区别">4. Java中 堆 和 栈 的区别</h2>
+<p>JVM中 <strong>堆</strong> 和 <strong>栈</strong> 是不同的内存区域，使用目的也不同。</p>
+<ul>
+<li><strong>栈</strong>
+<ul>
+<li>用于 <strong>保存方法帧</strong> 和 <strong>局部变量</strong></li>
+<li>不会在多个线程之间进行共享，即 <strong>线程私有</strong></li>
+<li>栈不足，产生异常错误是、：<code>java.lang.StackOverFlowError</code></li>
+</ul>
+</li>
+<li><strong>堆</strong>：
+<ul>
+<li><strong>Java 对象</strong> 始终在堆上分配</li>
+<li>堆将会被整个JVM的所有线程进行共享，即 <strong>所有线程共有</strong></li>
+<li>堆不足，产生异常错误：<code>java.lang.OutofMemoryError</code></li>
+<li>空间上，<em><strong>堆</strong></em> 远远大于 <em><strong>栈</strong></em></li>
+</ul>
+</li>
+</ul>
+<p>（1）：堆&lt;对象，静态变量，共享</p>
+<p>（2）：方法区&lt;存放类信息，常量池，共享&gt;（java8移除了永久代（PermGen），替换为元空间（Metaspace））</p>
+<p>（3）：虚拟机栈&lt;线程执行方法的时候内部存局部变量会存堆中对象的地址等等数据&gt;</p>
+<p>（4）：本地方法栈&lt;存放各种native方法的局部变量表之类的信息&gt;</p>
+<p>（5）：程序计数器&lt;记录当前线程执行到哪一条字节码指令位置&gt;</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">java</a>
+        
+            <a href="/tags/jvm/">jvm</a>
+        
+            <a href="/tags/command/">command</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/jvm-1.%E5%85%B3%E4%BA%8Ejvm%E5%91%BD%E4%BB%A4/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ JVM ] 1.关于JVM命令</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/jvm-2.jvm%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ JVM ] 2.JVM垃圾回收</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/jvm-4.jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ JVM ] 4.JVM类加载机制</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-1.%E5%85%B3%E4%BA%8E%E9%94%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-1.关于锁</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Baqs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之AQS</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

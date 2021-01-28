@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
+  ApiServer
+集群的网关。
+ 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
+   Controller Manager
+负责生命周期功能及API业务逻辑。
+ **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
+   Scheduler
+在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
+  Etcd
+基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
+ a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
+     Node(从节点:worker node)
+工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
+  Pod
+Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
+  Pod Controller(Pod 控制器)
+虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
+  Replication Controller(复制控制器)
+K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
+  Replica Set
+保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
+ 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。'><title>[ Kubernetes ] 1-1.初识K8s</title>
+
+<link rel='canonical' href='https://example.com/p/kubernetes-1-1.%E5%88%9D%E8%AF%86k8s/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Kubernetes ] 1-1.初识K8s'>
+<meta property='og:description' content='初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
+  ApiServer
+集群的网关。
+ 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
+   Controller Manager
+负责生命周期功能及API业务逻辑。
+ **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
+   Scheduler
+在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
+  Etcd
+基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
+ a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
+     Node(从节点:worker node)
+工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
+  Pod
+Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
+  Pod Controller(Pod 控制器)
+虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
+  Replication Controller(复制控制器)
+K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
+  Replica Set
+保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
+ 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。'>
+<meta property='og:url' content='https://example.com/p/kubernetes-1-1.%E5%88%9D%E8%AF%86k8s/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='k8s' /><meta property='article:tag' content='容器' /><meta property='article:published_time' content='2020-09-11T15:36:27&#43;08:00'/><meta property='article:modified_time' content='2020-08-22T15:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ Kubernetes ] 1-1.初识K8s">
+<meta name="twitter:description" content="初识K8s 术语及原理   Master(主节点:control plane) 集群中的神经中枢网关。负责整个集群的资源管理、Pod调度、弹性伸缩、安全控制、系统监控、纠错等管理功能。
+  ApiServer
+集群的网关。
+ 负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。
+   Controller Manager
+负责生命周期功能及API业务逻辑。
+ **a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收 **b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展
+   Scheduler
+在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。
+  Etcd
+基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。
+ a.etcd是独立的组件，并不属于K8s集群。 b.生产环境etcd应该按照集群方式部署运行，以提升高可用。
+     Node(从节点:worker node)
+工作节点。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。
+  Pod
+Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是Pod对象。 是K8s最小的调度单元。 **一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)
+  Pod Controller(Pod 控制器)
+虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助Pod Controller对其进行管理。
+  Replication Controller(复制控制器)
+K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。
+  Replica Set
+保证在某个时间点儿上，一定数量的Pod对象在运行。是Replication Controller的升级版本。
+ 主要区别在于Selector选择器 Replica Set:支持集合级别的选择器。 Replication Controller:支持在等号描述的选择器。">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/k8s/" style="background-color: #2a9d8f; color: #fff;">
+                Kubernetes
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/kubernetes-1-1.%E5%88%9D%E8%AF%86k8s/">[ Kubernetes ] 1-1.初识K8s</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Sep 11, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="初识k8s">初识K8s</h1>
+<h3 id="术语及原理">术语及原理</h3>
+<ul>
+<li>
+<p><strong>Master(主节点:control plane)</strong>
+集群中的神经中枢网关。负责整个集群的<strong>资源管理</strong>、<strong>Pod调度</strong>、<strong>弹性伸缩</strong>、<strong>安全控制</strong>、<strong>系统监控</strong>、<strong>纠错</strong>等管理功能。</p>
+<ul>
+<li>
+<p><strong>ApiServer</strong></p>
+<p><code>集群的网关。</code></p>
+<blockquote>
+<p>负责输出RESTful风格K8s接口，则是通往集群所有REST操作命令的入口，并负责接收、校验、相应所有的REST请求，最终结果状态存储在etcd中。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Controller Manager</strong></p>
+<p>负责生命周期功能及API业务逻辑。</p>
+<blockquote>
+<p>**a.生命周期功能：**Namespace创建和生命周期、Event垃圾回收、Pod对象终止相关的垃圾回收、级联垃圾回收、Node的垃圾回收
+**b.API业务逻辑：**由ReplicaSet执行的Pod对象扩展</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Scheduler</strong></p>
+<p>在API Server确认Pod对象之后，由调度器(Scheduler)根据集群中各节点的可用资源状态、目标运行容器的资源需求做出调度策略。</p>
+</li>
+<li>
+<p><strong>Etcd</strong></p>
+<p>基于Raft协议开发的分布式键值存储，用于服务发现、共享配置、保证一致性(数据库的主从节点选择，分布式锁等)。</p>
+<blockquote>
+<p>a.etcd是独立的组件，并不属于K8s集群。
+b.生产环境etcd应该按照<strong>集群方式</strong>部署运行，以提升高可用。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Node(从节点:worker node)</strong></p>
+<p><code>工作节点</code>。负责接收来自Master节点的工作指令并根据指令相应的创建或者销毁Pod对象，以及调整网络规则以合理的路由转发流量。</p>
+<ul>
+<li>
+<p><strong>Pod</strong></p>
+<p>Kubernetes并不会直接运行容器，而是使用一个抽象的资源对象封装一个或者多个容器，此对象就是<strong>Pod对象</strong>。
+<strong>是K8s最小的调度单元。</strong>
+**一个Pod对象可以拥有多个Container容器应用。**通常情况下，这些在同一个Pod对象中的Container容器是高耦合。<em>因为其共用同一个Pod对象下的网络名称空间、存储资源、UTS命名空间(同一个主机名称)、PID命名空间(不同应用程序可以看到其他应用程序的PID)</em></p>
+<ul>
+<li>
+<p><strong>Pod Controller(Pod 控制器)</strong></p>
+<p>虽说Pod对象是最小的调度单元，但实际应用中，并不会直接部署、管理Pod对象，而是借助<strong>Pod Controller</strong>对其进行管理。</p>
+</li>
+<li>
+<p><strong>Replication Controller(复制控制器)</strong></p>
+<p>K8s的核心概念，用于管理Pod的声明周期。在主节点中，控制管理器进程同RC的定义完成Pod的创建、监控、启停等操作。</p>
+</li>
+<li>
+<p><strong>Replica Set</strong></p>
+<p>保证在某个时间点儿上，一定数量的<strong>Pod对象</strong>在运行。是Replication Controller的升级版本。</p>
+<blockquote>
+<p>主要区别在于<strong>Selector选择器</strong>
+Replica Set:支持集合级别的选择器。
+Replication Controller:支持在等号描述的选择器。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Deployment</strong></p>
+<p>为保证指定的<strong>Pod对象</strong>的副本数量精确符合定义，否则将会按照「多退少补」原则进行自动管理。</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Label(标签)</strong></p>
+<p>将资源进行分类的标识符，一组附加在对象上的键值对类型数据。主要为了解决Pod对象与Service之间的关联关系。</p>
+<blockquote>
+<p>一个对象可以拥有多个标签，一个标签也可以附加在多个对象。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Service</strong></p>
+<p>建立在Pod对象之上的资源抽象，通过标签选择器选定一组Pod对象，并设定统一且固定的访问入口(通常情况下表现形式是IP地址)。</p>
+<ol>
+<li>拥有唯一指定的名字</li>
+<li>拥有一个虚拟IP地址和端口号</li>
+<li>能够提供某种远程能力</li>
+<li>被映射到提供服务能力的一组容器之上</li>
+<li>Service的服务进程目前通过Socket方式对外提供服务</li>
+</ol>
+<p>如果Kubernetes集群存在DNS附件，将会在Service对象创建时为其自动指定一个DNS名称用于客户端服务发现。</p>
+</li>
+<li>
+<p><strong>Volume(容器共享存储卷)</strong></p>
+<p>独立于容器文件系统之外的存储空间，常用在扩展容器的存储空间并为其提供持久化存储能力。<em>临时卷</em>与<em>本地卷</em>一般位于Node本地，一旦Pod对象被调度至其他Node节点，此类型的存储卷将无法正常访问，所以此类存储卷用于数据缓存。持久数据将存放在<strong>Persistent Volume(持久卷)</strong>。</p>
+<ul>
+<li><strong>Persistent Volume(持久卷)</strong></li>
+<li><strong>Persistent Volume Claims</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Annotation</strong></p>
+<p>另外一种附加在对象之上的键值类型数据，但拥有更大的数据量。常用于将各种**非标识型元数据(metadata)**附加到对象，但不能标识和选择对象。K8s将不会直接使用，仅当方便工具或用户查找等用途。</p>
+<blockquote>
+<p>a.build信息、release信息、Docker镜像信息等
+b.日志库、监控库、分析库资源等资源库地址信息
+c.程序调试工具信息
+d.团队信息</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Namespace</strong></p>
+<p>使用Namespace来组织kubernetes的各种对象，可以实现用户的分组(多租户)，对不同的租户还可以进行单独的资源设置和管理，是的整个集群的资源配置非常灵活。</p>
+<blockquote>
+<p>a.在同一命名空间中，同一类型资源对象的名称必须具有唯一性
+b.名称空间空间通常用于实现租户或项目的资源隔离，以达到逻辑分组目的。</p>
+</blockquote>
+</li>
+<li>
+<p><strong>Ingress</strong></p>
+<p>解决Pod对象与外部网络隔离无法访问的组件。</p>
+<blockquote>
+<p>由于K8s将Pod对象与外网进行隔离，同时Pod与Service等对象间的通信全是由K8s内部网络进行。</p>
+</blockquote>
+</li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/k8s/">k8s</a>
+        
+            <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
+        
+    </section>
+
+
+    <section class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span class="article-time--modified">
+            最后更新于 Aug 22, 2020 15:36 CST
+        </span>
+    </section></footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-3-1.%E6%B7%B1%E5%85%A5service/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 3-1.深入Service</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-1.%E4%BA%86%E8%A7%A3pod%E5%AF%B9%E8%B1%A1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-1.了解Pod对象</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-2.springboot-pods%E9%A1%B9%E7%9B%AE%E5%88%9D%E4%BD%93%E9%AA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-4.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-4.kubeadm命令使用</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-2.kubectl%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-2.Kubectl命令行工具</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

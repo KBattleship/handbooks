@@ -1,106 +1,57 @@
-- id: archive
-  translation: Архив
+toggleMenu:
+    other: Показать/скрыть меню
 
-- id: tags
-  translation: Теги
+darkMode:
+    other: Тёмный режим
 
-- id: tag
-  translation: "Тег: "
+list:
+    page:
+        one: "{{ .Count }} страница"
+        few: "{{ .Count }} страницы"
+        many: "{{ .Count }} страниц"
+        other: "{{ .Count }} страниц"
 
-- id: categories
-  translation: Категории
+    section:
+        other: Раздел
 
-- id: category
-  translation: "Категория: "
+    subsection:
+        one: Подраздел
+        few: Подразделы
+        many: Подразделы
+        other: Подразделы
 
-# posts
-- id: prev
-  translation: Пред.
+article:
+    relatedContents:
+        other: Также рекомендуем
+    lastUpdatedOn:
+        other: Обновлено
 
-- id: next
-  translation: След.
+notFound:
+    title:
+        other: Не найдено
+    subtitle:
+        other: Запрашиваемая страница не существует
 
-- id: prev_post
-  translation: Пред.
+widget:
+    archives:
+        title:
+            other: Архивы
+        more:
+            other: Ещё
+    tagCloud:
+        title:
+            other: Теги
 
-- id: next_post
-  translation: След.
+search:
+    title:
+        other: Поиск
+    placeholder:
+        other: Введите что-нибудь...
+    resultTitle:
+        other: "Найдено #PAGES_COUNT страниц (за #TIME_SECONDS с.)"
 
-- id: toc
-  translation: Оглавление
-
-- id: readmore
-  translation: Читать дальше
-
-- id: reward
-  translation: Поддержка
-
-- id: rewardAlipay
-  translation: Alipay
-
-- id: rewardWechat
-  translation: Wechat
-
-- id: seeMarkDown
-  translation: Версия в Markdown »
-
-- id: loadDisqus
-  translation: Показать комментарии Disqus
-
-# posts.header
-- id: wordCount
-  translation: "{{.Count}} слов"
-
-- id: readingTime
-  translation: "{{.Count}} мин. чтения"
-
-# copyright
-- id: author
-  translation: Автор
-
-- id: lastMod
-  translation: LastMod
-
-- id: markdown
-  translation: Markdown
-
-- id: license
-  translation: Лицензия
-
-# counter
-- id: counter_archives
-  translation: "всего {{.Count}} записей"
-
-- id: counter_tagcloud
-  translation: "всего {{.Count}} тегов"
-
-- id: counter_categories
-  translation: "всего {{.Count}} категорий"
-
-# other
-- id: morePost
-  translation: "Больше записей >>>"
-
-- id: read_en
-  translation: Read in English
-
-- id: read_es
-  translation: Leer en español
-
-- id: read_zh-cn
-  translation: 中文阅读
-
-- id: read_zh-tw
-  translation: 中文閱讀
-
-- id: read_pt
-  translation: Leia em português
-
-- id: read_fr
-  translation: Lire en français
-
-- id: read_de
-  translation: Lese in Deutsch
-
-- id: language
-  translation: Язык
+footer:
+    builtWith:
+        other: Создано при помощи {{ .Generator }}
+    designedBy:
+        other: Тема {{ .Theme }}, дизайн {{ .DesignedBy }}

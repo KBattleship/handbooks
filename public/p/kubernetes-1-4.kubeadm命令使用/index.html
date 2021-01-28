@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='安装初始化K8s集群 1.安装K8s 1.1CentOS安装   预先准备工作
+# 修改设置主机名称 hostnamectl set-hostname master # 绑定主机各节点hosts 192.168.0.1 master 192.168.0.2 node1 192.168.0.3 node2 # 验证每节点的Mac地址与UUID是否唯一 # mac地址注意查看网卡 cat /sys/class/net/eth1/address cat /sys/class/dmi/id/product_uuid # 关闭缓存交换swap swapoff -a # 临时关闭 sed -i.bak &amp;#39;/swap/s/^/#/&amp;#39; /etc/fstab #永久关闭   安装Kubernetes
+# 设置K8s安装源，由于防火墙问题使用阿里云源 cat &amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo   [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/ enabled=1 gpgcheck=1 repo_gpgcheck=1 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 更新源缓存 yum clean all yum -y makecache
+# 查看k8s版本 yum list kubelet --showduplicates | sort -r # 默认安装最新版本 yum install -y kubelet kubeadm kubectl # 选择指定版本进行安装 yum install -y kubelet-&amp;lt;version&amp;gt; kubeadm-&amp;lt;version&amp;gt; kubectl-&amp;lt;version&amp;gt; ```  1.'><title>[ Kubernetes ] 1-4.kubeadm命令使用</title>
+
+<link rel='canonical' href='https://example.com/p/kubernetes-1-4.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Kubernetes ] 1-4.kubeadm命令使用'>
+<meta property='og:description' content='安装初始化K8s集群 1.安装K8s 1.1CentOS安装   预先准备工作
+# 修改设置主机名称 hostnamectl set-hostname master # 绑定主机各节点hosts 192.168.0.1 master 192.168.0.2 node1 192.168.0.3 node2 # 验证每节点的Mac地址与UUID是否唯一 # mac地址注意查看网卡 cat /sys/class/net/eth1/address cat /sys/class/dmi/id/product_uuid # 关闭缓存交换swap swapoff -a # 临时关闭 sed -i.bak &amp;#39;/swap/s/^/#/&amp;#39; /etc/fstab #永久关闭   安装Kubernetes
+# 设置K8s安装源，由于防火墙问题使用阿里云源 cat &amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo   [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/ enabled=1 gpgcheck=1 repo_gpgcheck=1 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 更新源缓存 yum clean all yum -y makecache
+# 查看k8s版本 yum list kubelet --showduplicates | sort -r # 默认安装最新版本 yum install -y kubelet kubeadm kubectl # 选择指定版本进行安装 yum install -y kubelet-&amp;lt;version&amp;gt; kubeadm-&amp;lt;version&amp;gt; kubectl-&amp;lt;version&amp;gt; ```  1.'>
+<meta property='og:url' content='https://example.com/p/kubernetes-1-4.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='k8s' /><meta property='article:tag' content='容器' /><meta property='article:published_time' content='2020-09-14T15:36:27&#43;08:00'/><meta property='article:modified_time' content='2020-09-14T15:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ Kubernetes ] 1-4.kubeadm命令使用">
+<meta name="twitter:description" content="安装初始化K8s集群 1.安装K8s 1.1CentOS安装   预先准备工作
+# 修改设置主机名称 hostnamectl set-hostname master # 绑定主机各节点hosts 192.168.0.1 master 192.168.0.2 node1 192.168.0.3 node2 # 验证每节点的Mac地址与UUID是否唯一 # mac地址注意查看网卡 cat /sys/class/net/eth1/address cat /sys/class/dmi/id/product_uuid # 关闭缓存交换swap swapoff -a # 临时关闭 sed -i.bak &amp;#39;/swap/s/^/#/&amp;#39; /etc/fstab #永久关闭   安装Kubernetes
+# 设置K8s安装源，由于防火墙问题使用阿里云源 cat &amp;lt;&amp;lt;EOF &amp;gt; /etc/yum.repos.d/kubernetes.repo   [kubernetes] name=Kubernetes baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/ enabled=1 gpgcheck=1 repo_gpgcheck=1 gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg EOF # 更新源缓存 yum clean all yum -y makecache
+# 查看k8s版本 yum list kubelet --showduplicates | sort -r # 默认安装最新版本 yum install -y kubelet kubeadm kubectl # 选择指定版本进行安装 yum install -y kubelet-&amp;lt;version&amp;gt; kubeadm-&amp;lt;version&amp;gt; kubectl-&amp;lt;version&amp;gt; ```  1.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/k8s/" style="background-color: #2a9d8f; color: #fff;">
+                Kubernetes
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/kubernetes-1-4.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/">[ Kubernetes ] 1-4.kubeadm命令使用</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Sep 14, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="安装初始化k8s集群">安装初始化K8s集群</h1>
+<h2 id="1安装k8s">1.安装K8s</h2>
+<h3 id="11centos安装">1.1CentOS安装</h3>
+<ul>
+<li>
+<p>预先准备工作</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 修改设置主机名称</span>
+hostnamectl set-hostname master
+<span class="c1"># 绑定主机各节点hosts</span>
+192.168.0.1 master
+192.168.0.2 node1
+192.168.0.3 node2
+<span class="c1"># 验证每节点的Mac地址与UUID是否唯一</span>
+<span class="c1"># mac地址注意查看网卡</span>
+cat /sys/class/net/eth1/address
+cat /sys/class/dmi/id/product_uuid
+<span class="c1"># 关闭缓存交换swap</span>
+swapoff -a  <span class="c1"># 临时关闭</span>
+sed -i.bak <span class="s1">&#39;/swap/s/^/#/&#39;</span> /etc/fstab    <span class="c1">#永久关闭</span>
+</code></pre></div></li>
+<li>
+<p>安装Kubernetes</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 设置K8s安装源，由于防火墙问题使用阿里云源</span>
+cat &lt;&lt;EOF &gt; /etc/yum.repos.d/kubernetes.repo
+</code></pre></div></li>
+</ul>
+<p>[kubernetes]
+name=Kubernetes
+baseurl=https://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64/
+enabled=1
+gpgcheck=1
+repo_gpgcheck=1
+gpgkey=https://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg <a href="https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg">https://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</a>
+EOF
+# 更新源缓存
+yum clean all
+yum -y makecache</p>
+<pre><code># 查看k8s版本
+yum list kubelet --showduplicates | sort -r 
+
+# 默认安装最新版本
+yum install -y kubelet kubeadm kubectl
+# 选择指定版本进行安装
+yum install -y kubelet-&lt;version&gt; kubeadm-&lt;version&gt; kubectl-&lt;version&gt;
+```
+</code></pre>
+<h3 id="12macos安装">1.2MacOS安装</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">Docker-Desktop版内置<span class="o">(</span>需要访问科学上网<span class="o">)</span>
+</code></pre></div><h2 id="2准备kubernetes依赖镜像">2.准备Kubernetes依赖镜像</h2>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">k8s.gcr.io/kube-apiserver:v1.17.1
+k8s.gcr.io/kube-controller-manager:v1.17.1
+k8s.gcr.io/kube-proxy:v1.17.1
+k8s.gcr.io/kube-scheduler:v1.17.1
+k8s.gcr.io/coredns:v1.17.1
+k8s.gcr.io/etcd:v1.17.1
+</code></pre></div><p>由于国外站点问题，需要科学上网，或者通过其他镜像仓库拉去，然后通过<code>docker tag</code>打标签的形式保存在docker仓库</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 通过科学上网拉去官网仓库镜像</span>
+docker pull k8s.gcr.io/kube-apiserver:v1.17.1
+...
+k8s.gcr.io/etcd:v1.17.1
+<span class="c1">## 然后通过本地惊醒仓库打包导出tar的形式</span>
+docker save k8s.gcr.io/kube-apiserver:v1.17.1 &gt; k8s.tar.gz
+<span class="c1">## 导入目标服务器的本地镜像仓库</span>
+docker load &lt; k8s.tar.gz
+</code></pre></div><h2 id="3使用kubeadm初始化集群主节点">3.使用kubeadm初始化集群主节点</h2>
+<ul>
+<li>
+<p>初始化主节点</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubeadm init –apiserver-advertise-address<span class="o">=</span>192.168.66.176 --kubernetes-version<span class="o">=</span>v1.17.1 --pod-network-cidr<span class="o">=</span>10.244.0.0/16 --service-cidr<span class="o">=</span>10.96.0.0/12 --ignore-preflight-errors<span class="o">=</span>Swap
+  
+<span class="c1"># 增加Kubernetes本地全局变量配置</span>
+<span class="c1">### 非root用户</span>
+mkdir -p <span class="nv">$HOME</span>/.kube
+sudo cp -i /etc/kubernetes/admin.conf <span class="nv">$HOME</span>/.kube/config
+sudo chown <span class="k">$(</span>id -u<span class="k">)</span>:<span class="k">$(</span>id -g<span class="k">)</span> <span class="nv">$HOME</span>/.kube/config
+<span class="c1">### root用户</span>
+<span class="nb">echo</span> <span class="s2">&#34;export KUBECONFIG=/etc/kubernetes/admin.conf&#34;</span> &gt;&gt; ~/.bash_profile
+<span class="nb">source</span> .bash_profile
+</code></pre></div></li>
+<li>
+<p>初始化主节点网络</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 使用flannel配置网络</span>
+kubectl apply -f kube-flannel.yml
+</code></pre></div></li>
+<li>
+<p>关于节点污点问题</p>
+<blockquote>
+<p>taint:污点的意思.如果某节点设置为污点，那么pod将不允许在此节点上运行。</p>
+</blockquote>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 查看污点信息</span>
+kubectl describe node master<span class="p">|</span>grep -i taints
+<span class="c1"># 删除默认污点</span>
+kubectl taint nodes master node-role.kubernetes.io/master-
+<span class="c1"># 设置污点</span>
+kubectl taint node master <span class="nv">key1</span><span class="o">=</span>value1:NoSchedule
+<span class="c1"># 删除污点</span>
+kubectl taint nodes master  key1-    
+<span class="c1">### 关于污点语法</span>
+kubectl taint node <span class="o">[</span>node<span class="o">]</span> <span class="nv">key</span><span class="o">=</span>value<span class="o">[</span>effect<span class="o">]</span>   
+ 其中<span class="o">[</span>effect<span class="o">]</span> 可取值: <span class="o">[</span> NoSchedule <span class="p">|</span> PreferNoSchedule <span class="p">|</span> NoExecute <span class="o">]</span>
+  NoSchedule: 一定不能被调度
+  PreferNoSchedule: 尽量不要调度
+  NoExecute: 不仅不会调度, 还会驱逐Node上已有的Pod
+</code></pre></div></li>
+<li>
+<p>Node节点加入集群</p>
+<ul>
+<li>
+<p>查看令牌</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubeadm token list
+</code></pre></div><p><code>如果令牌过期可以重新生成令牌</code></p>
+</li>
+<li>
+<p>初始化令牌</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubeadm token create
+</code></pre></div></li>
+<li>
+<p>生成新的加密串</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">openssl x509 -pubkey -in /etc/kubernetes/pki/ca.crt <span class="p">|</span> openssl rsa -pubin -outform der 2&gt;/dev/null <span class="p">|</span> openssl dgst -sha256 -hex <span class="p">|</span> sed <span class="s1">&#39;s/^.* //&#39;</span>
+</code></pre></div></li>
+<li>
+<p>node加入master</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">kubeadm join 192.168.66.175:6443 --token uirohl.1auw4f6ebu1c1etc <span class="se">\
+</span></code></pre></div></li>
+</ul>
+<p>&ndash;discovery-token-ca-cert-hash sha256:f0d231c5a175c4f84d94cf0d7df2efc96e4ac396482ed9e04880a9d2c9b6a84e
+```</p>
+</li>
+<li>
+<p>集群移除Node节点</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1">### 已验证</span>
+  
+<span class="c1"># 设置节点不可调度</span>
+kubectl cordon <span class="si">${</span><span class="nv">Node</span><span class="si">}</span>
+<span class="c1"># 恢复节点调度</span>
+kubectl uncordon <span class="si">${</span><span class="nv">Node</span><span class="si">}</span>
+  
+<span class="c1"># 驱逐节点上运行的业务容器</span>
+kubectl drain --ignore-daemonsets <span class="si">${</span><span class="nv">Node</span><span class="si">}</span>
+  
+<span class="c1"># 移除节点</span>
+kubectl delete node <span class="si">${</span><span class="nv">Node</span><span class="si">}</span>
+  
+<span class="c1">### master剔除node（待验证）</span>
+etcdctl --cacert<span class="o">=</span>/etc/etcd/pki/ca.pem --cert<span class="o">=</span>/etc/etcd/pki/server.pem --key<span class="o">=</span>/etc/etcd/pki/server-key.pem --endpoints<span class="o">=</span>https://210.74.13.8:2379 del /registry --prefix
+</code></pre></div></li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/k8s/">k8s</a>
+        
+            <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-3-1.%E6%B7%B1%E5%85%A5service/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 3-1.深入Service</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-1.%E4%BA%86%E8%A7%A3pod%E5%AF%B9%E8%B1%A1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-1.了解Pod对象</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-2.springboot-pods%E9%A1%B9%E7%9B%AE%E5%88%9D%E4%BD%93%E9%AA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-2.kubectl%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-2.Kubectl命令行工具</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-3.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-3.kubeadm命令使用</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

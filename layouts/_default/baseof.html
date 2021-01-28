@@ -1,69 +1,18 @@
 <!DOCTYPE html>
-<html lang="{{ $.Site.LanguageCode | default "en" }}" itemscope itemtype="http://schema.org/WebPage">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>
-    {{- block "title" . -}}
-      {{ if .IsPage }}{{ .Title }} - {{ .Site.Title }}{{ else }}{{ .Site.Title }}{{ end }}
-    {{- end -}}
-  </title>
-  {{ partial "head.html" . }}
-</head>
-<body>
-  {{ partial "slideout.html" . }}
-
-  {{ if or .Site.Params.photoswipe .Site.Params.fancybox }}
-    {{ partial "photoswipe.html" . }}
-  {{ end }}
-
-  {{ if .Site.Params.search.google.enable }}
-    {{ partial "search_google.html" . }}
-  {{ end }}
-
-  {{ if .Site.Params.forkMeOnGithub }}
-    <style>
-      .fork-me-on-github {
-        position: absolute; top: 0; left: 0; border: 0;
-      }
-      @media (max-width: 1080px) {
-        .fork-me-on-github {
-          display: none;
-        }
-      }
-    </style>
-
-    <a href="{{ .Site.Params.forkMeOnGithub }}">
-      <img class="fork-me-on-github"
-        src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png"
-        alt="Fork me on GitHub">
-    </a>
-  {{ end }}
-
-  <header id="header" class="header container">
-    {{ partial "header.html" . }}
-  </header>
-
-  <div id="mobile-panel">
-    <main id="main" class="main bg-llight">
-      <div class="content-wrapper">
-        <div id="content" class="content container">
-          {{ block "content" . }}{{ end }}
+<html lang="{{ .Site.LanguageCode }}">
+    <head>
+        {{- partial "head/head.html" . -}}
+        {{- block "head" . -}}{{ end }}
+    </head>
+    <body class="{{ block `body-class` . }}{{ end }}">
+        {{- partial "head/colorScheme" . -}}
+        <div class="container main-container flex on-phone--column {{ if .Site.Params.widgets.enabled }}extended{{ else }}compact{{ end }} {{ block `container-class` . }}{{end}}">
+            {{ partial "sidebar/left.html" . }}
+            <main class="main full-width">
+                {{- block "main" . }}{{- end }}
+            </main>
+            {{- block "right-sidebar" . -}}{{ end }}
         </div>
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      {{ partial "footer.html" . }}
-    </footer>
-
-    <div class="back-to-top" id="back-to-top">
-      <i class="iconfont">
-        {{/* icon up */}}
-        {{ partial "svg/up.svg" }}
-      </i>
-    </div>
-  </div>
-  {{ partial "scripts.html" . }}
-</body>
+        {{ partial "footer/include.html" . }}
+    </body>
 </html>

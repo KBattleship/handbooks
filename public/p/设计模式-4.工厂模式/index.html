@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
+ 一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
+ 多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
+# 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。 # 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。 ②.工厂角色职责   Product(产品) 一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类ConcreateProduct类所决定。
+  ConcreateProduct(具体产品) 属于具体加工职责：决定了具体生产出的产品。
+  Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
+  ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
+  ③.UML图 ④.代码清单 ⑤.注意事项 使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。 '><title>[ 设计模式 ] 4.工厂模式</title>
+
+<link rel='canonical' href='https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4.%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ 设计模式 ] 4.工厂模式'>
+<meta property='og:description' content='工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
+ 一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
+ 多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
+# 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。 # 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。 ②.工厂角色职责   Product(产品) 一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类ConcreateProduct类所决定。
+  ConcreateProduct(具体产品) 属于具体加工职责：决定了具体生产出的产品。
+  Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
+  ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
+  ③.UML图 ④.代码清单 ⑤.注意事项 使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。 '>
+<meta property='og:url' content='https://example.com/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4.%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='design_pattern' /><meta property='article:tag' content='java' /><meta property='article:published_time' content='2019-07-10T23:36:27&#43;08:00'/><meta property='article:modified_time' content='2019-07-10T23:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ 设计模式 ] 4.工厂模式">
+<meta name="twitter:description" content="工厂模式 工厂模式：父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。是模板方法模式的典型应用。工厂模式中应会有模板方法模式的出现。
+①.工厂模式分类   工厂方法模式 简单工厂模式：工厂方法模式的一种特例.
+ 一个抽象产品类，可以派生出多个具体的产品类。 一个抽象工厂类，可以派生出多个具体的工厂类。 每一个具体工厂只能创建一个具体产品类的实例。    抽象工厂公式
+ 多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。 一个抽象工厂类，可以派生出多个具体工厂类。 每一个具体工厂可以创建多个具体的产品类实例    区别:
+# 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。 # 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。 ②.工厂角色职责   Product(产品) 一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类ConcreateProduct类所决定。
+  ConcreateProduct(具体产品) 属于具体加工职责：决定了具体生产出的产品。
+  Creator(创建者) 一个抽象类:不适用new关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。Creator角色对实际负责具体产品生产的ConcreateCreator角色全然不知。唯一清楚的是：只要调用Product角色和生成实例的方法，就能生成Product的实例。
+  ConcreateCreator(具体创建者) 属于具体加工职责：负责生产出具体的抽象产品。
+  ③.UML图 ④.代码清单 ⑤.注意事项 使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。 否则，在后续更新迭代中及其容易违背原始意图。 所以，在程序中需要注释出所有设计模式所包含的名称、意图等。 ">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-4.%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/">[ 设计模式 ] 4.工厂模式</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jul 10, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="工厂模式">工厂模式</h1>
+<p><!-- raw HTML omitted --><strong>工厂模式：</strong><!-- raw HTML omitted --><code>父类决定实例的生成方式，但并不决定所要生成的具体类，具体的处理细节全部交由子类做具体实现。从而可以将生成实例的框架和实际负责生成实例的类进行解耦。</code>是<em><strong>模板方法模式</strong></em>的典型应用。<strong>工厂模式</strong>中应会有<em>模板方法模式</em>的出现。</p>
+<h4 id="工厂模式分类">①.工厂模式分类</h4>
+<ul>
+<li>
+<p>工厂方法模式
+<code>简单工厂模式：工厂方法模式的一种特例.</code></p>
+<ul>
+<li>一个抽象产品类，可以派生出多个具体的产品类。</li>
+<li>一个抽象工厂类，可以派生出多个具体的工厂类。</li>
+<li>每一个具体工厂只能创建一个具体产品类的实例。</li>
+</ul>
+</li>
+<li>
+<p>抽象工厂公式</p>
+<ul>
+<li>多个抽象产品类，每一个抽象产品类可以派生出多个具体产品类。</li>
+<li>一个抽象工厂类，可以派生出多个具体工厂类。</li>
+<li>每一个具体工厂可以创建多个具体的产品类实例</li>
+</ul>
+</li>
+</ul>
+<p><strong>区别</strong>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 1.工厂方法模式只存在一个抽象产品类，但抽象工厂具有多个抽象产品类。</span>
+<span class="c1"># 2.工厂方法模式的具体工厂类只能创建一个具体产品类的实例，而抽象工厂模式可以创建多个具体产品类实例。</span>
+</code></pre></div><h4 id="工厂角色职责">②.工厂角色职责</h4>
+<ul>
+<li>
+<p>Product(产品)
+一个抽象类：定义工厂模式中生成的那些实例的所持有的接口。具体的处理由子类<em><strong>ConcreateProduct</strong></em>类所决定。</p>
+</li>
+<li>
+<p>ConcreateProduct(具体产品)
+属于具体加工职责：决定了具体生产出的产品。</p>
+</li>
+<li>
+<p>Creator(创建者)
+一个抽象类:不适用<em><strong>new</strong></em>关键字生成实例，而是通过调用生成实例的专用方法生成实例，以至于降低父类与其他类的耦合性。<em>Creator</em>角色对实际负责具体产品生产的<em>ConcreateCreator</em>角色全然不知。唯一清楚的是：只要调用<em>Product</em>角色和生成实例的方法，就能生成<em>Product</em>的实例。</p>
+</li>
+<li>
+<p>ConcreateCreator(具体创建者)
+属于具体加工职责：负责生产出具体的抽象产品。</p>
+</li>
+</ul>
+<h4 id="uml图">③.UML图</h4>
+<h4 id="代码清单">④.代码清单</h4>
+<h4 id="注意事项">⑤.注意事项</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">使用设计模式设计类时，开发人员必须交代清楚使用这些设计模式设计类的意图。
+否则，在后续更新迭代中及其容易违背原始意图。
+所以，在程序中需要注释出所有设计模式所包含的名称、意图等。
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/design_pattern/">design_pattern</a>
+        
+            <a href="/tags/java/">java</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-6.%E5%8E%9F%E5%9E%8B%E6%A8%A1%E5%BC%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 设计模式 ] 6.原型模式</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-5.%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 设计模式 ] 5.单例模式</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-3.%E6%A8%A1%E6%9D%BF%E6%A8%A1%E5%BC%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 设计模式 ] 3.模板模式</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-2.%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ 设计模式 ] 2.适配器模式</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-10.java-io/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 10.Java IO</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='ETCD  其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
+ raft协议  每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
+ 节点选举  使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel
+ 竞选流程 如果集群中的某一个 Follower 节点长时间内没有收到来自 Leader 的心跳请求，当前节点就会通过 MsgHup 消息进入预选举或者选举的流程。 如果收到 MsgHup 消息的节点不是 Leader 状态，就会根据当前集群的配置选择进入 PreElection 或者 Election 阶段，PreElection 阶段并不会真正增加当前节点的 Term，它的主要作用是得到当前集群能否成功选举出一个 Leader 的答案，如果当前集群中只有两个节点而且没有预选举阶段，那么这两个节点的 Term 会无休止的增加，预选举阶段就是为了解决这一问题而出现的。 当前节点会立刻调用 becomeCandidate 将当前节点的 Raft 状态变成候选人；在这之后，它会将票投给自己，如果当前集群只有一个节点，该节点就会直接成为集群中的 Leader 节点。'><title>[ Etcd ] 1.基础入门(1)</title>
+
+<link rel='canonical' href='https://example.com/p/etcd-1.%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A81/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Etcd ] 1.基础入门(1)'>
+<meta property='og:description' content='ETCD  其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
+ raft协议  每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
+ 节点选举  使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel
+ 竞选流程 如果集群中的某一个 Follower 节点长时间内没有收到来自 Leader 的心跳请求，当前节点就会通过 MsgHup 消息进入预选举或者选举的流程。 如果收到 MsgHup 消息的节点不是 Leader 状态，就会根据当前集群的配置选择进入 PreElection 或者 Election 阶段，PreElection 阶段并不会真正增加当前节点的 Term，它的主要作用是得到当前集群能否成功选举出一个 Leader 的答案，如果当前集群中只有两个节点而且没有预选举阶段，那么这两个节点的 Term 会无休止的增加，预选举阶段就是为了解决这一问题而出现的。 当前节点会立刻调用 becomeCandidate 将当前节点的 Raft 状态变成候选人；在这之后，它会将票投给自己，如果当前集群只有一个节点，该节点就会直接成为集群中的 Leader 节点。'>
+<meta property='og:url' content='https://example.com/p/etcd-1.%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A81/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='etcd' /><meta property='article:tag' content='k8s' /><meta property='article:tag' content='分布式' /><meta property='article:published_time' content='2020-08-30T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2020-08-30T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="[ Etcd ] 1.基础入门(1)">
+<meta name="twitter:description" content="ETCD  其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务 ETCD包括 Raft 协议、存储两大模块. etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。
+ raft协议  每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。
+ 节点选举  使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel
+ 竞选流程 如果集群中的某一个 Follower 节点长时间内没有收到来自 Leader 的心跳请求，当前节点就会通过 MsgHup 消息进入预选举或者选举的流程。 如果收到 MsgHup 消息的节点不是 Leader 状态，就会根据当前集群的配置选择进入 PreElection 或者 Election 阶段，PreElection 阶段并不会真正增加当前节点的 Term，它的主要作用是得到当前集群能否成功选举出一个 Leader 的答案，如果当前集群中只有两个节点而且没有预选举阶段，那么这两个节点的 Term 会无休止的增加，预选举阶段就是为了解决这一问题而出现的。 当前节点会立刻调用 becomeCandidate 将当前节点的 Raft 状态变成候选人；在这之后，它会将票投给自己，如果当前集群只有一个节点，该节点就会直接成为集群中的 Leader 节点。">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/k8s/" style="background-color: #2a9d8f; color: #fff;">
+                Kubernetes
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/etcd-1.%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A81/">[ Etcd ] 1.基础入门(1)</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Aug 30, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h2 id="etcd">ETCD</h2>
+<blockquote>
+<p>其中ETCD是一个用于存储关键数据的键值存储，ZK是一个用于管理配置等信息的中心化服务
+ETCD包括 Raft 协议、存储两大模块.
+etcd 的使用其实非常简单，它对外提供了 gRPC 接口，我们可以通过 Protobuf 和 gRPC 直接对 etcd 中存储的数据进行管理，也可以使用官方提供的 etcdctl 操作存储的数据。</p>
+</blockquote>
+<h3 id="raft协议">raft协议</h3>
+<blockquote>
+<p>每一个 Raft 集群中都包含多个服务器，在任意时刻，每一台服务器只可能处于 Leader、Follower 以及 Candidate 三种状态；在处于正常的状态时，集群中只会存在一个 Leader，其余的服务器都是 Follower。</p>
+</blockquote>
+<h2 id="节点选举">节点选举</h2>
+<blockquote>
+<p>使用 Raft 协议的 etcd 集群在启动节点时，会遵循 Raft 协议的规则，所有节点一开始都被初始化为 Follower 状态，新加入的节点会在 NewNode 中做一些配置的初始化，包括用于接收各种信息的 Channel</p>
+</blockquote>
+<h3 id="竞选流程">竞选流程</h3>
+<p>如果集群中的某一个 Follower 节点长时间内没有收到来自 Leader 的心跳请求，当前节点就会通过 MsgHup 消息进入预选举或者选举的流程。
+如果收到 MsgHup 消息的节点不是 Leader 状态，就会根据当前集群的配置选择进入 PreElection 或者 Election 阶段，PreElection 阶段并不会真正增加当前节点的 Term，它的主要作用是得到当前集群能否成功选举出一个 Leader 的答案，如果当前集群中只有两个节点而且没有预选举阶段，那么这两个节点的 Term 会无休止的增加，预选举阶段就是为了解决这一问题而出现的。
+当前节点会立刻调用 becomeCandidate 将当前节点的 Raft 状态变成候选人；在这之后，它会将票投给自己，如果当前集群只有一个节点，该节点就会直接成为集群中的 Leader 节点。</p>
+<p>如果集群中存在了多个节点，就会向集群中的其他节点发出 MsgVote 消息，请求其他节点投票，在 Step 函数中包含不同状态的节点接收到消息时的响应
+如果当前节点投的票就是消息的来源或者当前节点没有投票也没有 Leader，那么就会向来源的节点投票，否则就会通知该节点当前节点拒绝投票。
+每当收到一个 MsgVoteResp 类型的消息时，就会设置当前节点持有的 votes 数组，更新其中存储的节点投票状态并返回投『同意』票的人数，如果获得的票数大于法定人数 quorum，当前节点就会成为集群的 Leader 并向其他的节点发送当前节点当选的消息，通知其余节点更新 Raft 结构体中的 Term 等信息</p>
+<p>存储</p>
+<p>etcd 目前支持 V2 和 V3 两个大版本，这两个版本在实现上有比较大的不同，一方面是对外提供接口的方式，另一方面就是底层的存储引擎，V2 版本的实例是一个纯内存的实现，所有的数据都没有存储在磁盘上，而 V3 版本的实例就支持了数据的持久化。
+在 V3 版本的设计中，etcd 通过 backend 后端这一设计，很好地封装了存储引擎的实现细节，为上层提供一个更一致的接口.</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/etcd/">etcd</a>
+        
+            <a href="/tags/k8s/">k8s</a>
+        
+            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/etcd-2.%E5%9F%BA%E7%A1%80%E5%85%A5%E9%97%A82/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Etcd ] 2.基础入门(2)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-3-1.%E6%B7%B1%E5%85%A5service/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 3-1.深入Service</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-1.%E4%BA%86%E8%A7%A3pod%E5%AF%B9%E8%B1%A1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-1.了解Pod对象</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-2.springboot-pods%E9%A1%B9%E7%9B%AE%E5%88%9D%E4%BD%93%E9%AA%8C/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-4.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-4.kubeadm命令使用</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

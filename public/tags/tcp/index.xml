@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>tcp on Quinn</title>
+    <link>https://example.com/tags/tcp/</link>
+    <description>Recent content in tcp on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 12 Oct 2019 01:36:27 +0800</lastBuildDate><atom:link href="https://example.com/tags/tcp/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1.TCP/IP入门</title>
+      <link>https://example.com/p/1.tcp/ip%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/1.tcp/ip%E5%85%A5%E9%97%A8/</guid>
+      <description>TCP/IP入门 1.1 协议分层 ✌🏼😂😅😅</description>
+    </item>
+    
+  </channel>
+</rss>

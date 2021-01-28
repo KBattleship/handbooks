@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='编译安装过程 1.预编译 cmake . -DCMAKE_INSTALL_PREFIX=/data/ops/mysql/ \ -DMYSQL_DATADIR=/data/ops/mysql/data \ -DWITH_BOOST=../boost_1_59_0 \ -DSYSCONFDIR=/etc \ -DWITH_INNOBASE_STORAGE_ENGINE=1 \ -DWITH_PARTITION_STORAGE_ENGINE=1 \ -DWITH_FEDERATED_STORAGE_ENGINE=1 \ -DWITH_BLACKHOLE_STORAGE_ENGINE=1 \ -DWITH_MYISAM_STORAGE_ENGINE=1 \ -DENABLED_LOCAL_INFILE=1 \ -DENABLE_DTRACE=0 \ -DDEFAULT_CHARSET=utf8mb4 \ -DDEFAULT_COLLATION=utf8mb4_general_ci \ -DWITH_EMBEDDED_SERVER=1 2.编译安装 make -j `grep processor /proc/cpuinfo | wc -l` #编译很消耗系统资源，小内存可能编译通不过make install make install 3.启动配置 ls -lrt /usr/local/mysql # 创建启动脚本，并增加可执行权限 cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld chmod &#43;x /etc/init.d/mysqld # 开机自启动 systemctl enable mysqld 4.修改Mysql配置文件 5.添加环境变量 6.初始化数据库 7.启动数据库 '><title>1.MySQL编译安装过程</title>
+
+<link rel='canonical' href='https://example.com/p/1.mysql%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='1.MySQL编译安装过程'>
+<meta property='og:description' content='编译安装过程 1.预编译 cmake . -DCMAKE_INSTALL_PREFIX=/data/ops/mysql/ \ -DMYSQL_DATADIR=/data/ops/mysql/data \ -DWITH_BOOST=../boost_1_59_0 \ -DSYSCONFDIR=/etc \ -DWITH_INNOBASE_STORAGE_ENGINE=1 \ -DWITH_PARTITION_STORAGE_ENGINE=1 \ -DWITH_FEDERATED_STORAGE_ENGINE=1 \ -DWITH_BLACKHOLE_STORAGE_ENGINE=1 \ -DWITH_MYISAM_STORAGE_ENGINE=1 \ -DENABLED_LOCAL_INFILE=1 \ -DENABLE_DTRACE=0 \ -DDEFAULT_CHARSET=utf8mb4 \ -DDEFAULT_COLLATION=utf8mb4_general_ci \ -DWITH_EMBEDDED_SERVER=1 2.编译安装 make -j `grep processor /proc/cpuinfo | wc -l` #编译很消耗系统资源，小内存可能编译通不过make install make install 3.启动配置 ls -lrt /usr/local/mysql # 创建启动脚本，并增加可执行权限 cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld chmod &#43;x /etc/init.d/mysqld # 开机自启动 systemctl enable mysqld 4.修改Mysql配置文件 5.添加环境变量 6.初始化数据库 7.启动数据库 '>
+<meta property='og:url' content='https://example.com/p/1.mysql%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='complite' /><meta property='article:tag' content='MySQL' /><meta property='article:published_time' content='2019-11-22T19:36:27&#43;08:00'/><meta property='article:modified_time' content='2019-11-22T19:36:27&#43;08:00'/>
+<meta name="twitter:title" content="1.MySQL编译安装过程">
+<meta name="twitter:description" content="编译安装过程 1.预编译 cmake . -DCMAKE_INSTALL_PREFIX=/data/ops/mysql/ \ -DMYSQL_DATADIR=/data/ops/mysql/data \ -DWITH_BOOST=../boost_1_59_0 \ -DSYSCONFDIR=/etc \ -DWITH_INNOBASE_STORAGE_ENGINE=1 \ -DWITH_PARTITION_STORAGE_ENGINE=1 \ -DWITH_FEDERATED_STORAGE_ENGINE=1 \ -DWITH_BLACKHOLE_STORAGE_ENGINE=1 \ -DWITH_MYISAM_STORAGE_ENGINE=1 \ -DENABLED_LOCAL_INFILE=1 \ -DENABLE_DTRACE=0 \ -DDEFAULT_CHARSET=utf8mb4 \ -DDEFAULT_COLLATION=utf8mb4_general_ci \ -DWITH_EMBEDDED_SERVER=1 2.编译安装 make -j `grep processor /proc/cpuinfo | wc -l` #编译很消耗系统资源，小内存可能编译通不过make install make install 3.启动配置 ls -lrt /usr/local/mysql # 创建启动脚本，并增加可执行权限 cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld chmod &#43;x /etc/init.d/mysqld # 开机自启动 systemctl enable mysqld 4.修改Mysql配置文件 5.添加环境变量 6.初始化数据库 7.启动数据库 ">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/middleware/" style="background-color: #2a9d8f; color: #fff;">
+                Middleware
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/1.mysql%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B/">1.MySQL编译安装过程</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Nov 22, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="编译安装过程">编译安装过程</h1>
+<h3 id="1预编译">1.预编译</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">cmake . -DCMAKE_INSTALL_PREFIX<span class="o">=</span>/data/ops/mysql/ <span class="se">\
+</span><span class="se"></span>-DMYSQL_DATADIR<span class="o">=</span>/data/ops/mysql/data <span class="se">\
+</span><span class="se"></span>-DWITH_BOOST<span class="o">=</span>../boost_1_59_0 <span class="se">\
+</span><span class="se"></span>-DSYSCONFDIR<span class="o">=</span>/etc <span class="se">\
+</span><span class="se"></span>-DWITH_INNOBASE_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span><span class="se"></span>-DWITH_PARTITION_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span><span class="se"></span>-DWITH_FEDERATED_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span><span class="se"></span>-DWITH_BLACKHOLE_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span><span class="se"></span>-DWITH_MYISAM_STORAGE_ENGINE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span><span class="se"></span>-DENABLED_LOCAL_INFILE<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span><span class="se"></span>-DENABLE_DTRACE<span class="o">=</span><span class="m">0</span> <span class="se">\
+</span><span class="se"></span>-DDEFAULT_CHARSET<span class="o">=</span>utf8mb4 <span class="se">\
+</span><span class="se"></span>-DDEFAULT_COLLATION<span class="o">=</span>utf8mb4_general_ci <span class="se">\
+</span><span class="se"></span>-DWITH_EMBEDDED_SERVER<span class="o">=</span><span class="m">1</span>
+</code></pre></div><h3 id="2编译安装">2.编译安装</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">make -j <span class="sb">`</span>grep processor /proc/cpuinfo <span class="p">|</span> wc -l<span class="sb">`</span>
+<span class="c1">#编译很消耗系统资源，小内存可能编译通不过make install</span>
+make install
+</code></pre></div><h3 id="3启动配置">3.启动配置</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">ls -lrt /usr/local/mysql
+<span class="c1"># 创建启动脚本，并增加可执行权限</span>
+cp /usr/local/mysql/support-files/mysql.server /etc/init.d/mysqld
+chmod +x /etc/init.d/mysqld
+<span class="c1"># 开机自启动</span>
+systemctl <span class="nb">enable</span> mysqld
+</code></pre></div><h3 id="4修改mysql配置文件">4.修改Mysql配置文件</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">
+</code></pre></div><h3 id="5添加环境变量">5.添加环境变量</h3>
+<h3 id="6初始化数据库">6.初始化数据库</h3>
+<h3 id="7启动数据库">7.启动数据库</h3>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/complite/">complite</a>
+        
+            <a href="/tags/mysql/">MySQL</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/1.mysql%E4%B9%8B%E7%83%AD%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7xtrabackup/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">1.MySQL之热备份工具(xtrabackup)</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/rocketmq-1.%E9%9D%A2%E8%AF%95/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ RocketMQ ] 1.面试</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/1.elasticsearch%E9%9B%86%E7%BE%A4%E6%90%AD%E5%BB%BA/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">1.ElasticSearch集群搭建</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/2.elasticsearch%E9%9B%86%E7%BE%A4%E5%8E%9F%E7%90%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">2.ElasticSearch集群原理</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/zookeeper-2.-zookeeper%E5%9F%BA%E7%A1%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title"> [ Zookeeper ] 2. Zookeeper基础</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hashMap on Quinn</title>
+    <link>https://example.com/tags/hashmap/</link>
+    <description>Recent content in hashMap on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 31 Dec 2020 11:13:47 +0800</lastBuildDate><atom:link href="https://example.com/tags/hashmap/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ Java ] 2.4 HashMap虐杀，完败</title>
+      <link>https://example.com/p/java-2.4-hashmap%E8%99%90%E6%9D%80%E5%AE%8C%E8%B4%A5/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-2.4-hashmap%E8%99%90%E6%9D%80%E5%AE%8C%E8%B4%A5/</guid>
+      <description>HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
+ 1. HashMap的resize()流程 源码解析
+// 扩容 hashTable 大小的方法  final Node&amp;lt;K,V&amp;gt;[] resize() { // 扩容前 hashTable  Node&amp;lt;K,V&amp;gt;[] oldTab = table; // 扩容前 HashTable 的容量  int oldCap = (oldTab == null) ? 0 : oldTab.length; // 扩容前 扩容阈值  int oldThr = threshold; int newCap, newThr = 0; // 扩容前HashTable不为null  if (oldCap &amp;gt; 0) { // 如果扩容前容量已经大于HashMap最大容量阈值，将不再扩容，直接返回hashMap  if (oldCap &amp;gt;= MAXIMUM_CAPACITY) { threshold = Integer.</description>
+    </item>
+    
+  </channel>
+</rss>

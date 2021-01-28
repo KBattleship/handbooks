@@ -1,106 +1,38 @@
-- id: archive
-  translation: Archive
+toggleMenu:
+    other: Afficher le menu
 
-- id: tags
-  translation: Tags
+article:
+    relatedContents:
+        other: Contenus liés
+    lastUpdatedOn:
+        other: Dernière mise à jour le
 
-- id: tag
-  translation: "Tag: "
+notFound:
+    title:
+        other: Page non trouvée
+    subtitle:
+        other: Cette page n'existe pas.
 
-- id: categories
-  translation: Catégories
+widget:
+    archives:
+        title:
+            other: Archives
+        more:
+            other: Autres
+    tagCloud:
+        title:
+            other: Mots clés
 
-- id: category
-  translation: "Catégory: "
+search:
+    title:
+        other: Rechercher
+    placeholder:
+        other: Cherchez un article, une publication, etc.
+    resultTitle:
+        other: "#PAGES_COUNT pages (#TIME_SECONDS secondes)"
 
-# posts
-- id: prev
-  translation: Prec
-
-- id: next
-  translation: Suiv
-
-- id: prev_post
-  translation: Prec
-
-- id: next_post
-  translation: Suiv
-
-- id: toc
-  translation: Sommaire
-
-- id: readmore
-  translation: Lire la suite
-
-- id: reward
-  translation: Reward
-
-- id: rewardAlipay
-  translation: Alipay
-
-- id: rewardWechat
-  translation: Wechat
-
-- id: seeMarkDown
-  translation: La version Markdown »
-
-- id: loadDisqus
-  translation: Afficher les commentaires Disqus
-
-# posts.header
-- id: wordCount
-  translation: "{{.Count}} mots"
-
-- id: readingTime
-  translation: "{{.Count}} min de lecture"
-
-# copyright
-- id: author
-  translation: Auteur
-
-- id: lastMod
-  translation: Derniere modification
-
-- id: markdown
-  translation: Markdown
-
-- id: license
-  translation: Licence
-
-# counter
-- id: counter_archives
-  translation: "{{.Count}} articles au total"
-
-- id: counter_tagcloud
-  translation: "{{.Count}} Tags au total"
-
-- id: counter_categories
-  translation: "{{.Count}} Catégories au total"
-
-# other
-- id: morePost
-  translation: "Plus d'articles >>>"
-
-- id: read_ru
-  translation: Читать на русском
-
-- id: read_es
-  translation: Leer en español
-
-- id: read_zh-cn
-  translation: 中文阅读
-
-- id: read_zh-tw
-  translation: 中文閱讀
-
-- id: read_pt
-  translation: Leia em português
-
-- id: read_en
-  translation: Read in english
-
-- id: read_de
-  translation: Lese in Deutsch
-
-- id: language
-  translation: Langage
+footer:
+    builtWith:
+        other: Généré avec {{ .Generator }}
+    designedBy:
+        other: Thème {{ .Theme }} conçu par {{ .DesignedBy }}

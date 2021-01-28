@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='KVM入门  1.基础操作 ①.创建虚拟机 virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart ②.虚拟机相关操作 # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 停止指定虚拟机 virsh shutdown &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 销毁指定虚拟机(强制断电) virsh destory &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 登入指定虚拟机 virsh console &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*) ③.'><title>1.KVM入门</title>
+
+<link rel='canonical' href='https://example.com/p/1.kvm%E5%85%A5%E9%97%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='1.KVM入门'>
+<meta property='og:description' content='KVM入门  1.基础操作 ①.创建虚拟机 virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart ②.虚拟机相关操作 # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 停止指定虚拟机 virsh shutdown &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 销毁指定虚拟机(强制断电) virsh destory &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 登入指定虚拟机 virsh console &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*) ③.'>
+<meta property='og:url' content='https://example.com/p/1.kvm%E5%85%A5%E9%97%A8/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='kvm' /><meta property='article:tag' content='Linux' /><meta property='article:tag' content='虚拟机' /><meta property='article:tag' content='网桥' /><meta property='article:published_time' content='2019-10-12T01:36:27&#43;08:00'/><meta property='article:modified_time' content='2019-10-12T01:36:27&#43;08:00'/>
+<meta name="twitter:title" content="1.KVM入门">
+<meta name="twitter:description" content="KVM入门  1.基础操作 ①.创建虚拟机 virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart ②.虚拟机相关操作 # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 停止指定虚拟机 virsh shutdown &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 销毁指定虚拟机(强制断电) virsh destory &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 登入指定虚拟机 virsh console &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*) ③.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/middleware/" style="background-color: #2a9d8f; color: #fff;">
+                Middleware
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/1.kvm%E5%85%A5%E9%97%A8/">1.KVM入门</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Oct 12, 2019</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="kvm入门">KVM入门</h1>
+<hr>
+<h3 id="1基础操作">1.基础操作</h3>
+<h4 id="创建虚拟机">①.创建虚拟机</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">virt-install --name<span class="o">=</span>centos-node1-0113 <span class="se">\
+</span><span class="se"></span>--ram<span class="o">=</span><span class="m">4096</span> --vcpus<span class="o">=</span><span class="m">2</span> <span class="se">\
+</span><span class="se"></span>--disk /data/virtualdisk<span class="se">\c</span>entos-node1-0113.img,sparse<span class="o">=</span>false,bus<span class="o">=</span>virtio,size<span class="o">=</span><span class="m">100</span> <span class="se">\
+</span><span class="se"></span>--cdrom<span class="o">=</span>/root/Download/CentOS-7-x86_64-Minimal-1810.iso<span class="se">\
+</span><span class="se"></span>--network <span class="nv">bridge</span><span class="o">=</span>br2 <span class="se">\
+</span><span class="se"></span>--vnc --vncport<span class="o">=</span><span class="m">5921</span> --vnclisten<span class="o">=</span>0.0.0.0 <span class="se">\
+</span><span class="se"></span>--noautoconsole --force --autostart
+</code></pre></div><h4 id="虚拟机相关操作">②.虚拟机相关操作</h4>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 显示所有虚拟机列表</span>
+virsh list --all
+
+<span class="c1"># 启动指定虚拟机</span>
+virsh start &lt;name&gt;/&lt;id&gt;
+
+<span class="c1"># 停止指定虚拟机</span>
+virsh shutdown &lt;name&gt;/&lt;id&gt;
+
+<span class="c1"># 销毁指定虚拟机(强制断电)</span>
+virsh destory &lt;name&gt;/&lt;id&gt;
+
+<span class="c1"># 登入指定虚拟机</span>
+virsh console &lt;name&gt;/&lt;id&gt;
+
+<span class="c1"># 为虚拟机添加网卡绑定</span>
+virsh attach-interface <span class="se">\
+</span><span class="se"></span>--domain centos_node2-142-5922 <span class="se">\ </span>   
+--type bridge <span class="se">\
+</span><span class="se"></span>--source br0 <span class="se">\
+</span><span class="se"></span>--model virtio <span class="se">\
+</span><span class="se"></span>--config
+
+<span class="c1"># 分离虚拟机网卡绑定</span>
+virsh detach-interface <span class="se">\
+</span><span class="se"></span>centos_node2-142-5922 <span class="se">\
+</span><span class="se"></span>bridge <span class="se">\
+</span><span class="se"></span>52:54:00:aa:9c:18
+
+<span class="c1"># 查看虚拟机网卡绑定详细信息</span>
+virsh  domiflist centos_node2-142-5922
+
+<span class="c1"># 查看网桥信息(brctl:网桥管理工具)</span>
+brctl show
+
+<span class="c1"># 虚拟机管理工具(virt-*)</span>
+</code></pre></div><h3 id="网桥模式bridge下的网卡配置">③.网桥模式(Bridge)下的网卡配置</h3>
+<ul>
+<li>
+<p>宿主机虚拟网桥配置文件详情：</p>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="c">&lt;!-- 配置文件在kvm-qeum下：/etc/libvirt/qemu/networks/default.xml --&gt;</span>
+<span class="nt">&lt;network&gt;</span>
+  <span class="nt">&lt;name&gt;</span>default<span class="nt">&lt;/name&gt;</span>
+  <span class="nt">&lt;uuid&gt;</span>9698a2c1-c8a1-4ec3-8cc3-0a8edebab6c4<span class="nt">&lt;/uuid&gt;</span>
+  <span class="c">&lt;!--  端口转发  --&gt;</span>
+  <span class="nt">&lt;forward</span> <span class="na">mode=</span><span class="s">&#39;nat&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;nat&gt;</span>
+      <span class="nt">&lt;port</span> <span class="na">start=</span><span class="s">&#39;1024&#39;</span> <span class="na">end=</span><span class="s">&#39;65535&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/nat&gt;</span>
+  <span class="nt">&lt;/forward&gt;</span>
+  <span class="c">&lt;!--  网桥配置  --&gt;</span>
+  <span class="nt">&lt;bridge</span> <span class="na">name=</span><span class="s">&#39;virbr0&#39;</span> <span class="na">stp=</span><span class="s">&#39;on&#39;</span> <span class="na">delay=</span><span class="s">&#39;0&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;mac</span> <span class="na">address=</span><span class="s">&#39;52:54:00:c9:6a:e2&#39;</span><span class="nt">/&gt;</span>
+  <span class="nt">&lt;ip</span> <span class="na">address=</span><span class="s">&#39;192.168.122.1&#39;</span> <span class="na">netmask=</span><span class="s">&#39;255.255.255.0&#39;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;dhcp&gt;</span>
+      <span class="nt">&lt;range</span> <span class="na">start=</span><span class="s">&#39;192.168.122.2&#39;</span> <span class="na">end=</span><span class="s">&#39;192.168.122.254&#39;</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;/dhcp&gt;</span>
+  <span class="nt">&lt;/ip&gt;</span>
+<span class="nt">&lt;/network&gt;</span>
+</code></pre></div></li>
+<li>
+<p>宿主机网桥</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">DEVICE</span><span class="o">=</span><span class="n">br0</span>
+<span class="n">HWADDR</span><span class="o">=</span><span class="n">B8</span><span class="o">:</span><span class="n">2A</span><span class="o">:</span><span class="n">72</span><span class="o">:</span><span class="n">CE</span><span class="o">:</span><span class="n">DA</span><span class="o">:</span><span class="n">75</span>
+<span class="n">TYPE</span><span class="o">=</span><span class="n">Bridge</span>
+<span class="n">UUID</span><span class="o">=</span><span class="n">325e2119</span><span class="o">-</span><span class="n">f293</span><span class="o">-</span><span class="n">4555</span><span class="o">-</span><span class="n">b984</span><span class="o">-</span><span class="n">ae8ae886b4de</span>
+<span class="n">ONBOOT</span><span class="o">=</span><span class="n">yes</span>
+<span class="n">NM_CONTROLLED</span><span class="o">=</span><span class="n">no</span>
+<span class="n">BOOTPROTO</span><span class="o">=</span><span class="kd">static</span>	
+<span class="n">IPADDR</span><span class="o">=</span><span class="n">10</span><span class="o">.</span><span class="na">106</span><span class="o">.</span><span class="na">36</span><span class="o">.</span><span class="na">135</span>
+<span class="n">NETMASK</span><span class="o">=</span><span class="n">255</span><span class="o">.</span><span class="na">255</span><span class="o">.</span><span class="na">255</span><span class="o">.</span><span class="na">128</span>
+<span class="n">GATEWAY</span><span class="o">=</span><span class="n">10</span><span class="o">.</span><span class="na">106</span><span class="o">.</span><span class="na">36</span><span class="o">.</span><span class="na">1</span>
+</code></pre></div></li>
+<li>
+<p>虚主机网卡</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="n">TYPE</span><span class="o">=</span><span class="n">Ethernet</span>
+<span class="n">BOOTPROTO</span><span class="o">=</span><span class="n">none</span>
+<span class="n">DEFROUTE</span><span class="o">=</span><span class="n">yes</span>
+<span class="n">NAME</span><span class="o">=</span><span class="n">eth0</span>
+<span class="n">DEVICE</span><span class="o">=</span><span class="n">eth0</span>
+<span class="n">NM_CONTROLLED</span><span class="o">=</span><span class="n">no</span>
+<span class="n">USERCTL</span><span class="o">=</span><span class="n">no</span>
+<span class="n">ONBOOT</span><span class="o">=</span><span class="n">yes</span>
+<span class="n">IPADDR</span><span class="o">=</span><span class="n">60</span><span class="o">.</span><span class="na">206</span><span class="o">.</span><span class="na">36</span><span class="o">.</span><span class="na">164</span>
+<span class="n">GATEWAY</span><span class="o">=</span><span class="n">60</span><span class="o">.</span><span class="na">206</span><span class="o">.</span><span class="na">36</span><span class="o">.</span><span class="na">129</span>
+<span class="n">NETMASK</span><span class="o">=</span><span class="n">255</span><span class="o">.</span><span class="na">255</span><span class="o">.</span><span class="na">255</span><span class="o">.</span><span class="na">128</span>
+<span class="n">DNS1</span><span class="o">=</span><span class="n">114</span><span class="o">.</span><span class="na">114</span><span class="o">.</span><span class="na">114</span><span class="o">.</span><span class="na">114</span>
+<span class="n">ARPCHECK</span><span class="o">=</span><span class="n">no</span>
+</code></pre></div></li>
+</ul>
+<h3 id="2关于宿主机网桥配置">2.关于宿主机网桥配置</h3>
+<p>1.物理网卡配置</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;Ethernet&#34;</span>
+<span class="nv">BOOTPROTO</span><span class="o">=</span><span class="s2">&#34;no&#34;</span>
+<span class="nv">DEFROUTE</span><span class="o">=</span><span class="s2">&#34;yes&#34;</span>
+<span class="nv">NAME</span><span class="o">=</span><span class="s2">&#34;em1&#34;</span>
+<span class="nv">UUID</span><span class="o">=</span><span class="s2">&#34;d4b9c4cb-b04c-4d91-9e9c-bc1b0c47a416&#34;</span>
+<span class="nv">DEVICE</span><span class="o">=</span><span class="s2">&#34;em1&#34;</span>
+<span class="nv">ONBOOT</span><span class="o">=</span><span class="s2">&#34;yes&#34;</span>
+<span class="nv">BRIDGE</span><span class="o">=</span><span class="s2">&#34;br0&#34;</span>
+</code></pre></div><p>2.网桥配置</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nv">TYPE</span><span class="o">=</span><span class="s2">&#34;Bridge&#34;</span>
+<span class="nv">BOOTPROTO</span><span class="o">=</span><span class="s2">&#34;static&#34;</span>
+<span class="nv">DEVICE</span><span class="o">=</span><span class="s2">&#34;br0&#34;</span>
+<span class="nv">NAME</span><span class="o">=</span><span class="s2">&#34;br0&#34;</span>
+<span class="nv">ONBOOT</span><span class="o">=</span><span class="s2">&#34;yes&#34;</span>
+<span class="nv">IPADDR</span><span class="o">=</span><span class="s2">&#34;10.36.24.180&#34;</span>
+<span class="nv">NETMASK</span><span class="o">=</span><span class="s2">&#34;255.255.255.0&#34;</span>
+<span class="nv">GATEWAY</span><span class="o">=</span><span class="s2">&#34;10.36.24.1&#34;</span>
+<span class="nv">NM_CONTROLLED</span><span class="o">=</span><span class="s2">&#34;no&#34;</span>
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/kvm/">kvm</a>
+        
+            <a href="/tags/linux/">Linux</a>
+        
+            <a href="/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/">虚拟机</a>
+        
+            <a href="/tags/%E7%BD%91%E6%A1%A5/">网桥</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/2.kvm-%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">2.KVM-双网卡网关配置</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/zookeeper-2.-zookeeper%E5%9F%BA%E7%A1%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title"> [ Zookeeper ] 2. Zookeeper基础</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/1.zookeeper%E5%88%86%E5%B8%83%E5%BC%8F%E9%83%A8%E7%BD%B2/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">1.zookeeper分布式部署</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/nginx-1.nginx%E5%85%A5%E9%97%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[Nginx] 1.Nginx入门</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/1.tcp/ip%E5%85%A5%E9%97%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">1.TCP/IP入门</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

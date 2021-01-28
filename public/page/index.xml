@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on Quinn</title>
+    <link>https://example.com/page/</link>
+    <description>Recent content in Pages on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 28 Apr 2020 21:41:52 +0800</lastBuildDate><atom:link href="https://example.com/page/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>关于</title>
+      <link>https://example.com/%E5%85%B3%E4%BA%8E/</link>
+      <pubDate>Tue, 28 Apr 2020 21:41:52 +0800</pubDate>
+      
+      <guid>https://example.com/%E5%85%B3%E4%BA%8E/</guid>
+      <description>Quinn 平时整理的一些笔记很杂乱，通过Blog进行一遍梳理。更好的记录这一路走来。
+ Java 2 Golang 的小白 幻想某天可以摘星辰 因为人间烟火不易，更愿悠哉于技术这片净土 兴趣、专注、痴迷 Stay hungry, Stay foolish  </description>
+    </item>
+    
+    <item>
+      <title>Archives</title>
+      <link>https://example.com/archives/</link>
+      <pubDate>Tue, 28 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/archives/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Search</title>
+      <link>https://example.com/search/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://example.com/search/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

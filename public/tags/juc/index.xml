@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JUC on Quinn</title>
+    <link>https://example.com/tags/juc/</link>
+    <description>Recent content in JUC on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 10 Jan 2021 11:10:47 +0800</lastBuildDate><atom:link href="https://example.com/tags/juc/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ Java ] 4-2.JUC之AQS</title>
+      <link>https://example.com/p/java-4-2.juc%E4%B9%8Baqs/</link>
+      <pubDate>Sun, 10 Jan 2021 11:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-4-2.juc%E4%B9%8Baqs/</guid>
+      <description>JUC之AQS 1.基础知识 1_1. AQS原理 AQS(AbstractQueuedSynchronizer),是java.util.concurrent.locks下的一个普通类。用作构建 锁 和 同步器 框架。例如基于AQS构建的有：ReentrantLock, Semaphore, ReentrantReadWriteLock, SynchronousQueue, FutureTask 等等。
+核心思想：
+ 如果被请求的共享资源处于 空闲状态 ，则将当前请求资源的线程设置为 有效的工作线程 ，并且将共享资源设置为 锁定状态。 如果被请求的共享资源处于 占用状态 ，则需要一套 线程阻塞等待 以及 被唤醒时锁分配 的流程机制。 AQS 通过 CLH (Craig, Landin, Hagersten) 队列锁实现：将暂时获取不到锁的线程加入至队列中。 AQS使用一个 int 成员变量来标识同步状态，通过内置的 FIFO 队列完成获取资源线程的排队工作，使用 CAS(compare and swap) 对改状态进行原子操作实现对其值的更改。  // 共享变量，使用volatile修饰符保证线程可见性 private volatile int state; /** 状态信息通过protected修饰符修饰 getState(), setState(), compareAndSetState()进行操作 */ // 返回同步状态的当前值 protected final int getState(){ return state; } // 设置同步状态当前值 protected final void setState(int newState){ this.</description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 4-2.JUC之Synchronized</title>
+      <link>https://example.com/p/java-4-2.juc%E4%B9%8Bsynchronized/</link>
+      <pubDate>Sun, 10 Jan 2021 11:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-4-2.juc%E4%B9%8Bsynchronized/</guid>
+      <description>4-3.Synchronized关键字 一、 Synchronized的作用范围：适用于方法以及代码块中。    类型 具体类型 作用对象 代码示例     方法 实例方法 类的实例对象 public synchronized void method(){}   方法 静态方法 类对象 public static synchronized void method(){}   代码块 实例对象 类的实例对象 synchronized(this){//同步代码块，锁住的是此类的实例对象;}   代码块 Class对象 类对象 synchronized(SynchronizedDemo.class){//锁住的是此类的实例对象;}   代码块 任意实例对象 任意实例对象 String demo=&#39;synchronized&#39;;synchronized(demo){//锁住的为demo对象;}   Tips: 如果Synchronized锁作用于类对象,不管多少个new实例对象,它们终究属于此类,都会被锁住,即线程之间保证同步关系.       二、Synchronized锁原理分析 当一个线程访问同步代码块时，它首先是需要得到锁才能执行同步代码，当退出或者抛出异常时必须要释放锁。 1.通过javap命令查看生成的字节码文件进行分析Synchronized锁的实现: public class SynchronizedTest { public synchronized void demo(){ } public void demoTwo(){ synchronized (this){ } } } 将上述代码片段进行编译，使用javap -v SynchronizedTest.</description>
+    </item>
+    
+  </channel>
+</rss>

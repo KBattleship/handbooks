@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>xtrabackup on Quinn</title>
+    <link>https://example.com/tags/xtrabackup/</link>
+    <description>Recent content in xtrabackup on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 22 Nov 2019 19:36:27 +0800</lastBuildDate><atom:link href="https://example.com/tags/xtrabackup/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1.MySQL之热备份工具(xtrabackup)</title>
+      <link>https://example.com/p/1.mysql%E4%B9%8B%E7%83%AD%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7xtrabackup/</link>
+      <pubDate>Fri, 22 Nov 2019 19:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/1.mysql%E4%B9%8B%E7%83%AD%E5%A4%87%E4%BB%BD%E5%B7%A5%E5%85%B7xtrabackup/</guid>
+      <description>MySQL之热备份工具(xtrabackup) 1.原理 2.安装  进入xtrabackup官网选择Percona XtraBackup   3.实战 </description>
+    </item>
+    
+  </channel>
+</rss>

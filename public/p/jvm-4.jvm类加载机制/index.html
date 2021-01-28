@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='JVM类加载机制 1. Java类加载机制 JVM中类的装载是由
+2. 描述JVM加载Class文件的原理机制 3. 什么是类加载器？类加载器又有哪些？   启动类加载器(Bootstrap ClassLoader)：
+负责加载${JAVA_HOME}/lib目录下或通过-Xbootclasspath参数指定路径中被JVM认可的类
+  扩展类加载器(Extension ClassLoader)：
+负责加载${JAVA_HOME}/lib/ext目录中或通过java.ext.dirs系统变量指定路径中的类库
+  应用程序类加载器(Application ClassLoader)：
+负责加载用户路径classpath下的类库。JVM通过 双亲委派模型 进行类的加载，也可通过 继承 java.lang.ClassLoader 实现自定义的类加载器。
+  4. 类装载的执行过程。   加载 获取类的二进制字节流，将其静态存储结构转化为方法区的运行时数据结构
+  校验 文件格式验证，元数据验证，字节码验证，符号引用验证
+  准备 在方法区中对类的static变量分配内存并设置类变量数据类型默认的初始值，不包括实例变量，实例变量将会在对象实例化的时候随着对象一起分配在Java堆中
+  解析 将常量池内的符号引用替换为直接引用的过程
+  初始化 为类的静态变量赋予正确的初始值（Java代码中被显式地赋予的值）
+  5. 什么是双亲委派模型？  当一个类收到 类加载请求 ，首先不去尝试自己加载此类，而是把此请求 委派 父类去完成； 每一个层次类加载器都是如此，因此所有的加载请求都应该传送到 启动类加载器 中； 只有当 父类加载器 反馈无法完成此请求是，子类加载器 才会尝试自己加载。   采用双亲委派的一个好处： 加载位于rt.'><title>[ JVM ] 4.JVM类加载机制</title>
+
+<link rel='canonical' href='https://example.com/p/jvm-4.jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ JVM ] 4.JVM类加载机制'>
+<meta property='og:description' content='JVM类加载机制 1. Java类加载机制 JVM中类的装载是由
+2. 描述JVM加载Class文件的原理机制 3. 什么是类加载器？类加载器又有哪些？   启动类加载器(Bootstrap ClassLoader)：
+负责加载${JAVA_HOME}/lib目录下或通过-Xbootclasspath参数指定路径中被JVM认可的类
+  扩展类加载器(Extension ClassLoader)：
+负责加载${JAVA_HOME}/lib/ext目录中或通过java.ext.dirs系统变量指定路径中的类库
+  应用程序类加载器(Application ClassLoader)：
+负责加载用户路径classpath下的类库。JVM通过 双亲委派模型 进行类的加载，也可通过 继承 java.lang.ClassLoader 实现自定义的类加载器。
+  4. 类装载的执行过程。   加载 获取类的二进制字节流，将其静态存储结构转化为方法区的运行时数据结构
+  校验 文件格式验证，元数据验证，字节码验证，符号引用验证
+  准备 在方法区中对类的static变量分配内存并设置类变量数据类型默认的初始值，不包括实例变量，实例变量将会在对象实例化的时候随着对象一起分配在Java堆中
+  解析 将常量池内的符号引用替换为直接引用的过程
+  初始化 为类的静态变量赋予正确的初始值（Java代码中被显式地赋予的值）
+  5. 什么是双亲委派模型？  当一个类收到 类加载请求 ，首先不去尝试自己加载此类，而是把此请求 委派 父类去完成； 每一个层次类加载器都是如此，因此所有的加载请求都应该传送到 启动类加载器 中； 只有当 父类加载器 反馈无法完成此请求是，子类加载器 才会尝试自己加载。   采用双亲委派的一个好处： 加载位于rt.'>
+<meta property='og:url' content='https://example.com/p/jvm-4.jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java' /><meta property='article:tag' content='jvm' /><meta property='article:tag' content='command' /><meta property='article:published_time' content='2020-12-27T21:10:47&#43;08:00'/><meta property='article:modified_time' content='2020-12-27T21:10:47&#43;08:00'/>
+<meta name="twitter:title" content="[ JVM ] 4.JVM类加载机制">
+<meta name="twitter:description" content="JVM类加载机制 1. Java类加载机制 JVM中类的装载是由
+2. 描述JVM加载Class文件的原理机制 3. 什么是类加载器？类加载器又有哪些？   启动类加载器(Bootstrap ClassLoader)：
+负责加载${JAVA_HOME}/lib目录下或通过-Xbootclasspath参数指定路径中被JVM认可的类
+  扩展类加载器(Extension ClassLoader)：
+负责加载${JAVA_HOME}/lib/ext目录中或通过java.ext.dirs系统变量指定路径中的类库
+  应用程序类加载器(Application ClassLoader)：
+负责加载用户路径classpath下的类库。JVM通过 双亲委派模型 进行类的加载，也可通过 继承 java.lang.ClassLoader 实现自定义的类加载器。
+  4. 类装载的执行过程。   加载 获取类的二进制字节流，将其静态存储结构转化为方法区的运行时数据结构
+  校验 文件格式验证，元数据验证，字节码验证，符号引用验证
+  准备 在方法区中对类的static变量分配内存并设置类变量数据类型默认的初始值，不包括实例变量，实例变量将会在对象实例化的时候随着对象一起分配在Java堆中
+  解析 将常量池内的符号引用替换为直接引用的过程
+  初始化 为类的静态变量赋予正确的初始值（Java代码中被显式地赋予的值）
+  5. 什么是双亲委派模型？  当一个类收到 类加载请求 ，首先不去尝试自己加载此类，而是把此请求 委派 父类去完成； 每一个层次类加载器都是如此，因此所有的加载请求都应该传送到 启动类加载器 中； 只有当 父类加载器 反馈无法完成此请求是，子类加载器 才会尝试自己加载。   采用双亲委派的一个好处： 加载位于rt.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/jvm-4.jvm%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6/">[ JVM ] 4.JVM类加载机制</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Dec 27, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="jvm类加载机制">JVM类加载机制</h1>
+<h2 id="1-java类加载机制">1. Java类加载机制</h2>
+<p>JVM中类的装载是由</p>
+<h2 id="2-描述jvm加载class文件的原理机制">2. 描述JVM加载Class文件的原理机制</h2>
+<h2 id="3-什么是类加载器类加载器又有哪些">3. 什么是类加载器？类加载器又有哪些？</h2>
+<ul>
+<li>
+<p><strong>启动类加载器(Bootstrap ClassLoader)：</strong></p>
+<p>负责加载<code>${JAVA_HOME}/lib</code>目录下或通过<code>-Xbootclasspath</code>参数指定路径中被JVM认可的类</p>
+</li>
+<li>
+<p><strong>扩展类加载器(Extension ClassLoader)：</strong></p>
+<p>负责加载<code>${JAVA_HOME}/lib/ext</code>目录中或通过<code>java.ext.dirs</code>系统变量指定路径中的类库</p>
+</li>
+<li>
+<p><strong>应用程序类加载器(Application ClassLoader)：</strong></p>
+<p>负责加载用户路径<code>classpath</code>下的类库。JVM通过 <strong>双亲委派模型</strong> 进行类的加载，也可通过 <strong>继承 java.lang.ClassLoader</strong> 实现自定义的类加载器。</p>
+</li>
+</ul>
+<h2 id="4-类装载的执行过程">4. 类装载的执行过程。</h2>
+<ul>
+<li>
+<p>加载 获取类的二进制字节流，将其静态存储结构转化为方法区的运行时数据结构</p>
+</li>
+<li>
+<p>校验 文件格式验证，元数据验证，字节码验证，符号引用验证</p>
+</li>
+<li>
+<p>准备 在方法区中对类的static变量分配内存并设置类变量数据类型默认的初始值，不包括实例变量，实例变量将会在对象实例化的时候随着对象一起分配在Java堆中</p>
+</li>
+<li>
+<p>解析 将常量池内的符号引用替换为直接引用的过程</p>
+</li>
+<li>
+<p>初始化 为类的静态变量赋予正确的初始值（Java代码中被显式地赋予的值）</p>
+</li>
+</ul>
+<h2 id="5-什么是双亲委派模型">5. 什么是双亲委派模型？</h2>
+<ol>
+<li>当一个类收到 <strong>类加载请求</strong> ，首先不去尝试自己加载此类，而是把此请求 委派 父类去完成；</li>
+<li>每一个层次类加载器都是如此，因此所有的加载请求都应该传送到 <strong>启动类加载器</strong> 中；</li>
+<li>只有当 <strong>父类加载器</strong> 反馈无法完成此请求是，<strong>子类加载器</strong> 才会尝试自己加载。</li>
+</ol>
+<blockquote>
+<p>采用双亲委派的一个好处： 加载位于rt.jar包中的类 java.lang.Object，不管是哪个类加载器加载的这个类，最终都将委托给顶层的 <strong>启动类加载器</strong> 进行加载，即可以保证使用不同的类加载器，也能保证加载的都是同一个Object对象。</p>
+</blockquote>
+<h2 id="6-tomcat打破双亲委派">6. Tomcat打破双亲委派</h2>
+<p>tomcat有着特殊性，它需要容纳多个应用，需要做到应用级别的隔离，而且需要减少重复性加载，所以划分为：</p>
+<ul>
+<li>/common 容器和应用共享的类信息，</li>
+<li>/server容器本身的类信息，</li>
+<li>/share应用通用的类信息,</li>
+<li>/WEB-INF/lib应用级别的类信息。</li>
+</ul>
+<p>整体可以分为：</p>
+<p>boostrapClassLoader-&gt;</p>
+<p>ExtensionClassLoader-&gt;</p>
+<p>ApplicationClassLoader-&gt;</p>
+<p>CommonClassLoader-&gt;</p>
+<p>CatalinaClassLoader（容器本身的加载器）/ShareClassLoader（共享的）-&gt;</p>
+<p>WebAppClassLoader。</p>
+<p>虽然第一眼是满足双亲委派模型的，但是不是的，因为双亲委派模型是要先提交给父类装载，而tomcat是优先判断是否是自己负责的文件位置，进行加载的。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">java</a>
+        
+            <a href="/tags/jvm/">jvm</a>
+        
+            <a href="/tags/command/">command</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/jvm-1.%E5%85%B3%E4%BA%8Ejvm%E5%91%BD%E4%BB%A4/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ JVM ] 1.关于JVM命令</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/jvm-2.jvm%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ JVM ] 2.JVM垃圾回收</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/jvm-3.jvm%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ JVM ] 3.JVM内存模型</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-1.%E5%85%B3%E4%BA%8E%E9%94%81/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-1.关于锁</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Baqs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之AQS</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

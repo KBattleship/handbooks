@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
+ 1. HashMap的resize()流程 源码解析
+// 扩容 hashTable 大小的方法  final Node&amp;lt;K,V&amp;gt;[] resize() { // 扩容前 hashTable  Node&amp;lt;K,V&amp;gt;[] oldTab = table; // 扩容前 HashTable 的容量  int oldCap = (oldTab == null) ? 0 : oldTab.length; // 扩容前 扩容阈值  int oldThr = threshold; int newCap, newThr = 0; // 扩容前HashTable不为null  if (oldCap &amp;gt; 0) { // 如果扩容前容量已经大于HashMap最大容量阈值，将不再扩容，直接返回hashMap  if (oldCap &amp;gt;= MAXIMUM_CAPACITY) { threshold = Integer.'><title>[ Java ] 2.4 HashMap虐杀，完败</title>
+
+<link rel='canonical' href='https://example.com/p/java-2.4-hashmap%E8%99%90%E6%9D%80%E5%AE%8C%E8%B4%A5/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Java ] 2.4 HashMap虐杀，完败'>
+<meta property='og:description' content='HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
+ 1. HashMap的resize()流程 源码解析
+// 扩容 hashTable 大小的方法  final Node&amp;lt;K,V&amp;gt;[] resize() { // 扩容前 hashTable  Node&amp;lt;K,V&amp;gt;[] oldTab = table; // 扩容前 HashTable 的容量  int oldCap = (oldTab == null) ? 0 : oldTab.length; // 扩容前 扩容阈值  int oldThr = threshold; int newCap, newThr = 0; // 扩容前HashTable不为null  if (oldCap &amp;gt; 0) { // 如果扩容前容量已经大于HashMap最大容量阈值，将不再扩容，直接返回hashMap  if (oldCap &amp;gt;= MAXIMUM_CAPACITY) { threshold = Integer.'>
+<meta property='og:url' content='https://example.com/p/java-2.4-hashmap%E8%99%90%E6%9D%80%E5%AE%8C%E8%B4%A5/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java' /><meta property='article:tag' content='hashMap' /><meta property='article:tag' content='' /><meta property='article:published_time' content='2020-12-31T11:13:47&#43;08:00'/><meta property='article:modified_time' content='2020-12-31T11:13:47&#43;08:00'/>
+<meta name="twitter:title" content="[ Java ] 2.4 HashMap虐杀，完败">
+<meta name="twitter:description" content="HashMap虐杀，完败  HashMap内部实现是一个 桶数组 ，每个桶中存放着一个 单链表的头结点 。其中每个结点存储的是一个 键值对整体（Entry），HashMap采用 拉链法 解决哈希冲突。
+ 1. HashMap的resize()流程 源码解析
+// 扩容 hashTable 大小的方法  final Node&amp;lt;K,V&amp;gt;[] resize() { // 扩容前 hashTable  Node&amp;lt;K,V&amp;gt;[] oldTab = table; // 扩容前 HashTable 的容量  int oldCap = (oldTab == null) ? 0 : oldTab.length; // 扩容前 扩容阈值  int oldThr = threshold; int newCap, newThr = 0; // 扩容前HashTable不为null  if (oldCap &amp;gt; 0) { // 如果扩容前容量已经大于HashMap最大容量阈值，将不再扩容，直接返回hashMap  if (oldCap &amp;gt;= MAXIMUM_CAPACITY) { threshold = Integer.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/java-2.4-hashmap%E8%99%90%E6%9D%80%E5%AE%8C%E8%B4%A5/">[ Java ] 2.4 HashMap虐杀，完败</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Dec 31, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="hashmap虐杀完败">HashMap虐杀，完败</h1>
+<blockquote>
+<p>HashMap内部实现是一个 <strong>桶数组</strong> ，每个桶中存放着一个 <strong>单链表的头结点</strong> 。其中每个结点存储的是一个 <strong>键值对整体</strong>（Entry），HashMap采用 <strong>拉链法</strong> 解决哈希冲突。</p>
+</blockquote>
+<h3 id="1-hashmap的resize流程">1. HashMap的resize()流程</h3>
+<p><strong>源码解析</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">    <span class="c1">// 扩容 hashTable 大小的方法
+</span><span class="c1"></span>    <span class="kd">final</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="nf">resize</span><span class="o">()</span> <span class="o">{</span>
+        <span class="c1">// 扩容前 hashTable
+</span><span class="c1"></span>        <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">oldTab</span> <span class="o">=</span> <span class="n">table</span><span class="o">;</span>
+        <span class="c1">// 扩容前 HashTable 的容量
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">oldCap</span> <span class="o">=</span> <span class="o">(</span><span class="n">oldTab</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">?</span> <span class="n">0</span> <span class="o">:</span> <span class="n">oldTab</span><span class="o">.</span><span class="na">length</span><span class="o">;</span>
+        <span class="c1">// 扩容前 扩容阈值
+</span><span class="c1"></span>        <span class="kt">int</span> <span class="n">oldThr</span> <span class="o">=</span> <span class="n">threshold</span><span class="o">;</span>
+        <span class="kt">int</span> <span class="n">newCap</span><span class="o">,</span> <span class="n">newThr</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span>
+        <span class="c1">// 扩容前HashTable不为null
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">oldCap</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 如果扩容前容量已经大于HashMap最大容量阈值，将不再扩容，直接返回hashMap
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">MAXIMUM_CAPACITY</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">threshold</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+                <span class="k">return</span> <span class="n">oldTab</span><span class="o">;</span>
+            <span class="o">}</span>
+            <span class="c1">// 如果扩容一倍后容量 &lt; 最大容量，并且 扩容前容量值 &gt;= 初始化容量值 ，将 扩容阈值 也扩大一倍
+</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span> <span class="o">((</span><span class="n">newCap</span> <span class="o">=</span> <span class="n">oldCap</span> <span class="o">&lt;&lt;</span> <span class="n">1</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_CAPACITY</span> <span class="o">&amp;&amp;</span>
+                     <span class="n">oldCap</span> <span class="o">&gt;=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">)</span>
+                <span class="n">newThr</span> <span class="o">=</span> <span class="n">oldThr</span> <span class="o">&lt;&lt;</span> <span class="n">1</span><span class="o">;</span> <span class="c1">// double threshold
+</span><span class="c1"></span>        <span class="o">}</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">oldThr</span> <span class="o">&gt;</span> <span class="n">0</span><span class="o">)</span> <span class="c1">// initial capacity was placed in threshold
+</span><span class="c1"></span>            <span class="n">newCap</span> <span class="o">=</span> <span class="n">oldThr</span><span class="o">;</span>
+        <span class="k">else</span> <span class="o">{</span>               <span class="c1">// zero initial threshold signifies using defaults
+</span><span class="c1"></span>            <span class="c1">// 如果 hashTable 为null 或者 长度 &lt;= 0， 将重新初始化容量16、扩容阈值 12
+</span><span class="c1"></span>            <span class="n">newCap</span> <span class="o">=</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">;</span>
+            <span class="n">newThr</span> <span class="o">=</span> <span class="o">(</span><span class="kt">int</span><span class="o">)(</span><span class="n">DEFAULT_LOAD_FACTOR</span> <span class="o">*</span> <span class="n">DEFAULT_INITIAL_CAPACITY</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">newThr</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+            <span class="c1">// 计算新的扩容阈值
+</span><span class="c1"></span>            <span class="kt">float</span> <span class="n">ft</span> <span class="o">=</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">newCap</span> <span class="o">*</span> <span class="n">loadFactor</span><span class="o">;</span>
+            <span class="n">newThr</span> <span class="o">=</span> <span class="o">(</span><span class="n">newCap</span> <span class="o">&lt;</span> <span class="n">MAXIMUM_CAPACITY</span> <span class="o">&amp;&amp;</span> <span class="n">ft</span> <span class="o">&lt;</span> <span class="o">(</span><span class="kt">float</span><span class="o">)</span><span class="n">MAXIMUM_CAPACITY</span> <span class="o">?</span>
+                      <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">ft</span> <span class="o">:</span> <span class="n">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">);</span>
+        <span class="o">}</span>
+        <span class="n">threshold</span> <span class="o">=</span> <span class="n">newThr</span><span class="o">;</span>
+        <span class="nd">@SuppressWarnings</span><span class="o">({</span><span class="s">&#34;rawtypes&#34;</span><span class="o">,</span><span class="s">&#34;unchecked&#34;</span><span class="o">})</span>
+        <span class="c1">// 按照新的容量 创建新的hashTable
+</span><span class="c1"></span>        <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">newTab</span> <span class="o">=</span> <span class="o">(</span><span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[])</span><span class="k">new</span> <span class="n">Node</span><span class="o">[</span><span class="n">newCap</span><span class="o">];</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">newTab</span><span class="o">;</span>
+        <span class="c1">// 把旧哈希表中的内容移动到新哈希表中
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(</span><span class="n">oldTab</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">oldCap</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
+                <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">oldTab</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="n">oldTab</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+                        <span class="n">newTab</span><span class="o">[</span><span class="n">e</span><span class="o">.</span><span class="na">hash</span> <span class="o">&amp;</span> <span class="o">(</span><span class="n">newCap</span> <span class="o">-</span> <span class="n">1</span><span class="o">)]</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+                    <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="k">instanceof</span> <span class="n">TreeNode</span><span class="o">)</span>
+                        <span class="o">((</span><span class="n">TreeNode</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;)</span><span class="n">e</span><span class="o">).</span><span class="na">split</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">newTab</span><span class="o">,</span> <span class="n">j</span><span class="o">,</span> <span class="n">oldCap</span><span class="o">);</span>
+                    <span class="k">else</span> <span class="o">{</span> <span class="c1">// preserve order
+</span><span class="c1"></span>                        <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">loHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">loTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                        <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">hiHead</span> <span class="o">=</span> <span class="kc">null</span><span class="o">,</span> <span class="n">hiTail</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                        <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">next</span><span class="o">;</span>
+                        <span class="k">do</span> <span class="o">{</span>
+                            <span class="n">next</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">next</span><span class="o">;</span>
+                            <span class="k">if</span> <span class="o">((</span><span class="n">e</span><span class="o">.</span><span class="na">hash</span> <span class="o">&amp;</span> <span class="n">oldCap</span><span class="o">)</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span> <span class="o">{</span>
+                                <span class="k">if</span> <span class="o">(</span><span class="n">loTail</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+                                    <span class="n">loHead</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+                                <span class="k">else</span>
+                                    <span class="n">loTail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+                                <span class="n">loTail</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+                            <span class="o">}</span>
+                            <span class="k">else</span> <span class="o">{</span>
+                                <span class="k">if</span> <span class="o">(</span><span class="n">hiTail</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+                                    <span class="n">hiHead</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+                                <span class="k">else</span>
+                                    <span class="n">hiTail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+                                <span class="n">hiTail</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+                            <span class="o">}</span>
+                        <span class="o">}</span> <span class="k">while</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">next</span><span class="o">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">);</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">loTail</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="n">loTail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                            <span class="n">newTab</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">loHead</span><span class="o">;</span>
+                        <span class="o">}</span>
+                        <span class="k">if</span> <span class="o">(</span><span class="n">hiTail</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                            <span class="n">hiTail</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+                            <span class="n">newTab</span><span class="o">[</span><span class="n">j</span> <span class="o">+</span> <span class="n">oldCap</span><span class="o">]</span> <span class="o">=</span> <span class="n">hiHead</span><span class="o">;</span>
+                        <span class="o">}</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="k">return</span> <span class="n">newTab</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div><h3 id="2-hashmap的put流程">2. HashMap的put()流程</h3>
+<p><code>先根据key确定其在Hash表中的下标，找到对应的bucket，遍历链表(或者红黑树)进行插入操作。</code></p>
+<ul>
+<li>先判断Hash表是否为null或者长度是否为0，是则进行一次扩容；</li>
+<li>根据 <code>key</code> 确定 <code>Hash表</code> 中的 <strong>index</strong>，在找到对应的 <strong>bucket</strong>，如果 <strong>bucket</strong> 上没有节点，直接新增一个节点；</li>
+<li>如果当前 <strong>bucket</strong> 上存在链表，且头节点可以匹配上，直接进行替换；</li>
+<li>如果当前 <strong>bucket</strong> 上是红黑树，则按照红黑树操作进行插入或替换；</li>
+<li>如果以上情况都不满足，将开始遍历链表，如果匹配到就进行替换；如果未匹配到将在链表尾部添加一个节点，同时会判断链表长度是否大于 <strong><code>8</code></strong> 、Hash表数组是否大于 <strong><code>64</code></strong>，同时满足这两个条件，将链表会转化为红黑树；如果链表长度仅大于 <strong>8</strong>，将会进行扩容；</li>
+<li>执行完成后，会判断 Map中 <code>K-V</code>对 数量是否大于 <code>threshold</code> ，是则进行扩容。</li>
+</ul>
+<p><strong>源码解析</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java">     <span class="kd">final</span> <span class="n">V</span> <span class="nf">putVal</span><span class="o">(</span><span class="kt">int</span> <span class="n">hash</span><span class="o">,</span> <span class="n">K</span> <span class="n">key</span><span class="o">,</span> <span class="n">V</span> <span class="n">value</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">onlyIfAbsent</span><span class="o">,</span>
+                   <span class="kt">boolean</span> <span class="n">evict</span><span class="o">)</span> <span class="o">{</span>
+        <span class="c1">// n : 当前tab容量
+</span><span class="c1"></span>        <span class="c1">// i : 根据 key 的 hash 值计算出的在存储数组上的下标
+</span><span class="c1"></span>        <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">tab</span><span class="o">;</span> <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">p</span><span class="o">;</span> <span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="n">i</span><span class="o">;</span>
+        <span class="k">if</span> <span class="o">((</span><span class="n">tab</span> <span class="o">=</span> <span class="n">table</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="o">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">tab</span><span class="o">.</span><span class="na">length</span><span class="o">)</span> <span class="o">==</span> <span class="n">0</span><span class="o">)</span>
+            <span class="c1">// 当 hashTable 为null 或者 长度为0时，进行扩容
+</span><span class="c1"></span>            <span class="n">n</span> <span class="o">=</span> <span class="o">(</span><span class="n">tab</span> <span class="o">=</span> <span class="n">resize</span><span class="o">()).</span><span class="na">length</span><span class="o">;</span>
+        <span class="c1">// 判断当前索引位置上是否存在节点
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">((</span><span class="n">p</span> <span class="o">=</span> <span class="n">tab</span><span class="o">[</span><span class="n">i</span> <span class="o">=</span> <span class="o">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">1</span><span class="o">)</span> <span class="o">&amp;</span> <span class="n">hash</span><span class="o">])</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+            <span class="c1">// 不存在节点，直接在当前索引的位置创建一个新的节点
+</span><span class="c1"></span>            <span class="n">tab</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">(</span><span class="n">hash</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+        <span class="k">else</span> <span class="o">{</span>
+            <span class="c1">// 存在节点的情况
+</span><span class="c1"></span>            <span class="n">Node</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span><span class="o">;</span> <span class="n">K</span> <span class="n">k</span><span class="o">;</span>
+            <span class="c1">// 如果 当前节点的key与待插入元素的key一直，直接进行替换
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span>
+                <span class="o">((</span><span class="n">k</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">key</span><span class="o">)</span> <span class="o">==</span> <span class="n">key</span> <span class="o">||</span> <span class="o">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">key</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">k</span><span class="o">))))</span>
+                <span class="n">e</span> <span class="o">=</span> <span class="n">p</span><span class="o">;</span>
+            <span class="c1">// 如果当前索引位置上是红黑树，按照红黑树操作进行替换或插入
+</span><span class="c1"></span>            <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">p</span> <span class="k">instanceof</span> <span class="n">TreeNode</span><span class="o">)</span>
+                <span class="n">e</span> <span class="o">=</span> <span class="o">((</span><span class="n">TreeNode</span><span class="o">&lt;</span><span class="n">K</span><span class="o">,</span><span class="n">V</span><span class="o">&gt;)</span><span class="n">p</span><span class="o">).</span><span class="na">putTreeVal</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">tab</span><span class="o">,</span> <span class="n">hash</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">);</span>
+            <span class="k">else</span> <span class="o">{</span>
+                <span class="c1">// 剩下这种情况就是 当前索引位置上是链表的数据结构，进行链表上节点的遍历
+</span><span class="c1"></span>                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">binCount</span> <span class="o">=</span> <span class="n">0</span><span class="o">;</span> <span class="o">;</span> <span class="o">++</span><span class="n">binCount</span><span class="o">)</span> <span class="o">{</span>
+                    <span class="c1">// 如果当前链表没有匹配到待插入元素key，在链表尾部新增一个节点
+</span><span class="c1"></span>                    <span class="k">if</span> <span class="o">((</span><span class="n">e</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="na">next</span><span class="o">)</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+                        <span class="n">p</span><span class="o">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newNode</span><span class="o">(</span><span class="n">hash</span><span class="o">,</span> <span class="n">key</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+                        <span class="c1">// 如果当前链表长度 &gt; 8 ，将 链表 转化为 树
+</span><span class="c1"></span>                        <span class="k">if</span> <span class="o">(</span><span class="n">binCount</span> <span class="o">&gt;=</span> <span class="n">TREEIFY_THRESHOLD</span> <span class="o">-</span> <span class="n">1</span><span class="o">)</span> <span class="c1">// -1 for 1st
+</span><span class="c1"></span>                            <span class="n">treeifyBin</span><span class="o">(</span><span class="n">tab</span><span class="o">,</span> <span class="n">hash</span><span class="o">);</span>
+                        <span class="k">break</span><span class="o">;</span>
+                    <span class="o">}</span>
+                    <span class="c1">// 在链表上匹配到与待插入元素key时，跳出循环
+</span><span class="c1"></span>                    <span class="k">if</span> <span class="o">(</span><span class="n">e</span><span class="o">.</span><span class="na">hash</span> <span class="o">==</span> <span class="n">hash</span> <span class="o">&amp;&amp;</span>
+                        <span class="o">((</span><span class="n">k</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">key</span><span class="o">)</span> <span class="o">==</span> <span class="n">key</span> <span class="o">||</span> <span class="o">(</span><span class="n">key</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">key</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="n">k</span><span class="o">))))</span>
+                        <span class="k">break</span><span class="o">;</span>
+                    <span class="c1">// 将指针指向下一个节点，继续循环
+</span><span class="c1"></span>                    <span class="n">p</span> <span class="o">=</span> <span class="n">e</span><span class="o">;</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+            <span class="c1">// e 不为 null 说明匹配到了待插入元素一样的key，此时应该进行替换，并将旧值进行返回
+</span><span class="c1"></span>            <span class="k">if</span> <span class="o">(</span><span class="n">e</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// existing mapping for key
+</span><span class="c1"></span>                <span class="n">V</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="na">value</span><span class="o">;</span>
+                <span class="k">if</span> <span class="o">(!</span><span class="n">onlyIfAbsent</span> <span class="o">||</span> <span class="n">oldValue</span> <span class="o">==</span> <span class="kc">null</span><span class="o">)</span>
+                    <span class="n">e</span><span class="o">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="o">;</span>
+                <span class="n">afterNodeAccess</span><span class="o">(</span><span class="n">e</span><span class="o">);</span>
+                <span class="k">return</span> <span class="n">oldValue</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+        <span class="o">++</span><span class="n">modCount</span><span class="o">;</span>
+        <span class="c1">// 判断当前HashMap中存储的K-V对数量是否超出 扩容阈值
+</span><span class="c1"></span>        <span class="c1">// threshold = DEFAULT_LOAD_FACTOR * DEFAULT_INITIAL_CAPACITY
+</span><span class="c1"></span>        <span class="k">if</span> <span class="o">(++</span><span class="n">size</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="o">)</span>
+            <span class="n">resize</span><span class="o">();</span>
+        <span class="n">afterNodeInsertion</span><span class="o">(</span><span class="n">evict</span><span class="o">);</span>
+        <span class="c1">// 新插入的值，返回null
+</span><span class="c1"></span>        <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+    <span class="o">}</span>
+</code></pre></div><h3 id="3-concurrenthashmapget是否线程安全是否有加锁">3. ConcurrentHashMap.get()是否线程安全，是否有加锁？</h3>
+<ul>
+<li>安全，读操作不受影响。</li>
+<li>不加锁。</li>
+</ul>
+<h3 id="4-concurrenthashmap如何保证线程安全">4. ConcurrentHashMap如何保证线程安全</h3>
+<ul>
+<li>在JDK8以前，ConcurrentHashMap都是基于Segment分段锁来实现的，</li>
+<li>在JDK8以后，就换成synchronized和CAS这套实现机制了。
+<ol>
+<li>使用 <strong>volatile</strong> 保证当Node中的值变化时对于其他线程是 <strong>可见的</strong></li>
+<li>使用 <strong>table数组的头结点</strong> 作为synchronized的锁来 <strong>保证写操作</strong> 的安全</li>
+<li>当头结点为 <strong>null</strong> 时，使用 <strong>CAS操作</strong> 来保证数据能正确的 <strong>写入</strong></li>
+</ol>
+<ul>
+<li>和JDK1.8中的HashMap类似，对于hashCode相同的时候，在Node节点的数量少于8个时，这时的Node存储结构是链表形式，时间复杂度为O(N)，当Node节点的个数超过8个时，则会转换为红黑树，此时访问的时间复杂度为O(long(N))</li>
+</ul>
+</li>
+</ul>
+<h3 id="5-hashmaptreemap-linkedhashmap区别">5. HashMap、TreeMap、 LinkedHashMap区别</h3>
+<ul>
+<li>
+<p><strong>HashMap：</strong></p>
+<ul>
+<li>
+<p>常用的一个Map，根据键的 <strong>HashCode</strong> 值存储数据，同时根据 键 直接获取对应的值</p>
+</li>
+<li>
+<p>访问速度很快，通过遍历得到的数据是完全随机无需的。</p>
+</li>
+<li>
+<p>只允许一条记录的 <strong>键</strong> 为 Null，允许多条记录的 <strong>值</strong> 为 Null</p>
+</li>
+<li>
+<p>HashMap不支持线程同步(即同一时刻多个线程同时写HashMap)，可能会导致数据不一致</p>
+</li>
+<li>
+<p>HashMap如果支持线程同步可以通过 <strong>Collections的synchronizedMap()</strong> 实现，或者使用 <strong>ConcurrentHashMap</strong></p>
+</li>
+<li>
+<p>HashMap 与 HashTable 类似，HashTable 继承自 Dictionary 类。不同是</p>
+<ul>
+<li>HashTable 不允许存在为Null的键值</li>
+<li>支持线程同步。(所以要比HashMap要慢)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>TreeMap：</strong></p>
+<ul>
+<li>TreeMap是实现 <strong>SortMap接口</strong> ，它能把保存的记录根据键值进行排序。</li>
+<li>默认是按照键值升序进行排序，也可以指定排序比较器，使用Iterator进行排序，得到的记录是有序的。</li>
+</ul>
+</li>
+<li>
+<p><strong>LinkedHashMap：</strong></p>
+<ul>
+<li>
+<p>是<code>HashMap</code>的子类，保存了记录的插入顺序，在用Iterator遍历LinkedHashMap时，先得到的记录肯定是先插入的记录。</p>
+</li>
+<li>
+<p>遍历的情况下，要比HashMap慢，不过存在例外的情况：当HashMap容量很大时，实际数据较少，遍历时可能会比LinkedHashMap慢：</p>
+<p><code>LinkedHashMap的遍历速度之和实际数据有关，与容量无关，但HashMap的遍历速度与容量相关。</code></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="list你使用过哪些">List你使用过哪些</h2>
+<p>ArrayList和linkedList使用的最多，也最具代表性。</p>
+<h2 id="你知道vector和arraylist和linkedlist的区别嘛">你知道vector和ArrayList和linkedList的区别嘛</h2>
+<p>ArrayList实现是一个数组，可变数组，默认初始化长度为10，也可以我们设置容量，但是没有设置的时候是默认的空数组，只有在第一步add的时候会进行扩容至10（重新创建了数组），后续扩容按照3/2的大小进行扩容，是线程不安全的，适用多读取，少插入的情况</p>
+<p>linkedList是基于双向链表的实现，使用了尾插法的方式，内部维护了链表的长度，以及头节点和尾节点，所以获取长度不需要遍历。适合一些插入/删除频繁的情况。</p>
+<p>Vector是线程安全的，实现方式和ArrayList相似，也是基于数组，但是方法上面都有synchronized关键词修饰。其扩容方式是原来的两倍。</p>
+<h2 id="hashmap和hashtable和concurrenthashmap的区别">hashMap和hashTable和ConcurrentHashMap的区别</h2>
+<p>hashMap是map类型的一种最常用的数据结构，其底部实现是数组+链表（在1.8版本后变为了数组+链表/红黑树的方式），其key是可以为null的，默认hash值为0。扩容以2的幂等次（为什么。。。因为只有是2的幂等次的时候（n-1）&amp;x==x%n，当然不一定只有一个原因）。是线程不安全的</p>
+<p>hashTable的实现形式和hashMap差不多，它是线程安全的，是继承了Dictionary，也是key-value的模式，但是其key不能为null。</p>
+<p>ConcurrentHashMap是JUC并发包的一种，在hashMap的基础上做了修改，因为hashmap其实是线程不安全的，那在并发情况下使用hashTable嘛，但是hashTable是全程加锁的，性能不好，所以采用分段的思想，把原本的一个数组分成默认16段，就可以最多容纳16个线程并发操作，16个段叫做Segment，是基于ReetrantLock来实现的</p>
+<h2 id="说说你了解的hashmap吧">说说你了解的hashmap吧</h2>
+<p>hashMap是Map的结构，内部用了数组+链表的方式，在1.8后，当链表长度达到8的时候，会变成红黑树，这样子就可以把查询的复杂度变成O（nlogn）了，默认负载因子是0.75，为什么是0.75呢？</p>
+<p>我们知道当负载因子太小，就很容易触发扩容，如果负载因子太大就容易出现碰撞。所以这个是空间和时间的一个均衡点，在1.8的hashmap介绍中，就有描述了，貌似是0.75的负载因子中，能让随机hash更加满足0.5的泊松分布。</p>
+<p>除此之外，1.7的时候是头插法，1.8后就变成了尾插法，主要是为了解决rehash出现的死循环问题，而且1.7的时候是先扩容后插入，1.8则是先插入后扩容(为什么？正常来说，如果先插入，就有可能节点变为树化，那么是不是多做一次树转化，比1.7要多损耗，个人猜测，因为读写问题，因为hashmap并不是线程安全的，如果说是先扩容，后写入，那么在扩容期间，是访问不到新放入的值的，是不是不太合适，所以会先放入值，这样子在扩容期间，那个值是在的）。</p>
+<p>1.7版本的时候用了9次扰动，5次异或，4次位移，减少hash冲突，但是1.8就只用了两次，觉得就足够了一次异或，一次位移。</p>
+<h2 id="concurrenthashmap呢">concurrentHashMap呢</h2>
+<p>concurrentHashMap是线程安全的map结构，它的核心思想是分段锁。在1.7版本的时候，内部维护了segment数组，默认是16个，segment中有一个table数组（相当于一个segmeng存放着一个hashmap。。。），segment继承了reentrantlock，使用了互斥锁，map的size其实就是segment数组的count和。而在1.8的时候做了一个大改版，废除了segment，采用了cas加synchronize方式来进行分段锁（还有自旋锁的保证），而且节点对象改用了Node不是之前的HashEntity。</p>
+<p>Node可以支持链表和红黑树的转化，比如TreeBin就是继承了Node，这样子可以直接用instanceof来区分。1.8的put就很复杂来，会先计算出hash值，然后根据hash值选出Node数组的下标（默认数组是空的，所以一开始put的时候会初始化，指定负载因子是0.75，不可变），判断是否为空，如果为空，则用cas的操作来赋值首节点，如果失败，则因为自旋，会进入非空节点的逻辑，这个时候会用synchronize加锁头节点（保证整条链路锁定）这个时候还会进行二次判断，是否是同一个首节点，在分首节点到底是链表还是树结构，进行遍历判断。</p>
+<h2 id="concurrenthashmap的扩容方式">concurrentHashMap的扩容方式</h2>
+<p>1.7版本的concurrentHashMap是基于了segment的，segment内部维护了HashEntity数组，所以扩容是在这个基础上的，类比hashmap的扩容，</p>
+<p>1.8版本的concurrentHashMap扩容方式比较复杂，利用了ForwardingNode,先会根据机器内核数来分配每个线程能分到的busket数，（最小是16），这样子可以做到多线程协助迁移，提升速度。然后根据自己分配的busket数来进行节点转移，如果为空，就放置ForwardingNode，代表已经迁移完成，如果是非空节点（判断是不是ForwardingNode，是就结束了），加锁，链路循环,进行迁移。</p>
+<h2 id="hashmap的put方法的过程">hashMap的put方法的过程</h2>
+<p>判断key是否是null，如果是null对应的hash值就是0，获得hash值过后则进行扰动，（1.7是9次，5次异或，4次位移，1.8是2次），获取到的新hash值找出所在的index，（n-1）&amp;hash，根据下标找到对应的Node/entity，然后遍历链表/红黑树，如果遇到hash值相同且equals相同，则覆盖值，如果不是则新增。如果节点数大于8了，则进行树化（1.8）。完成后，判断当前的长度是否大于阀值，是就扩容（1.7是先扩容在put）。</p>
+<h2 id="为什么修改hashcode方法要修改equals">为什么修改hashcode方法要修改equals</h2>
+<p>都是map惹的祸，我们知道在map中判断是否是同一个对象的时候，会先判断hash值，在判断equals的，如果我们只是重写了hashcode，没有顺便修改equals，比如Intger，hashcode就是value值，如果我们不改写equals，而是用了Object的equals，那么就是判断两者指针是否一致了，那就会出现valueOf和new出来的对象会对于map而言是两个对象，那就是个问题了</p>
+<h2 id="treemap了解嘛">TreeMap了解嘛</h2>
+<p>TreeMap是Map中的一种很特殊的map，我们知道Map基本是无序的，但是TreeMap是会自动进行排序的，也就是一个有序Map(使用了红黑树来实现），如果设置了Comparator比较器，则会根据比较器来对比两者的大小，如果没有则key需要是Comparable的子类（代码中没有事先check，会直接抛出转化异常，有点坑啊）。</p>
+<h2 id="linkedhashmap了解嘛">LinkedHashMap了解嘛</h2>
+<p>LinkedHashMap是HashMap的一种特殊分支，是某种有序的hashMap，和TreeMap是不一样的概念，是用了HashMap+链表的方式来构造的，有两者有序模式：访问有序，插入顺序，插入顺序是一直存在的，因为是调用了hashMap的put方法，并没有重载，但是重载了newNode方法，在这个方法中，会把节点插入链表中，访问有序默认是关闭的，如果打开，则在每次get的时候都会把链表的节点移除掉，放到链表的最后面。这样子就是一个LRU的一种实现方式。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">java</a>
+        
+            <a href="/tags/hashmap/">hashMap</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Baqs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之AQS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Bsynchronized/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之Synchronized</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/spring-1.-spring/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Spring ] 1. Spring</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/mybatis-1.-mybatis/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Mybatis ] 1. Mybatis</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/netty-1.netty%E5%9F%BA%E7%A1%80/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Netty ] 1.Netty基础</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

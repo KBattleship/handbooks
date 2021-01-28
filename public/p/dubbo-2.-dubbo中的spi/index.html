@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Dubbo中的SPI 1. Dubbo SPI与Java SPI  SPI(Service Provider Interface)，主要用于框架，框架定义接口。   不同使用者将存在不同需求，也必然出现不同实现方式。
+  而SPI就是通过定义一个特定的位置，Java SPI约定在Classpath下的META-INF/services/路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可以在运行时动态为接口替换实现类。
+  Dubbo SPI
+ 并非是Java原生的SPI，而是重新实现的SPI。   Java SPI通过ServiceLoader进行加载； Dubbo SPI通过ExtensionLoader进行拓展加载。  支持的注解：  @SPI(标记为拓展接口) @Adaptive(自适应拓展实现类标志) @Activate(自动激活条件标记)   配置文件放在classpath下的META-INF/dubbo/以及 META-INF/dubbo/internal下 Dubbo SPI增加了对拓展点IOC和AOP的支持，一个拓展点可以直接通过Setter注入其他拓展点。 Java SPI会一次性实例化拓展点所有实现，如果有拓展实现初始化过程很耗时，并且用不上，将会造成资源浪费。    Dubbo中SPI的具体实现
+ 协议扩展(Protocol)：RPC协议扩展，用于封装远程调用细节 调用拦截扩展(Filter)：服务提供方和服务消费方调用过程拦截，Dubbo本身大多数功能都是基于此扩展点实现，每次远程方法执行，该拦截都会被执行 引用监听扩展(InvokerListener)：当有服务被引用时触发此事件 暴露监听扩展(ExporterListener)：当有服务被暴露时触发此事件 集群扩展(Cluster)：当存在多个服务提供方时，将多个服务提供方组成一个集群，并伪装成一个服务提供方 路由扩展(RouterFactory)：从多个服务提供方中选择一个进行调用 负载均衡(LoadBalance)：从多个服务提供方中选择一个进行调用 合并扩展(Merger)：合并返回结果，用于分组聚合 注册中心扩展(Registry)：负责服务的注册与发现 监控扩展(Monitor) ：负责服务调用次数以及调用时间的监控 扩展点加载扩展(ExtensionFactory)：扩展本身的加载容器，可从不同容器加载扩展点 动态代理扩展(ProxyFactory)：将Invoker接口转换成业务接口 编译器扩展(Compiler)： Java代码编译器，用于动态生成字节码，加速调用 配置中心扩展(DynamicConfiguration)：作为Key-Value存储 消息派发扩展(Dispatcher)：通道信息派发器，用于指定线程池模型 线程池扩展(ThreadPool)：服务提供方线程池的实现策略 序列化扩展(Serialization)：将对象转化成字节流，用于网络传输，以及将字节流转为对象，用于接收到字节流数据时还原成对象 网络传输扩展(Transporter)：远程通信的服务器以及客户端传输实现 信息交换扩展(Exchange)：`` 组网扩展(Networker)：对等网络节点组网器 Telnet命令扩展(TelnetHandler)：所有服务器均支持telnet访问，用于人工干预 状态检查扩展(StatusChecker)：检查服务依赖各种资源的状态，此状态检查可同时用于telnet的status命令和hosting的status页面 容器扩展(Container)：服务容器扩展，用于自定义加载内容 缓存扩展(CacheFactory)：用于请求参数作为Key，缓存返回结果 验证扩展(Validation)：参数验证扩展点 日志适配扩展(LoggerAdapter)：日志输出适配扩展点      2.'><title>[ Dubbo ] 2. Dubbo中的SPI</title>
+
+<link rel='canonical' href='https://example.com/p/dubbo-2.-dubbo%E4%B8%AD%E7%9A%84spi/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Dubbo ] 2. Dubbo中的SPI'>
+<meta property='og:description' content='Dubbo中的SPI 1. Dubbo SPI与Java SPI  SPI(Service Provider Interface)，主要用于框架，框架定义接口。   不同使用者将存在不同需求，也必然出现不同实现方式。
+  而SPI就是通过定义一个特定的位置，Java SPI约定在Classpath下的META-INF/services/路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可以在运行时动态为接口替换实现类。
+  Dubbo SPI
+ 并非是Java原生的SPI，而是重新实现的SPI。   Java SPI通过ServiceLoader进行加载； Dubbo SPI通过ExtensionLoader进行拓展加载。  支持的注解：  @SPI(标记为拓展接口) @Adaptive(自适应拓展实现类标志) @Activate(自动激活条件标记)   配置文件放在classpath下的META-INF/dubbo/以及 META-INF/dubbo/internal下 Dubbo SPI增加了对拓展点IOC和AOP的支持，一个拓展点可以直接通过Setter注入其他拓展点。 Java SPI会一次性实例化拓展点所有实现，如果有拓展实现初始化过程很耗时，并且用不上，将会造成资源浪费。    Dubbo中SPI的具体实现
+ 协议扩展(Protocol)：RPC协议扩展，用于封装远程调用细节 调用拦截扩展(Filter)：服务提供方和服务消费方调用过程拦截，Dubbo本身大多数功能都是基于此扩展点实现，每次远程方法执行，该拦截都会被执行 引用监听扩展(InvokerListener)：当有服务被引用时触发此事件 暴露监听扩展(ExporterListener)：当有服务被暴露时触发此事件 集群扩展(Cluster)：当存在多个服务提供方时，将多个服务提供方组成一个集群，并伪装成一个服务提供方 路由扩展(RouterFactory)：从多个服务提供方中选择一个进行调用 负载均衡(LoadBalance)：从多个服务提供方中选择一个进行调用 合并扩展(Merger)：合并返回结果，用于分组聚合 注册中心扩展(Registry)：负责服务的注册与发现 监控扩展(Monitor) ：负责服务调用次数以及调用时间的监控 扩展点加载扩展(ExtensionFactory)：扩展本身的加载容器，可从不同容器加载扩展点 动态代理扩展(ProxyFactory)：将Invoker接口转换成业务接口 编译器扩展(Compiler)： Java代码编译器，用于动态生成字节码，加速调用 配置中心扩展(DynamicConfiguration)：作为Key-Value存储 消息派发扩展(Dispatcher)：通道信息派发器，用于指定线程池模型 线程池扩展(ThreadPool)：服务提供方线程池的实现策略 序列化扩展(Serialization)：将对象转化成字节流，用于网络传输，以及将字节流转为对象，用于接收到字节流数据时还原成对象 网络传输扩展(Transporter)：远程通信的服务器以及客户端传输实现 信息交换扩展(Exchange)：`` 组网扩展(Networker)：对等网络节点组网器 Telnet命令扩展(TelnetHandler)：所有服务器均支持telnet访问，用于人工干预 状态检查扩展(StatusChecker)：检查服务依赖各种资源的状态，此状态检查可同时用于telnet的status命令和hosting的status页面 容器扩展(Container)：服务容器扩展，用于自定义加载内容 缓存扩展(CacheFactory)：用于请求参数作为Key，缓存返回结果 验证扩展(Validation)：参数验证扩展点 日志适配扩展(LoggerAdapter)：日志输出适配扩展点      2.'>
+<meta property='og:url' content='https://example.com/p/dubbo-2.-dubbo%E4%B8%AD%E7%9A%84spi/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java' /><meta property='article:tag' content='dubbo' /><meta property='article:tag' content='分布式' /><meta property='article:tag' content='SPI' /><meta property='article:published_time' content='2020-12-25T15:36:27&#43;08:00'/><meta property='article:modified_time' content='2020-12-25T15:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ Dubbo ] 2. Dubbo中的SPI">
+<meta name="twitter:description" content="Dubbo中的SPI 1. Dubbo SPI与Java SPI  SPI(Service Provider Interface)，主要用于框架，框架定义接口。   不同使用者将存在不同需求，也必然出现不同实现方式。
+  而SPI就是通过定义一个特定的位置，Java SPI约定在Classpath下的META-INF/services/路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的具体实现类的全限定名，并由服务加载器读取配置文件，加载实现类，这样可以在运行时动态为接口替换实现类。
+  Dubbo SPI
+ 并非是Java原生的SPI，而是重新实现的SPI。   Java SPI通过ServiceLoader进行加载； Dubbo SPI通过ExtensionLoader进行拓展加载。  支持的注解：  @SPI(标记为拓展接口) @Adaptive(自适应拓展实现类标志) @Activate(自动激活条件标记)   配置文件放在classpath下的META-INF/dubbo/以及 META-INF/dubbo/internal下 Dubbo SPI增加了对拓展点IOC和AOP的支持，一个拓展点可以直接通过Setter注入其他拓展点。 Java SPI会一次性实例化拓展点所有实现，如果有拓展实现初始化过程很耗时，并且用不上，将会造成资源浪费。    Dubbo中SPI的具体实现
+ 协议扩展(Protocol)：RPC协议扩展，用于封装远程调用细节 调用拦截扩展(Filter)：服务提供方和服务消费方调用过程拦截，Dubbo本身大多数功能都是基于此扩展点实现，每次远程方法执行，该拦截都会被执行 引用监听扩展(InvokerListener)：当有服务被引用时触发此事件 暴露监听扩展(ExporterListener)：当有服务被暴露时触发此事件 集群扩展(Cluster)：当存在多个服务提供方时，将多个服务提供方组成一个集群，并伪装成一个服务提供方 路由扩展(RouterFactory)：从多个服务提供方中选择一个进行调用 负载均衡(LoadBalance)：从多个服务提供方中选择一个进行调用 合并扩展(Merger)：合并返回结果，用于分组聚合 注册中心扩展(Registry)：负责服务的注册与发现 监控扩展(Monitor) ：负责服务调用次数以及调用时间的监控 扩展点加载扩展(ExtensionFactory)：扩展本身的加载容器，可从不同容器加载扩展点 动态代理扩展(ProxyFactory)：将Invoker接口转换成业务接口 编译器扩展(Compiler)： Java代码编译器，用于动态生成字节码，加速调用 配置中心扩展(DynamicConfiguration)：作为Key-Value存储 消息派发扩展(Dispatcher)：通道信息派发器，用于指定线程池模型 线程池扩展(ThreadPool)：服务提供方线程池的实现策略 序列化扩展(Serialization)：将对象转化成字节流，用于网络传输，以及将字节流转为对象，用于接收到字节流数据时还原成对象 网络传输扩展(Transporter)：远程通信的服务器以及客户端传输实现 信息交换扩展(Exchange)：`` 组网扩展(Networker)：对等网络节点组网器 Telnet命令扩展(TelnetHandler)：所有服务器均支持telnet访问，用于人工干预 状态检查扩展(StatusChecker)：检查服务依赖各种资源的状态，此状态检查可同时用于telnet的status命令和hosting的status页面 容器扩展(Container)：服务容器扩展，用于自定义加载内容 缓存扩展(CacheFactory)：用于请求参数作为Key，缓存返回结果 验证扩展(Validation)：参数验证扩展点 日志适配扩展(LoggerAdapter)：日志输出适配扩展点      2.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/dubbo-2.-dubbo%E4%B8%AD%E7%9A%84spi/">[ Dubbo ] 2. Dubbo中的SPI</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Dec 25, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="dubbo中的spi">Dubbo中的SPI</h1>
+<h2 id="1-dubbo-spi与java-spi"><strong>1. Dubbo SPI与Java SPI</strong></h2>
+<ul>
+<li>SPI(Service Provider Interface)，主要用于框架，框架定义接口。
+<ul>
+<li>
+<p>不同使用者将存在不同需求，也必然出现不同实现方式。</p>
+</li>
+<li>
+<p>而SPI就是通过定义一个特定的位置，Java SPI约定在Classpath下的<code>META-INF/services/</code>路径下创建一个以服务接口命名的文件，然后文件中记录的是此jar包提供的具体实现类的全限定名，并由服务加载器<code>读取配置文件</code>，<code>加载实现类</code>，这样可以在运行时<code>动态为接口替换实现类</code>。</p>
+</li>
+<li>
+<p>Dubbo SPI</p>
+<ol>
+<li>并非是Java原生的SPI，而是重新实现的SPI。</li>
+</ol>
+<ul>
+<li>Java SPI通过ServiceLoader进行加载；</li>
+<li>Dubbo SPI通过ExtensionLoader进行拓展加载。</li>
+</ul>
+<ol start="2">
+<li>支持的注解：
+<ul>
+<li>@SPI(标记为拓展接口)</li>
+<li>@Adaptive(自适应拓展实现类标志)</li>
+<li>@Activate(自动激活条件标记)</li>
+</ul>
+</li>
+<li>配置文件放在classpath下的META-INF/dubbo/以及
+META-INF/dubbo/internal下</li>
+<li>Dubbo SPI增加了对拓展点IOC和AOP的支持，一个拓展点可以直接通过Setter注入其他拓展点。</li>
+<li>Java SPI会一次性实例化拓展点所有实现，如果有拓展实现初始化过程很耗时，并且用不上，将会造成资源浪费。</li>
+</ol>
+</li>
+<li>
+<p>Dubbo中SPI的具体实现</p>
+<ul>
+<li><a class="link" href="" >协议扩展(Protocol)</a>：<code>RPC协议扩展，用于封装远程调用细节</code></li>
+<li><a class="link" href="" >调用拦截扩展(Filter)</a>：<code>服务提供方和服务消费方调用过程拦截，Dubbo本身大多数功能都是基于此扩展点实现，每次远程方法执行，该拦截都会被执行</code></li>
+<li><a class="link" href="" >引用监听扩展(InvokerListener)</a>：<code>当有服务被引用时触发此事件</code></li>
+<li><a class="link" href="" >暴露监听扩展(ExporterListener)</a>：<code>当有服务被暴露时触发此事件</code></li>
+<li><a class="link" href="" >集群扩展(Cluster)</a>：<code>当存在多个服务提供方时，将多个服务提供方组成一个集群，并伪装成一个服务提供方</code></li>
+<li><a class="link" href="" >路由扩展(RouterFactory)</a>：<code>从多个服务提供方中选择一个进行调用</code></li>
+<li><a class="link" href="" >负载均衡(LoadBalance)</a>：<code>从多个服务提供方中选择一个进行调用</code></li>
+<li><a class="link" href="" >合并扩展(Merger)</a>：<code>合并返回结果，用于分组聚合</code></li>
+<li><a class="link" href="" >注册中心扩展(Registry)</a>：<code>负责服务的注册与发现</code></li>
+<li><a class="link" href="" >监控扩展(Monitor)</a> ：<code>负责服务调用次数以及调用时间的监控</code></li>
+<li><a class="link" href="" >扩展点加载扩展(ExtensionFactory)</a>：<code>扩展本身的加载容器，可从不同容器加载扩展点</code></li>
+<li><a class="link" href="" >动态代理扩展(ProxyFactory)</a>：<code>将Invoker接口转换成业务接口</code></li>
+<li><a class="link" href="" >编译器扩展(Compiler)</a>： <code>Java代码编译器，用于动态生成字节码，加速调用</code></li>
+<li><a class="link" href="" >配置中心扩展(DynamicConfiguration)</a>：<code>作为Key-Value存储</code></li>
+<li><a class="link" href="" >消息派发扩展(Dispatcher)</a>：<code>通道信息派发器，用于指定线程池模型</code></li>
+<li><a class="link" href="" >线程池扩展(ThreadPool)</a>：<code>服务提供方线程池的实现策略</code></li>
+<li><a class="link" href="" >序列化扩展(Serialization)</a>：<code>将对象转化成字节流，用于网络传输，以及将字节流转为对象，用于接收到字节流数据时还原成对象</code></li>
+<li><a class="link" href="" >网络传输扩展(Transporter)</a>：<code>远程通信的服务器以及客户端传输实现</code></li>
+<li><a class="link" href="" >信息交换扩展(Exchange)</a>：``</li>
+<li><a class="link" href="" >组网扩展(Networker)</a>：<code>对等网络节点组网器</code></li>
+<li><a class="link" href="" >Telnet命令扩展(TelnetHandler)</a>：<code>所有服务器均支持telnet访问，用于人工干预</code></li>
+<li><a class="link" href="" >状态检查扩展(StatusChecker)</a>：<code>检查服务依赖各种资源的状态，此状态检查可同时用于telnet的status命令和hosting的status页面</code></li>
+<li><a class="link" href="" >容器扩展(Container)</a>：<code>服务容器扩展，用于自定义加载内容</code></li>
+<li><a class="link" href="" >缓存扩展(CacheFactory)</a>：<code>用于请求参数作为Key，缓存返回结果</code></li>
+<li><a class="link" href="" >验证扩展(Validation)</a>：<code>参数验证扩展点</code></li>
+<li><a class="link" href="" >日志适配扩展(LoggerAdapter)</a>：<code>日志输出适配扩展点</code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-详细了解dubbo-spi"><strong>2. 详细了解Dubbo SPI</strong></h2>
+<h3 id="a-spi注解">a. SPI注解</h3>
+<ul>
+<li>使用@SPI仅能配置一种实现类，但是可以根据<code>@SPI(&quot;dubbo&quot;)</code>指定不同的实现类，再调用ExtensionLoader获取实现类的时候，会加载配置文件中key所对应的实现类。</li>
+<li>多个模块编译后会将<code>META-INF/dubbo/</code>或<code>META-INFO/dubbo/internal/</code>下的统一拓展点的配置文件中的配置合并在一起。</li>
+</ul>
+<h3 id="b-activate注解">b. Activate注解</h3>
+<ul>
+<li>被@Activate注解注释的扩展点默认被激活启用，还可以通过注解的<code>value</code>属性指定此扩展点在什么情况下被自动激活</li>
+<li>被@Activate注解注释的扩展点，在获取实现类是不能再使用ExtensionLoader.getExtension(String name)，而应该使用<code>ExtensionLoader.getActivateExtension(URL url, String[] values)</code></li>
+<li>目的也是为了支持一个扩展点存在多个实现类需要同时启用的场景。</li>
+<li>主要是用扩展点(接口)的实现类上，所以此扩展点被@Activate注解的实现类都会在指定条件下自动激活</li>
+</ul>
+<h3 id="c-adaptive注解">c. Adaptive注解</h3>
+<ul>
+<li><code>@Adaptive</code>注解是Dubbo自适应拓展机制，最重要的三个字应该就是<code>自适应</code></li>
+<li>目的： <code>拓展点在方法被调用的时候，根据运行时参数进行加载</code></li>
+<li>实现： <code>Dubbo使用javassist为拓展接口生成具有代理功能的代码，然后通过JDK编译这段代码得到Class类，最后在通过反射创建代理类。</code></li>
+<li>应用：
+<ul>
+<li>在RPC远程调用过程中，会在url上携带参数，比如调用的目标是XxxService的yy()，而服务提供者XxxService具有多个实现类，那么可以在url上指定使用哪个实现类(配置文件中该实现类的key)，然后在通过SPI获取到此实现类的实例。</li>
+<li>javassist生成的代码，就是拿到方法的url参数，从url中动态获取配置的参数，然后通过SPI加载具体的实现类，最后调用实现类的方法</li>
+<li>所以，先判断方法url参数是否为Null，如果为Null则抛出异常，否则从url中获取参数，如果没有获取到也抛出异常，如果获取到就通过SPI获取实例。</li>
+</ul>
+</li>
+</ul>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">java</a>
+        
+            <a href="/tags/dubbo/">dubbo</a>
+        
+            <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>
+        
+            <a href="/tags/spi/">SPI</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/dubbo-3-1.-dubbo-spi%E4%B8%AD%E7%9A%84protocol%E6%89%A9%E5%B1%95%E7%82%B9/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Dubbo ] 3-1. Dubbo SPI中的Protocol扩展点</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/dubbo-3-2.-dubbo-spi%E4%B8%AD%E7%9A%84filter%E6%89%A9%E5%B1%95%E7%82%B9/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Dubbo ] 3-2. Dubbo SPI中的Filter扩展点</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/dubbo-3.-dubbo%E9%80%9A%E4%BF%A1%E5%8E%9F%E7%90%86/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Dubbo ] 3. Dubbo通信原理</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/dubbo-1.dubbo%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Dubbo ] 1.Dubbo基础概念</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Baqs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之AQS</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

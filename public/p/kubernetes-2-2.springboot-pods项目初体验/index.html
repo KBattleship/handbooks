@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='SpringBoot&amp;ndash;Pods项目初体验  在SpringBoot项目中通过fabric8打包插件构建docker镜像
+ 通过Kubernetes的接口请求Pod对象，相信信息如下：
+{ &amp;#34;kind&amp;#34;: &amp;#34;Pod&amp;#34;, &amp;#34;apiVersion&amp;#34;: &amp;#34;v1&amp;#34;, &amp;#34;metadata&amp;#34;: { &amp;#34;name&amp;#34;: &amp;#34;kubernetes-hello-world-779c4c748b-2rv27&amp;#34;, &amp;#34;generateName&amp;#34;: &amp;#34;kubernetes-hello-world-779c4c748b-&amp;#34;, &amp;#34;namespace&amp;#34;: &amp;#34;default&amp;#34;, &amp;#34;selfLink&amp;#34;: &amp;#34;/api/v1/namespaces/default/pods/kubernetes-hello-world-779c4c748b-2rv27&amp;#34;, &amp;#34;uid&amp;#34;: &amp;#34;dea46f9f-cd4b-11e9-b38e-025000000001&amp;#34;, &amp;#34;resourceVersion&amp;#34;: &amp;#34;34209&amp;#34;, &amp;#34;creationTimestamp&amp;#34;: &amp;#34;2019-09-02T06:35:35Z&amp;#34;, &amp;#34;labels&amp;#34;: { &amp;#34;app&amp;#34;: &amp;#34;kubernetes-hello-world&amp;#34;, &amp;#34;group&amp;#34;: &amp;#34;org.springframework.cloud&amp;#34;, &amp;#34;pod-template-hash&amp;#34;: &amp;#34;779c4c748b&amp;#34;, &amp;#34;provider&amp;#34;: &amp;#34;fabric8&amp;#34;, &amp;#34;version&amp;#34;: &amp;#34;1.1.0.M2&amp;#34; }, &amp;#34;annotations&amp;#34;: { &amp;#34;fabric8.io/docs-url&amp;#34;: &amp;#34;scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/kubernetes-hello-world/1.1.0.M2/spring-cloud-kubernetes/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34;, &amp;#34;fabric8.io/iconUrl&amp;#34;: &amp;#34;img/icons/spring-boot.svg&amp;#34;, &amp;#34;fabric8.io/metrics-path&amp;#34;: &amp;#34;dashboard/file/kubernetes-pods.json/?var-project=kubernetes-hello-world\u0026var-version=1.1.0.M2&amp;#34;, &amp;#34;fabric8.io/scm-con-url&amp;#34;: &amp;#34;scm:git:git://github.com/spring-cloud-incubator/spring-cloud-kubernetes.git/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34;, &amp;#34;fabric8.io/scm-devcon-url&amp;#34;: &amp;#34;scm:git:ssh://git@github.com/spring-cloud-incubator/spring-cloud-kubernetes.git/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34;, &amp;#34;fabric8.io/scm-tag&amp;#34;: &amp;#34;HEAD&amp;#34;, &amp;#34;fabric8.io/scm-url&amp;#34;: &amp;#34;https://github.com/spring-cloud-incubator/spring-cloud-kubernetes/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34; }, &amp;#34;ownerReferences&amp;#34;: [ { &amp;#34;apiVersion&amp;#34;: &amp;#34;apps/v1&amp;#34;, &amp;#34;kind&amp;#34;: &amp;#34;ReplicaSet&amp;#34;, &amp;#34;name&amp;#34;: &amp;#34;kubernetes-hello-world-779c4c748b&amp;#34;, &amp;#34;uid&amp;#34;: &amp;#34;dea3c6a5-cd4b-11e9-b38e-025000000001&amp;#34;, &amp;#34;controller&amp;#34;: true, &amp;#34;blockOwnerDeletion&amp;#34;: true } ] }, &amp;#34;spec&amp;#34;: { &amp;#34;volumes&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;default-token-b4crd&amp;#34;, &amp;#34;secret&amp;#34;: { &amp;#34;secretName&amp;#34;: &amp;#34;default-token-b4crd&amp;#34;, &amp;#34;defaultMode&amp;#34;: 420 } } ], &amp;#34;containers&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;spring-boot&amp;#34;, &amp;#34;image&amp;#34;: &amp;#34;cloud/kubernetes-hello-world:1.'><title>[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验</title>
+
+<link rel='canonical' href='https://example.com/p/kubernetes-2-2.springboot-pods%E9%A1%B9%E7%9B%AE%E5%88%9D%E4%BD%93%E9%AA%8C/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验'>
+<meta property='og:description' content='SpringBoot&amp;ndash;Pods项目初体验  在SpringBoot项目中通过fabric8打包插件构建docker镜像
+ 通过Kubernetes的接口请求Pod对象，相信信息如下：
+{ &amp;#34;kind&amp;#34;: &amp;#34;Pod&amp;#34;, &amp;#34;apiVersion&amp;#34;: &amp;#34;v1&amp;#34;, &amp;#34;metadata&amp;#34;: { &amp;#34;name&amp;#34;: &amp;#34;kubernetes-hello-world-779c4c748b-2rv27&amp;#34;, &amp;#34;generateName&amp;#34;: &amp;#34;kubernetes-hello-world-779c4c748b-&amp;#34;, &amp;#34;namespace&amp;#34;: &amp;#34;default&amp;#34;, &amp;#34;selfLink&amp;#34;: &amp;#34;/api/v1/namespaces/default/pods/kubernetes-hello-world-779c4c748b-2rv27&amp;#34;, &amp;#34;uid&amp;#34;: &amp;#34;dea46f9f-cd4b-11e9-b38e-025000000001&amp;#34;, &amp;#34;resourceVersion&amp;#34;: &amp;#34;34209&amp;#34;, &amp;#34;creationTimestamp&amp;#34;: &amp;#34;2019-09-02T06:35:35Z&amp;#34;, &amp;#34;labels&amp;#34;: { &amp;#34;app&amp;#34;: &amp;#34;kubernetes-hello-world&amp;#34;, &amp;#34;group&amp;#34;: &amp;#34;org.springframework.cloud&amp;#34;, &amp;#34;pod-template-hash&amp;#34;: &amp;#34;779c4c748b&amp;#34;, &amp;#34;provider&amp;#34;: &amp;#34;fabric8&amp;#34;, &amp;#34;version&amp;#34;: &amp;#34;1.1.0.M2&amp;#34; }, &amp;#34;annotations&amp;#34;: { &amp;#34;fabric8.io/docs-url&amp;#34;: &amp;#34;scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/kubernetes-hello-world/1.1.0.M2/spring-cloud-kubernetes/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34;, &amp;#34;fabric8.io/iconUrl&amp;#34;: &amp;#34;img/icons/spring-boot.svg&amp;#34;, &amp;#34;fabric8.io/metrics-path&amp;#34;: &amp;#34;dashboard/file/kubernetes-pods.json/?var-project=kubernetes-hello-world\u0026var-version=1.1.0.M2&amp;#34;, &amp;#34;fabric8.io/scm-con-url&amp;#34;: &amp;#34;scm:git:git://github.com/spring-cloud-incubator/spring-cloud-kubernetes.git/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34;, &amp;#34;fabric8.io/scm-devcon-url&amp;#34;: &amp;#34;scm:git:ssh://git@github.com/spring-cloud-incubator/spring-cloud-kubernetes.git/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34;, &amp;#34;fabric8.io/scm-tag&amp;#34;: &amp;#34;HEAD&amp;#34;, &amp;#34;fabric8.io/scm-url&amp;#34;: &amp;#34;https://github.com/spring-cloud-incubator/spring-cloud-kubernetes/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34; }, &amp;#34;ownerReferences&amp;#34;: [ { &amp;#34;apiVersion&amp;#34;: &amp;#34;apps/v1&amp;#34;, &amp;#34;kind&amp;#34;: &amp;#34;ReplicaSet&amp;#34;, &amp;#34;name&amp;#34;: &amp;#34;kubernetes-hello-world-779c4c748b&amp;#34;, &amp;#34;uid&amp;#34;: &amp;#34;dea3c6a5-cd4b-11e9-b38e-025000000001&amp;#34;, &amp;#34;controller&amp;#34;: true, &amp;#34;blockOwnerDeletion&amp;#34;: true } ] }, &amp;#34;spec&amp;#34;: { &amp;#34;volumes&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;default-token-b4crd&amp;#34;, &amp;#34;secret&amp;#34;: { &amp;#34;secretName&amp;#34;: &amp;#34;default-token-b4crd&amp;#34;, &amp;#34;defaultMode&amp;#34;: 420 } } ], &amp;#34;containers&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;spring-boot&amp;#34;, &amp;#34;image&amp;#34;: &amp;#34;cloud/kubernetes-hello-world:1.'>
+<meta property='og:url' content='https://example.com/p/kubernetes-2-2.springboot-pods%E9%A1%B9%E7%9B%AE%E5%88%9D%E4%BD%93%E9%AA%8C/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='k8s' /><meta property='article:tag' content='容器' /><meta property='article:published_time' content='2020-09-17T15:36:27&#43;08:00'/><meta property='article:modified_time' content='2020-09-12T15:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验">
+<meta name="twitter:description" content="SpringBoot&amp;ndash;Pods项目初体验  在SpringBoot项目中通过fabric8打包插件构建docker镜像
+ 通过Kubernetes的接口请求Pod对象，相信信息如下：
+{ &amp;#34;kind&amp;#34;: &amp;#34;Pod&amp;#34;, &amp;#34;apiVersion&amp;#34;: &amp;#34;v1&amp;#34;, &amp;#34;metadata&amp;#34;: { &amp;#34;name&amp;#34;: &amp;#34;kubernetes-hello-world-779c4c748b-2rv27&amp;#34;, &amp;#34;generateName&amp;#34;: &amp;#34;kubernetes-hello-world-779c4c748b-&amp;#34;, &amp;#34;namespace&amp;#34;: &amp;#34;default&amp;#34;, &amp;#34;selfLink&amp;#34;: &amp;#34;/api/v1/namespaces/default/pods/kubernetes-hello-world-779c4c748b-2rv27&amp;#34;, &amp;#34;uid&amp;#34;: &amp;#34;dea46f9f-cd4b-11e9-b38e-025000000001&amp;#34;, &amp;#34;resourceVersion&amp;#34;: &amp;#34;34209&amp;#34;, &amp;#34;creationTimestamp&amp;#34;: &amp;#34;2019-09-02T06:35:35Z&amp;#34;, &amp;#34;labels&amp;#34;: { &amp;#34;app&amp;#34;: &amp;#34;kubernetes-hello-world&amp;#34;, &amp;#34;group&amp;#34;: &amp;#34;org.springframework.cloud&amp;#34;, &amp;#34;pod-template-hash&amp;#34;: &amp;#34;779c4c748b&amp;#34;, &amp;#34;provider&amp;#34;: &amp;#34;fabric8&amp;#34;, &amp;#34;version&amp;#34;: &amp;#34;1.1.0.M2&amp;#34; }, &amp;#34;annotations&amp;#34;: { &amp;#34;fabric8.io/docs-url&amp;#34;: &amp;#34;scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/kubernetes-hello-world/1.1.0.M2/spring-cloud-kubernetes/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34;, &amp;#34;fabric8.io/iconUrl&amp;#34;: &amp;#34;img/icons/spring-boot.svg&amp;#34;, &amp;#34;fabric8.io/metrics-path&amp;#34;: &amp;#34;dashboard/file/kubernetes-pods.json/?var-project=kubernetes-hello-world\u0026var-version=1.1.0.M2&amp;#34;, &amp;#34;fabric8.io/scm-con-url&amp;#34;: &amp;#34;scm:git:git://github.com/spring-cloud-incubator/spring-cloud-kubernetes.git/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34;, &amp;#34;fabric8.io/scm-devcon-url&amp;#34;: &amp;#34;scm:git:ssh://git@github.com/spring-cloud-incubator/spring-cloud-kubernetes.git/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34;, &amp;#34;fabric8.io/scm-tag&amp;#34;: &amp;#34;HEAD&amp;#34;, &amp;#34;fabric8.io/scm-url&amp;#34;: &amp;#34;https://github.com/spring-cloud-incubator/spring-cloud-kubernetes/spring-cloud-kubernetes-examples/kubernetes-hello-world&amp;#34; }, &amp;#34;ownerReferences&amp;#34;: [ { &amp;#34;apiVersion&amp;#34;: &amp;#34;apps/v1&amp;#34;, &amp;#34;kind&amp;#34;: &amp;#34;ReplicaSet&amp;#34;, &amp;#34;name&amp;#34;: &amp;#34;kubernetes-hello-world-779c4c748b&amp;#34;, &amp;#34;uid&amp;#34;: &amp;#34;dea3c6a5-cd4b-11e9-b38e-025000000001&amp;#34;, &amp;#34;controller&amp;#34;: true, &amp;#34;blockOwnerDeletion&amp;#34;: true } ] }, &amp;#34;spec&amp;#34;: { &amp;#34;volumes&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;default-token-b4crd&amp;#34;, &amp;#34;secret&amp;#34;: { &amp;#34;secretName&amp;#34;: &amp;#34;default-token-b4crd&amp;#34;, &amp;#34;defaultMode&amp;#34;: 420 } } ], &amp;#34;containers&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;spring-boot&amp;#34;, &amp;#34;image&amp;#34;: &amp;#34;cloud/kubernetes-hello-world:1.">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/k8s/" style="background-color: #2a9d8f; color: #fff;">
+                Kubernetes
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/kubernetes-2-2.springboot-pods%E9%A1%B9%E7%9B%AE%E5%88%9D%E4%BD%93%E9%AA%8C/">[ Kubernetes ] 2-2.SpringBoot--Pods项目初体验</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Sep 17, 2020</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="springboot--pods项目初体验">SpringBoot&ndash;Pods项目初体验</h1>
+<blockquote>
+<p>在SpringBoot项目中通过fabric8打包插件构建docker镜像</p>
+</blockquote>
+<p>通过Kubernetes的接口请求Pod对象，相信信息如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+  <span class="nt">&#34;kind&#34;</span><span class="p">:</span> <span class="s2">&#34;Pod&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;v1&#34;</span><span class="p">,</span>
+  <span class="nt">&#34;metadata&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;kubernetes-hello-world-779c4c748b-2rv27&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;generateName&#34;</span><span class="p">:</span> <span class="s2">&#34;kubernetes-hello-world-779c4c748b-&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;namespace&#34;</span><span class="p">:</span> <span class="s2">&#34;default&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;selfLink&#34;</span><span class="p">:</span> <span class="s2">&#34;/api/v1/namespaces/default/pods/kubernetes-hello-world-779c4c748b-2rv27&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;dea46f9f-cd4b-11e9-b38e-025000000001&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;resourceVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;34209&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;creationTimestamp&#34;</span><span class="p">:</span> <span class="s2">&#34;2019-09-02T06:35:35Z&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;labels&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;app&#34;</span><span class="p">:</span> <span class="s2">&#34;kubernetes-hello-world&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;group&#34;</span><span class="p">:</span> <span class="s2">&#34;org.springframework.cloud&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;pod-template-hash&#34;</span><span class="p">:</span> <span class="s2">&#34;779c4c748b&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;provider&#34;</span><span class="p">:</span> <span class="s2">&#34;fabric8&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;version&#34;</span><span class="p">:</span> <span class="s2">&#34;1.1.0.M2&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;annotations&#34;</span><span class="p">:</span> <span class="p">{</span>
+      <span class="nt">&#34;fabric8.io/docs-url&#34;</span><span class="p">:</span> <span class="s2">&#34;scp://static.springframework.org/var/www/domains/springframework.org/static/htdocs/spring-cloud/docs/kubernetes-hello-world/1.1.0.M2/spring-cloud-kubernetes/spring-cloud-kubernetes-examples/kubernetes-hello-world&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;fabric8.io/iconUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;img/icons/spring-boot.svg&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;fabric8.io/metrics-path&#34;</span><span class="p">:</span> <span class="s2">&#34;dashboard/file/kubernetes-pods.json/?var-project=kubernetes-hello-world\u0026var-version=1.1.0.M2&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;fabric8.io/scm-con-url&#34;</span><span class="p">:</span> <span class="s2">&#34;scm:git:git://github.com/spring-cloud-incubator/spring-cloud-kubernetes.git/spring-cloud-kubernetes-examples/kubernetes-hello-world&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;fabric8.io/scm-devcon-url&#34;</span><span class="p">:</span> <span class="s2">&#34;scm:git:ssh://git@github.com/spring-cloud-incubator/spring-cloud-kubernetes.git/spring-cloud-kubernetes-examples/kubernetes-hello-world&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;fabric8.io/scm-tag&#34;</span><span class="p">:</span> <span class="s2">&#34;HEAD&#34;</span><span class="p">,</span>
+      <span class="nt">&#34;fabric8.io/scm-url&#34;</span><span class="p">:</span> <span class="s2">&#34;https://github.com/spring-cloud-incubator/spring-cloud-kubernetes/spring-cloud-kubernetes-examples/kubernetes-hello-world&#34;</span>
+    <span class="p">},</span>
+    <span class="nt">&#34;ownerReferences&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;apps/v1&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;kind&#34;</span><span class="p">:</span> <span class="s2">&#34;ReplicaSet&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;kubernetes-hello-world-779c4c748b&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;uid&#34;</span><span class="p">:</span> <span class="s2">&#34;dea3c6a5-cd4b-11e9-b38e-025000000001&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;controller&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&#34;blockOwnerDeletion&#34;</span><span class="p">:</span> <span class="kc">true</span>
+      <span class="p">}</span>
+    <span class="p">]</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;spec&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;volumes&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;default-token-b4crd&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;secret&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;secretName&#34;</span><span class="p">:</span> <span class="s2">&#34;default-token-b4crd&#34;</span><span class="p">,</span>
+          <span class="nt">&#34;defaultMode&#34;</span><span class="p">:</span> <span class="mi">420</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;containers&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;spring-boot&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;image&#34;</span><span class="p">:</span> <span class="s2">&#34;cloud/kubernetes-hello-world:1.1.0.M2&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;ports&#34;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;http&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;containerPort&#34;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+            <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;TCP&#34;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;prometheus&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;containerPort&#34;</span><span class="p">:</span> <span class="mi">9779</span><span class="p">,</span>
+            <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;TCP&#34;</span>
+          <span class="p">},</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;jolokia&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;containerPort&#34;</span><span class="p">:</span> <span class="mi">8778</span><span class="p">,</span>
+            <span class="nt">&#34;protocol&#34;</span><span class="p">:</span> <span class="s2">&#34;TCP&#34;</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;env&#34;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;KUBERNETES_NAMESPACE&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;valueFrom&#34;</span><span class="p">:</span> <span class="p">{</span>
+              <span class="nt">&#34;fieldRef&#34;</span><span class="p">:</span> <span class="p">{</span>
+                <span class="nt">&#34;apiVersion&#34;</span><span class="p">:</span> <span class="s2">&#34;v1&#34;</span><span class="p">,</span>
+                <span class="nt">&#34;fieldPath&#34;</span><span class="p">:</span> <span class="s2">&#34;metadata.namespace&#34;</span>
+              <span class="p">}</span>
+            <span class="p">}</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;resources&#34;</span><span class="p">:</span> <span class="p">{</span>
+          
+        <span class="p">},</span>
+        <span class="nt">&#34;volumeMounts&#34;</span><span class="p">:</span> <span class="p">[</span>
+          <span class="p">{</span>
+            <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;default-token-b4crd&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;readOnly&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&#34;mountPath&#34;</span><span class="p">:</span> <span class="s2">&#34;/var/run/secrets/kubernetes.io/serviceaccount&#34;</span>
+          <span class="p">}</span>
+        <span class="p">],</span>
+        <span class="nt">&#34;livenessProbe&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;httpGet&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+            <span class="nt">&#34;scheme&#34;</span><span class="p">:</span> <span class="s2">&#34;HTTP&#34;</span>
+          <span class="p">},</span>
+          <span class="nt">&#34;initialDelaySeconds&#34;</span><span class="p">:</span> <span class="mi">180</span><span class="p">,</span>
+          <span class="nt">&#34;timeoutSeconds&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="nt">&#34;periodSeconds&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+          <span class="nt">&#34;successThreshold&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="nt">&#34;failureThreshold&#34;</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;readinessProbe&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;httpGet&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;path&#34;</span><span class="p">:</span> <span class="s2">&#34;/&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;port&#34;</span><span class="p">:</span> <span class="mi">8080</span><span class="p">,</span>
+            <span class="nt">&#34;scheme&#34;</span><span class="p">:</span> <span class="s2">&#34;HTTP&#34;</span>
+          <span class="p">},</span>
+          <span class="nt">&#34;initialDelaySeconds&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+          <span class="nt">&#34;timeoutSeconds&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="nt">&#34;periodSeconds&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+          <span class="nt">&#34;successThreshold&#34;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="nt">&#34;failureThreshold&#34;</span><span class="p">:</span> <span class="mi">3</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;terminationMessagePath&#34;</span><span class="p">:</span> <span class="s2">&#34;/dev/termination-log&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;terminationMessagePolicy&#34;</span><span class="p">:</span> <span class="s2">&#34;File&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;imagePullPolicy&#34;</span><span class="p">:</span> <span class="s2">&#34;IfNotPresent&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;securityContext&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;privileged&#34;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+          <span class="nt">&#34;procMount&#34;</span><span class="p">:</span> <span class="s2">&#34;Default&#34;</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;restartPolicy&#34;</span><span class="p">:</span> <span class="s2">&#34;Always&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;terminationGracePeriodSeconds&#34;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="nt">&#34;dnsPolicy&#34;</span><span class="p">:</span> <span class="s2">&#34;ClusterFirst&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;serviceAccountName&#34;</span><span class="p">:</span> <span class="s2">&#34;default&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;serviceAccount&#34;</span><span class="p">:</span> <span class="s2">&#34;default&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;nodeName&#34;</span><span class="p">:</span> <span class="s2">&#34;docker-desktop&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;securityContext&#34;</span><span class="p">:</span> <span class="p">{</span>
+      
+    <span class="p">},</span>
+    <span class="nt">&#34;schedulerName&#34;</span><span class="p">:</span> <span class="s2">&#34;default-scheduler&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;tolerations&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;node.kubernetes.io/not-ready&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;operator&#34;</span><span class="p">:</span> <span class="s2">&#34;Exists&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;effect&#34;</span><span class="p">:</span> <span class="s2">&#34;NoExecute&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;tolerationSeconds&#34;</span><span class="p">:</span> <span class="mi">300</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;key&#34;</span><span class="p">:</span> <span class="s2">&#34;node.kubernetes.io/unreachable&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;operator&#34;</span><span class="p">:</span> <span class="s2">&#34;Exists&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;effect&#34;</span><span class="p">:</span> <span class="s2">&#34;NoExecute&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;tolerationSeconds&#34;</span><span class="p">:</span> <span class="mi">300</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;priority&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="nt">&#34;enableServiceLinks&#34;</span><span class="p">:</span> <span class="kc">true</span>
+  <span class="p">},</span>
+  <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="nt">&#34;phase&#34;</span><span class="p">:</span> <span class="s2">&#34;Running&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;conditions&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Initialized&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;True&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;lastProbeTime&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&#34;lastTransitionTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2019-09-02T06:35:35Z&#34;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;Ready&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;True&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;lastProbeTime&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&#34;lastTransitionTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-17T01:47:07Z&#34;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;ContainersReady&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;True&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;lastProbeTime&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&#34;lastTransitionTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-17T01:47:07Z&#34;</span>
+      <span class="p">},</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;type&#34;</span><span class="p">:</span> <span class="s2">&#34;PodScheduled&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;True&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;lastProbeTime&#34;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+        <span class="nt">&#34;lastTransitionTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2019-09-02T06:35:35Z&#34;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;hostIP&#34;</span><span class="p">:</span> <span class="s2">&#34;192.168.65.3&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;podIP&#34;</span><span class="p">:</span> <span class="s2">&#34;10.1.0.49&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;startTime&#34;</span><span class="p">:</span> <span class="s2">&#34;2019-09-02T06:35:35Z&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;containerStatuses&#34;</span><span class="p">:</span> <span class="p">[</span>
+      <span class="p">{</span>
+        <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;spring-boot&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;state&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;running&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;startedAt&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-17T01:46:50Z&#34;</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;lastState&#34;</span><span class="p">:</span> <span class="p">{</span>
+          <span class="nt">&#34;terminated&#34;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nt">&#34;exitCode&#34;</span><span class="p">:</span> <span class="mi">255</span><span class="p">,</span>
+            <span class="nt">&#34;reason&#34;</span><span class="p">:</span> <span class="s2">&#34;Error&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;startedAt&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-16T09:29:52Z&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;finishedAt&#34;</span><span class="p">:</span> <span class="s2">&#34;2020-01-17T01:46:30Z&#34;</span><span class="p">,</span>
+            <span class="nt">&#34;containerID&#34;</span><span class="p">:</span> <span class="s2">&#34;docker://ec8892c9949c0f226636d68c0f0f9b675b60693011d510f3a218e579fe43f992&#34;</span>
+          <span class="p">}</span>
+        <span class="p">},</span>
+        <span class="nt">&#34;ready&#34;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nt">&#34;restartCount&#34;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="nt">&#34;image&#34;</span><span class="p">:</span> <span class="s2">&#34;cloud/kubernetes-hello-world:1.1.0.M2&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;imageID&#34;</span><span class="p">:</span> <span class="s2">&#34;docker://sha256:559a7fbc5858f9b3ca2bb9ada10235dbc169846e988a46a80c8ab123560ea168&#34;</span><span class="p">,</span>
+        <span class="nt">&#34;containerID&#34;</span><span class="p">:</span> <span class="s2">&#34;docker://af0de58af170361c986110e79eeca49b85c0eef23ae688f52b23b5e95111fbe0&#34;</span>
+      <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="nt">&#34;qosClass&#34;</span><span class="p">:</span> <span class="s2">&#34;BestEffort&#34;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/k8s/">k8s</a>
+        
+            <a href="/tags/%E5%AE%B9%E5%99%A8/">容器</a>
+        
+    </section>
+
+
+    <section class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span class="article-time--modified">
+            最后更新于 Sep 12, 2020 15:36 CST
+        </span>
+    </section></footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-3-1.%E6%B7%B1%E5%85%A5service/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 3-1.深入Service</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-2-1.%E4%BA%86%E8%A7%A3pod%E5%AF%B9%E8%B1%A1/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 2-1.了解Pod对象</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-4.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-4.kubeadm命令使用</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-2.kubectl%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-2.Kubectl命令行工具</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/kubernetes-1-3.kubeadm%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Kubernetes ] 1-3.kubeadm命令使用</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

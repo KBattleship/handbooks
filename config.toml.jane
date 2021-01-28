@@ -1,0 +1,130 @@
+baseURL = "https://touch-star.com/"
+title = "Quinn"
+enableRobotsTXT = true
+enableEmoji = true
+theme = "stack"
+publishDir = "docs"
+toc = true         
+autoCollapseToc = false 
+fancybox = true
+hasCJKLanguage = false     
+paginate = 10              
+rssLimit = 10             
+disqusShortname = ""      
+googleAnalytics = ""      
+copyright = ""           
+
+PygmentsCodeFences = true # Enable syntax highlighting with GitHub flavoured code fences
+PygmentsUseClasses = true # Use CSS classes to format highlighted code
+PygmentsCodefencesGuessSyntax = true
+PygmentsOptions = "linenos=table"
+
+defaultContentLanguage = "zh"           # Default language to use
+[languages.zh]
+  languageCode = "zh"
+
+[author]                  # essential                     # 必需
+  name = "Quinn"
+
+[sitemap]                 # essential                     # 必需
+  changefreq = "weekly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[[menu.main]]             # config your menu              # 配置目录
+  name = "主页"
+  weight = 10
+  identifier = "home"
+  url = "/"
+[[menu.main]]
+  name = "归档"
+  weight = 20
+  identifier = "archives"
+  url = "/post/"
+[[menu.main]]
+  name = "标签"
+  weight = 30
+  identifier = "tags"
+  url = "/tags/"
+[[menu.main]]
+  name = "分类"
+  weight = 40
+  identifier = "categories"
+  url = "/categories"
+[[menu.main]]
+  name = "Algorithm"
+  parent = "categories"
+  weight = 9
+  identifier = "algorithm"
+  url = "/categories/algorithm"
+[[menu.main]]
+  name = "Java"
+  parent = "categories"
+  weight = 10
+  identifier = "java"
+  url = "/categories/java"
+[[menu.main]]
+  name = "Go"
+  parent = "categories"
+  weight = 20
+  identifier = "go"
+  url = "/categories/go"
+[[menu.main]]
+  name = "K8s"
+  parent = "categories"
+  weight = 30
+  identifier = "k8s"
+  url = "/categories/k8s"
+[[menu.main]]
+  name = "MiddleWare"
+  parent = "categories"
+  weight = 40
+  identifier = "middleware"
+  url = "/categories/middleware"
+[[menu.main]]
+  name = "Linux"
+  parent = "categories"
+  weight = 50
+  identifier = "linux"
+  url = "/categories/linux"
+
+[markup]
+  [markup.tableOfContents]
+    endLevel = 4
+    ordered = true
+    startLevel = 2
+
+
+[params]
+  since = "2019"            
+  homeFullContent = false   
+  rssFullContent = false     
+
+  logoTitle = "Quinn"        
+  keywords = ["Quinn", "k8s","docker"]
+  description = "笨笨豪の摘星辰"
+
+  dateFormatToUse = "2006-01-02"
+  moreMeta = true
+  toc = true               
+  photoswipe = true        
+  # contentCopyright = '<a rel="license noopener" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank">CC BY-NC-ND 4.0</a>'
+
+
+  customCSS = []           
+  customJS = []
+
+  [params.counter.leancloud]  # Chinese leancloud visitor counter  # leancloud 计数器
+    enable = true
+    appId = "OhEPOy5aOYzYHl3v9PCSQsnv-gzGzoHsz"
+    appKey = "f1kLulToEkQkoGTmgxqQagSw"
+
+  [params.social]                                         # 社交链接
+    a-email = "mailto:xy410257@163.com"
+    g-github = "https://github.com/quinniup"
+
+  [params.utteranc]        
+    enable = true
+    repo = "quinniup/handbooks"    
+    issueTerm = "pathname"
+    # theme = "github-light"                          

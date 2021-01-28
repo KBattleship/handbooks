@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Netty基础 从一答一问开始Netty 1. 为什么用Netty？ a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。 2. Netty应用场景 a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统 3. Netty核心组件   Channel
+对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
+  EventLoop
+EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。
+EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。
+  ChannelFuture
+Netty是异步非阻塞，所有的I/O操作都是异步。所以不可以立即得到操作结果。但是
+（1）通过 ChannelFuture 接口的 addListener() 注册一个 ChannelFutureListener 对象，操作执行成功或失败后，监听会自动触发返回结果；
+（2）也可以通过 ChannelFuture 的 channel() 获取关联的 Channel 对象；'><title>[ Netty ] 1.Netty基础</title>
+
+<link rel='canonical' href='https://example.com/p/netty-1.netty%E5%9F%BA%E7%A1%80/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='[ Netty ] 1.Netty基础'>
+<meta property='og:description' content='Netty基础 从一答一问开始Netty 1. 为什么用Netty？ a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。 2. Netty应用场景 a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统 3. Netty核心组件   Channel
+对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
+  EventLoop
+EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。
+EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。
+  ChannelFuture
+Netty是异步非阻塞，所有的I/O操作都是异步。所以不可以立即得到操作结果。但是
+（1）通过 ChannelFuture 接口的 addListener() 注册一个 ChannelFutureListener 对象，操作执行成功或失败后，监听会自动触发返回结果；
+（2）也可以通过 ChannelFuture 的 channel() 获取关联的 Channel 对象；'>
+<meta property='og:url' content='https://example.com/p/netty-1.netty%E5%9F%BA%E7%A1%80/'>
+<meta property='og:site_name' content='Quinn'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='java' /><meta property='article:tag' content='netty' /><meta property='article:tag' content='io' /><meta property='article:published_time' content='2021-01-05T10:36:27&#43;08:00'/><meta property='article:modified_time' content='2021-01-05T10:36:27&#43;08:00'/>
+<meta name="twitter:title" content="[ Netty ] 1.Netty基础">
+<meta name="twitter:description" content="Netty基础 从一答一问开始Netty 1. 为什么用Netty？ a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发; b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色; c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议; d. 统一的API、支持多种传输类型(阻塞、非阻塞I/O); e. 简单且强大的线程模型; f. 自带编解码器解决粘包、拆包问题; g. 自带各种协议栈; h. 安全性不错，支持完整的SSL/TLS及StartTLS协议; i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制; j. 成熟项目很多：Dubbo、RocketMQ。 2. Netty应用场景 a. RPC框架的网络通信工具 b. 自实现HTTP服务器 c. 实现即时通信系统 d. 实现消息推送系统 3. Netty核心组件   Channel
+对网络操作的抽象类。除I/O基本操作之外，支持bind(),connect(),read(),write()操作。
+  EventLoop
+EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。 主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。
+EventLoop 负责处理注册到其上的 Channel 处理I/O操作，两者配合参与I/O操作。
+  ChannelFuture
+Netty是异步非阻塞，所有的I/O操作都是异步。所以不可以立即得到操作结果。但是
+（1）通过 ChannelFuture 接口的 addListener() 注册一个 ChannelFutureListener 对象，操作执行成功或失败后，监听会自动触发返回结果；
+（2）也可以通过 ChannelFuture 的 channel() 获取关联的 Channel 对象；">
+    </head>
+    <body class="">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.body.dataset.scheme = 'dark';
+        } else {
+            document.body.dataset.scheme = 'light';
+        }
+    })();
+</script><div class="container main-container flex on-phone--column extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu65fffd6f8ec63a27d5b50bc3e291712b_34630_300x0_resize_box_2.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+
+                
+                    <span class="emoji">🍥</span>
+                
+            </figure>
+        
+        <h1 class="site-name"><a href="https://example.com">Quinn</a></h1>
+        <h2 class="site-description">菜鸟还不会飞。。。</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/archives/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/tags/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tag" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11 3L20 12a1.5 1.5 0 0 1 0 2L14 20a1.5 1.5 0 0 1 -2 0L3 11v-4a4 4 0 0 1 4 -4h4" />
+  <circle cx="9" cy="9" r="2" />
+</svg>
+
+
+
+                
+                <span>标签</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/categories/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+                
+                <span>分类</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+
+        
+            <li id="dark-mode-toggle">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                <span>暗色模式</span>
+            </li>
+        
+    </ol>
+</aside>
+
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://example.com" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="/categories/java/" style="background-color: #2a9d8f; color: #fff;">
+                Java
+            </a>
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="/p/netty-1.netty%E5%9F%BA%E7%A1%80/">[ Netty ] 1.Netty基础</a>
+    </h2>
+
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Jan 05, 2021</time>
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="netty基础">Netty基础</h1>
+<h2 id="从一答一问开始netty">从一答一问开始Netty</h2>
+<h3 id="1-为什么用netty">1. 为什么用Netty？</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">a. Netty是一个基于JDK NIO的Client/Server架构的框架。可以快速进行网络开发<span class="p">;</span>
+b. 相比JDK NIO，极大简化TCP、UDP套接字服务器网络变成，并且性能、安全性出色<span class="p">;</span>
+c. 支持多种协议：FTP、SMTP、HTTP以及各种二进制和基于文本的传统协议<span class="p">;</span>
+d. 统一的API、支持多种传输类型<span class="o">(</span>阻塞、非阻塞I/O<span class="o">)</span><span class="p">;</span>
+e. 简单且强大的线程模型<span class="p">;</span>
+f. 自带编解码器解决粘包、拆包问题<span class="p">;</span>
+g. 自带各种协议栈<span class="p">;</span>
+h. 安全性不错，支持完整的SSL/TLS及StartTLS协议<span class="p">;</span>
+i. 相比JDK NIO，API具有更高吞吐量、更低延迟、更低资源消耗和更少的内存复制<span class="p">;</span>
+j. 成熟项目很多：Dubbo、RocketMQ。
+</code></pre></div><h3 id="2-netty应用场景">2. Netty应用场景</h3>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">a. RPC框架的网络通信工具
+b. 自实现HTTP服务器
+c. 实现即时通信系统
+d. 实现消息推送系统
+</code></pre></div><h3 id="3-netty核心组件">3. Netty核心组件</h3>
+<ul>
+<li>
+<p><strong>Channel</strong></p>
+<p>对网络操作的抽象类。除I/O基本操作之外，支持<code>bind()</code>,<code>connect()</code>,<code>read()</code>,<code>write()</code>操作。</p>
+</li>
+<li>
+<p><strong>EventLoop</strong></p>
+<p>EventLoop是Netty的核心抽象，用于处理连接在生命周期中所发生的事件。
+主要作用：负责监听网络事件并调用事件处理器进行相关的I/O操作。</p>
+<p><strong><code>EventLoop</code></strong> 负责处理注册到其上的 <strong><code>Channel</code></strong> 处理I/O操作，两者配合参与I/O操作。</p>
+</li>
+<li>
+<p><strong>ChannelFuture</strong></p>
+<p>Netty是<code>异步非阻塞</code>，所有的I/O操作都是异步。所以不可以立即得到操作结果。但是</p>
+<p>（1）通过 <strong><code>ChannelFuture</code></strong> 接口的 <strong><code>addListener()</code></strong> 注册一个 <strong><code>ChannelFutureListener</code></strong> 对象，操作执行成功或失败后，监听会自动触发返回结果；</p>
+<p>（2）也可以通过 <strong><code>ChannelFuture</code></strong> 的 <strong><code>channel()</code></strong> 获取关联的 <strong><code>Channel</code></strong> 对象；</p>
+<p>（3) 也可以通过 <strong><code>ChannelFuture</code></strong> 的 <strong><code>sync()</code></strong> 进行让异步的操作变成同步。</p>
+</li>
+<li>
+<p><strong>ChannelHandler</strong>与<strong>ChannelPipeline</strong></p>
+<ol>
+<li>
+<p><strong>ChannelHandler</strong> 是消息的具体处理器。他负责处理读写操作、客户端连接等事情。</p>
+</li>
+<li>
+<p><strong>ChannelPipeline</strong> 为 <strong>ChannelHandler</strong> 链提供了一个容器并定义了用于沿着链传播入站和出站事件流的 API 。当 <strong>Channel</strong> 被创建时，它会被自动地分配到它专属的 <strong>ChannelPipeline</strong> 。</p>
+</li>
+<li>
+<p>我们可以在 ChannelPipeline 上通过 addLast() 方法添加一个或者多个ChannelHandler ，因为一个数据或者事件可能会被多个 Handler 处理。当一个 ChannelHandler 处理完之后就将数据交给下一个 ChannelHandler 。</p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="4-netty线程模型">4. Netty线程模型</h3>
+<ol>
+<li>
+<p>单线程模型</p>
+<p>一个线程需要执行处理所有的 accept、read、decode、process、encode、send 事件。对于高负载、高并发，并且对性能要求比较高的场景不适用。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">//1.eventGroup既用于处理客户端连接，又负责具体的处理。
+</span><span class="c1"></span>  <span class="n">EventLoopGroup</span> <span class="n">eventGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+  <span class="c1">//2.创建服务端启动引导/辅助类：ServerBootstrap
+</span><span class="c1"></span>  <span class="n">ServerBootstrap</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
+  <span class="n">boobtstrap</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">eventGroup</span><span class="o">,</span> <span class="n">eventGroup</span><span class="o">)</span>
+  <span class="c1">//......
+</span></code></pre></div></li>
+<li>
+<p>多线程模型</p>
+<p>一个 Acceptor 线程只负责监听客户端的连接，一个 NIO 线程池负责具体处理
+满足绝大部分应用场景，并发连接量不大的时候没啥问题，但是遇到并发连接大的时候就可能会出现问题，成为性能瓶颈。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 1.bossGroup 用于接收连接，workerGroup 用于具体的处理
+</span><span class="c1"></span><span class="n">EventLoopGroup</span> <span class="n">bossGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">(</span><span class="n">1</span><span class="o">);</span>
+<span class="n">EventLoopGroup</span> <span class="n">workerGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+  <span class="c1">//2.创建服务端启动引导/辅助类：ServerBootstrap
+</span><span class="c1"></span>  <span class="n">ServerBootstrap</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
+  <span class="c1">//3.给引导类配置两大线程组,确定了线程模型
+</span><span class="c1"></span>  <span class="n">b</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">bossGroup</span><span class="o">,</span> <span class="n">workerGroup</span><span class="o">)</span>
+    <span class="c1">//......
+</span></code></pre></div></li>
+<li>
+<p>主从多线程模型</p>
+<p>从一个 主线程 NIO 线程池中选择一个线程作为 Acceptor 线程，绑定监听端口，接收客户端连接的连接，其他线程负责后续的接入认证等工作。连接建立完成后，Sub NIO 线程池负责具体处理 I/O 读写。如果多线程模型无法满足你的需求的时候，可以考虑使用主从多线程模型 。</p>
+<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="c1">// 1.bossGroup 用于接收连接，workerGroup 用于具体的处理
+</span><span class="c1"></span><span class="n">EventLoopGroup</span> <span class="n">bossGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
+<span class="n">EventLoopGroup</span> <span class="n">workerGroup</span> <span class="o">=</span> <span class="k">new</span> <span class="n">NioEventLoopGroup</span><span class="o">();</span>
+<span class="k">try</span> <span class="o">{</span>
+  <span class="c1">//2.创建服务端启动引导/辅助类：ServerBootstrap
+</span><span class="c1"></span>  <span class="n">ServerBootstrap</span> <span class="n">b</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ServerBootstrap</span><span class="o">();</span>
+  <span class="c1">//3.给引导类配置两大线程组,确定了线程模型
+</span><span class="c1"></span>  <span class="n">b</span><span class="o">.</span><span class="na">group</span><span class="o">(</span><span class="n">bossGroup</span><span class="o">,</span> <span class="n">workerGroup</span><span class="o">)</span>
+    <span class="c1">//.....
+</span></code></pre></div></li>
+</ol>
+<h3 id="5-eventloopgroup是什么与eventloop关系">5. EventLoopGroup是什么？与EventLoop关系。</h3>
+<ol>
+<li>
+<p><code>EventLoop</code> 的主要作用实际就是负责监听网络事件并调用事件处理器进行相关 I/O 操作的处理。</p>
+</li>
+<li>
+<p><code>EventLoopGroup</code> 包含多个 <code>EventLoop</code>（每一个 <code>EventLoop</code> 通常内部包含一个线程）。
+并且 EventLoop 处理的 I/O 事件都将在它专有的 Thread 上被处理，即 Thread 和 EventLoop 属于 1 : 1 的关系，从而保证线程安全。</p>
+</li>
+<li>
+<p><code>BossEventLoopGroup</code> <code>用于接收连接，WorkerEventLoopGroup</code> 用于具体的处理（消息的读写以及其他逻辑处理）</p>
+</li>
+<li>
+<p>当客户端通过 <strong>connect()</strong> 连接服务端时，<code>BossEventLoopGroup</code> 处理客户端连接请求。当客户端处理完成后，会将这个连接提交给 <code>WorkerEventLoopGroup</code> 来处理，然后 <code>WorkerEventLoopGroup</code> 负责处理其 IO 相关操作。</p>
+</li>
+</ol>
+<h3 id="6-netty中tcp粘包拆包">6. Netty中TCP粘包、拆包</h3>
+<p><strong>TCP 粘包/拆包</strong> 就是基于 TCP 发送数据的时候，出现了多个字符串“粘”在了一起或者一个字符串被“拆”开的问题。</p>
+<p><strong>解决办法：</strong></p>
+<ul>
+<li>使用 Netty 自带的解码器
+<ol>
+<li><strong>LineBasedFrameDecoder</strong> : 发送端发送数据包的时候，每个数据包之间以换行符作为分隔，<strong>LineBasedFrameDecoder</strong> 的工作原理是它依次遍历 <strong>ByteBuf</strong> 中的可读字节，判断是否有换行符，然后进行相应的截取。</li>
+<li><strong>DelimiterBasedFrameDecoder</strong> : 可以自定义分隔符解码器，<strong>LineBasedFrameDecoder</strong> 实际上是一种特殊的 <strong>DelimiterBasedFrameDecoder</strong> 解码器。</li>
+<li><strong>FixedLengthFrameDecoder</strong>: 固定长度解码器，它能够按照指定的长度对消息进行相应的拆包。</li>
+<li><strong>LengthFieldBasedFrameDecoder</strong> + <strong>LengthFieldPrepender</strong> 配合使用: 处理粘拆包的主要思想是在生成的数据包中添加一个长度字段，用于记录当前数据包的长度。(<strong>分为有头部的拆包与粘包、长度字段在前且有头部的拆包与粘包、多扩展头部的拆包与粘包。</strong>)
+<ul>
+<li><code>LengthFieldBasedFrameDecoder</code>会按照参数指定的包长度偏移量数据对接收到的数据进行解码，从而得到目标消息体数据</li>
+<li><code>LengthFieldPrepender</code>则会在响应的数据前面添加指定的字节数据，这个字节数据中保存了当前消息体的整体字节数据长度</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>自定义序列化编解码器
+<ul>
+<li>通过继承<code>LengthFieldBasedFrameDecoder</code>和<code>LengthFieldPrepender</code>来实现粘包和拆包的处理</li>
+</ul>
+</li>
+</ul>
+<h3 id="7-netty长连接心跳机制">7. Netty长连接、心跳机制</h3>
+<p>在 TCP 保持长连接的过程中，可能会出现断网等网络异常出现，异常发生的时候， client 与 server 之间如果没有交互的话，它们是无法发现对方已经掉线的。为了解决这个问题, 我们就需要引入 <strong>心跳机制</strong> 。</p>
+<ul>
+<li>
+<p><strong>心跳机制的工作原理是:</strong> 在 client 与 server 之间在一定时间内没有数据交互时, 即处于 idle 状态时, 客户端或服务器就会发送一个特殊的数据包给对方, 当接收方收到这个数据报文后, 也立即发送一个特殊的数据报文, 回应发送方, 此即一个 PING-PONG 交互。所以, 当某一端收到心跳消息后, 就知道了对方仍然在线, 这就确保 TCP 连接的有效性.</p>
+</li>
+<li>
+<p><strong>Netty中的心跳机制实现：</strong> TCP 实际上自带的就有长连接选项，本身是也有心跳包机制，也就是 TCP 的选项：SO_KEEPALIVE。但是，TCP 协议层面的长连接灵活性不够。所以，一般情况下我们都是在应用层协议上实现自定义心跳机制的，也就是在 Netty 层面通过编码实现。通过 Netty 实现心跳机制的话，核心类是 IdleStateHandler</p>
+</li>
+</ul>
+<h3 id="8-netty零拷贝">8. Netty零拷贝</h3>
+<p>在 OS 层面上的 Zero-copy 通常指避免在 <code>用户态(User-space)</code> 与 <code>内核态(Kernel-space)</code> 之间来回拷贝数据。而在 Netty 层面，零拷贝主要体现在对于数据操作的优化。</p>
+<p>Netty 中的零拷贝体现在以下几个方面：</p>
+<ol>
+<li>使用 Netty 提供的 <code>CompositeByteBuf</code> 类， 可以将多个ByteBuffer 合并为一个逻辑上的 ByteBuffer， <strong>避免了各个 ByteBuf 之间的拷贝</strong>。</li>
+<li>ByteBuffer 支持 slice 操作， 因此可以将 ByteBuf 分解为多个共享同一个存储区域的 ByteBuf， <strong>避免了内存的拷贝</strong>。</li>
+<li>通过 FileRegion 包装的FileChannel.tranferTo 实现文件传输， 可以直接将文件缓冲区的数据发送到目标 Channel， <strong>避免了传统通过循环 write 方式导致的内存拷贝问题</strong>。</li>
+</ol>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="/tags/java/">java</a>
+        
+            <a href="/tags/netty/">netty</a>
+        
+            <a href="/tags/io/">io</a>
+        
+    </section>
+
+
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Baqs/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之AQS</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/java-4-2.juc%E4%B9%8Bsynchronized/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Java ] 4-2.JUC之Synchronized</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/spring-1.-spring/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Spring ] 1. Spring</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/mybatis-1.-mybatis/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Mybatis ] 1. Mybatis</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="/p/interview-2.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">[ Interview ] 2.面试准备</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+
+    
+        
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+            2018 - 
+        
+        2021 Quinn
+    </section>
+    
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="2.0.1">Stack</a></b> designed by <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

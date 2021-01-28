@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>springboot on Quinn</title>
+    <link>https://example.com/tags/springboot/</link>
+    <description>Recent content in springboot on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 20 Aug 2020 15:36:27 +0800</lastBuildDate><atom:link href="https://example.com/tags/springboot/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ Docker ] 4.SpringBoot项目Docker化</title>
+      <link>https://example.com/p/docker-4.springboot%E9%A1%B9%E7%9B%AEdocker%E5%8C%96/</link>
+      <pubDate>Thu, 20 Aug 2020 15:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/docker-4.springboot%E9%A1%B9%E7%9B%AEdocker%E5%8C%96/</guid>
+      <description>SpringBoot项目Docker化 一 </description>
+    </item>
+    
+  </channel>
+</rss>
