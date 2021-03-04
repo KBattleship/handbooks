@@ -6,7 +6,17 @@
     <description>Recent content in Middleware on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 08 Jan 2021 01:13:47 +0800</lastBuildDate><atom:link href="https://example.com/categories/middleware/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 02 Mar 2021 11:13:47 +0800</lastBuildDate><atom:link href="https://example.com/categories/middleware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ Pulsar ] 1. Pulsar本地安装</title>
+      <link>https://example.com/p/pulsar-1.-pulsar%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Tue, 02 Mar 2021 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/pulsar-1.-pulsar%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85/</guid>
+      <description>Pulsar本地单机安装 1. OS要求  目前Pulsar仅支持操作系统 MacOS 与 Linux，使用Pulsar，需保证已安装 Oracle的 Java 8 运行环境。
+ 2. 安装二进制版本 </description>
+    </item>
+    
     <item>
       <title>[ RocketMQ ] 1.面试</title>
       <link>https://example.com/p/rocketmq-1.%E9%9D%A2%E8%AF%95/</link>
@@ -151,35 +161,6 @@ master管理进程和Worker进程是相互隔离的，这使得Nginx能够彰显
   最自由的BSD许可协议
 俗话说**“众人拾柴火焰高”**。也正是BSD许可协议带来的极大优势，为**Nginx**提供更强劲的发展动力。
   综上所述，选择Nginx的核心理由还是由于它能在支持高并发请求的同时保持高效的服务。  二、Nginx的安装 1.</description>
-    </item>
-    
-    <item>
-      <title>1.KVM入门</title>
-      <link>https://example.com/p/1.kvm%E5%85%A5%E9%97%A8/</link>
-      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
-      
-      <guid>https://example.com/p/1.kvm%E5%85%A5%E9%97%A8/</guid>
-      <description>KVM入门  1.基础操作 ①.创建虚拟机 virt-install --name=centos-node1-0113 \ --ram=4096 --vcpus=2 \ --disk /data/virtualdisk\centos-node1-0113.img,sparse=false,bus=virtio,size=100 \ --cdrom=/root/Download/CentOS-7-x86_64-Minimal-1810.iso\ --network bridge=br2 \ --vnc --vncport=5921 --vnclisten=0.0.0.0 \ --noautoconsole --force --autostart ②.虚拟机相关操作 # 显示所有虚拟机列表 virsh list --all # 启动指定虚拟机 virsh start &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 停止指定虚拟机 virsh shutdown &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 销毁指定虚拟机(强制断电) virsh destory &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 登入指定虚拟机 virsh console &amp;lt;name&amp;gt;/&amp;lt;id&amp;gt; # 为虚拟机添加网卡绑定 virsh attach-interface \ --domain centos_node2-142-5922 \  --type bridge \ --source br0 \ --model virtio \ --config # 分离虚拟机网卡绑定 virsh detach-interface \ centos_node2-142-5922 \ bridge \ 52:54:00:aa:9c:18 # 查看虚拟机网卡绑定详细信息 virsh domiflist centos_node2-142-5922 # 查看网桥信息(brctl:网桥管理工具) brctl show # 虚拟机管理工具(virt-*) ③.</description>
-    </item>
-    
-    <item>
-      <title>1.TCP/IP入门</title>
-      <link>https://example.com/p/1.tcp/ip%E5%85%A5%E9%97%A8/</link>
-      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
-      
-      <guid>https://example.com/p/1.tcp/ip%E5%85%A5%E9%97%A8/</guid>
-      <description>TCP/IP入门 1.1 协议分层 ✌🏼😂😅😅</description>
-    </item>
-    
-    <item>
-      <title>2.KVM-双网卡网关配置</title>
-      <link>https://example.com/p/2.kvm-%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/</link>
-      <pubDate>Sat, 12 Oct 2019 01:36:27 +0800</pubDate>
-      
-      <guid>https://example.com/p/2.kvm-%E5%8F%8C%E7%BD%91%E5%8D%A1%E7%BD%91%E5%85%B3%E9%85%8D%E7%BD%AE/</guid>
-      <description>双网卡网关配置 1.在系统路由表文件/etc/iproute2/rt_tables增加配置
-252 e1 251 e0 2.执行以下命令，并在/etc/rc.d/network追加此内容
-# 此内容防止服务器重启路由失效 ip route flush table e0 ip route add default via 10.3.3.1 dev eth0 src 10.3.3.25 table e0 ip route add 127.0.0.0/8 dev lo table e0 ip rule add from 10.3.3.25 table e0 ip route flush table e1 ip route add default via 10.2.2.1 dev eth1 src 10.2.2.10 table e1 ip route add 127.0.0.0/8 dev lo table e1 ip rule add from 10.</description>
     </item>
     
   </channel>

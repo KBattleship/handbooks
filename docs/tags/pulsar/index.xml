@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pulsar on Quinn</title>
+    <link>https://example.com/tags/pulsar/</link>
+    <description>Recent content in pulsar on Quinn</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 02 Mar 2021 11:13:47 +0800</lastBuildDate><atom:link href="https://example.com/tags/pulsar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>[ Pulsar ] 1. Pulsar本地安装</title>
+      <link>https://example.com/p/pulsar-1.-pulsar%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85/</link>
+      <pubDate>Tue, 02 Mar 2021 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/pulsar-1.-pulsar%E6%9C%AC%E5%9C%B0%E5%AE%89%E8%A3%85/</guid>
+      <description>Pulsar本地单机安装 1. OS要求  目前Pulsar仅支持操作系统 MacOS 与 Linux，使用Pulsar，需保证已安装 Oracle的 Java 8 运行环境。
+ 2. 安装二进制版本 </description>
+    </item>
+    
+  </channel>
+</rss>
