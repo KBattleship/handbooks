@@ -5,6 +5,25 @@
     <link>https://example.com/categories/linux/</link>
     <description>Recent content in Linux on Quinn</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language><atom:link href="https://example.com/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 12 Nov 2019 01:36:27 +0800</lastBuildDate><atom:link href="https://example.com/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1.Linux-Vim</title>
+      <link>https://example.com/p/1.linux-vim/</link>
+      <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/1.linux-vim/</guid>
+      <description>vim 1.基本操作命令 普通模式(Normal)  a: append current location i: insert current location o: open a line below A: append after line I: insert before line O: open a line above y: copy p: parse ^: 光标移至行首 $: 光标移至行末 G: 光标移至末行 1G: 光标移至首行 H: 光标移至当前窗口首行 M: 光标移至当前窗口中间位置  命令行模式(Command)  % s/string1/string2/g  可视化模式(Visual)  v:  插入编辑模式(Insert) 2.快速纠错 编辑模式下：  ctrl+w: 删除上一个单词 ctrl+u: 删除当前行  </description>
+    </item>
+    
+    <item>
+      <title>CentOS修改系统镜像源</title>
+      <link>https://example.com/p/centos%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%E6%BA%90/</link>
+      <pubDate>Tue, 12 Nov 2019 01:36:27 +0800</pubDate>
+      
+      <guid>https://example.com/p/centos%E4%BF%AE%E6%94%B9%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%E6%BA%90/</guid>
+      <description>CentOS修改系统镜像源 一.备份当前源 mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup 二、切换阿里云镜像源  CentOS7 切换源  # 进入源所在路径 cd /etc/yum.repos.d/ # 下载阿里云镜像源并保存为源文件 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-7.repo  CentOS6 切换源  # 进入源所在路径 cd /etc/yum.repos.d/ # 下载网易163镜像源并保存为源文件 wget -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.163.com/.help/CentOS6-Base-163.repo </description>
+    </item>
+    
   </channel>
 </rss>

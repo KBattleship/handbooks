@@ -46,6 +46,19 @@ public class MaxHeap { public static void main(String[] args) { int[] arr = new 
     </item>
     
     <item>
+      <title>[ Spring ] 1. Spring</title>
+      <link>https://example.com/p/spring-1.-spring/</link>
+      <pubDate>Fri, 08 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/spring-1.-spring/</guid>
+      <description>Spring 1. Spring BeanFactory与FactoryBean的区别   BeanFactory:
+ BeanFactory 是一个工厂类(接口）。同时是IOC容器的核心接口，用于 管理Bean 的工厂。 职责包括：实例化、定位、配置应用程序中对象 以及 对象间的依赖关系。    FactoryBean:
+ 为IOC容器中的Bean的实现提供更加灵活的方式。 FactoryBean在IOC容器的基础上为Bean的实现加上了一个简单工厂模式和装饰模式，可以通过在getObject()方法灵活配置。 当IOC容器中的Bean实现了FactoryBean接口后，通过getBean()获取到的Bean对象并不是FactoryBean的实现类对象，而是这个实现类中getObject()返回的对象。 如果想要获取FactoryBean的实现，需要在getBean()参数BeanName前添加&amp;amp;符号。    2. Bean的生命周期?  实例化Bean： Ioc容器通过获取BeanDefinition对象中的信息进行实例化，实例化对象被包装在BeanWrapper对象中 设置对象属性（DI）：通过BeanWrapper提供的设置属性的接口完成属性依赖注入； 注入Aware接口（BeanFactoryAware， 可以用这个方式来获取其它 Bean，ApplicationContextAware）：Spring会检测该对象是否实现了xxxAware接口，并将相关的xxxAware实例注入给bean BeanPostProcessor：自定义的处理（分前置处理和后置处理） InitializingBean和init-method：执行我们自己定义的初始化方法 使用 destroy：bean的销毁  IOC：控制反转：将对象的创建权，由Spring管理. DI（依赖注入）：在Spring创建对象的过程中，把对象依赖的属性注入到类中。
+4. SpringIOC 控制反转，通过依赖注入方式实现，IOC利用java反射机制，AOP利用代理模式。所谓控制反转是指，本来被调用者的实例是由调用者来创建的，这样的缺点是耦合性太强，IOC则是统一交给spring来管理创建，将对象交给容器管理，你只需要在spring配置文件总配置相应的bean，以及设置相关的属性，让spring容器来生成类的实例对象以及管理对象。在spring容器启动的时候，spring会把你在配置文件中配置的bean都初始化好，然后在你需要调用的时候，就把它已经初始化好的那些bean分配给你需要调用这些bean的类
+5. Spring容器加载Bean  BeanDefinitionReader读取Resource所执行的配置文件资源，解析配置文件，并将生成的BeanDefinition对象保存到BeanDefinitionRegistry中。 容器扫描Bean定义注册表中的BeanDefinition对象，调用InstantiationStrategy进行Bean实例化的工作；采用BeanWrapper完成Bean属性的设置工作。 若是单例的Bean，则将Bean缓存在Bean缓存器中。  6. Spring三级缓存  一级缓存：Map&amp;lt;String, Object&amp;gt; singletonObjects  作用  用于存储单例模式下创建的Bean实例（已经创建完毕）。 该缓存是对外使用的，指的就是使用Spring框架的程序员。   对象  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，已经创建完毕）     第二级缓存：Map&amp;lt;String, Object&amp;gt; earlySingletonObjects  作用：  用于存储单例模式下创建的Bean实例（该Bean被提前暴露的引用,该Bean还在创建中）。 该缓存是对内使用的，指的就是Spring框架内部逻辑使用该缓存。   对象：  K：bean的名称 V：bean的实例对象（有代理对象则指的是代理对象，该Bean还在创建中）     第三级缓存：Map&amp;lt;String, ObjectFactory&amp;lt;?</description>
+    </item>
+    
+    <item>
       <title>[ Interview ] 1. 面试之清单</title>
       <link>https://example.com/p/interview-1.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E6%B8%85%E5%8D%95/</link>
       <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
@@ -53,6 +66,24 @@ public class MaxHeap { public static void main(String[] args) { int[] arr = new 
       <guid>https://example.com/p/interview-1.-%E9%9D%A2%E8%AF%95%E4%B9%8B%E6%B8%85%E5%8D%95/</guid>
       <description>面试之清单  加粗加斜 : 为本人面试所遇到重复出现的点儿 加粗 : 为本人面试所遇到的点儿 正常 : 为本人面试刷的面经  Algorithm Sort  手撸插入排序 手撸二分查找 堆排序(Top K) 快素排序思想 反转单链表 合并二叉树(递归与非递归两种办法)  Java Basic  Object是所有对象的父类，那Object类中有哪些方法 hashCode()与equals()有什么关系 String、StringBuilder、StringBuffer区别 反射机制 方法(静态、一般方法)；代码块(this，ClassName.class)  Collections  List之ArrayList List之LinkedList List之Vector Map之HashMap Map之LinkedHashMap Map之ConcurrentHashMap Map之TreeMap HashTable Set之HashSet Set之TreeSet Queue之ArrayBlockingQueue Queue之ConcurrentLinkedQueue Queue之LinkedBlockingQueue  Thread  线程的几种状态以及如何转化的 三种线程初始化方法的区别(Thread,Callable,Runnable) 线程池几个重要参数 线程池四种拒绝策略 线程池四个类型 线程池(ThreadPoolExecutor)原理 关于锁 synchronized锁以及锁升级 ReentrantLock与synchronized区别 有界、无界任务队列，手写BlockingQueue ThreadLocal：底层数据结构、ThreadLocalMap、原理、应用场景 Atomic类：原理、应用场景 Volatile：原理、有序性、可见性  JVM   JVM内存结构
   final修饰的常量处于JVM中哪部分内存</description>
+    </item>
+    
+    <item>
+      <title>[ Mybatis ] 1. Mybatis</title>
+      <link>https://example.com/p/mybatis-1.-mybatis/</link>
+      <pubDate>Thu, 07 Jan 2021 01:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/mybatis-1.-mybatis/</guid>
+      <description>MyBatis 1. MyBatis二级缓存   一级缓存：
+ 基于PrepetualCache的HashMap本地缓存，其作用域是Session。 当Session在flush()或者close()之后，此Session中所有Cache都将被清除。 默认情况下，一级缓存处于打开状态。    二级缓存：
+ 二级缓存与一级缓存机制相同，一样基于PrepetualCache HashMap进行存储。 但其作用于是Mapper(Namespace)，而且可以采用自定义存储源， 例如Ehcache、Redis等。 默认情况下，二级缓存处于关闭状态。 二级缓存在使用中，其属性类型需要实现serialize序列化接口。 可在其映射配置文件中进行    对于缓存更新机制，当某一作用域(一级Session/二级Namespace)执行C/U/D后 默认情况下，此作用域下所有select中的缓存将被clear。
+  2. Mybatis工作原理   加载Mybatis全局配置文件mybatis-config.xml：
+ 此配置文件用于配置数据库连接信息。    加载Mybatis映射配置文件xxx-mapper.xml:
+ 此配置文件包含有操作数据库的SQL语句，需在mybatis-config.xml文件中进行配置。 mybatis-config.xml中可以配置多个xxx-mapper.xml文件 一个xxx-mapper.xml文件对应数据库中一张表。    构建会话工厂：
+ 通过配置信心初始化构建SQLSessionFactory对象。    创建会话对象：
+ 基于会话工厂创建SQLSession对象。 此Sqlsession对象中包含有执行SQL语句的所有方法。    Executor执行器
+ Mybatis底层封装了一个Executor的接口用于操作数据库。 将根据SqlSession对象传递的参数动态生成所需要执行的SQL语句，同时负责缓存查询。    MappedStatement对象：
+ 在Executor接口的执行方法中存在一个MappedStatement类型的参数， 该参数是对映射地址信息进行封装，用于存储要映射的SQL语句的id，参数等信息。    输入参数映射：</description>
     </item>
     
     <item>
@@ -71,6 +102,24 @@ public class MaxHeap { public static void main(String[] args) { int[] arr = new 
       
       <guid>https://example.com/p/interview-1.%E9%9D%A2%E8%AF%95%E5%87%86%E5%A4%87/</guid>
       <description>面试准备  Java线程池  JDK中JUC包  JVM调优：如果发现某个服务慢，如何排查，如何处理；发现某个服务器CPU100%了，应该如何处理 遵循六步走原则： 1）找到罪魁祸首的进程 2）分析进程对应的线程 3）生成JVM当前时刻线程快照 4）分析定位代码问题 5）  垃圾回收器G1与GC算法CMS  Tomcat 如何实现类隔离  Spring IOC原理  Spring AOP原理  Spring事务  Dubbo服务发现、注册流程  Dubbo通信原理  Dubbo SPI与Java SPI  Zookeeper选举协议  大数据量的排序如何处理  如何判断链表是回文链表、快排序、归并排序  MySQL调优：B+ Tree索引、Hash索引  Mybatis的一、二级缓存  Mybatis工作原理  Redis Bitmap  </description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 2.5 手写LRU</title>
+      <link>https://example.com/p/java-2.5-%E6%89%8B%E5%86%99lru/</link>
+      <pubDate>Thu, 31 Dec 2020 11:13:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-2.5-%E6%89%8B%E5%86%99lru/</guid>
+      <description>手写LRU 1. 利用数组实现 2. 使用LinkedHashMap偷个懒 </description>
+    </item>
+    
+    <item>
+      <title>[ Java ] 4.0 多线程问题</title>
+      <link>https://example.com/p/java-4.0-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</link>
+      <pubDate>Sun, 27 Dec 2020 21:10:47 +0800</pubDate>
+      
+      <guid>https://example.com/p/java-4.0-%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%97%AE%E9%A2%98/</guid>
+      <description>多线程问题 1. 如何保证多线程同时启动，主线程进行耗时统计。 CountDownLatch</description>
     </item>
     
   </channel>
