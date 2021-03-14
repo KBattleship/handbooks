@@ -25,7 +25,7 @@
  在设计注册中心时应该考虑一点，不能因为注册中心的任何原因导致服务间调用出现异常。 其实，在注册中心(服务发现)这个应用场景下，进行CAP的选择，更加注重可用性。毕竟数据不一致在一定时间范围内是可以容忍的。 如果在保证分区容错(P)的情况下，不能保证可用性(A)，就违反了注册中心(服务发现)的设计原则，以及实际生产环境的要求。  2. 随时间推移ZK的能力有所下降  在注册中心(服务发现)的场景下，随着大量的服务注册到ZK集群中，频繁的写请求、服务健康检查的心跳机制都会给ZK集群带来压力。 如果通过不同业务使用不同的ZK集群进行服务发现，就会破坏注册中心一开始的设计初衷：不得以自身任何原因破坏掉服务间的互通性。  3. ZK自身保证事务的特性  ZAB协议处理每一个写请求的同时，会在ZK集群的每一个节点上进行事务日志写入 定期通过内存数据快照同步到磁盘，保证数据一致性、数据持久性、宕机数据可恢复性。注册中心保存的数据信息包含有：注册成功的服务的可用服务地址信息。但是在 注册中心(服务发现) 的应用场景下，仅是为了保证每次可以正常调用到下游服务，并不关心下游服务的历史信息，所以说一定程度上，持久化这些数据是没有必要的。 但是从另外一个角度，注册中心还是要持久元数据信息的，譬如：服务版本、所在数据中心、服务路由权重、鉴权策略信息等等。 不单单需要提供持久性，同时还需要满足持久化数据的搜索能力。  4. 例如Dubbo服务间调用采用ZK作为注册中心  在实际环境中，不能因为ZK集群挂掉，导致服务间调用出现异常。 Dubbo服务间调用：Dubbo服务在注册到注册中心后，会将必要的数据信息在本地环境下进行持久化，也就是说，在ZK集群处于瘫痪，并且没有新服务注册进来提供被调用能力时，原有服务间的调用不能收到影响。 注册中心最关键的是在 新服务注册、节点上下线等情况下提供支持。  5.'>
 <meta property='og:url' content='https://example.com/p/zookeeper-3.-zookeeper%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E7%9A%84%E7%BC%BA%E9%A6%85/'>
 <meta property='og:site_name' content='Quinn'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='middleware' /><meta property='article:tag' content='Zookeeper' /><meta property='article:tag' content='Linux' /><meta property='article:tag' content='分布式' /><meta property='article:published_time' content='2019-11-12T01:36:27&#43;08:00'/><meta property='article:modified_time' content='2019-11-12T01:36:27&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='middleware' /><meta property='article:tag' content='Zookeeper' /><meta property='article:tag' content='Linux' /><meta property='article:tag' content='分布式' /><meta property='article:published_time' content='2021-03-14T01:36:27&#43;08:00'/><meta property='article:modified_time' content='2021-03-14T01:36:27&#43;08:00'/>
 <meta name="twitter:title" content=" [ Zookeeper ] 3. Zookeeper作为注册中心的缺馅">
 <meta name="twitter:description" content="Zookeeper作为注册中心的缺馅 一、 关于服务发现中心 1.CAP原理   C(Consistency)：一致性
 在更新操作成功后，所有节点在同一时间的数据保证一致。
@@ -252,7 +252,7 @@
 
 
 
-        <time class="article-time--published">Nov 12, 2019</time>
+        <time class="article-time--published">Mar 14, 2021</time>
     </footer></div>
 </header>
 

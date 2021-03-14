@@ -1,7 +1,7 @@
 ---
 title: " [ Zookeeper ] 3. Zookeeper作为注册中心的缺馅"
-date: 2019-11-12T01:36:27+08:00
-lastmod: 2019-11-12T01:36:27+08:00
+date: 2021-03-14T01:36:27+08:00
+lastmod: 2021-03-14T01:36:27+08:00
 keywords: ['middleware']
 description: ""
 tags: ['middleware','Zookeeper','Linux','分布式']
