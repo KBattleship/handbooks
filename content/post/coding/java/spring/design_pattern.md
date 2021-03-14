@@ -1,0 +1,28 @@
+---
+title: "[ Spring ] 1.Spring源码中设计模式"
+date: 2020-12-31T11:13:47+08:00
+lastmod: 2020-12-31T11:13:47+08:00
+keywords: ['spring']
+description: ""
+tags: ['java','spring','design_pattern']
+categories: ['Java']
+author: ""
+---
+# Spring源码中设计模式
+
++ 工程模式：Spring中的BeanFactory就是简单工厂模式的体现，根据传入一个唯一的标识来获得Bean对象
++ 单例模式：Spring依赖注入Bean实例默认是单例的。Spring的依赖注入（包括lazy-init方式）都是发生在AbstractBeanFactory的getBean里。getBean的doGetBean方法调用getSingleton进行bean的创建。
+
++ 装饰器模式：Spring中用到的包装器模式在类名上有两种表现：一种是类名中含有Wrapper，另一种是类名中含有Decorator。
+
++ 代理模式：AOP底层，就是动态代理模式的实现
+
++ 观察者模式：spring的事件驱动模型使用的是 观察者模式 ，Spring中Observer模式常用的地方是listener的实现。如：ApplicationContextEvent、ApplicationListener
+
++ 策略模式：Spring框架的资源访问Resource接口。该接口提供了更强的资源访问能力，Spring 框架本身大量使用了 Resource 接口来访问底层资源。
+  + UrlResource：访问网络资源的实现类。
+  + ClassPathResource：访问类加载路径里资源的实现类。
+  + FileSystemResource：访问文件系统里资源的实现类。
+  + ServletContextResource：访问相对于 ServletContext 路径里的资源的实现类.
+  + InputStreamResource：访问输入流资源的实现类。
+  + ByteArrayResource：访问字节数组资源的实现类。
