@@ -4,7 +4,7 @@ date: 2019-11-12T01:36:27+08:00
 lastmod: 2019-11-12T01:36:27+08:00
 keywords: ['middleware']
 description: ""
-tags: ['Zookeeper','Linux','分布式']
+tags: ['middleware','Zookeeper','Linux','分布式']
 categories: ['middleware']
 author: ""
 ---

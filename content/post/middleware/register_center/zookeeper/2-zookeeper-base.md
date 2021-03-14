@@ -4,11 +4,11 @@ date: 2019-11-12T01:36:27+08:00
 lastmod: 2019-11-12T01:36:27+08:00
 keywords: ['middleware']
 description: ""
-tags: ['Zookeeper','Linux','分布式']
+tags: ['middleware','Zookeeper','Linux','分布式']
 categories: ['middleware']
 author: ""
 ---
-# Zookeeper基础
+# Zookeeper
 ## 1. ZAB协议
 + ZAB协议是为分布式协调服务Zookeeper专有的一种协议，此协议是为了应对崩溃恢复的原子广播
 + 崩溃恢复
